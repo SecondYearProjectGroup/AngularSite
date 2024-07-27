@@ -1,0 +1,9 @@
+/* Footer */
+footer {
+    width: 100%;
+    text-align: center;
+    background-color: #666666;
+    color: white;
+    position: absolute;
+    left: 0;
+}

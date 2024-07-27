@@ -1,0 +1,18 @@
+/* Notification Panel */
+.notification-panel {
+    display: none;
+    position: fixed;
+    top: 50px;
+    right: 10px;
+    background-color: #d1d1d1;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 10px;
+    z-index: 9999;
+}
+.notification-panel p {
+    margin: 0;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}

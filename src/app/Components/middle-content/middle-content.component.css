@@ -1,0 +1,14 @@
+/* Main Content */
+.middle-content {
+    flex: 1;
+    margin-left: 212px; /* Adjust based on sidebar width */
+    margin-right: 230px; /* Adjust based on sidebar width */
+    padding: 20px;
+    padding-top: 0px;
+    width: calc(100% - 450px); /* Adjust based on sidebar width */
+    transition: margin-left 0.3s ease;
+}
+.middle-content.expanded{
+    margin-right: 0px;
+    padding-right: 0px;
+}

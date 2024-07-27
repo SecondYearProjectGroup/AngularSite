@@ -1,0 +1,88 @@
+<img src="https://i.ibb.co/ZxJ90GH/Screenshot-2024-06-08-135710.png" alt="Students" style="width:100%;">
+
+<div class="form-container">
+    <form action="/submit-form" method="post">
+        <table style="width: 100%;">
+            <tr>
+                <td>Name with Initials</td>
+                <td><input type="text" name="nameWithInitials" placeholder="Your Name..."></td>
+            </tr>
+            <tr>
+                <td>Full Name</td>
+                <td><input type="text" name="fullName" placeholder="Your Full Name..."></td>
+            </tr>
+            <tr>
+                <td>Contact Number</td>
+                <td><input type="tel" name="contactNumber" placeholder="Contact Number..."></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="email" placeholder="Email Address..."></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><textarea name="address" rows="4"></textarea></td>
+            </tr>
+            <br>
+        </table>
+        <br>
+        <hr>
+        
+        <h3>Educational/Professional Qualifications</h3>
+        
+        <div id="form-sections-container">
+            <div class="form-section" id="original-form-section">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>University / Institute</td>
+                        <td><input type="text" name="uni" placeholder="University..."></td>
+                    </tr>
+                    <tr>
+                        <td>From</td>
+                        <td><input type="text" name="from" placeholder="From..."></td>
+                    </tr>
+                    <tr>
+                        <td>To</td>
+                        <td><input type="text" name="to" placeholder="To..."></td>
+                    </tr>
+                    <tr>
+                        <td>Degree</td>
+                        <td><input type="text" name="degree"placeholder="Degree..."></td>
+                    </tr>
+                    <tr>
+                        <td>Field</td>
+                        <td><input type="text" name="field" placeholder="Field..."></td>
+                    </tr>
+                    <tr>
+                        <td>Class / Pass</td>
+                        <td><input type="text" name="class" placeholder="Class..."></td>
+                    </tr>
+                </table>
+                <br>
+                Attach Files: <input type="file" name="attachment">
+                <br><br>
+            </div>
+        </div>
+
+        <button type="button" id="add-section">Add Section</button>
+        <button type="button" id="remove-section" style="display:none;">--</button>
+
+        <hr>
+
+        <h3>List of Publications</h3>
+        <textarea name="publications" rows="4" style="width: 100%;"></textarea>
+        
+        <br><br><hr>
+        <h3>Proposed Program of Study</h3>
+        <select name="programOfStudy">
+            <option value="program1">PhD</option>
+            <option value="program1">MPhil</option>
+            <option value="program1">Program 1</option>
+            <option value="program2">Program 2</option>
+            
+        </select>
+        
+        <br><br><hr><br><br>
+        <input type="submit" value="Submit" (click)="onEnrollSubmit()"><br><br>
+    </form>
+</div>
