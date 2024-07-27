@@ -33,3 +33,19 @@
 .sidebar-right ul li a:hover {
     background-color: #ddd;
 }
+
+
+.toggle-btn {
+    position: fixed;
+    right: 0px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    z-index: 1;
+  }
+#showSidebarBtn {
+    display: none;
+}
