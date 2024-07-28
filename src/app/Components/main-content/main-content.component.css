@@ -1,5 +1,5 @@
 /* Whole Container */
 .wholeContainer {
-  display: flex;
+  display: block;
   width: 100%;
 }

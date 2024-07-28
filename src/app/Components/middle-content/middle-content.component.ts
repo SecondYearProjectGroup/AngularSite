@@ -18,7 +18,7 @@ export class MiddleContentComponent implements OnInit {
     this.adjustContentSize(event.detail);
   }
 
-  adjustContentSize(size: 'full' | 'reduced' = 'full'): void {
+  adjustContentSize(size: 'full' | 'reduced' = 'reduced'): void {
     const content = document.querySelector('.middle-content');
     if (size === 'full') {
       this.renderer.addClass(content, 'full-width');
