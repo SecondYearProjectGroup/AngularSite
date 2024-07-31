@@ -1,17 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AppComponent } from './app.component';
-import { DashboardComponent } from './Components/dashboard/dashboard.component';
-import { EnrolledStudentsComponent } from './Components/enrolled-students/enrolled-students.component';
-import { EnrollComponent } from './Components/enroll/enroll.component';
-
-
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'enrolled-students', component: EnrolledStudentsComponent },
-  { path: 'enroll', component: EnrollComponent }
+  { path: '', redirectTo: '/beforelog', pathMatch: 'full' },
+  { path: 'beforelog', loadChildren: () => import('./beforelog/beforelog.module').then(m => m.BeforelogModule) },
+  { path: 'afterlog', loadChildren: () => import('./afterlog/afterlog.module').then(m => m.AfterlogModule) },
+  { path: '**', redirectTo: '/beforelog' }
 ];
 
 @NgModule({
@@ -19,3 +13,25 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
+// import { NgModule } from '@angular/core';
+// import { RouterModule, Routes } from '@angular/router';
+
+// import { LoginComponent } from './beforelog/login/login.component';
+// import { WelcomeComponent } from './beforelog/welcome/welcome.component';
+// import { SignupComponent } from './beforelog/signup/signup.component';
+
+
+// const routes: Routes = [
+//   { path: '', redirectTo: '/welcome', pathMatch: 'full' },
+//   { path: 'welcome', component: WelcomeComponent },
+//   { path: 'signup', component: SignupComponent},
+//   { path: 'login', component: LoginComponent},
+// ];
+
+// @NgModule({
+//   imports: [RouterModule.forRoot(routes)],
+//   exports: [RouterModule]
+// })
+// export class AppRoutingModule { }

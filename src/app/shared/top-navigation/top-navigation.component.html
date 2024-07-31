@@ -1,0 +1,46 @@
+<nav>
+    <div *ngIf="mode === 'afterLog'">
+        <!-- Content for after login -->
+        <ul class="topnav">
+            <li><button class="active" (click)="navigateToHome()">Home</button></li>
+            <li><button (click)="navigateToDashboard()">Dashboard</button></li>
+            <li class="right"><button (click)="navigateToLogin()">Log out</button></li>
+            <li class="right"><button>Profile</button></li>
+            <!-- <li class="right">
+                <img src="https://i.ibb.co/DwThLns/Notification-image.png" alt="Notification" id="notificationButton" class="notifyImage" height="20px" width="auto">
+            </li>
+            <app-notification-panel></app-notification-panel> -->
+            <li class="right"><img src="https://i.ibb.co/DwThLns/Notification-image.png" alt="Notification" id="notificationButton" class="notifyImage" height="20px" width="auto"></li>
+            
+        </ul>
+    </div>
+
+    <div id="notificationPanel" class="notification-panel" style="display: none;">
+        <h4 style="text-align: center; color:#400752; margin:0px">Notifications</h4>
+        <hr>
+        <p>You have new notifications!</p>
+        <p>You have new notifications2!</p>
+        <p>You have new notifications3!</p>
+    </div>
+
+    <div *ngIf="mode === 'beforeLog'">
+        <!-- Content for before login -->
+        <ul class="topnav">
+            <li><button class="active" (click)="navigateToHome()">Home</button></li>
+            <li class="right"><button (click)="navigateToLogin()">Login</button></li>
+            <li class="right"><button (click)="navigateToEnroll()">Enroll</button></li>
+        </ul>
+    </div>
+
+    <div *ngIf="mode === 'login'">
+        <!-- Content for login -->
+        <ul class="topnav">
+            <li><button class="active" (click)="navigateToHome()">Home</button></li>
+            <li><button (click)="navigateToStuDashboard()">Stu-Dashboard</button></li>
+            <li><button (click)="navigateToAdminDashboard()">Admin-Dashboard</button></li>
+            <li class="right"><button (click)="navigateToLogin()">Login</button></li>
+            <li class="right"><button (click)="navigateToEnroll()">Enroll</button></li>
+        </ul>
+    </div>
+</nav>
+

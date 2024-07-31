@@ -1,0 +1,28 @@
+/* Left Sidebar */
+.sidebar-left {
+    width: 220px;
+    background-color: #f4f4f4;
+    padding: 15px;
+    box-shadow: 5px 0 5px rgba(0,0,0,0.1);
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+}
+.sidebar-left ul {
+    list-style-type: none;
+    padding: 0;
+}
+.sidebar-left ul li {
+    margin: 10px 0;
+}
+.sidebar-left ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+.sidebar-left ul li a:hover {
+    background-color: #ddd;
+}
