@@ -6,6 +6,8 @@ import { SupervisorDashboardComponent } from './supervisor/supervisor-dashboard/
 import { SharedModule } from '../shared/shared.module';
 import { AfterlogRoutingModule } from './afterlog-routing.module';
 import { SidebarRightComponent } from './shared/sidebar-right/sidebar-right.component';
+import { RolesMainComponent } from './roles-main/roles-main.component';
+import { EnrolledStudentsComponent } from './admin/enrolled-students/enrolled-students.component';
 
 
 
@@ -15,7 +17,9 @@ import { SidebarRightComponent } from './shared/sidebar-right/sidebar-right.comp
     AdminDashboardComponent,
     StudentDashboardComponent,
     SupervisorDashboardComponent,
-    SidebarRightComponent
+    SidebarRightComponent,
+    RolesMainComponent,
+    EnrolledStudentsComponent
   ],
   imports: [
     CommonModule,

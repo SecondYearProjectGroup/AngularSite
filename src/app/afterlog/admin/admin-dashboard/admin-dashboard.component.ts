@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AdminDashboardComponent {
 
+  constructor(private router: Router) {}
+  navigateToEnrolledStudents(){
+    this.router.navigate(['afterlog/enrolled-students']);
+  }
 }

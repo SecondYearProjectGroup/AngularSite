@@ -1,35 +1,35 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Renderer2,  } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar-right',
   templateUrl: './sidebar-right.component.html',
   styleUrl: './sidebar-right.component.css'
 })
-export class SidebarRightComponent implements OnInit {
+export class SidebarRightComponent implements AfterViewInit {
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2, private el: ElementRef) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.initializeSidebar();
   }
 
   initializeSidebar(): void {
-    document.addEventListener('DOMContentLoaded', () => {
-      const sidebar = document.getElementById('rightSidebar');
-      const hideSidebarBtn = document.getElementById('hideSidebarBtn');
-      const showSidebarBtn = document.getElementById('showSidebarBtn');
+    const sidebar = this.el.nativeElement.querySelector('#rightSidebar');
+    const hideSidebarBtn = this.el.nativeElement.querySelector('#hideSidebarBtn');
+    const showSidebarBtn = this.el.nativeElement.querySelector('#showSidebarBtn');
 
-      hideSidebarBtn?.addEventListener('click', () => {
-        sidebar?.classList.add('hidden');
-        showSidebarBtn!.style.display = 'block';
-        this.dispatchResizeEvent('full');
-      });
+    this.renderer.listen(hideSidebarBtn, 'click', () => {
+      console.log('Hide button clicked');
+      this.renderer.addClass(sidebar, 'hidden');
+      this.renderer.setStyle(showSidebarBtn, 'display', 'block');
+      this.dispatchResizeEvent('full');
+    });
 
-      showSidebarBtn?.addEventListener('click', () => {
-        sidebar?.classList.remove('hidden');
-        showSidebarBtn!.style.display = 'none';
-        this.dispatchResizeEvent('reduced');
-      });
+    this.renderer.listen(showSidebarBtn, 'click', () => {
+      console.log('Show button clicked');
+      this.renderer.removeClass(sidebar, 'hidden');
+      this.renderer.setStyle(showSidebarBtn, 'display', 'none');
+      this.dispatchResizeEvent('reduced');
     });
   }
 
