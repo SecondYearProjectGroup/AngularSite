@@ -5,15 +5,20 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
 import { SupervisorDashboardComponent } from './supervisor/supervisor-dashboard/supervisor-dashboard.component';
 import { EnrolledStudentsComponent } from './admin/enrolled-students/enrolled-students.component';
+import { RolesMainComponent } from './roles-main/roles-main.component';
 // import { RoleGuardService as RoleGuard } from '../shared/services/role-guard.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'student-dashboard', pathMatch: 'full' },
-//   { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin' } },
-  { path: 'student-dashboard', component: StudentDashboardComponent },
-  { path: 'admin-dashboard', component: AdminDashboardComponent },
-  { path: 'enrolled-students', component: EnrolledStudentsComponent }
-//   { path: 'supervisor-dashboard', component: SupervisorDashboardComponent, canActivate: [RoleGuard], data: { expectedRole: 'supervisor' } }
+  {
+    path: '',
+    component: RolesMainComponent,
+    children: [
+      { path: 'admin-dashboard', component: AdminDashboardComponent },
+      { path: 'student-dashboard', component: StudentDashboardComponent },
+      
+      { path: 'enrolled-students', component: EnrolledStudentsComponent }
+    ]
+  }
 ];
 
 @NgModule({
