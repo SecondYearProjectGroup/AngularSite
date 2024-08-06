@@ -10,7 +10,7 @@
     margin-left: calc(100% - 240px);
     transition: transform 0.3s ease;
     transform: translateX(0);
-    top: 49px;
+    top: 44px;
 }
 .sidebar-right.hidden{
     transform: translateX(100%);

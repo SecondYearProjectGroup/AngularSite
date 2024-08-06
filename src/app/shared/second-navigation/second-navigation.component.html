@@ -1,8 +1,19 @@
 <!-- Second Navigation Bar -->
 <div class="secondnavigation">
-  <img src="https://i.ibb.co/9hRdFVt/cropped-web-front-page-logo.png" alt="PGSMS" width="50px" height="50px" style="margin-left: 10px;">
+  <img src="https://i.ibb.co/9hRdFVt/cropped-web-front-page-logo.png" alt="PGSMS" width="40px" height="40px" style="margin-left: 10px;">
   
-  <div class="myDropdown">
+  <div class="myDropdown" *ngFor="let dropdown of dropdowns">
+    <button class="dropbtn" (click)="toggleDropdown(dropdown)">{{dropdown.title}} 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content" [class.show]="dropdown.isOpen">
+      <a href="#link1">{{dropdown.item1}}</a>
+      <a href="#link2">{{dropdown.item2}}</a>
+      <a href="#link3">{{dropdown.item3}}</a>
+    </div>
+  </div>
+
+  <!-- <div class="myDropdown">
     <button class="dropbtn">Computer Engineering 
       <i class="fa fa-caret-down"></i>
     </button>
@@ -44,6 +55,6 @@
       <a href="#link2">Department ADPC</a>
       <a href="#link3">IQAC</a>
     </div>
-  </div>
+  </div> -->
 </div>
 

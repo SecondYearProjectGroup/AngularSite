@@ -8,21 +8,24 @@ ul.topnav {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: rgb(0, 0, 54);
 }
 ul.topnav li {float: left;}
 
 ul.topnav li button {
   display: block;
-  background-color: #333;
+  background-color: rgb(0, 0, 54);
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 10px 12px;
   text-decoration: none;
   border: none;
 }
-ul.topnav li button:hover:not(.active) {background-color: #111;}
-ul.topnav li button.active {background-color: #400752;}
+ul.topnav li button:hover {background-color: rgb(13, 13, 53);}
+ul.topnav li button.active {
+  background-color: rgb(0, 0, 54);
+  color: rgb(255, 255, 100);
+}
 
 ul.topnav li.right {float: right;}
 @media screen and (max-width: 600px) {

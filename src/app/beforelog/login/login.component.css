@@ -6,7 +6,7 @@
 }
 .login-form input[type=submit] {
     width: 100%;
-    background-color: #893ca0;
+    background-color: rgb(0, 0, 54);
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -15,7 +15,7 @@
     cursor: pointer;
 }
 .login-form input[type=submit]:hover {
-    background-color: #400752;
+    background-color: rgba(13, 13, 53, 0.932);
 }
 .login-form input[type=text],input[type=password], select {
     padding: 12px 20px;
