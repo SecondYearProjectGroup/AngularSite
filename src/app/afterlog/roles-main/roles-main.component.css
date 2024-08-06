@@ -38,7 +38,8 @@ cursor: pointer;
 .toggle-btn:hover {
 background-color: #333;
 }
-    
+
+/* Middle content */
 .middle-content.full-width {
     display: block;
     width: calc(100% - 232px);

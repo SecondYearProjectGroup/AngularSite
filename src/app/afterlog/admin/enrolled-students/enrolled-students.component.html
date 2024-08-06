@@ -1,82 +1,80 @@
+<div class="topic">
+    <h1>Registered Students</h1>
+</div>
 
-            
-            <div class="topic">
-                <h1>Registered Students</h1>
-            </div>
+<div class = "RegisteredTable">
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th colspan="6">Student Details</th>
+                <th colspan="6">Educational/ Professional Qualifications</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
 
-            <div class = "RegisteredTable">
-                <table>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th colspan="6">Student Details</th>
-                            <th colspan="6">Educational/ Professional Qualifications</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-
-                        <tr>
-                            <th>Status</th>
-                            <th>Student ID</th>
-                            <th>Name with Initials</th>
-                            <th>Full Name</th>
-                            <th>Contact Number</th>
-                            <th>Email</th>
-                            <th>Address</th>
-                            <th>University/Institute</th>
-                            <th>From</th>
-                            <th>To</th>
-                            <th>Degree</th>
-                            <th>Field</th>
-                            <th>Class/Pass</th>
-                            <th>Attached Files</th>
-                            <th>Publications</th>
-                            <th>Program of Study</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <!-- <td id="status-cell">
-                                <div class="btn-group">
-                                    <button id="approve-button">Approve</button>
-                                    <button id="reject-button">Reject</button>
-                                </div>
-                            </td> -->
-                            <td>Status1</td>
-                            <td>1</td>
-                            <td>S. Perera</td>
-                            <td>Supun Perera</td>
-                            <td>0111111111</td>
-                            <td>thatjaaaf.com</td>
-                            <td>Kegalle</td>
-                            <td>University of Peredeniya</td>
-                            <td>2009</td>
-                            <td>2013</td>
-                            <td>Engi</td>
-                            <td>Com</td>
-                            <td>First class</td>
-                            <td>Files</td>
-                            <td>No</td>
-                            <td>PhD</td>
-                        </tr>
+            <tr>
+                <th>Status</th>
+                <th>Student ID</th>
+                <th>Name with Initials</th>
+                <th>Full Name</th>
+                <th>Contact Number</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>University/Institute</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Degree</th>
+                <th>Field</th>
+                <th>Class/Pass</th>
+                <th>Attached Files</th>
+                <th>Publications</th>
+                <th>Program of Study</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!-- <td id="status-cell">
+                    <div class="btn-group">
+                        <button id="approve-button">Approve</button>
+                        <button id="reject-button">Reject</button>
+                    </div>
+                </td> -->
+                <td>Status1</td>
+                <td>1</td>
+                <td>S. Perera</td>
+                <td>Supun Perera</td>
+                <td>0111111111</td>
+                <td>thatjaaaf.com</td>
+                <td>Kegalle</td>
+                <td>University of Peredeniya</td>
+                <td>2009</td>
+                <td>2013</td>
+                <td>Engi</td>
+                <td>Com</td>
+                <td>First class</td>
+                <td>Files</td>
+                <td>No</td>
+                <td>PhD</td>
+            </tr>
 
 
-                        <tr  th:each="student : ${liststudent }">
-                            <td id="status-cell">
-                                <div class="btn-group">
-                                    <button id="approve-button">Approve</button>
-                                    <button id="reject-button">Reject</button>
-                                </div>
-                            </td>
-                            <td>Status</td>
-                            <td th:text="${student.id}">Student ID</td>
-                            <td th:text="${student.studentname}">StudentName</td>
-                            <td th:text="${student.course}">Course</td>
-                            <td th:text="${student.fee}">Fee</td>
-                            
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <br><br><br><br><br>
+            <tr  th:each="student : ${liststudent }">
+                <td id="status-cell">
+                    <div class="btn-group">
+                        <button id="approve-button">Approve</button>
+                        <button id="reject-button">Reject</button>
+                    </div>
+                </td>
+                <td>Status</td>
+                <td th:text="${student.id}">Student ID</td>
+                <td th:text="${student.studentname}">StudentName</td>
+                <td th:text="${student.course}">Course</td>
+                <td th:text="${student.fee}">Fee</td>
+                
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br><br><br><br><br>
