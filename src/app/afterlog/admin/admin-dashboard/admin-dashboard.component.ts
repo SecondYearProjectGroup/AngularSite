@@ -12,4 +12,16 @@ export class AdminDashboardComponent {
   navigateToEnrolledStudents(){
     this.router.navigate(['afterlog/enrolled-students']);
   }
+
+  navigateToStudentsToAdmin(){
+    this.router.navigate(['afterlog/students-to-admin']);
+  }
+
+  navigateToSupervisorsToAdmin(){
+    this.router.navigate(['afterlog/supervisors-to-admin']);
+  }
+
+  navigateToExaminersToAdmin(){
+    this.router.navigate(['afterlog/examiners-to-admin']);
+  }
 }

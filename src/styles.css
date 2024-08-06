@@ -36,6 +36,14 @@
   height: calc(100% - 44px);
 }
 
+.middle-content-beforelog{
+  display: block;
+  width: calc(100% - 232px);
+  margin-left: 232px;
+  margin-right: 0px; 
+  padding-top: 0px;
+}
+
 
 /* Topic */
 .topic{

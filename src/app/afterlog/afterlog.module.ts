@@ -8,6 +8,10 @@ import { AfterlogRoutingModule } from './afterlog-routing.module';
 import { SidebarRightComponent } from './shared/sidebar-right/sidebar-right.component';
 import { RolesMainComponent } from './roles-main/roles-main.component';
 import { EnrolledStudentsComponent } from './admin/enrolled-students/enrolled-students.component';
+import { StudentsToAdminComponent } from './admin/students-to-admin/students-to-admin.component';
+import { SupervisorsToAdminComponent } from './admin/supervisors-to-admin/supervisors-to-admin.component';
+import { ExaminersToAdminComponent } from './admin/examiners-to-admin/examiners-to-admin.component';
+import { StudentProfileToAdminComponent } from './admin/student-profile-to-admin/student-profile-to-admin.component';
 
 
 
@@ -19,7 +23,11 @@ import { EnrolledStudentsComponent } from './admin/enrolled-students/enrolled-st
     SupervisorDashboardComponent,
     SidebarRightComponent,
     RolesMainComponent,
-    EnrolledStudentsComponent
+    EnrolledStudentsComponent,
+    StudentsToAdminComponent,
+    SupervisorsToAdminComponent,
+    ExaminersToAdminComponent,
+    StudentProfileToAdminComponent
   ],
   imports: [
     CommonModule,

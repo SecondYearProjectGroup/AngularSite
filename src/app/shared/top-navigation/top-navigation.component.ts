@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../../afterlog/services/user.service';
 
 @Component({
   selector: 'app-top-navigation',
@@ -12,7 +13,7 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
     // Initialization logic that doesn't depend on the DOM
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
 
   @Input() mode: 'beforeLog' | 'login' | 'afterLog' = 'afterLog';
 
@@ -24,8 +25,19 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/beforelog/enroll']);
   }
 
+  // navigateToDashboard() {
+  //   this.router.navigate(['/afterlog/student-dashboard']);
+  // }
   navigateToDashboard() {
-    this.router.navigate(['/afterlog/student-dashboard']);
+    const role = this.userService.getRole();
+
+    if (role === 'admin') {
+      this.router.navigate(['/afterlog/admin-dashboard']);
+    } else if (role === 'student') {
+      this.router.navigate(['/afterlog/student-dashboard']);
+    } else {
+      console.error('Unknown role:', role);
+    }
   }
 
   navigateToStuDashboard() {

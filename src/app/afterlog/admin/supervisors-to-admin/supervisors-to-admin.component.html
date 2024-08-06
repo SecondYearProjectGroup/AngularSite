@@ -1,0 +1,38 @@
+<div class="topic">
+    <h1>Supervisors</h1>
+</div>
+
+<div class = "RegisteredTable">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Supervisor Name</th>
+                <th>Email</th>
+                <th>Supervisees</th>
+                <th>Add Records</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Supun Perera</td>
+                <td>abcgmail.com</td>
+                <td>None</td>
+                <td></td>
+            </tr>
+
+
+            <tr  th:each="student : ${liststudent }">
+                
+                <td th:text="${student.id}">Student ID</td>
+                <td th:text="${student.studentname}">StudentName</td>
+                <td th:text="${student.course}">Course</td>
+                <td th:text="${student.fee}">Fee</td>
+                <td th:text="${student.add}">Add</td>
+                
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br><br><br><br><br>
