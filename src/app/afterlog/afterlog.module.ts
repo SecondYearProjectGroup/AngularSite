@@ -12,6 +12,9 @@ import { StudentsToAdminComponent } from './admin/students-to-admin/students-to-
 import { SupervisorsToAdminComponent } from './admin/supervisors-to-admin/supervisors-to-admin.component';
 import { ExaminersToAdminComponent } from './admin/examiners-to-admin/examiners-to-admin.component';
 import { StudentProfileToAdminComponent } from './admin/student-profile-to-admin/student-profile-to-admin.component';
+import { FormsModule } from '@angular/forms';
+import { CollapsibleSectionComponent } from './shared/collapsible-section/collapsible-section.component';
+import { TileComponent } from './shared/tile/tile.component';
 
 
 
@@ -27,12 +30,15 @@ import { StudentProfileToAdminComponent } from './admin/student-profile-to-admin
     StudentsToAdminComponent,
     SupervisorsToAdminComponent,
     ExaminersToAdminComponent,
-    StudentProfileToAdminComponent
+    StudentProfileToAdminComponent,
+    CollapsibleSectionComponent,
+    TileComponent
   ],
   imports: [
     CommonModule,
     AfterlogRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class AfterlogModule { }

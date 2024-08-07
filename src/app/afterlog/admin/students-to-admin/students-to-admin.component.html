@@ -3,6 +3,11 @@
 </div>
 
 <div class = "RegisteredTable">
+
+    <div>
+        <input [(ngModel)]="searchText" placeholder="Search" class="form-control" />
+    </div>
+    <br>
     <table>
         <thead>
             <tr>
@@ -14,25 +19,17 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Supun Perera</td>
-                <td>University of Peredeniya</td>
-                <td>None</td>
-                <td></td>
+            <tr *ngFor="let row of filteredData">
+                <td>{{ row.column1 }}</td>
+                <td>{{ row.column2 }}</td>
+                <td>{{ row.column3 }}</td>
+                <td>{{ row.column4 }}</td>
+                <td>{{ row.column5 }}</td>
             </tr>
 
-
-            <tr  th:each="student : ${liststudent }">
-                
-                <td th:text="${student.id}">Student ID</td>
-                <td th:text="${student.studentname}">StudentName</td>
-                <td th:text="${student.course}">Course</td>
-                <td th:text="${student.fee}">Fee</td>
-                <td th:text="${student.add}">Add</td>
-                
-            </tr>
+            
         </tbody>
     </table>
+    <button (click)="navigateToStudentProfileToAdmin()" class="btn btn-primary btn-lg">Students</button><br><br>
 </div>
 <br><br><br><br><br>
