@@ -6,6 +6,8 @@ import { SignupComponent } from './signup/signup.component';
 import { EnrollComponent } from './enroll/enroll.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { SharedModule } from '../shared/shared.module';
+import { EnrollService } from './enroll/enroll.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,8 +19,10 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     BeforelogRoutingModule,
-    SharedModule
-  ]
+    SharedModule,
+    FormsModule
+  ],
+  providers: [EnrollService]
 })
 export class BeforelogModule { }
 
