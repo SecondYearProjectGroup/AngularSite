@@ -3,25 +3,29 @@
     width: 240px;
     background-color: #f4f4f4;
     padding: 5px;
-    box-shadow: 5px rgba(0,0,0,0.1);
+    box-shadow: -7px 0 5px -3px rgba(0,0,0,0.1); /* Left side shadow */
     position: fixed;
     height: 100%;
     overflow-y: auto;
-    margin-left: calc(100% - 240px);
+    right: 0; /* Ensures the sidebar is aligned to the right */
+    top: 44px;
     transition: transform 0.3s ease;
     transform: translateX(0);
-    top: 44px;
 }
-.sidebar-right.hidden{
+
+.sidebar-right.hidden {
     transform: translateX(100%);
 }
+
 .sidebar-right ul {
     list-style-type: none;
     padding: 0;
 }
+
 .sidebar-right ul li {
     margin: 10px 0;
 }
+
 .sidebar-right ul li a {
     text-decoration: none;
     color: #333;
@@ -30,10 +34,10 @@
     border-radius: 4px;
     transition: background-color 0.3s;
 }
+
 .sidebar-right ul li a:hover {
     background-color: #ddd;
 }
-
 
 .toggle-btn {
     position: fixed;
@@ -44,17 +48,18 @@
     font-weight: bold; /* Make the text bold */
     border-width: 2px;
     font-size: 16px;
-  }
+}
+
 #showSidebarBtn {
     display: none;
 }
 
 .close-btn {
-    position: fixed;
-    right: 0px;
+    position: absolute; /* Changed from fixed to absolute to keep it within the sidebar */
+    right: 5px;
     cursor: pointer;
     z-index: 1;
-    top: 8px;
+    top: 5px;
     font-weight: bold; /* Make the text bold */
     border-width: 2px;
-  }
+}
