@@ -1,4 +1,7 @@
 import { AfterViewInit, Component, ElementRef, Renderer2,  } from '@angular/core';
+import { CalendarOptions } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 
 @Component({
   selector: 'app-sidebar-right',

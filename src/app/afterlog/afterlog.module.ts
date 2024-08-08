@@ -15,6 +15,8 @@ import { StudentProfileToAdminComponent } from './admin/student-profile-to-admin
 import { FormsModule } from '@angular/forms';
 import { CollapsibleSectionComponent } from './shared/collapsible-section/collapsible-section.component';
 import { TileComponent } from './shared/tile/tile.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { CreateCollapsibleSectionComponent } from './shared/create-collapsible-section/create-collapsible-section.component';
 
 
 
@@ -32,13 +34,15 @@ import { TileComponent } from './shared/tile/tile.component';
     ExaminersToAdminComponent,
     StudentProfileToAdminComponent,
     CollapsibleSectionComponent,
-    TileComponent
+    TileComponent,
+    CreateCollapsibleSectionComponent
   ],
   imports: [
     CommonModule,
     AfterlogRoutingModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    FullCalendarModule
   ]
 })
 export class AfterlogModule { }
