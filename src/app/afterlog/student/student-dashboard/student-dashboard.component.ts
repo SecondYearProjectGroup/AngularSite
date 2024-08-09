@@ -1,4 +1,5 @@
 import { AfterViewInit, Component} from '@angular/core';
+import { Router } from '@angular/router';
 declare var $: any; // Declare jQuery
 
 @Component({
@@ -7,6 +8,8 @@ declare var $: any; // Declare jQuery
   styleUrl: './student-dashboard.component.css'
 })
 export class StudentDashboardComponent implements AfterViewInit {
+
+  constructor(private router: Router) {}
 
   ngAfterViewInit(): void {
     $('#main-calendar').evoCalendar({
@@ -42,6 +45,14 @@ export class StudentDashboardComponent implements AfterViewInit {
       }
       ]
     });
+  }
+
+  navigateToStudentResearch(){
+    this.router.navigate(['afterlog/student-research']);
+  }
+
+  navigateToStudentCourses(){
+    this.router.navigate(['afterlog/student-courses']);
   }
 }
 

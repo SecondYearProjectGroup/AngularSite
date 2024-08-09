@@ -48,6 +48,14 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/afterlog/admin-dashboard']);
   }
 
+  navigateToSupervisorDashboard() {
+    this.router.navigate(['/afterlog/supervisor-dashboard']);
+  }
+
+  navigateToExaminerDashboard() {
+    this.router.navigate(['/afterlog/examiner-dashboard']);
+  }
+
   navigateToHome() {
     this.router.navigate(['/beforelog/welcome']);
   }

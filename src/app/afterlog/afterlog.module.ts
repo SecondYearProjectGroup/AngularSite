@@ -16,6 +16,9 @@ import { FormsModule } from '@angular/forms';
 import { CollapsibleSectionComponent } from './shared/collapsible-section/collapsible-section.component';
 import { TileComponent } from './shared/tile/tile.component';
 import { CreateCollapsibleSectionComponent } from './shared/create-collapsible-section/create-collapsible-section.component';
+import { StudentResearchComponent } from './student/student-research/student-research.component';
+import { StudentCoursesComponent } from './student/student-courses/student-courses.component';
+import { ExaminerDashboardComponent } from './examiner/examiner-dashboard/examiner-dashboard.component';
 
 
 
@@ -34,7 +37,10 @@ import { CreateCollapsibleSectionComponent } from './shared/create-collapsible-s
     StudentProfileToAdminComponent,
     CollapsibleSectionComponent,
     TileComponent,
-    CreateCollapsibleSectionComponent
+    CreateCollapsibleSectionComponent,
+    StudentResearchComponent,
+    StudentCoursesComponent,
+    ExaminerDashboardComponent
   ],
   imports: [
     CommonModule,
