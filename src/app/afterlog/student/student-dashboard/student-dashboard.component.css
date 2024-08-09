@@ -38,10 +38,3 @@ cursor: pointer;
 .toggle-btn:hover {
 background-color: #333;
 }
-
-.siteCalendar{
-    width: 100%;
-    max-width: 870px;
-    margin-left: auto;
-    margin-right: auto;
-}
