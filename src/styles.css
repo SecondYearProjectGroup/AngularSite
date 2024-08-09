@@ -1,3 +1,16 @@
+@font-face {
+  font-family: 'TabulaITCPro Book';
+  src: url("assets/fonts/TabulaITCPro-Book.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body, html {
+  font-family: 'TabulaITCPro Book';
+}
+
+
+
 /* You can add global styles to this file, and also import other style files */
 /* width */
 ::-webkit-scrollbar {

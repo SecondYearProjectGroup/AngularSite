@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Renderer2,  } from '@angular/core';
+declare var $: any; // Declare jQuery
 
 @Component({
   selector: 'app-sidebar-right',
@@ -11,6 +12,40 @@ export class SidebarRightComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.initializeSidebar();
+
+    $('#sidebar-calendar').evoCalendar({
+      'theme': "Royal Navy",
+      'eventDisplayDefault': false,
+      'sidebarToggler': false,
+      'sidebarDisplayDefault': false,
+      'eventListToggler': false,
+      calendarEvents: [
+        {
+            id: 'bHay68s',
+            name: "New Year",
+            date: "January/1/2020",
+            description: "Happy New Year!",
+            type: "holiday",
+            everyYear: true
+        },
+        {
+            name: "Vacation Leave",
+            badge: "02/13 - 02/15",
+            date: ["February/13/2020", "February/15/2020"],
+            description: "Vacation leave for 3 days.",
+            type: "event",
+            color: "#63d867"
+        },
+        {
+            name: "Project Presentation",
+            date: "July/15/2024", // Date
+            description: "Second Year Project presentation", // Event description (optional)
+            type: "event",
+            color: "red" // Event custom color (optional)
+        }
+      ]
+    });
+
   }
 
   initializeSidebar(): void {

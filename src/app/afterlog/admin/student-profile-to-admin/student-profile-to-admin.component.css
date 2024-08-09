@@ -5,10 +5,32 @@
     margin-left: 40px;
 }
 
-.research-box{
+.btn{
+    color:rgb(0, 0, 54);
+    font-size: 20px;
+    margin: 0;
+}
+
+.research-box {
     background-color: aqua;
     width: auto;
     padding: 10px;
     margin-left: 40px;
     margin-right: 40px;
+}
+
+.course-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.course-box {
+    background-color: sandybrown;
+    width: 250px;
+    height: 120px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }

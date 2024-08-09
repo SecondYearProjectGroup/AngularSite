@@ -1,10 +1,9 @@
 <div>
     <button (click)="toggleCollapse()">
       <span [ngClass]="{'arrow-collapsed': isCollapsed, 'arrow-expanded': !isCollapsed}">▼</span>
-      General
+      {{ buttonName }}
     </button>
     <div *ngIf="!isCollapsed">
-      <app-tile title="Forum" link="https://example.com/forum"></app-tile>
-      <app-tile title="Announcements" link="https://example.com/announcements"></app-tile>
+      <app-tile *ngFor="let tile of tiles" [title]="tile.title" [link]="tile.link"></app-tile>
     </div>
 </div>
