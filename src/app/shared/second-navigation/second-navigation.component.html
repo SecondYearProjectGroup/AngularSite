@@ -3,7 +3,8 @@
   <img src="https://i.ibb.co/9hRdFVt/cropped-web-front-page-logo.png" alt="PGSMS" width="40px" height="40px" style="margin-left: 10px;">
   
   <div class="myDropdown" *ngFor="let dropdown of dropdowns">
-    <button class="dropbtn" (click)="toggleDropdown(dropdown)">{{dropdown.title}} 
+    <button class="dropbtn" (click)="toggleDropdown(dropdown, $event)">
+      {{dropdown.title}} 
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content" [class.show]="dropdown.isOpen">
@@ -12,6 +13,8 @@
       <a href="#link3">{{dropdown.item3}}</a>
     </div>
   </div>
+</div>
+
 
   <!-- <div class="myDropdown">
     <button class="dropbtn">Computer Engineering 
@@ -56,5 +59,3 @@
       <a href="#link3">IQAC</a>
     </div>
   </div> -->
-</div>
-

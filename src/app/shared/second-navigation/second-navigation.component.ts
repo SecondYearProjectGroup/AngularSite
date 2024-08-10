@@ -3,7 +3,7 @@ import { Component, HostListener } from '@angular/core';
 @Component({
   selector: 'app-second-navigation',
   templateUrl: './second-navigation.component.html',
-  styleUrl: './second-navigation.component.css'
+  styleUrls: ['./second-navigation.component.css']
 })
 export class SecondNavigationComponent {
 
@@ -14,11 +14,11 @@ export class SecondNavigationComponent {
     { title: 'Department & Staff', item1: 'Student Help guide', item2: 'Department ADPC', item3: 'IQAC', isOpen: false }
   ];
 
-  toggleDropdown(dropdown: any): void {
+  toggleDropdown(dropdown: any, event: MouseEvent): void {
+    event.stopPropagation();
     this.dropdowns.forEach(dd => {
       if (dd !== dropdown) {
         dd.isOpen = false;
-        console.log("Clicked");
       }
     });
     dropdown.isOpen = !dropdown.isOpen;
@@ -29,7 +29,6 @@ export class SecondNavigationComponent {
     if (!(event.target as HTMLElement).closest('.myDropdown')) {
       this.dropdowns.forEach(dropdown => {
         dropdown.isOpen = false;
-        console.log("Clicked Outside");
       });
     }
   }
