@@ -15,8 +15,7 @@
                 <th>Student Name</th>
                 <th>Status</th>
                 <th>Research Topic</th>
-                <th>Supervisor</th>
-                <th>Add Records</th>
+                <th>Report Submitted?</th>
             </tr>
         </thead>
         <tbody>
@@ -26,12 +25,11 @@
                 <td>{{ row.column3 }}</td>
                 <td>{{ row.column4 }}</td>
                 <td>{{ row.column5 }}</td>
-                <td>{{ row.column6 }}</td>
             </tr>
 
             
         </tbody>
     </table>
-    <button (click)="navigateToStudentProfileToAdmin()" class="btn btn-primary btn-lg">Students</button><br><br>
+    <button (click)="navigateToStudentProfileToExaminer()" class="btn btn-primary btn-lg">Students</button><br><br>
 </div>
 <br><br><br><br><br>

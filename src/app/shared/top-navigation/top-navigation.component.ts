@@ -59,6 +59,9 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
   navigateToHome() {
     this.router.navigate(['/beforelog/welcome']);
   }
+  navigateToEditProfile() {
+    this.router.navigate(['/afterlog/edit-profile']);
+  }
 
   ngAfterViewInit(): void {
     this.initializeNotificationPanel();

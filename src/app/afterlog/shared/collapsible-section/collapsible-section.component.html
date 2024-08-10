@@ -1,9 +1,11 @@
-<div>
-    <button (click)="toggleCollapse()">
-      <span [ngClass]="{'arrow-collapsed': isCollapsed, 'arrow-expanded': !isCollapsed}">▼</span>
-      {{ buttonName }}
-    </button>
-    <div *ngIf="!isCollapsed">
-      <app-tile *ngFor="let tile of tiles" [title]="tile.title" [link]="tile.link"></app-tile>
-    </div>
+<div class="collapsible-container">
+  <button (click)="toggleCollapse()">
+    <span [ngClass]="{'arrow-collapsed': isCollapsed, 'arrow-expanded': !isCollapsed}">
+      <i [ngClass]="isCollapsed ? 'fa fa-arrow-down-short-wide' : 'fa fa-arrow-up-wide-short'"></i>
+    </span>
+    {{ buttonName }}
+  </button>
+  <div [ngClass]="{'content-collapsed': isCollapsed, 'content-expanded': !isCollapsed}">
+    <app-tile *ngFor="let tile of tiles" [title]="tile.title" [link]="tile.link"></app-tile>
+  </div>
 </div>

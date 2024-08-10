@@ -8,7 +8,7 @@
     width: 100%;
     background-color: rgb(0, 0, 54);
     color: white;
-    padding: 14px 20px;
+    padding: 10px 20px;
     margin: 8px 0;
     border: none;
     border-radius: 4px;
@@ -19,7 +19,7 @@
 }
 .form-container input[type=text],input[type=tel], input[type=email],textarea, select {
     width: 100%;
-    padding: 12px 20px;
+    padding: 8px 16px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #424242;
@@ -30,7 +30,7 @@
 .form-container select {
     text-align: center;
     width: 100%;
-    padding: 16px 20px;
+    padding: 10px 20px;
     border: none;
     border-radius: 4px;
     background-color: #dfdfdf;

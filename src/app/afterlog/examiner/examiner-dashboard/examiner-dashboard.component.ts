@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-examiner-dashboard',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class ExaminerDashboardComponent {
 
+  constructor(private router: Router) {}
+
+  navigateToStudents(){
+    this.router.navigate(['afterlog/students-to-examiner']);
+  }
+
+  navigateToReportSubmission(){
+    this.router.navigate(['#']);
+  }
 }
