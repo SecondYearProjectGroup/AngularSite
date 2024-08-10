@@ -1,0 +1,28 @@
+.Edit-profile-top{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.profile-box{
+    background-color: aqua;
+    width: fit-content;
+    padding: 10px;
+    margin-left: 40px;
+}
+
+.research-box {
+    background-color: aqua;
+    width: auto;
+    padding: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.dp{
+    background-color: bisque;
+}
+.dp i.fa-circle-user {
+    font-size: 150px; /* Change this value to adjust the size */
+    padding-top: 20px;
+  }
