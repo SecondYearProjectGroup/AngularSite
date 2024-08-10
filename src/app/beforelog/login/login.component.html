@@ -17,10 +17,10 @@
                 <form (ngSubmit)="onSubmit()">
                     <table>
                         <tr>
-                            <td><input type="text" name="username" size="36" placeholder="Username..."></td>
+                            <td><input type="text" [(ngModel)]="username" name="username" size="36" placeholder="Username..." required></td>
                         </tr>
                         <tr>
-                            <td><input type="password" id="pwd" name="pwd" minlength="8" size="36" placeholder="Password..."></td>
+                            <td><input type="password" [(ngModel)]="password" id="password" name="password" minlength="8" size="36" placeholder="Password..." required></td>
                         </tr>
                         <tr>
                             <td><hr></td>
