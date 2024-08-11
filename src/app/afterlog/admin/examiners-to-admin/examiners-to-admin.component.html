@@ -13,18 +13,16 @@
             <tr>
                 <th>ID</th>
                 <th>Examiner Name</th>
+                <th>Department</th>
                 <th>Email</th>
-                <th>Students</th>
-                <th>Add Records</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let row of filteredData">
-                <td>{{ row.column1 }}</td>
-                <td>{{ row.column2 }}</td>
-                <td>{{ row.column3 }}</td>
-                <td>{{ row.column4 }}</td>
-                <td>{{ row.column5 }}</td>
+                <td>{{ row.id }}</td>
+                <td>{{ row.fullName }}</td>
+                <td>{{ row.department }}</td>
+                <td>{{ row.email }}</td>
             </tr>
         </tbody>
     </table>
