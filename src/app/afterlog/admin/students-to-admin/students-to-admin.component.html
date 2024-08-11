@@ -12,21 +12,35 @@
         <thead>
             <tr>
                 <th>Reg. No</th>
-                <th>Student Name</th>
+                <th>Student Name With Initials</th>
+                <th>Student FullNmae</th>
+                <th>Contact Number</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>University</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Degree</th>
+                <th>Filed</th>
+                <th>Class / Pass</th>
+                <th>Publications</th>
+                <th>Program Of Study</th>
                 <th>Status</th>
-                <th>Research Topic</th>
-                <th>Supervisor</th>
-                <th>Add Records</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let row of filteredData">
-                <td>{{ row.column1 }}</td>
-                <td>{{ row.column2 }}</td>
-                <td>{{ row.column3 }}</td>
-                <td>{{ row.column4 }}</td>
-                <td>{{ row.column5 }}</td>
-                <td>{{ row.column6 }}</td>
+                <td>{{ row.id }}</td>
+                <td>{{ row.nameWithInitials }}</td>
+                <td>{{ row.fullName }}</td>
+                <td>{{ row.contactNumber }}</td>
+                <td>{{ row.email }}</td>
+                <td>{{ row.address }}</td>
+                <td>{{ row.university }}</td>
+                <td>{{ row.field }}</td>
+                <td>{{ row.publications }}</td>
+                <td>{{ row.programOfStudy }}</td>
+                <td>{{ row.status}}</td>
             </tr>
 
             
