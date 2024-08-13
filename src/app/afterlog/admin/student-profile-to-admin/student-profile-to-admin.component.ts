@@ -30,4 +30,13 @@ export class StudentProfileToAdminComponent {
     this.sections.push(newSection);
     this.closeModal();
   }
+
+
+  isAssignSupervisorByAdminOpen = false;
+  openAssignSupervisorByAdmin(): void{
+    this.isAssignSupervisorByAdminOpen = true;
+  }
+  closeAssignSupervisorByAdmin(): void{
+    this.isAssignSupervisorByAdminOpen = false;
+  }
 }

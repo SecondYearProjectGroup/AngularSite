@@ -15,7 +15,7 @@
     <app-collapsible-section
         buttonName="General"
         [tiles]="[
-            { title: 'Forum', routerLink: 'https://example.com/forum' },
+            { title: 'Forum', routerLink: '/afterlog/feedback-page' },
             { title: 'Application Submission', routerLink: 'https://example.com/announcements' }
         ]"></app-collapsible-section>
 
@@ -28,13 +28,15 @@
         ]"></app-collapsible-section>
 
     
-    <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)"></app-create-collapsible-section>
+    
     
     <app-collapsible-section *ngFor="let section of sections" [buttonName]="section.buttonName" [tiles]="section.tiles"></app-collapsible-section>
 
     <button (click)="openModal()">Add New Section</button><br><br><br>
+    <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)"></app-create-collapsible-section>
 
-    <button class="btn">Assign Supervisor</button>
+    <button (click)="openAssignSupervisorByAdmin()" class="btn">Assign Supervisor</button>
+    <app-assign-supervisor-by-admin *ngIf="isAssignSupervisorByAdminOpen" (close)="closeAssignSupervisorByAdmin()"></app-assign-supervisor-by-admin>
     
 </div>
 <br>
