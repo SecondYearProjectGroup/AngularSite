@@ -10,7 +10,7 @@
         <label for="title">Title:</label>
         <input type="text" id="title" [(ngModel)]="tile.title" name="title{{i}}" required>
         <label for="link">Link:</label>
-        <input type="text" id="link" [(ngModel)]="tile.link" name="link{{i}}" required>
+        <input type="text" id="link" [(ngModel)]="tile.routerLink" name="link{{i}}" required>
         <button type="button" (click)="removeTile(i)">Remove Tile</button>
       </div>
       

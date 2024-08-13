@@ -9,7 +9,7 @@ export class CollapsibleSectionComponent {
 
   @Input() buttonName: string = '';
   @Input()
-  tiles!: { title: string; link: string; }[];
+  tiles!: { title: string; routerLink: string; }[];
 
   isCollapsed = false;
 

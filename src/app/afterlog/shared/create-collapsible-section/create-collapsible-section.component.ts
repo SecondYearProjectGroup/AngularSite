@@ -8,13 +8,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class CreateCollapsibleSectionComponent {
 
   @Output() close = new EventEmitter<void>();
-  @Output() create = new EventEmitter<{ buttonName: string, tiles: { title: string, link: string }[] }>();
+  @Output() create = new EventEmitter<{ buttonName: string, tiles: { title: string, routerLink: string }[] }>();
 
   buttonName = '';
-  tiles: { title: string, link: string }[] = [{ title: '', link: '' }];
+  tiles: { title: string, routerLink: string }[] = [{ title: '', routerLink: '' }];
 
   addTile(): void {
-    this.tiles.push({ title: '', link: '' });
+    this.tiles.push({ title: '', routerLink: '' });
   }
 
   removeTile(index: number): void {
