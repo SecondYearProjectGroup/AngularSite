@@ -18,15 +18,7 @@ export class StudentsToAdminComponent {
     contactNumber: string, 
     email:string, 
     address: string, 
-    university: string, 
-    fromDate: string, 
-    toDate: string,
-    degree: string,
-    field: string,
-    clasPass: string,
-    publications: string,
-    programOfStudy: string,
-    status: string
+    programOfStudy: string
   }> = [];
 
   searchText: string = '';
@@ -39,37 +31,31 @@ export class StudentsToAdminComponent {
   // ];
 
   loadStudents() {
-    this.http.get<Array<{    id: number,
-      nameWithInitials: string, 
-      fullName: string, 
-      contactNumber: string, 
-      email:string, 
-      address: string, 
-      university: string, 
-      fromDate: string, 
-      toDate: string,
-      degree: string,
-      field: string,
-      clasPass: string,
-      publications: string,
-      programOfStudy: string,
-      status: string }>>('http://localhost:8080/students')
-      .subscribe({
-        next: (data) => {
-          this.tableData = data;
-        },
-        error: (error) => {
-          console.error('Error loading student data', error);
-        },
-        complete: () => {
-          console.log('Student data loading complete');
-        }
-      });
-    }
+    this.http.get<Array<{
+    id: number,
+    nameWithInitials: string, 
+    fullName: string, 
+    contactNumber: string, 
+    email:string, 
+    address: string,
+    programOfStudy: string,
+    status: string }>>('http://localhost:8080/students')
+    .subscribe({
+      next: (data) => {
+        this.tableData = data;
+      },
+      error: (error) => {
+        console.error('Error loading student data', error);
+      },
+      complete: () => {
+        console.log('Student data loading complete');
+      }
+    });
+  }
 
-    ngOnInit(): void {
-      this.loadStudents();
-    }
+  ngOnInit(): void {
+    this.loadStudents();
+  }
 
   get filteredData() {
     return this.tableData.filter(row =>
@@ -79,11 +65,7 @@ export class StudentsToAdminComponent {
       row.contactNumber.toLowerCase().includes(this.searchText.toLowerCase()) ||
       row.email.toLowerCase().includes(this.searchText.toLowerCase()) ||
       row.address.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.university.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.field.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.publications.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.programOfStudy.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.status.toLowerCase().includes(this.searchText.toLowerCase())
+      row.programOfStudy.toLowerCase().includes(this.searchText.toLowerCase())
     );
   }
 
