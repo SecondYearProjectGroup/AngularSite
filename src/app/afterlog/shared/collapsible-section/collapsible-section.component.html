@@ -6,6 +6,6 @@
     {{ buttonName }}
   </button>
   <div [ngClass]="{'content-collapsed': isCollapsed, 'content-expanded': !isCollapsed}">
-    <app-tile *ngFor="let tile of tiles" [title]="tile.title" [link]="tile.link"></app-tile>
+    <app-tile *ngFor="let tile of tiles" [title]="tile.title" [routerLink]="tile.routerLink"></app-tile>
   </div>
 </div>

@@ -25,4 +25,71 @@
 .dp i.fa-circle-user {
     font-size: 150px; /* Change this value to adjust the size */
     padding-top: 20px;
-  }
+}
+
+
+/* Form */
+.form-container {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.form-container input[type=submit] {
+    width: 100%;
+    background-color: rgb(0, 0, 54);
+    color: white;
+    padding: 10px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.form-container input[type=submit]:hover {
+    background-color: rgba(13, 13, 53, 0.932);
+}
+.form-container input[type=text],input[type=tel], input[type=email],textarea, select {
+    width: 100%;
+    padding: 8px 16px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #424242;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #dfdfdf;
+}
+.form-container select {
+    text-align: center;
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #dfdfdf;
+}
+.form-container textarea {
+    padding: 5px 5px;
+    box-sizing: border-box;
+    border: 1px solid #424242;
+    border-radius: 4px;
+    background-color: #dfdfdf;
+    resize: none;
+}
+.form-container .table .td{
+    width: 50%;
+}
+
+.current-picture{
+    display: block;
+}
+
+.form-tables {
+    width: 100%;
+}
+
+.form-tables td:first-child {
+    width: 40%;
+}
+
+.form-tables td:last-child {
+    width: 60%;
+}
+

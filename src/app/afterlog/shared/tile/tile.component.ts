@@ -8,5 +8,5 @@ import { Component, Input } from '@angular/core';
 export class TileComponent {
 
   @Input() title: string = '';
-  @Input() link: string = '';
+  @Input() routerLink: string = '';
 }

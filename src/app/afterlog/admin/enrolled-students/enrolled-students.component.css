@@ -40,20 +40,20 @@
     cursor: pointer; /* Pointer/hand icon */
     float: left; /* Float the buttons side by side */
 }
-#approve-button {
+.approve-button {
     border-radius: 8px 0px 0px 8px;
     background-color: #12aa72; /* Green background */
     border: 1px solid green; /* Green border */
 }
-#approve-button:hover{
+.approve-button:hover{
     background-color: #3e8e41;
 }
-#reject-button {
+.reject-button {
     border-radius: 0px 8px 8px 0px;
     padding: 10px 15px;
     background-color: #be1212; /* Red background */
     border: 1px solid rgb(99, 9, 9); /* Red border */
 }
-#reject-button:hover {
+.reject-button:hover {
     background-color: #af4343;
 }
