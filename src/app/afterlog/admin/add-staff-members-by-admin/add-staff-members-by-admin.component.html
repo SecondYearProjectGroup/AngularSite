@@ -1,0 +1,39 @@
+<div class="modal">
+    <div class="modal-content">
+        <span class="close" (click)="closeAddStaffMembersByAdmin()">&times;</span>
+        <h2>Add Staff Members</h2>
+        
+        <form (ngSubmit)="onSubmit()">
+            <table class="form-tables">
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" name="firstName" [(ngModel)]="staffMember.name" placeholder="Name..."></td>
+                </tr>
+                <br>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="email" name="email" [(ngModel)]="staffMember.email" placeholder="Email Address..."></td>
+                </tr>
+                <br>
+                <h4>Positions</h4>
+                <tr>
+                    <td>
+                        <input type="checkbox" id="option1" name="roles" value="SUPERVISOR" (change)="onCheckboxChange($event)">
+                    </td>
+                    <td><label for="option1">Supervisor</label></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" id="option2" name="roles" value="EXAMINER" (change)="onCheckboxChange($event)">
+                    </td>
+                    <td><label for="option2">Examiner</label></td>
+                </tr>
+                
+                
+                
+            </table>
+            <hr>
+            <button type="submit" style="width: 100px;">Send</button>
+        </form>
+    </div>
+</div>

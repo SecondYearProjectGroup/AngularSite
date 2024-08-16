@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,22 +9,56 @@ import { Router } from '@angular/router';
 })
 export class SuperviseesComponent {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http:HttpClient) {}
+
+  tableData: Array<{ 
+    id: number,
+    nameWithInitials: string, 
+    fullName: string, 
+    contactNumber: string, 
+    email:string, 
+    address: string, 
+    programOfStudy: string
+  }> = [];
 
   searchText: string = '';
-  tableData: Array<{ column1: string, column2: string, column3: string, column4: string }> = [
-    { column1: '1', column2: 'Supun Perera', column3: 'University of Peradeniya', column4: 'None' },
-    { column1: '2', column2: 'Ishan Thathsra', column3: 'University of Ruhuna', column4: 'Angular' },
-    { column1: '3', column2: 'More Data 3', column3: 'More Data 3', column4: 'More Data 3' },
-    // Add more data as needed
-  ];
+
+  loadStudents() {
+    this.http.get<Array<{
+    id: number,
+    nameWithInitials: string, 
+    fullName: string, 
+    contactNumber: string, 
+    email:string, 
+    address: string,
+    programOfStudy: string,
+    status: string }>>('http://localhost:8080/students')
+    .subscribe({
+      next: (data) => {
+        this.tableData = data;
+      },
+      error: (error) => {
+        console.error('Error loading student data', error);
+      },
+      complete: () => {
+        console.log('Student data loading complete');
+      }
+    });
+  }
+
+  ngOnInit(): void {
+    this.loadStudents();
+  }
 
   get filteredData() {
     return this.tableData.filter(row =>
-      row.column1.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.column2.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.column3.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.column4.toLowerCase().includes(this.searchText.toLowerCase())
+      row.id.toString().toLowerCase().includes(this.searchText.toLowerCase()) ||
+      row.nameWithInitials.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      row.fullName.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      row.contactNumber.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      row.email.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      row.address.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      row.programOfStudy.toLowerCase().includes(this.searchText.toLowerCase())
     );
   }
 
@@ -31,3 +66,13 @@ export class SuperviseesComponent {
     this.router.navigate(['afterlog/student-profile-to-supervisor']);
   }
 }
+
+
+// get filteredData() {
+//   return this.tableData.filter(row =>
+//     row.column1.toLowerCase().includes(this.searchText.toLowerCase()) ||
+//     row.column2.toLowerCase().includes(this.searchText.toLowerCase()) ||
+//     row.column3.toLowerCase().includes(this.searchText.toLowerCase()) ||
+//     row.column4.toLowerCase().includes(this.searchText.toLowerCase())
+//   );
+// }

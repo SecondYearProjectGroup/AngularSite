@@ -9,6 +9,10 @@
 <button (click)="navigateToStudentsToAdmin()" class="btn btn-primary btn-lg">Students</button><br><br>
 <button (click)="navigateToSupervisorsToAdmin()" class="btn btn-primary btn-lg">Supervisors</button><br><br>
 <button (click)="navigateToExaminersToAdmin()" class="btn btn-primary btn-lg">Examinors</button><br><br>
+
+<button (click)="openAddStaffMembersByAdmin()" class="btn btn-primary btn-lg">Add Staff Members</button><br><br>
+<app-add-staff-members-by-admin *ngIf="isAddStaffMembersByAdminOpen" (close)="closeAddStaffMembersByAdmin()"></app-add-staff-members-by-admin>
+
 <button class="btn btn-primary btn-lg">Report Submisions</button><br><br>
 <button class="btn btn-primary btn-lg">Vivas</button><br><br>
 

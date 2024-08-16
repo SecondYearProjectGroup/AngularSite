@@ -25,4 +25,13 @@ export class AdminDashboardComponent {
   navigateToExaminersToAdmin(){
     this.router.navigate(['afterlog/examiners-to-admin']);
   }
+
+
+  isAddStaffMembersByAdminOpen = false;
+  openAddStaffMembersByAdmin(): void{
+    this.isAddStaffMembersByAdminOpen = true;
+  }
+  closeAddStaffMembersByAdmin(): void{
+    this.isAddStaffMembersByAdminOpen = false;
+  }
 }
