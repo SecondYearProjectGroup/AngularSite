@@ -27,6 +27,7 @@ import { StudentProfileToExaminerComponent } from './examiner/student-profile-to
 import { EditProfileComponent } from './shared/edit-profile/edit-profile.component';
 import { FeedbackPageComponent } from './shared/feedback-page/feedback-page.component';
 import { AssignSupervisorByAdminComponent } from './admin/assign-supervisor-by-admin/assign-supervisor-by-admin.component';
+import { AddStaffMembersByAdminComponent } from './admin/add-staff-members-by-admin/add-staff-members-by-admin.component';
 
 
 
@@ -56,7 +57,8 @@ import { AssignSupervisorByAdminComponent } from './admin/assign-supervisor-by-a
     StudentProfileToExaminerComponent,
     EditProfileComponent,
     FeedbackPageComponent,
-    AssignSupervisorByAdminComponent
+    AssignSupervisorByAdminComponent,
+    AddStaffMembersByAdminComponent
   ],
   imports: [
     CommonModule,

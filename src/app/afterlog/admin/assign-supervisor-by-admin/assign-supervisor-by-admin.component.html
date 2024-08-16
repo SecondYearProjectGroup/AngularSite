@@ -8,22 +8,22 @@
                 <table class="student-table">
                 <thead>
                     <tr>
-                    <th>Select</th>
-                    <th>Student ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Course</th>
+                        <th>Select</th>
+                        <th>ID</th>
+                        <th>Supervisor Name</th>
+                        <th>Email</th>
+                        <th>No. of Supervisees</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let student of students; let i = index">
-                    <td>
-                        <input type="radio" name="selectedStudent" [(ngModel)]="selectedStudent" [value]="student">
-                    </td>
-                    <td>{{ student.id }}</td>
-                    <td>{{ student.firstName }}</td>
-                    <td>{{ student.lastName }}</td>
-                    <td>{{ student.course }}</td>
+                    <tr *ngFor="let row of filteredData; let i = index">
+                        <td>
+                            <input type="radio" name="selectedSupervisor" [(ngModel)]="selectedSupervisor" [value]="row">
+                        </td>
+                        <td>{{ row.id }}</td>
+                        <td>{{ row.fullName }}</td>
+                        <td>{{ row.email }}</td>
+                        <td>{{ row.noOfSupervisees }}</td>
                     </tr>
                 </tbody>
                 </table>
