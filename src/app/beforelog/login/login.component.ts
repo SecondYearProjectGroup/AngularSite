@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from './login.service';
+import { AuthServiceService } from '../../services/auth-service.service';
+
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,10 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private authService: AuthServiceService, private router: Router) {}
 
   onSubmit() {
-    this.loginService.login(this.username, this.password).subscribe(
+    this.authService.login(this.username, this.password).subscribe(
       (response: string) => {
         console.log('Login successful:', response);
         const roles = response.split(','); // Assuming the roles are returned as a comma-separated string
