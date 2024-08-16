@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../afterlog/services/user.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-top-navigation',
@@ -13,12 +14,40 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
     // Initialization logic that doesn't depend on the DOM
   }
 
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(private router: Router, private userService: UserService, private http: HttpClient) {}
 
   @Input() mode: 'beforeLog' | 'login' | 'afterLog' = 'afterLog';
 
+  logout() {
+    this.http.post('http://localhost:8080/api/logout', {}).subscribe({
+      next: () => {
+        // Clear any client-side authentication data
+        localStorage.removeItem('token');
+        sessionStorage.removeItem('token');
+  
+        // Redirect to login page
+        this.router.navigate(['/beforelog/login']);
+      },
+      error: (error) => {
+        console.error('Logout failed', error);
+      },
+      complete: () => {
+        console.log('Logout completed successfully');
+        // Double-check redirection to ensure user is logged out
+        if (!localStorage.getItem('token') && !sessionStorage.getItem('token')) {
+          this.router.navigate(['/beforelog/login']);
+        } else {
+          console.warn('User is still logged in; forcing redirect.');
+          this.router.navigate(['/beforelog/login']);
+        }
+      }
+    });
+  }
+  
+  
+
   navigateToLogin() {
-    this.router.navigate(['/beforelog/login']);
+    this.logout();
   }
 
   navigateToEnroll() {
