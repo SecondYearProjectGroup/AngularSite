@@ -41,26 +41,6 @@ ul.topnav li.right {float: right;}
     margin-left: 15px;
 }
 
-/* Notification Panel */
-.notification-panel {
-  display: none;
-  position: fixed;
-  top: 45px;
-  right: 10px;
-  background-color: #d1d1d1;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  padding: 10px;
-  z-index: 9999;
-  border-radius: 15px;
-}
-.notification-panel p {
-  margin: 0;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-}
-
 /* Target the icon directly */
 .right i.fa-circle-user {
   font-size: 30px; /* Change this value to adjust the size */

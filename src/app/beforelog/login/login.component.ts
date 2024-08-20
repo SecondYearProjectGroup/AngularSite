@@ -11,6 +11,7 @@ import { AuthServiceService } from '../../services/auth-service.service';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  errorMessage: string = '';
 
   constructor(private authService: AuthServiceService, private router: Router) {}
 
@@ -32,7 +33,7 @@ export class LoginComponent {
       },
       (error: any) => {
         console.error('Login failed:', error);
-        alert('Login failed. Please check your credentials.');
+        this.errorMessage = 'Invalid username or password.'; // Set error message
       }
     );
   }

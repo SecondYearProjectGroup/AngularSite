@@ -48,6 +48,7 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
 
   navigateToLogin() {
     this.logout();
+    this.router.navigate(['/beforelog/login']);
   }
 
   navigateToEnroll() {
