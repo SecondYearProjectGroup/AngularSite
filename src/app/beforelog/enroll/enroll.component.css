@@ -17,7 +17,7 @@
 .form-container input[type=submit]:hover {
     background-color: rgba(13, 13, 53, 0.932);
 }
-.form-container input[type=text],input[type=tel], input[type=email],textarea, select {
+.form-container input[type=text],input[type=tel], input[type=email], input[type=date],textarea, select {
     width: 100%;
     padding: 8px 16px;
     margin: 8px 0;
@@ -42,4 +42,11 @@
     border-radius: 4px;
     background-color: #dfdfdf;
     resize: none;
+}
+
+
+.error-message {
+    color: red;
+    font-size: 13px;
+    text-align: right;
 }

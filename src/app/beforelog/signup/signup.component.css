@@ -33,3 +33,9 @@
     font-size: 13px;
     margin: 0;
 }
+
+.error-message {
+    color: red;
+    font-size: 13px;
+    text-align: right;
+}

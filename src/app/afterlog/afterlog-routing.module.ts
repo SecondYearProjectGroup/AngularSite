@@ -19,6 +19,7 @@ import { StudentsToExaminerComponent } from './examiner/students-to-examiner/stu
 import { StudentProfileToExaminerComponent } from './examiner/student-profile-to-examiner/student-profile-to-examiner.component';
 import { EditProfileComponent } from './shared/edit-profile/edit-profile.component';
 import { FeedbackPageComponent } from './shared/feedback-page/feedback-page.component';
+import { AssignmentSubmissionComponent } from './shared/tiles-and-inside/assignment-submission/assignment-submission.component';
 // import { RoleGuardService as RoleGuard } from '../shared/services/role-guard.service';
 
 const routes: Routes = [
@@ -51,7 +52,8 @@ const routes: Routes = [
 
 
       { path: 'edit-profile', component: EditProfileComponent },
-      { path: 'feedback-page', component: FeedbackPageComponent }
+      { path: 'feedback-page', component: FeedbackPageComponent },
+      { path: 'assignment-submission', component: AssignmentSubmissionComponent }
       
     ]
   }
