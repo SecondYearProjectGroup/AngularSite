@@ -4,6 +4,7 @@ import { TopNavigationComponent } from './top-navigation/top-navigation.componen
 import { SidebarLeftComponent } from './sidebar-left/sidebar-left.component';
 import { SecondNavigationComponent } from './second-navigation/second-navigation.component';
 import { FooterComponent } from './footer/footer.component';
+import { NotificationPanelComponent } from './notification-panel/notification-panel.component';
 
 
 
@@ -12,7 +13,8 @@ import { FooterComponent } from './footer/footer.component';
     TopNavigationComponent,
     SidebarLeftComponent,
     SecondNavigationComponent,
-    FooterComponent
+    FooterComponent,
+    NotificationPanelComponent
   ],
   imports: [
     CommonModule
