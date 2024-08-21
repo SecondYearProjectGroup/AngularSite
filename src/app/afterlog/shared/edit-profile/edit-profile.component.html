@@ -4,11 +4,11 @@
         <i class="fa fa-circle-user"></i>
     </div>
     <div class="profile-box">
-        <h3>Reg. No</h3>
-        <h5>Name</h5>
-        <h5>Programme of Studying</h5>
+        <h3> {{ student.regNumber }}</h3>
+        <h5>{{ student.nameWithInitials }}</h5>
+        <h5> {{student.programOfStudy }}</h5>
         <h5>Registered Date</h5>
-        <h5>Status</h5>
+        <h5>{{ student.status}}</h5>
     </div>
     
 </div>
@@ -24,29 +24,29 @@
             <h4>General</h4>
             <table class="form-tables">
                 <tr>
-                    <td>First Name</td>
-                    <td><input type="text" name="firstName" placeholder="First Name..."></td>
+                    <td>Reg Number</td>
+                    <td><input type="text" name="regNumber" [(ngModel)]="student.regNumber" placeholder="First Name..."></td>
                 </tr>
                 <tr>
-                    <td>Surname</td>
-                    <td><input type="text" name="surname" placeholder="Surname..."></td>
+                    <td>Full Name</td>
+                    <td><input type="text" name="nameWithInitials" [(ngModel)]="student.nameWithInitials" placeholder="Surname..."></td>
                 </tr>
                 <tr>
                     <td>Contact Number</td>
-                    <td><input type="tel" name="contactNumber" placeholder="Contact Number..."></td>
+                    <td><input type="tel" name="contactNumber" [(ngModel)]="student.contactNumber" placeholder="Contact Number..."></td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>Mobile Number</td>
                     <td><input type="tel" name="mobileNumber" placeholder="Mobile Number..."></td>
-                </tr>
+                </tr> -->
                 <tr>
                     <td>Email</td>
-                    <td><input type="email" name="email" placeholder="Email Address..."></td>
+                    <td><input type="email" [(ngModel)]="student.email" name="email" placeholder="Email Address..."></td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>Other Email</td>
                     <td><input type="email" name="otherEmail" placeholder="Other Email..."></td>
-                </tr>
+                </tr> -->
                 <tr>
                     <td>Description</td>
                     <td><textarea name="description" rows="4"></textarea></td>

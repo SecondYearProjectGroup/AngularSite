@@ -92,6 +92,7 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/beforelog/welcome']);
   }
   navigateToEditProfile() {
+    
     this.router.navigate(['/afterlog/edit-profile']);
   }
 
