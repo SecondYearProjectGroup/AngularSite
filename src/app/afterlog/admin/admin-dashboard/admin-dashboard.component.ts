@@ -27,18 +27,9 @@ export class AdminDashboardComponent {
   navigateToExaminersToAdmin(){
     this.router.navigate(['afterlog/examiners-to-admin']);
   }
-
-  getUsername() {
-    const token = localStorage.getItem('jwt');; // Replace with actual token
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
-    this.http.get('http://localhost:8080/username', { headers }).subscribe();
-  }
-
+  
   testingButton(){
-    this.getUsername();
+
   }
 
 
