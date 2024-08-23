@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../../../services/auth-service.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -9,7 +10,7 @@ import { AuthServiceService } from '../../../services/auth-service.service';
 })
 export class AdminDashboardComponent {
 
-  constructor(private router: Router, private authService : AuthServiceService) {}
+  constructor(private router: Router, private authService : AuthServiceService, private http:HttpClient) {}
 
   navigateToEnrolledStudents(){
     this.router.navigate(['afterlog/enrolled-students']);
@@ -26,14 +27,9 @@ export class AdminDashboardComponent {
   navigateToExaminersToAdmin(){
     this.router.navigate(['afterlog/examiners-to-admin']);
   }
-
+  
   testingButton(){
-    // this.authService.getCurrentUser().subscribe(
-    //   (responce : string ) => {
-    //     console.log('User' , responce)
-    //   }
-    // )
-    // console.log('Testing Button Clicked.');
+
   }
 
 

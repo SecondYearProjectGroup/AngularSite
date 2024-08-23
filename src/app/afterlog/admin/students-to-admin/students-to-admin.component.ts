@@ -12,7 +12,7 @@ export class StudentsToAdminComponent {
   constructor(private router: Router, private http:HttpClient) {}
 
   tableData: Array<{ 
-    regNumber: String,
+    regNumber: string,
     nameWithInitials: string, 
     fullName: string, 
     contactNumber: string, 
@@ -25,7 +25,7 @@ export class StudentsToAdminComponent {
 
   loadStudents() {
     this.http.get<Array<{
-    regNumber: String,
+    regNumber: string,
     nameWithInitials: string, 
     fullName: string, 
     contactNumber: string, 
@@ -52,7 +52,7 @@ export class StudentsToAdminComponent {
 
   get filteredData() {
     return this.tableData.filter(row =>
-      row.regNumber.toString().toLowerCase().includes(this.searchText.toLowerCase()) ||
+      row.regNumber.toLowerCase().includes(this.searchText.toLowerCase()) ||
       row.nameWithInitials.toLowerCase().includes(this.searchText.toLowerCase()) ||
       row.fullName.toLowerCase().includes(this.searchText.toLowerCase()) ||
       row.contactNumber.toLowerCase().includes(this.searchText.toLowerCase()) ||
