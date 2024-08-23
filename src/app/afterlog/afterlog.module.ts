@@ -30,6 +30,7 @@ import { AssignSupervisorByAdminComponent } from './admin/assign-supervisor-by-a
 import { AddStaffMembersByAdminComponent } from './admin/add-staff-members-by-admin/add-staff-members-by-admin.component';
 import { AssignmentSubmissionComponent } from './shared/tiles-and-inside/assignment-submission/assignment-submission.component';
 import { EditProfileForStaffComponent } from './shared/edit-profile-for-staff/edit-profile-for-staff.component';
+import { CreateCalendarEventComponent } from './shared/create-calendar-event/create-calendar-event.component';
 
 
 
@@ -62,7 +63,8 @@ import { EditProfileForStaffComponent } from './shared/edit-profile-for-staff/ed
     AssignSupervisorByAdminComponent,
     AddStaffMembersByAdminComponent,
     AssignmentSubmissionComponent,
-    EditProfileForStaffComponent
+    EditProfileForStaffComponent,
+    CreateCalendarEventComponent
   ],
   imports: [
     CommonModule,

@@ -32,7 +32,7 @@ export class AdminDashboardComponent {
 
   }
 
-
+  // Add Staff Members By Admin
   isAddStaffMembersByAdminOpen = false;
   openAddStaffMembersByAdmin(): void{
     this.isAddStaffMembersByAdminOpen = true;
@@ -40,4 +40,14 @@ export class AdminDashboardComponent {
   closeAddStaffMembersByAdmin(): void{
     this.isAddStaffMembersByAdminOpen = false;
   }
+
+  // Create Calendar Event
+  isCreateCalendarEventOpen = false;
+  openCreateCalendarEvent(): void{
+    this.isCreateCalendarEventOpen = true;
+  }
+  closeCreateCalendarEvent(): void{
+    this.isCreateCalendarEventOpen = false;
+  }
+
 }
