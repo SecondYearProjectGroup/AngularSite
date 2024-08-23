@@ -46,6 +46,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../../services/auth-service.service';
 import { decodeJwt } from '../../utils/jwt-utils.service';
+import { UserRoleService } from '../../afterlog/services/user-role.service';
 
 
 interface DecodedToken {
@@ -65,7 +66,10 @@ export class LoginComponent {
   password: string = '';
   errorMessage: string = '';
 
-  constructor(private authService: AuthServiceService, private router: Router) {}
+  constructor(
+    private authService: AuthServiceService,
+    private router: Router,
+    private userRoleService: UserRoleService) {}
 
   onSubmit() {
     this.authService.login(this.username, this.password).subscribe(
@@ -77,15 +81,29 @@ export class LoginComponent {
         try {
           const decodedToken: DecodedToken = decodeJwt(response);
           const roles = (decodedToken.roles || []).map(role => role.authority); // Extract the authority
+          
+          const userId = decodedToken['sub']; // Assume the user ID is in the 'sub' field
+          this.userRoleService.setUserId(userId);
+
   
           console.log(roles);
   
           if (roles.includes('ADMIN')) {
+            this.userRoleService.setUserRole('ADMIN');
             this.router.navigate(['/afterlog/admin-dashboard']);
+
           } else if (roles.includes('STUDENT')) {
+            this.userRoleService.setUserRole('STUDENT');
             this.router.navigate(['/afterlog/student-dashboard']);
+
           } else if (roles.includes('SUPERVISOR')) {
+            this.userRoleService.setUserRole('SUPERVISOR');
             this.router.navigate(['/afterlog/supervisor-dashboard']);
+
+          } else if (roles.includes('EXAMINER')) {
+            this.userRoleService.setUserRole('EXAMINER');
+            this.router.navigate(['/afterlog/examiner-dashboard']);
+
           } else {
             this.router.navigate(['/beforelog/login']);
           }

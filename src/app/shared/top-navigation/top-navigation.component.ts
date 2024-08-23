@@ -1,35 +1,56 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../../afterlog/services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { AuthServiceService } from '../../services/auth-service.service';
+import { UserRoleService } from '../../afterlog/services/user-role.service';
 
 @Component({
   selector: 'app-top-navigation',
   templateUrl: './top-navigation.component.html',
-  styleUrl: './top-navigation.component.css'
+  styleUrls: ['./top-navigation.component.css']
 })
 export class TopNavigationComponent implements OnInit, AfterViewInit {
 
-  ngOnInit(): void {
-    // Initialization logic that doesn't depend on the DOM
-  }
+  constructor(
+    private router: Router, 
+    private userRoleService: UserRoleService, 
+    private http: HttpClient, 
+    private authService: AuthServiceService
+  ) {}
 
-  constructor(private router: Router, private userService: UserService, private http: HttpClient, private authService: AuthServiceService) {}
+  userRole: string | null = null; // Variable of the user Role & Initialize with null
+  userId: string | null = null; // Variable of the user ID & Initialize
 
   @Input() mode: 'beforeLog' | 'login' | 'afterLog' = 'afterLog';
+
+  ngOnInit(): void {
+    this.userRoleService.userRole$.subscribe(role => {
+      this.userRole = role;
+    });
+
+    this.userRoleService.userId$.subscribe(id => {
+      this.userId = id;
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.initializeNotificationPanel();
+  }
 
   logout() {
     this.http.post('http://localhost:8080/logout', {}, { withCredentials: true }).subscribe({
       next: () => {
+        // Clear role in the service
+        this.userRoleService.clearUserRole();
+
         // Use AuthService to clear the token
         this.authService.logout();
+
         // Optional: Clear cookies if used
         this.clearCookies();
-        // Navigate to the login page
-        this.router.navigate(['/beforelog/login']).then(() => {
-          console.log('Logged out and redirected to login page.');
-        });
+
+        // Clear browser cache and navigate to login page
+        this.clearBrowserCacheAndRedirect();
       },
       error: (error) => {
         console.error('Logout failed:', error);
@@ -48,28 +69,38 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
     });
   }
   
+  // Method to clear browser cache and redirect after logout
+  clearBrowserCacheAndRedirect() {
+    // Clear the session storage or any local storage as needed
+    sessionStorage.clear();
+    localStorage.clear();
+
+    // Disabling browser cache
+    window.location.replace('/beforelog/login');
+  }
   
   navigateToLogin() {
-    this.logout();
-    this.router.navigate(['/beforelog/login']);
+    this.logout(); // Call logout when navigating to login
   }
+
+
 
   navigateToEnroll() {
     this.router.navigate(['/beforelog/enroll']);
   }
 
-  // navigateToDashboard() {
-  //   this.router.navigate(['/afterlog/student-dashboard']);
-  // }
   navigateToDashboard() {
-    const role = this.userService.getRole();
 
-    if (role === 'admin') {
+    if (this.userRole === 'ADMIN') {
       this.router.navigate(['/afterlog/admin-dashboard']);
-    } else if (role === 'student') {
+    } else if (this.userRole === 'STUDENT') {
       this.router.navigate(['/afterlog/student-dashboard']);
+    } else if (this.userRole === 'SUPERVISOR') {
+      this.router.navigate(['/afterlog/supervisor-dashboard']);
+    } else if (this.userRole === 'EXAMINER') {
+      this.router.navigate(['/afterlog/examiner-dashboard']);
     } else {
-      console.error('Unknown role:', role);
+      console.error('Unknown role:', this.userRole);
     }
   }
 
@@ -92,13 +123,25 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
   navigateToHome() {
     this.router.navigate(['/beforelog/welcome']);
   }
+  
   navigateToEditProfile() {
-    this.router.navigate(['/afterlog/edit-profile']);
+
+    console.log('User role:', this.userRole);
+    console.log('User ID:', this.userId);
+
+    if (this.userRole === 'ADMIN') {
+      this.router.navigate(['/afterlog/edit-profile-for-staff']);
+    } else if (this.userRole === 'STUDENT') {
+      this.router.navigate(['/afterlog/edit-profile']);
+    } else if (this.userRole === 'SUPERVISOR') {
+      this.router.navigate(['/afterlog/edit-profile-for-staff']);
+    } else if (this.userRole === 'EXAMINER') {
+      this.router.navigate(['/afterlog/edit-profile-for-staff']);
+    } else {
+      console.error('Unknown role:', this.userRole);
+    }
   }
 
-  ngAfterViewInit(): void {
-    this.initializeNotificationPanel();
-  }
 
   initializeNotificationPanel(): void {
     const notificationButton = document.getElementById('notificationButton');

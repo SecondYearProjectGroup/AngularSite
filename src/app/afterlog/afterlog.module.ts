@@ -29,6 +29,7 @@ import { FeedbackPageComponent } from './shared/feedback-page/feedback-page.comp
 import { AssignSupervisorByAdminComponent } from './admin/assign-supervisor-by-admin/assign-supervisor-by-admin.component';
 import { AddStaffMembersByAdminComponent } from './admin/add-staff-members-by-admin/add-staff-members-by-admin.component';
 import { AssignmentSubmissionComponent } from './shared/tiles-and-inside/assignment-submission/assignment-submission.component';
+import { EditProfileForStaffComponent } from './shared/edit-profile-for-staff/edit-profile-for-staff.component';
 
 
 
@@ -60,7 +61,8 @@ import { AssignmentSubmissionComponent } from './shared/tiles-and-inside/assignm
     FeedbackPageComponent,
     AssignSupervisorByAdminComponent,
     AddStaffMembersByAdminComponent,
-    AssignmentSubmissionComponent
+    AssignmentSubmissionComponent,
+    EditProfileForStaffComponent
   ],
   imports: [
     CommonModule,
