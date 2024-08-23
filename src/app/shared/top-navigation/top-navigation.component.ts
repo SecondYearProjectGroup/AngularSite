@@ -42,15 +42,18 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
       next: () => {
         // Clear role in the service
         this.userRoleService.clearUserRole();
+        sessionStorage.clear();
+        localStorage.clear();
 
         // Use AuthService to clear the token
         this.authService.logout();
+        this.router.navigate(['/beforelog/login'])
 
-        // Optional: Clear cookies if used
-        this.clearCookies();
+        // // Optional: Clear cookies if used
+        // this.clearCookies();
 
-        // Clear browser cache and navigate to login page
-        this.clearBrowserCacheAndRedirect();
+        // // Clear browser cache and navigate to login page
+        // this.clearBrowserCacheAndRedirect();
       },
       error: (error) => {
         console.error('Logout failed:', error);
@@ -62,22 +65,25 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
     });
   }
   
-  // Optional: Clear cookies if authentication uses them
-  clearCookies() {
-    document.cookie.split(';').forEach((c) => {
-      document.cookie = c.replace(/^ +/, '').replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
-    });
-  }
+  // // Optional: Clear cookies if authentication uses them
+  // clearCookies() {
+  //   document.cookie.split(';').forEach((c) => {
+  //     document.cookie = c.replace(/^ +/, '').replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
+  //   });
+  // }
   
-  // Method to clear browser cache and redirect after logout
-  clearBrowserCacheAndRedirect() {
-    // Clear the session storage or any local storage as needed
-    sessionStorage.clear();
-    localStorage.clear();
-
-    // Disabling browser cache
-    window.location.replace('/beforelog/login');
-  }
+  // // Method to clear browser cache and redirect after logout
+  // clearBrowserCacheAndRedirect() {
+  //   sessionStorage.clear();
+  //   localStorage.clear();
+  
+  //   // Replace history state to prevent back navigation
+  //   window.history.replaceState({}, '', '/beforelog/login');
+  //   this.router.navigate(['/beforelog/login']).then(() => {
+  //     window.location.reload(); // Reload to enforce fresh navigation
+  //   });
+  // }
+  
   
   navigateToLogin() {
     this.logout(); // Call logout when navigating to login

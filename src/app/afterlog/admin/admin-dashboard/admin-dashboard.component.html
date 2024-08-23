@@ -20,6 +20,8 @@
 <h2>Calendar</h2>
 <br>
 
+<button (click)="openCreateCalendarEvent()" class="btn btn-primary btn-lg">New Event</button><br>
+<app-create-calendar-event *ngIf="isCreateCalendarEventOpen" (close)="closeCreateCalendarEvent()"></app-create-calendar-event>
 <app-main-calendar></app-main-calendar>
 
 
