@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { EnrollService } from './enroll.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-enroll',
@@ -25,6 +26,8 @@ export class EnrollComponent {
     publications: '',
     programOfStudy: ''
   };
+  errorMessage: string = '';
+  fileErrorMessage: string = '';
 
   selectedFile: File | null = null;
 
@@ -34,7 +37,7 @@ export class EnrollComponent {
     this.selectedFile = event.target.files[0];
   }
 
-  onEnrollSubmit() {
+  onEnrollSubmit(form: NgForm) {
     if (this.selectedFile) {
       this.enrollService.enroll(this.enrollmentData, this.selectedFile).subscribe({
         next: (response) => {
@@ -51,7 +54,17 @@ export class EnrollComponent {
       });
       
     } else {
-      window.alert('Please select a file.');
+      // window.alert('Please select a file.');
+      this.fileErrorMessage = 'Please select a file.';
+    }
+
+    if (form.invalid) {
+      this.errorMessage = 'Fill all the fields';
+    } else if (form.value.password !== form.value.confirmPassword) {
+      this.errorMessage = 'Passwords do not match';
+    } else {
+      this.errorMessage = '';
+      console.log('Form Submitted', form.value);
     }
   }
 }

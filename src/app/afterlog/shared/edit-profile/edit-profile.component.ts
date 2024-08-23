@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Student } from '../../../models/student';
 import { decodeJwt } from '../../../utils/jwt-utils.service';
@@ -17,7 +18,12 @@ interface DecodedToken {
   styleUrls: ['./edit-profile.component.css']
 })
 
-export class EditProfileComponent implements OnInit {
+export class EditProfileComponent implements OnInit{
+
+  ngOnInit(): void {
+    scrollTo(0,0);
+    this.loadUserData();
+  }
 
   student: Student = {
     regNumber: '',
@@ -49,10 +55,9 @@ export class EditProfileComponent implements OnInit {
       );
   }
 
-   ngOnInit(): void {
-       this.loadUserData();
-   }
+ 
   onEditProfileSubmit() {
     // Handle form submission logic here
   }
+  
 }

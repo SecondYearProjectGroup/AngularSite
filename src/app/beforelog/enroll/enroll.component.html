@@ -13,28 +13,78 @@
             <br>
             <br>
             <div class="form-container">
-                <form (submit)="onEnrollSubmit()" method="post">
+                <form (submit)="onEnrollSubmit(enrollForm)" method="post" #enrollForm="ngForm">
                     <table style="width: 100%;">
                         <tr>
                             <td>Name with Initials</td>
-                            <td><input type="text" name="nameWithInitials" [(ngModel)]="enrollmentData.nameWithInitials" placeholder="Your Name..."></td>
+                            <td><input type="text" name="nameWithInitials" [(ngModel)]="enrollmentData.nameWithInitials" placeholder="Your Name..." required #nameInput="ngModel"></td>
                         </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <!-- Error message for name -->
+                                <div *ngIf="nameInput.invalid && nameInput.touched" class="error-message">
+                                    <small *ngIf="nameInput.errors?.['required']">Name is required.</small>
+                                </div>
+                            </td>
+                        </tr>
+
                         <tr>
                             <td>Full Name</td>
-                            <td><input type="text" name="fullName" [(ngModel)]="enrollmentData.fullName" placeholder="Your Full Name..."></td>
+                            <td><input type="text" name="fullName" [(ngModel)]="enrollmentData.fullName" placeholder="Your Full Name..." required #fullnameInput="ngModel"></td>
                         </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <!-- Error message for full name -->
+                                <div *ngIf="fullnameInput.invalid && fullnameInput.touched" class="error-message">
+                                    <small *ngIf="nameInput.errors?.['required']">Full Name is required.</small>
+                                </div>
+                            </td>
+                        </tr>
+
                         <tr>
                             <td>Contact Number</td>
-                            <td><input type="tel" name="contactNumber" [(ngModel)]="enrollmentData.contactNumber" placeholder="Contact Number..."></td>
+                            <td><input type="tel" name="contactNumber" [(ngModel)]="enrollmentData.contactNumber" placeholder="Contact Number..." required pattern="^0\d{9}$" #contactNum="ngModel"></td>
                         </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <!-- Error message display -->
+                                <div *ngIf="contactNum.invalid && (contactNum.dirty || contactNum.touched)" class="error-message">
+                                    <small *ngIf="contactNum.errors?.['required']">Contact Number is required.</small>
+                                    <small *ngIf="contactNum.errors?.['pattern']">Invalid contact number format.</small>
+                                </div>
+                            </td>
+                        </tr>
+                            
                         <tr>
                             <td>Email</td>
-                            <td><input type="email" name="email" [(ngModel)]="enrollmentData.email" placeholder="Email Address..."></td>
+                            <td><input type="email" name="email" [(ngModel)]="enrollmentData.email" placeholder="Email Address..." required email #emailInput="ngModel"></td>
                         </tr>
                         <tr>
-                            <td>Address</td>
-                            <td><textarea name="address" [(ngModel)]="enrollmentData.address" rows="4"></textarea></td>
+                            <td></td>
+                            <td>
+                                <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)" class="error-message">
+                                    <small *ngIf="emailInput.errors?.['required']">Email is required.</small>
+                                    <small *ngIf="emailInput.errors?.['email']">Invalid email format.</small>
+                                </div>
+                            </td>
                         </tr>
+
+                        <tr>
+                            <td>Address</td>
+                            <td><textarea name="address" [(ngModel)]="enrollmentData.address" rows="4" required #addressInput="ngModel"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div *ngIf="addressInput.invalid && (addressInput.dirty || addressInput.touched)" class="error-message">
+                                    <small *ngIf="addressInput.errors?.['required']">Address is required.</small>
+                                </div>
+                            </td>
+                        </tr>
+
                     </table>
                     <br>
                     <hr>
@@ -46,53 +96,119 @@
                             <table style="width: 100%;">
                                 <tr>
                                     <td>University / Institute</td>
-                                    <td><input type="text" name="university" [(ngModel)]="enrollmentData.university" placeholder="University..."></td>
+                                    <td><input type="text" name="university" [(ngModel)]="enrollmentData.university" placeholder="University..." required #uniInput="ngModel"></td>
                                 </tr>
                                 <tr>
-                                    <td>From</td>
-                                    <td><input type="text" name="fromDate" [(ngModel)]="enrollmentData.fromDate" placeholder="From..."></td>
+                                    <td></td>
+                                    <td>
+                                        <div *ngIf="uniInput.invalid && (uniInput.dirty || uniInput.touched)" class="error-message">
+                                            <small *ngIf="uniInput.errors?.['required']">University/ Institute is required.</small>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Start Date</td>
+                                    <td><input type="date" name="fromDate" [(ngModel)]="enrollmentData.fromDate" required #fromDataInput="ngModel"></td>
                                 </tr>
                                 <tr>
-                                    <td>To</td>
-                                    <td><input type="text" name="toDate" [(ngModel)]="enrollmentData.toDate" placeholder="To..."></td>
+                                    <td></td>
+                                    <td>
+                                        <div *ngIf="fromDataInput.invalid && (fromDataInput.dirty || fromDataInput.touched)" class="error-message">
+                                            <small *ngIf="fromDataInput.errors?.['required']">Start Date is required.</small>
+                                        </div>
+                                    </td>
                                 </tr>
+
+                                <tr>
+                                    <td>End Date</td>
+                                    <td><input type="date" name="toDate" [(ngModel)]="enrollmentData.toDate" placeholder="To..." required #toDateInput="ngModel"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <div *ngIf="toDateInput.invalid && (toDateInput.dirty || toDateInput.touched)" class="error-message">
+                                            <small *ngIf="toDateInput.errors?.['required']">End Date is required.</small>
+                                        </div>
+                                    </td>
+                                </tr>
+
                                 <tr>
                                     <td>Degree</td>
-                                    <td><input type="text" name="degree" [(ngModel)]="enrollmentData.degree" placeholder="Degree..."></td>
+                                    <td><input type="text" name="degree" [(ngModel)]="enrollmentData.degree" placeholder="Degree..." required #degreeInput="ngModel"></td>
                                 </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <div *ngIf="degreeInput.invalid && (degreeInput.dirty || degreeInput.touched)" class="error-message">
+                                            <small *ngIf="degreeInput.errors?.['required']">Degree is required.</small>
+                                        </div>
+                                    </td>
+                                </tr>
+
                                 <tr>
                                     <td>Field</td>
-                                    <td><input type="text" name="field" [(ngModel)]="enrollmentData.field" placeholder="Field..."></td>
+                                    <td><input type="text" name="field" [(ngModel)]="enrollmentData.field" placeholder="Field..." required #fieldInput="ngModel"></td>
                                 </tr>
                                 <tr>
-                                    <td>Class / Pass</td>
-                                    <td><input type="text" name="class" [(ngModel)]="enrollmentData.class" placeholder="Class..."></td>
+                                    <td></td>
+                                    <td>
+                                        <div *ngIf="fieldInput.invalid && (fieldInput.dirty || fieldInput.touched)" class="error-message">
+                                            <small *ngIf="fieldInput.errors?.['required']">Field is required.</small>
+                                        </div>
+                                    </td>
                                 </tr>
+
+                                <tr>
+                                    <td>Class / Pass</td>
+                                    <td><input type="text" name="class" [(ngModel)]="enrollmentData.class" placeholder="Class..." required #ClassInput="ngModel"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <div *ngIf="ClassInput.invalid && (ClassInput.dirty || ClassInput.touched)" class="error-message">
+                                            <small *ngIf="ClassInput.errors?.['required']">Class/ Pass is required.</small>
+                                        </div>
+                                    </td>
+                                </tr>
+
                             </table>
                             <br>
-                            Attach Files: <input type="file" (change)="onFileChange($event)">
+                            Attach Files: <input type="file" (change)="onFileChange($event)" required>
+                            <!-- Error message display -->
+                            <div *ngIf="fileErrorMessage" class="error-message">
+                                {{ fileErrorMessage }}
+                            </div>
                             <br><br>
                         </div>
                     </div>
 
-                    <button type="button" id="add-section">Add Section</button>
-                    <button type="button" id="remove-section" style="display:none;">--</button>
+                    <!-- <button type="button" id="add-section">Add Section</button>
+                    <button type="button" id="remove-section" style="display:none;">--</button> -->
 
                     <hr>
 
                     <h3>List of Publications</h3>
                     <textarea name="publications" [(ngModel)]="enrollmentData.publications" rows="4" style="width: 100%;"></textarea>
                     
+                    
                     <br><br><hr>
                     <h3>Proposed Program of Study</h3>
-                    <select name="programOfStudy" [(ngModel)]="enrollmentData.programOfStudy">
+                    <select name="programOfStudy" [(ngModel)]="enrollmentData.programOfStudy" required #selectProgramInput="ngModel">
                         <option value="PhD">PhD</option>
                         <option value="MPhil">MPhil</option>
                         <option value="Program 1">Program 1</option>
                         <option value="Program 2">Program 2</option>
                     </select>
+                    <div *ngIf="selectProgramInput.invalid && (selectProgramInput.dirty || selectProgramInput.touched)" class="error-message">
+                        <small *ngIf="selectProgramInput.errors?.['required']">Program of Study is required.</small>
+                    </div>
                     
                     <br><br><hr><br><br>
+                    <!-- Error message display -->
+                    <div *ngIf="errorMessage" class="error-message">
+                        {{ errorMessage }}
+                    </div>
                     <input type="submit" value="Submit"><br><br>
                 </form>
             </div>

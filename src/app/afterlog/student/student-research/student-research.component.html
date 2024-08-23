@@ -12,23 +12,11 @@
     <h3>Research</h3>
     <br>
     <h6>Effective Date of Degree:</h6>
-    <app-collapsible-section
-        buttonName="General"
-        [tiles]="[
-            { title: 'Forum', routerLink: 'https://example.com/forum' },
-            { title: 'Application Submission', routerLink: 'https://example.com/announcements' }
-        ]"></app-collapsible-section>
+    
 
-    <app-collapsible-section
-        buttonName="First Report"
-        [tiles]="[
-            { title: 'Add Examiners', routerLink: '#' },
-            { title: 'Set deadline', routerLink: '#' },
-            { title: 'Feedback', routerLink: '#' }
-        ]"></app-collapsible-section>
+<app-collapsible-section *ngFor="let section of sections" [buttonName]="section.buttonName" [tiles]="section.tiles"></app-collapsible-section>
 
     <br>
-    <button class="btn">Assign Supervisor</button>
     <br>
     <br>
 </div>

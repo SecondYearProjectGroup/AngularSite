@@ -19,6 +19,8 @@ import { StudentsToExaminerComponent } from './examiner/students-to-examiner/stu
 import { StudentProfileToExaminerComponent } from './examiner/student-profile-to-examiner/student-profile-to-examiner.component';
 import { EditProfileComponent } from './shared/edit-profile/edit-profile.component';
 import { FeedbackPageComponent } from './shared/feedback-page/feedback-page.component';
+import { AssignmentSubmissionComponent } from './shared/tiles-and-inside/assignment-submission/assignment-submission.component';
+import { EditProfileForStaffComponent } from './shared/edit-profile-for-staff/edit-profile-for-staff.component';
 // import { RoleGuardService as RoleGuard } from '../shared/services/role-guard.service';
 
 const routes: Routes = [
@@ -38,6 +40,7 @@ const routes: Routes = [
       { path: 'student-dashboard', component: StudentDashboardComponent },
       { path: 'student-research', component: StudentResearchComponent },
       { path: 'student-courses', component: StudentCoursesComponent },
+      { path: 'edit-profile', component: EditProfileComponent },
 
       // Supervisor
       { path: 'supervisor-dashboard', component: SupervisorDashboardComponent },
@@ -50,8 +53,9 @@ const routes: Routes = [
       { path: 'student-profile-to-examiner', component: StudentProfileToExaminerComponent },
 
 
-      { path: 'edit-profile', component: EditProfileComponent },
-      { path: 'feedback-page', component: FeedbackPageComponent }
+      { path: 'edit-profile-for-staff', component: EditProfileForStaffComponent },
+      { path: 'feedback-page', component: FeedbackPageComponent },
+      { path: 'assignment-submission', component: AssignmentSubmissionComponent }
       
     ]
   }

@@ -1,11 +1,11 @@
-/*Login Page*/
-.login-form {
-    width: 25%;
+.feedback-form{
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
 }
-.login-form input[type=submit] {
-    width: 100%;
+
+.feedback-form input[type=submit] {
+    width: 40%;
     background-color: rgb(0, 0, 54);
     color: white;
     padding: 10px 20px;
@@ -13,13 +13,15 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    display: flex;
+    float: right;
 }
-.login-form input[type=submit]:hover {
+.feedback-form input[type=submit]:hover {
     background-color: rgba(13, 13, 53, 0.932);
 }
-.login-form input[type=text],input[type=password], select {
+.feedback-form input[type=text],textarea {
     width: 100%;
-    padding: 8px 15px;
+    padding: 8px 16px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #424242;
@@ -28,15 +30,11 @@
     background-color: #dfdfdf;
 }
 
-.btn{
-    color:blue;
-    font-size: 13px;
-    margin: 0;
+.feedback-form textarea {
+    padding: 5px 5px;
+    box-sizing: border-box;
+    border: 1px solid #424242;
+    border-radius: 4px;
+    background-color: #dfdfdf;
+    resize: none;
 }
-
-.error-message {
-    color: red;
-    font-size: 13px;
-    text-align: right;
-}
-  
