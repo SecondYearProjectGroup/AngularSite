@@ -47,6 +47,7 @@ export class StudentsToAdminComponent {
   }
 
   ngOnInit(): void {
+    scrollTo(0,0);
     this.loadStudents();
   }
 

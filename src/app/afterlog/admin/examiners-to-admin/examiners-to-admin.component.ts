@@ -37,6 +37,7 @@ export class ExaminersToAdminComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    scrollTo(0,0);
     this.loadExaminers();
   }
 

@@ -35,6 +35,7 @@ const routes: Routes = [
       { path: 'supervisors-to-admin', component: SupervisorsToAdminComponent },
       { path: 'examiners-to-admin', component: ExaminersToAdminComponent },
       { path: 'student-profile-to-admin', component: StudentProfileToAdminComponent },
+      { path: 'student-profile-to-admin/:regNumber', component: StudentProfileToAdminComponent },
 
       // Student
       { path: 'student-dashboard', component: StudentDashboardComponent },

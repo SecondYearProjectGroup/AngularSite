@@ -40,17 +40,22 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
   logout() {
     this.http.post('http://localhost:8080/logout', {}, { withCredentials: true }).subscribe({
       next: () => {
-        // Clear role in the service
-        this.userRoleService.clearUserRole();
-        sessionStorage.clear();
-        localStorage.clear();
 
         // Use AuthService to clear the token
         this.authService.logout();
-        this.router.navigate(['/beforelog/login'])
+        // Clear role in the service
+        this.userRoleService.clearUserRole();
+        
+        sessionStorage.clear();
+        localStorage.clear();
 
-        // // Optional: Clear cookies if used
-        // this.clearCookies();
+        // Optional: Clear cookies if used
+        this.clearCookies();
+
+        // Redirect to login page
+        this.router.navigate(['/beforelog/login']).then(() => {
+          window.location.reload(); // Ensure the page reloads to enforce fresh state
+        });
 
         // // Clear browser cache and navigate to login page
         // this.clearBrowserCacheAndRedirect();
@@ -65,12 +70,12 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
     });
   }
   
-  // // Optional: Clear cookies if authentication uses them
-  // clearCookies() {
-  //   document.cookie.split(';').forEach((c) => {
-  //     document.cookie = c.replace(/^ +/, '').replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
-  //   });
-  // }
+  // Optional: Clear cookies if authentication uses them
+  clearCookies() {
+    document.cookie.split(';').forEach((c) => {
+      document.cookie = c.replace(/^ +/, '').replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
+    });
+  }
   
   // // Method to clear browser cache and redirect after logout
   // clearBrowserCacheAndRedirect() {
