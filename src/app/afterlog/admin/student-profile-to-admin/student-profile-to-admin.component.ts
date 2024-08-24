@@ -57,12 +57,12 @@ export class StudentProfileToAdminComponent {
   }
 
   isModalOpen = false;
-  sections: { buttonName: string, tiles: { title: string, routerLink: string }[] }[] = [
+  sections: { buttonName: string, tiles: { type: string, title: string, routerLink: string }[] }[] = [
     {
       buttonName: 'General2',
       tiles: [
-        { title: 'Forum', routerLink: '/afterlog/feedback-page' },
-        { title: 'Announcements', routerLink: 'https://example.com/announcements' }
+        { type: 'forum', title: 'Forum 2', routerLink: '/afterlog/feedback-page' },
+        { type: 'submission', title: 'Submission 2', routerLink: '/afterlog/assignment-submission' }
       ]
     }
   ];
@@ -75,7 +75,7 @@ export class StudentProfileToAdminComponent {
     this.isModalOpen = false;
   }
 
-  addNewSection(newSection: { buttonName: string, tiles: { title: string, routerLink: string }[] }): void {
+  addNewSection(newSection: { buttonName: string, tiles: { type: string, title: string, routerLink: string }[] }): void {
     this.sections.push(newSection);
     this.closeModal();
   }

@@ -15,18 +15,9 @@
     <app-collapsible-section
         buttonName="General"
         [tiles]="[
-            { title: 'Forum', routerLink: '/afterlog/feedback-page' },
-            { title: 'Application Submission', routerLink: 'https://example.com/announcements' }
+            { type: 'forum', title: 'Forum 1', routerLink: '/afterlog/feedback-page' },
+            { type: 'submission', title: 'Application Submission', routerLink: '/afterlog/assignment-submission' }
         ]"></app-collapsible-section>
-
-    <app-collapsible-section
-        buttonName="First Report"
-        [tiles]="[
-            { title: 'Add Examiners', routerLink: '#' },
-            { title: 'Set deadline', routerLink: '#' },
-            { title: 'Feedback', routerLink: '#' }
-        ]"></app-collapsible-section>
-
     
     
     
