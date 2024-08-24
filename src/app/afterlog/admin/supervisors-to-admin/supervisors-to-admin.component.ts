@@ -37,6 +37,7 @@ export class SupervisorsToAdminComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    scrollTo(0,0);
     this.loadSupervisors();
   }
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Student } from '../../../models/student';
-import { decodeJwt } from '../../../utils/jwt-utils.service';
+import { UserRoleService } from '../../services/user-role.service';
 
 
 interface DecodedToken {
@@ -54,6 +54,27 @@ export class EditProfileComponent implements OnInit{
         }
       );
   }
+
+  // loadUserData() {
+  //   // Subscribe to the userId$ observable to get the user ID
+  //   this.userRoleService.userId$.subscribe(userId => {
+  //     if (userId) {
+  //       // Use the user ID to make the request to fetch the student profile
+  //       this.http.get<Student>(`http://localhost:8080/profile-student/${userId}`)
+  //         .subscribe(
+  //           (studentData) => {
+  //             this.student = studentData;
+  //           },
+  //           (error) => {
+  //             console.error('Error loading user data:', error);
+  //           }
+  //         );
+  //     } else {
+  //       console.error('User ID not found');
+  //     }
+  //   });
+  // }
+  
 
  
   onEditProfileSubmit() {
