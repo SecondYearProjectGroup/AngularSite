@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-students-to-admin',
   templateUrl: './students-to-admin.component.html',
-  styleUrl: './students-to-admin.component.css'
+  styleUrls: ['./students-to-admin.component.css']
 })
 export class StudentsToAdminComponent {
 
@@ -52,14 +52,14 @@ export class StudentsToAdminComponent {
   }
 
   get filteredData() {
-    return this.tableData.filter(row =>
-      row.regNumber.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.nameWithInitials.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.fullName.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.contactNumber.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.email.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.address.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.programOfStudy.toLowerCase().includes(this.searchText.toLowerCase())
+    return this.tableData.filter(row => 
+      (row.regNumber?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.nameWithInitials?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.fullName?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.contactNumber?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.email?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.address?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.programOfStudy?.toLowerCase().includes(this.searchText.toLowerCase()) || '')
     );
   }
 
