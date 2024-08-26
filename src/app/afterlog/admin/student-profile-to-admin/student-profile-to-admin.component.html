@@ -12,12 +12,12 @@
     <h3>Research</h3>
     <br>
     <h6>Effective Date of Degree:</h6>
-    <app-collapsible-section
+    <!-- <app-collapsible-section
         buttonName="General"
         [tiles]="[
             { type: 'forum', title: 'Forum 1', routerLink: '/afterlog/feedback-page' },
             { type: 'submission', title: 'Application Submission', routerLink: '/afterlog/assignment-submission' }
-        ]"></app-collapsible-section>
+        ]"></app-collapsible-section> -->
     
     
     
@@ -26,8 +26,17 @@
     <button (click)="openModal()">Add New Section</button><br><br><br>
     <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)" [regNumber]="regNumber"></app-create-collapsible-section>
 
-    <button (click)="openAssignSupervisorByAdmin()" class="btn">Assign Supervisor</button>
-    <app-assign-supervisor-by-admin *ngIf="isAssignSupervisorByAdminOpen" (close)="closeAssignSupervisorByAdmin()"></app-assign-supervisor-by-admin>
+
+    <span *ngIf="supervisorName"><h5>Current Supervisor: {{ supervisorName }}</h5></span>
+
+    <div *ngIf="hasSupervisor; else assignButton">
+        <button class="btn">Change Supervisor</button>
+      </div>
+      <ng-template #assignButton>
+        <button (click)="openAssignSupervisorByAdmin()" class="btn">Assign Supervisor</button>
+    </ng-template>
+    <!-- <button (click)="openAssignSupervisorByAdmin()" class="btn">Assign Supervisor</button> -->
+    <app-assign-supervisor-by-admin *ngIf="isAssignSupervisorByAdminOpen" (close)="closeAssignSupervisorByAdmin()" [regNumber]="regNumber"></app-assign-supervisor-by-admin>
     
 </div>
 <br>

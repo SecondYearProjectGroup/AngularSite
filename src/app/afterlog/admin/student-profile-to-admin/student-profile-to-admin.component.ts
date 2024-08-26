@@ -36,6 +36,8 @@ export class StudentProfileToAdminComponent implements OnInit {
   }
 
   regNumber: string | null = null;
+  supervisorName: string = '';
+  hasSupervisor: boolean = false;
 
   sections: { buttonName: string, tiles: { type: string, title: string, routerLink: string }[] }[] = [];
 
@@ -57,6 +59,7 @@ export class StudentProfileToAdminComponent implements OnInit {
       console.log('Loading student profile for regNumber:', this.regNumber);
       this.loadStudentProfile(this.regNumber);
       this.loadSections(this.regNumber);
+      this.loadSupervisorName(this.regNumber);
     } else {
       console.warn('No regNumber found in route parameters.');
     }
@@ -118,6 +121,28 @@ export class StudentProfileToAdminComponent implements OnInit {
       }
     });
   }
+
+  loadSupervisorName(regNumber: string) {
+    this.http.get<string>(`http://localhost:8080/supervisor/students/${regNumber}/supervisor`, { responseType: 'text' as 'json' })
+      .subscribe({
+        next: (supervisorName) => {
+          this.supervisorName = supervisorName;
+          this.hasSupervisor = true;
+        },
+        error: (error) => {
+          if (error.status === 404) {
+            this.supervisorName = "No supervisor assigned";
+            this.hasSupervisor = false;
+          } else {
+            console.error('Error fetching supervisor name', error);
+          }
+        },
+        complete: () => {
+          console.log('Supervisor name fetching complete');
+        }
+      });
+  }
+  
   
 
 
