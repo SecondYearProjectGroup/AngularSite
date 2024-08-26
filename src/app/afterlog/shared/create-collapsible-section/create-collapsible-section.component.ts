@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CollapsibleSectionService } from '../../services/collapsible-section.service';
 
 @Component({
   selector: 'app-create-collapsible-section',
@@ -7,16 +8,14 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class CreateCollapsibleSectionComponent {
 
+  @Input() regNumber: string | null = null;
   @Output() close = new EventEmitter<void>();
   @Output() create = new EventEmitter<{ buttonName: string, tiles: { type: string, title: string, routerLink: string }[] }>();
 
   buttonName: string = '';
-  // tiles: any[] = [];
   tiles: { type: string, title: string, routerLink: string }[] = [];
 
-  // addTile(): void {
-  //   this.tiles.push({ title: '', routerLink: '' });
-  // }
+  constructor(private collapsibleSectionService: CollapsibleSectionService) {}
 
   addForumTile() {
     const id = this.generateUniqueId();
@@ -34,8 +33,32 @@ export class CreateCollapsibleSectionComponent {
     this.tiles.splice(index, 1);
   }
 
-  submit(): void {
-    this.create.emit({ buttonName: this.buttonName, tiles: this.tiles });
+  submitSection(): void {
+    console.log('Tiles before submission:', this.tiles);
+
+    const tilesArray: { type: string, title: string, routerLink: string }[] = this.tiles;
+
+    const newSection = { 
+        regNumber: this.regNumber, 
+        buttonName: this.buttonName, 
+        tiles: tilesArray 
+    };
+
+    console.log('Newsection before submission:', newSection);
+
+    // Emit the event
+    this.create.emit(newSection);
+
+    // Call the service to save the section
+    this.collapsibleSectionService.saveSection(newSection).subscribe({
+      next: (response) => {
+        console.log('Section saved successfully', response);
+        this.closeModal(); // Optionally close the modal after saving
+      },
+      error: (error) => {
+        console.error('Error saving section', error);
+      }
+    });
   }
 
   generateUniqueId(): string {

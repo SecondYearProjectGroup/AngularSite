@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Student } from '../../../models/student';
 import { AuthServiceService } from '../../../services/auth-service.service';
+import { CollapsibleSectionService } from '../../services/collapsible-section.service';
+import { Section, Tile } from '../../../models/section.model';
 
 @Component({
   selector: 'app-student-profile-to-admin',
@@ -22,12 +24,26 @@ export class StudentProfileToAdminComponent implements OnInit {
     university: ''
   };
 
+  section: Section={
+    buttonName: '',
+    tiles: []
+  }
+
+  tile: Tile = {
+    type: '',
+    title: '',
+    routerLink: ''
+  }
+
   regNumber: string | null = null;
+
+  sections: { buttonName: string, tiles: { type: string, title: string, routerLink: string }[] }[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private collapsibleSectionService: CollapsibleSectionService
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +56,7 @@ export class StudentProfileToAdminComponent implements OnInit {
     if (this.regNumber) {
       console.log('Loading student profile for regNumber:', this.regNumber);
       this.loadStudentProfile(this.regNumber);
+      this.loadSections(this.regNumber);
     } else {
       console.warn('No regNumber found in route parameters.');
     }
@@ -81,19 +98,39 @@ export class StudentProfileToAdminComponent implements OnInit {
         }
       });
   }
+
+
+  loadSections(regNumber: string): void {
+    this.collapsibleSectionService.getSections(regNumber).subscribe({
+      next: (data) => {
+        this.sections = data.map(section => ({
+          buttonName: section.buttonName, // Adjust these field names according to your backend response
+          tiles: section.tiles.map((tile: Tile) => ({
+            type: tile.type, // Adjust these field names according to your backend response
+            title: tile.title, 
+            routerLink: tile.routerLink 
+          }))
+        }));
+        console.log('Sections loaded successfully', this.sections);
+      },
+      error: (error) => {
+        console.error('Error loading sections', error);
+      }
+    });
+  }
   
 
 
   isModalOpen = false;
-  sections: { buttonName: string, tiles: { type: string, title: string, routerLink: string }[] }[] = [
-    {
-      buttonName: 'General2',
-      tiles: [
-        { type: 'forum', title: 'Forum 2', routerLink: '/afterlog/feedback-page' },
-        { type: 'submission', title: 'Submission 2', routerLink: '/afterlog/assignment-submission' }
-      ]
-    }
-  ];
+  // sections: { buttonName: string, tiles: { type: string, title: string, routerLink: string }[] }[] = [
+  //   {
+  //     buttonName: 'General2',
+  //     tiles: [
+  //       { type: 'forum', title: 'Forum 2', routerLink: '/afterlog/feedback-page' },
+  //       { type: 'submission', title: 'Submission 2', routerLink: '/afterlog/assignment-submission' }
+  //     ]
+  //   }
+  // ];
 
   openModal(): void {
     this.isModalOpen = true;
