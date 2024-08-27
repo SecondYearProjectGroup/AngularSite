@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserRoleService } from '../../services/user-role.service';
 
 @Component({
   selector: 'app-supervisees',
@@ -9,10 +10,19 @@ import { Router } from '@angular/router';
 })
 export class SuperviseesComponent {
 
-  constructor(private router: Router, private http:HttpClient) {}
+  userId: string | null = null; // Assuming you get the user role from some service
+
+  constructor(
+    private router: Router,
+    private http:HttpClient,
+    private userRoleService: UserRoleService ) {
+      this.userRoleService.userId$.subscribe(id => {
+        this.userId = id;
+      });
+    }
 
   tableData: Array<{ 
-    id: number,
+    regNumber: string,
     nameWithInitials: string, 
     fullName: string, 
     contactNumber: string, 
@@ -24,15 +34,17 @@ export class SuperviseesComponent {
   searchText: string = '';
 
   loadStudents() {
+    console.log('supervisor id:' + this.userId);
+
     this.http.get<Array<{
-    id: number,
+    regNumber: string,
     nameWithInitials: string, 
     fullName: string, 
     contactNumber: string, 
     email:string, 
     address: string,
     programOfStudy: string,
-    status: string }>>('http://localhost:8080/students')
+    status: string }>>(`http://localhost:8080/supervisor/students/${this.userId}`)
     .subscribe({
       next: (data) => {
         this.tableData = data;
@@ -52,13 +64,13 @@ export class SuperviseesComponent {
 
   get filteredData() {
     return this.tableData.filter(row =>
-      row.id.toString().toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.nameWithInitials.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.fullName.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.contactNumber.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.email.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.address.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.programOfStudy.toLowerCase().includes(this.searchText.toLowerCase())
+      (row.regNumber?.toLowerCase().includes(this.searchText.toLowerCase()) || '') || 
+      (row.nameWithInitials?.toLowerCase().includes(this.searchText.toLowerCase()) || '') || 
+      (row.fullName?.toLowerCase().includes(this.searchText.toLowerCase()) || '') || 
+      (row.contactNumber?.toLowerCase().includes(this.searchText.toLowerCase()) || '') || 
+      (row.email?.toLowerCase().includes(this.searchText.toLowerCase()) || '') || 
+      (row.address?.toLowerCase().includes(this.searchText.toLowerCase()) || '') || 
+      (row.programOfStudy?.toLowerCase().includes(this.searchText.toLowerCase()) || '')
     );
   }
 

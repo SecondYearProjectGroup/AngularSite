@@ -22,7 +22,11 @@
         </thead>
         <tbody>
             <tr *ngFor="let row of filteredData">
-                <td>{{ row.id }}</td>
+                <td>
+                    <a [routerLink]="['/afterlog/student-profile-to-admin', row.regNumber]">
+                        {{ row.regNumber }}
+                    </a>
+                </td>
                 <td>{{ row.nameWithInitials }}</td>
                 <td>{{ row.fullName }}</td>
                 <td>{{ row.contactNumber }}</td>

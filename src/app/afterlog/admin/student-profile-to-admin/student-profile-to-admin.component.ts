@@ -5,6 +5,7 @@ import { Student } from '../../../models/student';
 import { AuthServiceService } from '../../../services/auth-service.service';
 import { CollapsibleSectionService } from '../../services/collapsible-section.service';
 import { Section, Tile } from '../../../models/section.model';
+import { UserRoleService } from '../../services/user-role.service';
 
 @Component({
   selector: 'app-student-profile-to-admin',
@@ -41,12 +42,19 @@ export class StudentProfileToAdminComponent implements OnInit {
 
   sections: { buttonName: string, tiles: { type: string, title: string, routerLink: string }[] }[] = [];
 
+  userRole: string | null = null; // Assuming you get the user role from some service
+
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
     private authService: AuthServiceService,
-    private collapsibleSectionService: CollapsibleSectionService
-  ) {}
+    private collapsibleSectionService: CollapsibleSectionService,
+    private userRoleService: UserRoleService
+  ) {
+    this.userRoleService.userRole$.subscribe(role => {
+      this.userRole = role;
+    });
+  }
 
   ngOnInit(): void {
     console.log('StudentProfileToAdminComponent initialized.');

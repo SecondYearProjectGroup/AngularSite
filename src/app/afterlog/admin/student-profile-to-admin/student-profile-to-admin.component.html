@@ -29,12 +29,15 @@
 
     <span *ngIf="supervisorName"><h5>Current Supervisor: {{ supervisorName }}</h5></span>
 
-    <div *ngIf="hasSupervisor; else assignButton">
-        <button class="btn">Change Supervisor</button>
-      </div>
-      <ng-template #assignButton>
-        <button (click)="openAssignSupervisorByAdmin()" class="btn">Assign Supervisor</button>
-    </ng-template>
+    <div *ngIf="userRole === 'ADMIN'">
+        <div *ngIf="hasSupervisor; else assignButton">
+            <button class="btn">Change Supervisor</button>
+        </div>
+        <ng-template #assignButton>
+            <button (click)="openAssignSupervisorByAdmin()" class="btn">Assign Supervisor</button>
+        </ng-template>
+    </div>
+
     <!-- <button (click)="openAssignSupervisorByAdmin()" class="btn">Assign Supervisor</button> -->
     <app-assign-supervisor-by-admin *ngIf="isAssignSupervisorByAdminOpen" (close)="closeAssignSupervisorByAdmin()" [regNumber]="regNumber"></app-assign-supervisor-by-admin>
     

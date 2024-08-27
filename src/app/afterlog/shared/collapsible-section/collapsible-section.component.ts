@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { UserRoleService } from '../../services/user-role.service';
 
 @Component({
   selector: 'app-collapsible-section',
@@ -6,6 +7,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./collapsible-section.component.css']
 })
 export class CollapsibleSectionComponent {
+
+  userRole: string | null = null; // Assuming you get the user role from some service
+
+  constructor(private userRoleService: UserRoleService) {
+    this.userRoleService.userRole$.subscribe(role => {
+      this.userRole = role;
+    });
+  }
 
   @Input() buttonName: string = '';
   @Input() tiles!: { type: string, title: string; routerLink: string; }[];
