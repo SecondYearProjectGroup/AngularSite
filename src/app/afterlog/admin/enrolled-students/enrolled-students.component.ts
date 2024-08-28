@@ -68,21 +68,21 @@ export class EnrolledStudentsComponent implements OnInit{
 
   get filteredData() {
     return this.tableData.filter(row =>
-      row.id.toString().toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.nameWithInitials.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.fullName.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.contactNumber.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.email.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.address.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.university.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.fromDate.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.toDate.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.degree.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.field.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.classPass.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.publications.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.programOfStudy.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.status.toLowerCase().includes(this.searchText.toLowerCase())
+      (row.id?.toString().toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.nameWithInitials?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.fullName?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.contactNumber?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.email?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.address?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.university?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.fromDate?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.toDate?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.degree?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.field?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.classPass?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.publications?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.programOfStudy?.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.status?.toLowerCase().includes(this.searchText.toLowerCase()) || '')
     );
   }
 

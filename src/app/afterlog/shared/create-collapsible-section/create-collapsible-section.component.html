@@ -2,19 +2,21 @@
   <div class="modal-content">
     <span class="close" (click)="closeModal()">&times;</span>
     <h2>Add New Section</h2>
-    <form (ngSubmit)="submit()">
+    <form (ngSubmit)="submitSection()">
       <label for="buttonName">Section Name:</label>
       <input type="text" id="buttonName" [(ngModel)]="buttonName" name="buttonName" required>
       
       <div *ngFor="let tile of tiles; let i = index">
         <label for="title">Title:</label>
-        <input type="text" id="title" [(ngModel)]="tile.title" name="title{{i}}" required>
-        <label for="link">Link:</label>
-        <input type="text" id="link" [(ngModel)]="tile.routerLink" name="link{{i}}" required>
+        <input type="text" id="title{{i}}" [(ngModel)]="tile.title" name="title{{i}}" required>
+        <!-- <label for="link">Link:</label>
+        <input type="text" id="link" [(ngModel)]="tile.routerLink" name="link{{i}}" required> -->
         <button type="button" (click)="removeTile(i)">Remove Tile</button>
       </div>
       
-      <button type="button" (click)="addTile()">Add Tile</button>
+      
+      <button type="button" (click)="addForumTile()">Add Forum</button>
+      <button type="button" (click)="addSubmissionTile()">Add Submission</button>
       <button type="submit">Create</button>
     </form>
   </div>

@@ -2,9 +2,9 @@
 <div class="profile-box">
     <h3>{{ student.regNumber }}</h3>
     <h5>{{ student.nameWithInitials }}</h5>
-    <h5>{{student.programOfStudy }}</h5>
+    <h5>{{ student.programOfStudy }}</h5>
     <h5>Registered Date</h5>
-    <h5>{{ student.status}}</h5>
+    <h5>{{ student.status }}</h5>
 </div>
 <br>
 
@@ -12,31 +12,34 @@
     <h3>Research</h3>
     <br>
     <h6>Effective Date of Degree:</h6>
-    <app-collapsible-section
+    <!-- <app-collapsible-section
         buttonName="General"
         [tiles]="[
-            { title: 'Forum', routerLink: '/afterlog/feedback-page' },
-            { title: 'Application Submission', routerLink: 'https://example.com/announcements' }
-        ]"></app-collapsible-section>
-
-    <app-collapsible-section
-        buttonName="First Report"
-        [tiles]="[
-            { title: 'Add Examiners', routerLink: '#' },
-            { title: 'Set deadline', routerLink: '#' },
-            { title: 'Feedback', routerLink: '#' }
-        ]"></app-collapsible-section>
-
+            { type: 'forum', title: 'Forum 1', routerLink: '/afterlog/feedback-page' },
+            { type: 'submission', title: 'Application Submission', routerLink: '/afterlog/assignment-submission' }
+        ]"></app-collapsible-section> -->
     
     
     
     <app-collapsible-section *ngFor="let section of sections" [buttonName]="section.buttonName" [tiles]="section.tiles"></app-collapsible-section>
 
     <button (click)="openModal()">Add New Section</button><br><br><br>
-    <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)"></app-create-collapsible-section>
+    <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)" [regNumber]="regNumber"></app-create-collapsible-section>
 
-    <button (click)="openAssignSupervisorByAdmin()" class="btn">Assign Supervisor</button>
-    <app-assign-supervisor-by-admin *ngIf="isAssignSupervisorByAdminOpen" (close)="closeAssignSupervisorByAdmin()"></app-assign-supervisor-by-admin>
+
+    <span *ngIf="supervisorName"><h5>Current Supervisor: {{ supervisorName }}</h5></span>
+
+    <div *ngIf="userRole === 'ADMIN'">
+        <div *ngIf="hasSupervisor; else assignButton">
+            <button class="btn">Change Supervisor</button>
+        </div>
+        <ng-template #assignButton>
+            <button (click)="openAssignSupervisorByAdmin()" class="btn">Assign Supervisor</button>
+        </ng-template>
+    </div>
+
+    <!-- <button (click)="openAssignSupervisorByAdmin()" class="btn">Assign Supervisor</button> -->
+    <app-assign-supervisor-by-admin *ngIf="isAssignSupervisorByAdminOpen" (close)="closeAssignSupervisorByAdmin()" [regNumber]="regNumber"></app-assign-supervisor-by-admin>
     
 </div>
 <br>

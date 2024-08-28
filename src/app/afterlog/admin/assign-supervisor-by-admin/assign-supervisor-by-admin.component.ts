@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-assign-supervisor-by-admin',
@@ -8,6 +8,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class AssignSupervisorByAdminComponent implements OnInit{
 
+  @Input() regNumber: string | null = null;
   @Output() close = new EventEmitter<void>();
 
   constructor(private http: HttpClient){}
@@ -51,7 +52,38 @@ export class AssignSupervisorByAdminComponent implements OnInit{
 
   selectedSupervisor: any;
 
-  onSubmit() {
-    console.log(this.selectedSupervisor); // Will contain the data of the selected supervisor
+  // assignSupervisor(): void {
+  //   const url = `http://localhost:8080/assignSupervisor/${this.regNumber}`;
+  //   const body = { supervisorId: this.selectedSupervisor.id };
+  
+  //   this.http.post(url, null, { params: { supervisorId: this.selectedSupervisor.id } }).subscribe({
+  //     next: (response) => {
+  //       console.log('Supervisor assigned successfully:', response);
+  //       alert('Supervisor assigned successfully.');
+  //     },
+  //     error: (error) => {
+  //       console.error('Error assigning supervisor:', error);
+  //       alert(`Error assigning supervisor: ${error.status} - ${error.statusText}`);
+  //     },
+  //   });
+  // }
+  
+
+  assignSupervisor(): void {
+    const url = `http://localhost:8080/assignSupervisor/${this.regNumber}`;
+    this.http.post(url, null, { 
+      params: { supervisorId: this.selectedSupervisor.id }, 
+      responseType: 'text' // Expect a plain text response
+    }).subscribe({
+      next: (response) => {
+        console.log('Supervisor assigned successfully:', response);
+        alert('Supervisor assigned successfully.');
+      },
+      error: (error) => {
+        console.error('Error assigning supervisor:', error);
+        alert(`Error assigning supervisor: ${error.status} - ${error.statusText}`);
+      },
+    });
   }
+
 }
