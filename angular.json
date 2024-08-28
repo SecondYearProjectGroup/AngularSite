@@ -27,7 +27,8 @@
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js" , 
+              "src/polyfills.ts"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -47,7 +48,10 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/moment/min/moment.min.js",
               "src/evo-calendar.js"
-            ]
+            ],
+            "allowedCommonJsDependencies": [
+        "sockjs-client"
+      ]
           },
           "configurations": {
             "production": {

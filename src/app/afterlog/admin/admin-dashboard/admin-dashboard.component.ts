@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../../../services/auth-service.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { WebsocketService } from '../../../services/websocket.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -9,8 +10,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrl: './admin-dashboard.component.css'
 })
 export class AdminDashboardComponent {
+  
 
-  constructor(private router: Router, private authService : AuthServiceService, private http:HttpClient) {}
+  constructor(private router: Router,private webSocketService: WebsocketService) {}
 
   navigateToEnrolledStudents(){
     this.router.navigate(['afterlog/enrolled-students']);

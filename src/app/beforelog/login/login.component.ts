@@ -47,6 +47,7 @@ import { Router } from '@angular/router';
 import { AuthServiceService } from '../../services/auth-service.service';
 import { decodeJwt } from '../../utils/jwt-utils.service';
 import { UserRoleService } from '../../afterlog/services/user-role.service';
+import { WebsocketService } from '../../services/websocket.service';
 
 
 interface DecodedToken {
@@ -69,7 +70,8 @@ export class LoginComponent {
   constructor(
     private authService: AuthServiceService,
     private router: Router,
-    private userRoleService: UserRoleService) {}
+    private userRoleService: UserRoleService,
+    private webSocketService: WebsocketService) {}
 
   onSubmit() {
     this.authService.login(this.username, this.password).subscribe(
@@ -107,6 +109,10 @@ export class LoginComponent {
           } else {
             this.router.navigate(['/beforelog/login']);
           }
+
+           // Reinitialize the WebSocket connection with the new token
+           this.webSocketService.reconnectWithNewToken();
+           
         } catch (error) {
           console.error('Failed to decode token:', error);
           this.router.navigate(['/beforelog/login']);
