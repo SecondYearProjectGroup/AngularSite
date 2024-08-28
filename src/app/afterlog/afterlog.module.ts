@@ -31,6 +31,8 @@ import { AddStaffMembersByAdminComponent } from './admin/add-staff-members-by-ad
 import { AssignmentSubmissionComponent } from './shared/tiles-and-inside/assignment-submission/assignment-submission.component';
 import { EditProfileForStaffComponent } from './shared/edit-profile-for-staff/edit-profile-for-staff.component';
 import { CreateCalendarEventComponent } from './shared/create-calendar-event/create-calendar-event.component';
+import { FeedbackTileComponent } from './shared/tiles-and-inside/feedback-tile/feedback-tile.component';
+import { AssignmentSubmissionTileComponent } from './shared/tiles-and-inside/assignment-submission-tile/assignment-submission-tile.component';
 
 
 
@@ -64,7 +66,9 @@ import { CreateCalendarEventComponent } from './shared/create-calendar-event/cre
     AddStaffMembersByAdminComponent,
     AssignmentSubmissionComponent,
     EditProfileForStaffComponent,
-    CreateCalendarEventComponent
+    CreateCalendarEventComponent,
+    FeedbackTileComponent,
+    AssignmentSubmissionTileComponent
   ],
   imports: [
     CommonModule,

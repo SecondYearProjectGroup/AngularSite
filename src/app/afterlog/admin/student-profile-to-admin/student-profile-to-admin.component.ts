@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Student } from '../../../models/student';
 import { AuthServiceService } from '../../../services/auth-service.service';
+import { CollapsibleSectionService } from '../../services/collapsible-section.service';
+import { Section, Tile } from '../../../models/section.model';
+import { UserRoleService } from '../../services/user-role.service';
 
 @Component({
   selector: 'app-student-profile-to-admin',
@@ -22,13 +25,36 @@ export class StudentProfileToAdminComponent implements OnInit {
     university: ''
   };
 
+  section: Section={
+    buttonName: '',
+    tiles: []
+  }
+
+  tile: Tile = {
+    type: '',
+    title: '',
+    routerLink: ''
+  }
+
   regNumber: string | null = null;
+  supervisorName: string = '';
+  hasSupervisor: boolean = false;
+
+  sections: { buttonName: string, tiles: { type: string, title: string, routerLink: string }[] }[] = [];
+
+  userRole: string | null = null; // Assuming you get the user role from some service
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private authService: AuthServiceService
-  ) {}
+    private authService: AuthServiceService,
+    private collapsibleSectionService: CollapsibleSectionService,
+    private userRoleService: UserRoleService
+  ) {
+    this.userRoleService.userRole$.subscribe(role => {
+      this.userRole = role;
+    });
+  }
 
   ngOnInit(): void {
     console.log('StudentProfileToAdminComponent initialized.');
@@ -40,6 +66,8 @@ export class StudentProfileToAdminComponent implements OnInit {
     if (this.regNumber) {
       console.log('Loading student profile for regNumber:', this.regNumber);
       this.loadStudentProfile(this.regNumber);
+      this.loadSections(this.regNumber);
+      this.loadSupervisorName(this.regNumber);
     } else {
       console.warn('No regNumber found in route parameters.');
     }
@@ -81,19 +109,61 @@ export class StudentProfileToAdminComponent implements OnInit {
         }
       });
   }
+
+
+  loadSections(regNumber: string): void {
+    this.collapsibleSectionService.getSections(regNumber).subscribe({
+      next: (data) => {
+        this.sections = data.map(section => ({
+          buttonName: section.buttonName, // Adjust these field names according to your backend response
+          tiles: section.tiles.map((tile: Tile) => ({
+            type: tile.type, // Adjust these field names according to your backend response
+            title: tile.title, 
+            routerLink: tile.routerLink 
+          }))
+        }));
+        console.log('Sections loaded successfully', this.sections);
+      },
+      error: (error) => {
+        console.error('Error loading sections', error);
+      }
+    });
+  }
+
+  loadSupervisorName(regNumber: string) {
+    this.http.get<string>(`http://localhost:8080/supervisor/students/${regNumber}/supervisor`, { responseType: 'text' as 'json' })
+      .subscribe({
+        next: (supervisorName) => {
+          this.supervisorName = supervisorName;
+          this.hasSupervisor = true;
+        },
+        error: (error) => {
+          if (error.status === 404) {
+            this.supervisorName = "No supervisor assigned";
+            this.hasSupervisor = false;
+          } else {
+            console.error('Error fetching supervisor name', error);
+          }
+        },
+        complete: () => {
+          console.log('Supervisor name fetching complete');
+        }
+      });
+  }
+  
   
 
 
   isModalOpen = false;
-  sections: { buttonName: string, tiles: { title: string, routerLink: string }[] }[] = [
-    {
-      buttonName: 'General2',
-      tiles: [
-        { title: 'Forum', routerLink: '/afterlog/feedback-page' },
-        { title: 'Announcements', routerLink: 'https://example.com/announcements' }
-      ]
-    }
-  ];
+  // sections: { buttonName: string, tiles: { type: string, title: string, routerLink: string }[] }[] = [
+  //   {
+  //     buttonName: 'General2',
+  //     tiles: [
+  //       { type: 'forum', title: 'Forum 2', routerLink: '/afterlog/feedback-page' },
+  //       { type: 'submission', title: 'Submission 2', routerLink: '/afterlog/assignment-submission' }
+  //     ]
+  //   }
+  // ];
 
   openModal(): void {
     this.isModalOpen = true;
@@ -103,7 +173,7 @@ export class StudentProfileToAdminComponent implements OnInit {
     this.isModalOpen = false;
   }
 
-  addNewSection(newSection: { buttonName: string, tiles: { title: string, routerLink: string }[] }): void {
+  addNewSection(newSection: { buttonName: string, tiles: { type: string, title: string, routerLink: string }[] }): void {
     this.sections.push(newSection);
     this.closeModal();
   }

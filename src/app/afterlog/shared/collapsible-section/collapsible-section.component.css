@@ -37,3 +37,7 @@ opacity: 1;
 transition: max-height 1s ease, opacity 1s ease;
 }
   
+.collapsible-header{
+    display: flex;
+    justify-content: space-between;
+}

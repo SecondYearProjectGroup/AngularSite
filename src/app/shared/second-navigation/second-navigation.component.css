@@ -2,7 +2,7 @@
 .secondnavigation {
     display: flex;
     align-items: center;
-    background-color: rgba(0, 0, 95, 0.884);
+    background-color: #2982a8;
 }
 .secondnavigation img {
     margin-left: 10px;

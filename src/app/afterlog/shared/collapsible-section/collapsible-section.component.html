@@ -1,11 +1,26 @@
 <div class="collapsible-container">
-  <button (click)="toggleCollapse()">
-    <span [ngClass]="{'arrow-collapsed': isCollapsed, 'arrow-expanded': !isCollapsed}">
-      <i [ngClass]="isCollapsed ? 'fa fa-arrow-down-short-wide' : 'fa fa-arrow-up-wide-short'"></i>
-    </span>
-    {{ buttonName }}
+
+  <div class="collapsible-header">
+    <button (click)="toggleCollapse()">
+      <span [ngClass]="{'arrow-collapsed': isCollapsed, 'arrow-expanded': !isCollapsed}">
+        <i [ngClass]="isCollapsed ? 'fa fa-arrow-down-short-wide' : 'fa fa-arrow-up-wide-short'"></i>
+      </span>
+      {{ buttonName }}
+    </button>
+
+    <!-- Edit button, visible only to admins -->
+  <button *ngIf="userRole === 'ADMIN'" (click)="openEditSection()" style="float: right; margin-right: 10px;">
+    <i class="fa fa-edit"></i>Edit
   </button>
+  </div>
+
   <div [ngClass]="{'content-collapsed': isCollapsed, 'content-expanded': !isCollapsed}">
-    <app-tile *ngFor="let tile of tiles" [title]="tile.title" [routerLink]="tile.routerLink"></app-tile>
+    
+    <div *ngFor="let tile of tiles">
+      <app-feedback-tile *ngIf="tile.type === 'forum'" [title]="tile.title" [routerLink]="tile.routerLink"></app-feedback-tile>
+      <app-assignment-submission-tile *ngIf="tile.type === 'submission'" [title]="tile.title" [routerLink]="tile.routerLink"></app-assignment-submission-tile>
+      <!-- Add more *ngIf blocks here if you have more tile types -->
+    </div>
+
   </div>
 </div>
