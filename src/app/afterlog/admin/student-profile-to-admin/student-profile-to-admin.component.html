@@ -21,7 +21,7 @@
     
     
     
-    <app-collapsible-section *ngFor="let section of sections" [buttonName]="section.buttonName" [tiles]="section.tiles"></app-collapsible-section>
+    <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
 
     <button (click)="openModal()">Add New Section</button><br><br><br>
     <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)" [regNumber]="regNumber"></app-create-collapsible-section>

@@ -5,6 +5,7 @@ import { SidebarLeftComponent } from './sidebar-left/sidebar-left.component';
 import { SecondNavigationComponent } from './second-navigation/second-navigation.component';
 import { FooterComponent } from './footer/footer.component';
 import { NotificationPanelComponent } from './notification-panel/notification-panel.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -17,7 +18,8 @@ import { NotificationPanelComponent } from './notification-panel/notification-pa
     NotificationPanelComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports:[
     TopNavigationComponent,

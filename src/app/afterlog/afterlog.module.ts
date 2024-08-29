@@ -14,7 +14,6 @@ import { ExaminersToAdminComponent } from './admin/examiners-to-admin/examiners-
 import { StudentProfileToAdminComponent } from './admin/student-profile-to-admin/student-profile-to-admin.component';
 import { FormsModule } from '@angular/forms';
 import { CollapsibleSectionComponent } from './shared/collapsible-section/collapsible-section.component';
-import { TileComponent } from './shared/tiles-and-inside/tile/tile.component';
 import { CreateCollapsibleSectionComponent } from './shared/create-collapsible-section/create-collapsible-section.component';
 import { StudentResearchComponent } from './student/student-research/student-research.component';
 import { StudentCoursesComponent } from './student/student-courses/student-courses.component';
@@ -25,7 +24,7 @@ import { StudentProfileToSupervisorComponent } from './supervisor/student-profil
 import { StudentsToExaminerComponent } from './examiner/students-to-examiner/students-to-examiner.component';
 import { StudentProfileToExaminerComponent } from './examiner/student-profile-to-examiner/student-profile-to-examiner.component';
 import { EditProfileComponent } from './shared/edit-profile/edit-profile.component';
-import { FeedbackPageComponent } from './shared/feedback-page/feedback-page.component';
+import { FeedbackPageComponent } from './shared/tiles-and-inside/feedback-page/feedback-page.component';
 import { AssignSupervisorByAdminComponent } from './admin/assign-supervisor-by-admin/assign-supervisor-by-admin.component';
 import { AddStaffMembersByAdminComponent } from './admin/add-staff-members-by-admin/add-staff-members-by-admin.component';
 import { AssignmentSubmissionComponent } from './shared/tiles-and-inside/assignment-submission/assignment-submission.component';
@@ -50,7 +49,6 @@ import { AssignmentSubmissionTileComponent } from './shared/tiles-and-inside/ass
     ExaminersToAdminComponent,
     StudentProfileToAdminComponent,
     CollapsibleSectionComponent,
-    TileComponent,
     CreateCollapsibleSectionComponent,
     StudentResearchComponent,
     StudentCoursesComponent,

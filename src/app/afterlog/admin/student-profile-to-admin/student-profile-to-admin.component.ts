@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Student } from '../../../models/student';
 import { AuthServiceService } from '../../../services/auth-service.service';
 import { CollapsibleSectionService } from '../../services/collapsible-section.service';
-import { Section, Tile } from '../../../models/section.model';
+import { LoadingTile, Section, Tile } from '../../../models/section.model';
 import { UserRoleService } from '../../services/user-role.service';
 
 @Component({
@@ -32,15 +32,21 @@ export class StudentProfileToAdminComponent implements OnInit {
 
   tile: Tile = {
     type: '',
-    title: '',
-    routerLink: ''
+    title: ''
+  }
+
+  loadingTile: LoadingTile = {
+    id: 0,
+    type: '',
+    title: ''
   }
 
   regNumber: string | null = null;
   supervisorName: string = '';
   hasSupervisor: boolean = false;
 
-  sections: { buttonName: string, tiles: { type: string, title: string, routerLink: string }[] }[] = [];
+  sections: { buttonName: string, tiles: { type: string, title: string }[] }[] = [];
+  loadingSections: { buttonName: string, loadingTiles: { id: number, type: string, title: string }[] }[] = [];
 
   userRole: string | null = null; // Assuming you get the user role from some service
 
@@ -73,6 +79,7 @@ export class StudentProfileToAdminComponent implements OnInit {
     }
   }
 
+  // Load student profile data from the backend
   loadStudentProfile(regNumber: string): void {
     console.log('Making HTTP GET request to load student profile for regNumber:', regNumber);
     
@@ -111,18 +118,29 @@ export class StudentProfileToAdminComponent implements OnInit {
   }
 
 
+  // Load Sections data of a student from the backend
   loadSections(regNumber: string): void {
     this.collapsibleSectionService.getSections(regNumber).subscribe({
       next: (data) => {
-        this.sections = data.map(section => ({
+        this.loadingSections = data.map(section => ({
           buttonName: section.buttonName, // Adjust these field names according to your backend response
-          tiles: section.tiles.map((tile: Tile) => ({
+          loadingTiles: section.tiles.map((tile: LoadingTile) => ({
+            id: tile.id, // Adjust these field names according to your backend response
             type: tile.type, // Adjust these field names according to your backend response
-            title: tile.title, 
-            routerLink: tile.routerLink 
+            title: tile.title
           }))
         }));
-        console.log('Sections loaded successfully', this.sections);
+
+        // Populate sections with the same data, adjusting the structure if necessary
+        this.sections = this.loadingSections.map(loadingSection => ({
+          buttonName: loadingSection.buttonName,
+          tiles: loadingSection.loadingTiles.map(loadingTile => ({
+            type: loadingTile.type,
+            title: loadingTile.title
+          }))
+        }));
+
+        console.log('Sections loaded successfully', this.loadingSections);
       },
       error: (error) => {
         console.error('Error loading sections', error);
@@ -173,7 +191,7 @@ export class StudentProfileToAdminComponent implements OnInit {
     this.isModalOpen = false;
   }
 
-  addNewSection(newSection: { buttonName: string, tiles: { type: string, title: string, routerLink: string }[] }): void {
+  addNewSection(newSection: { buttonName: string, tiles: { type: string, title: string }[] }): void {
     this.sections.push(newSection);
     this.closeModal();
   }

@@ -2,15 +2,10 @@
     <div *ngIf="mode === 'afterLog'">
         <!-- Content for after login -->
         <ul class="topnav">
-            <li><button class="active" (click)="navigateToHome()">Home</button></li>
-            <li><button (click)="navigateToDashboard()">Dashboard</button></li>
-            <li class="right"><button (click)="navigateToLogin()">Log out</button></li>
+            <li><button class="nice-button" (click)="navigateToDashboard()"><b>Dashboard</b></button></li>
+            <li class="right"><button class="nice-button" (click)="navigateToLogin()"><b>Log out</b></button></li>
             <li class="right"><button class="dp" (click)="navigateToEditProfile()"><i class="fa fa-circle-user"></i></button></li>
-            <!-- <li class="right">
-                <img src="https://i.ibb.co/DwThLns/Notification-image.png" alt="Notification" id="notificationButton" class="notifyImage" height="20px" width="auto">
-            </li>
-            <app-notification-panel></app-notification-panel> -->
-            <li class="right"><img src="https://i.ibb.co/DwThLns/Notification-image.png" alt="Notification" id="notificationButton" class="notifyImage" height="20px" width="auto"></li>
+            <li class="right"><button class="notify" id="notificationButton"><i class="fa fa-bell" style="font-size: 19px; margin-top: 3px;"></i></button></li>
             
         </ul>
         <app-notification-panel></app-notification-panel>

@@ -1,19 +1,19 @@
 <app-top-navigation mode="afterLog"></app-top-navigation>
 
 <div class="main">
-    <app-second-navigation></app-second-navigation>
 
     <div class="wholeContainer">
         
         <app-sidebar-left></app-sidebar-left>
 
         <app-sidebar-right></app-sidebar-right>
-
+        
         <div class="middle-content" id="middleContentId">
             <router-outlet></router-outlet>
+            <app-footer></app-footer>
         </div>
 
     </div>
 
-    <app-footer></app-footer>
+    
 </div>

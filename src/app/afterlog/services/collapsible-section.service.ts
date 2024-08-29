@@ -11,7 +11,7 @@ export class CollapsibleSectionService {
 
   constructor(private http: HttpClient) {}
 
-  saveSection(section: { regNumber: string | null; buttonName: string; tiles: { type: string; title: string; routerLink: string }[] }): Observable<any> {
+  saveSection(section: { regNumber: string | null; buttonName: string; tiles: { type: string; title: string }[] }): Observable<any> {
     return this.http.post(this.apiUrl, section);
   }
 
