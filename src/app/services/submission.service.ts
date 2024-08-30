@@ -11,8 +11,18 @@ export class SubmissionService {
 
   constructor(private http: HttpClient) {}
 
-  setDeadline(regNumber: string, submissionId: number, deadline: Date): Observable<any> {
-    const params = { deadline: deadline.toISOString() };  // Convert to ISO format
-    return this.http.post(`${this.apiUrl}/setDeadline/${regNumber}/${submissionId}`, null, { params, responseType: 'text' });
+  // setDeadline(submissionId: number, deadline: Date): Observable<any> {
+  //   const params = { deadline: deadline.toISOString() };  // Convert to ISO format
+  //   return this.http.post(`${this.apiUrl}/setDeadline/${submissionId}`, null, { params, responseType: 'text' });
+  // }
+
+  setDeadline(submissionId: number, deadline: Date, opendate: Date): Observable<any> {
+    const params = { 
+      deadline: deadline.toISOString(),  // Convert to ISO format
+      opendate: opendate.toISOString()   // Convert to ISO format
+    };
+    return this.http.post(`${this.apiUrl}/setDeadline/${submissionId}`, null, { params, responseType: 'text' });
   }
+
+  
 }

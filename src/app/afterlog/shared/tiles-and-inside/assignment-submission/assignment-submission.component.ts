@@ -15,7 +15,8 @@ export class AssignmentSubmissionComponent implements OnInit {
   @Input() regNumber : string = '';
 
   constructor(
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private submissionService: SubmissionService) { }
 
   id: number = 0;
 
@@ -35,26 +36,38 @@ export class AssignmentSubmissionComponent implements OnInit {
   lastModified: string = '2 Days ago';
   selectedFile: File | null = null;
 
-  constructor(private submissionService: SubmissionService) {}
+  // onSubmit(): void {
+  //   if (this.setDueDate.date && this.setDueDate.time) {
+  //     const deadline = new Date(`${this.setDueDate.date}T${this.setDueDate.time}`);
 
-  onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0];
-  }
+  //     // Call the service to send deadline to the backend
+  //     this.submissionService.setDeadline(this.id, deadline) // Replace with actual values
+  //       .subscribe(response => {
+  //         this.dueDate = deadline.toLocaleString();  // Display the new deadline
+  //         alert(response);
+  //       }, error => {
+  //         alert('Error setting deadline.');
+  //       });
+  //   }
+  // }
 
   onSubmit(): void {
     if (this.setDueDate.date && this.setDueDate.time) {
       const deadline = new Date(`${this.setDueDate.date}T${this.setDueDate.time}`);
-
-      // Call the service to send deadline to the backend
-      this.submissionService.setDeadline('studentRegNumber', 1, deadline) // Replace with actual values
+      const opendate = new Date(); // Capture the current time
+  
+      // Call the service to send both deadline and opendate to the backend
+      this.submissionService.setDeadline(this.id, deadline, opendate)
         .subscribe(response => {
           this.dueDate = deadline.toLocaleString();  // Display the new deadline
+          this.openedDate= opendate.toLocaleString();
           alert(response);
         }, error => {
           alert('Error setting deadline.');
         });
     }
   }
+  
 
 
 
