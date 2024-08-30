@@ -2,21 +2,21 @@
 ul.topnav {
     position: fixed;
     top: 0;
-    z-index: 1000;
-    width: 100%;
+    width: calc(100% - 232px);
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #123747;
+    background-color: white;
     height: 44px;
+    left: 232px;
 }
 ul.topnav li {float: left;}
 
 ul.topnav li button {
   display: block;
-  background-color: #123747;
-  color: white;
+  background-color: white;
+  color: gray;
   text-align: center;
   padding: 10px 12px;
   text-decoration: none;
@@ -24,10 +24,9 @@ ul.topnav li button {
   height: 44px;
 }
 
-ul.topnav li button:hover {background-color: #164255;}
 ul.topnav li button.active {
-  background-color: #123747;
-  color: rgb(255, 255, 100);
+  background-color: white;
+  color: red;
 }
 
 ul.topnav li.right {float: right;}
@@ -50,6 +49,10 @@ ul.topnav li.right {float: right;}
 ul.topnav li button.dp {
   padding: 0;
 }
-ul.topnav li button.dp:hover{
-  background-color: #164255;
+
+ul.topnav li button.notify {
+  border: none;
+}
+ul.topnav li button.notify:hover{
+  background-color: white;
 }

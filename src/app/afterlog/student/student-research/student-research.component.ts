@@ -18,7 +18,6 @@ export class StudentResearchComponent implements OnInit{
   tile: Tile = {
     type: '',
     title: '',
-    routerLink: ''
   }
 
   constructor(
@@ -26,7 +25,7 @@ export class StudentResearchComponent implements OnInit{
     private collapsibleSectionService: CollapsibleSectionService){}
 
   userId: string | null = null; // Variable of the user ID & Initialize
-  sections: { buttonName: string, tiles: { type: string, title: string, routerLink: string }[] }[] = [];
+  sections: { buttonName: string, tiles: { type: string, title: string }[] }[] = [];
 
   ngOnInit(){
 
@@ -49,8 +48,7 @@ export class StudentResearchComponent implements OnInit{
           buttonName: section.buttonName, // Adjust these field names according to your backend response
           tiles: section.tiles.map((tile: Tile) => ({
             type: tile.type, // Adjust these field names according to your backend response
-            title: tile.title, 
-            routerLink: tile.routerLink 
+            title: tile.title
           }))
         }));
         console.log('Sections loaded successfully', this.sections);

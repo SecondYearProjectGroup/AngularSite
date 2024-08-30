@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserRoleService } from '../../services/user-role.service';
+import { TileIdService } from '../../services/tile-id.service';
 
 @Component({
   selector: 'app-collapsible-section',
@@ -10,15 +11,17 @@ export class CollapsibleSectionComponent {
 
   userRole: string | null = null; // Assuming you get the user role from some service
 
-  constructor(private userRoleService: UserRoleService) {
+  constructor(
+    private userRoleService: UserRoleService
+  ) {
     this.userRoleService.userRole$.subscribe(role => {
       this.userRole = role;
     });
   }
 
   @Input() buttonName: string = '';
-  @Input() tiles!: { type: string, title: string; routerLink: string; }[];
-  @Output() editSection = new EventEmitter<{ buttonName: string, tiles: { type: string, title: string, routerLink: string }[] }>();
+  @Input() tiles!: { id: number, type: string, title: string }[];
+  @Output() editSection = new EventEmitter<{ buttonName: string, tiles: { type: string, title: string }[] }>();
 
   isCollapsed: boolean = false;
 
@@ -32,4 +35,9 @@ export class CollapsibleSectionComponent {
       tiles: this.tiles
     });
   }
+
+  openDeleteSection(): void {
+    
+  }
+  
 }

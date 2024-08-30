@@ -1,5 +1,9 @@
+
 import { Component, Input, OnInit } from '@angular/core';
 import { SubmissionService } from '../../../../services/submission.service';
+
+import { TileIdService } from '../../../services/tile-id.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-assignment-submission',
@@ -7,11 +11,20 @@ import { SubmissionService } from '../../../../services/submission.service';
   styleUrl: './assignment-submission.component.css'
 })
 export class AssignmentSubmissionComponent implements OnInit {
-  
+
   @Input() regNumber : string = '';
 
+  constructor(
+    private route: ActivatedRoute) { }
+
+  id: number = 0;
+
   ngOnInit(): void {
-    scrollTo(0,0);
+    scrollTo(0, 0);
+
+    const idParam = this.route.snapshot.paramMap.get('id');
+    this.id = idParam ? parseInt(idParam, 10) : 0; // Default to 0 if idParam is null
+    console.log('Retrieved tile id from route params:', this.id);
   }
 
   openedDate: string = ''; // Example value
@@ -31,7 +44,7 @@ export class AssignmentSubmissionComponent implements OnInit {
   onSubmit(): void {
     if (this.setDueDate.date && this.setDueDate.time) {
       const deadline = new Date(`${this.setDueDate.date}T${this.setDueDate.time}`);
-      
+
       // Call the service to send deadline to the backend
       this.submissionService.setDeadline('studentRegNumber', 1, deadline) // Replace with actual values
         .subscribe(response => {
