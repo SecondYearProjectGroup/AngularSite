@@ -1,9 +1,10 @@
 /* Footer */
 footer {
-    width: 100%;
+    width: calc(100% - 232px);
     text-align: center;
-    background-color: #2982a8;
-    color: white;
+    background-color: white;
+    color: gray;
     position: absolute;
-    left: 0;
+    left: 232px;
+    z-index: 0;
 }

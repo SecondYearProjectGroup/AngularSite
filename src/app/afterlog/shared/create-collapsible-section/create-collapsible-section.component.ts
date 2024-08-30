@@ -10,22 +10,22 @@ export class CreateCollapsibleSectionComponent {
 
   @Input() regNumber: string | null = null;
   @Output() close = new EventEmitter<void>();
-  @Output() create = new EventEmitter<{ buttonName: string, tiles: { type: string, title: string, routerLink: string }[] }>();
+  @Output() create = new EventEmitter<{ buttonName: string, tiles: { type: string, title: string }[] }>();
 
   buttonName: string = '';
-  tiles: { type: string, title: string, routerLink: string }[] = [];
+  tiles: { type: string, title: string }[] = [];
 
   constructor(private collapsibleSectionService: CollapsibleSectionService) {}
 
   addForumTile() {
     const id = this.generateUniqueId();
-    this.tiles.push({ type: 'forum', title: '', routerLink: '/afterlog/feedback-page' });
+    this.tiles.push({ type: 'forum', title: '' });
     // this.tiles.push({ type: 'forum', title: '', routerLink: `/forum/${id}` });
   }
 
   addSubmissionTile() {
-    const id = this.generateUniqueId();
-    this.tiles.push({ type: 'submission', title: '', routerLink: '/afterlog/assignment-submission' });
+    const id = this.generateUniqueId();                                                                               
+    this.tiles.push({ type: 'submission', title: '' });
     // this.tiles.push({ type: 'submission', title: '', routerLink: `/submission/${id}` });
   }
 
@@ -36,7 +36,7 @@ export class CreateCollapsibleSectionComponent {
   submitSection(): void {
     console.log('Tiles before submission:', this.tiles);
 
-    const tilesArray: { type: string, title: string, routerLink: string }[] = this.tiles;
+    const tilesArray: { type: string, title: string }[] = this.tiles;
 
     const newSection = { 
         regNumber: this.regNumber, 

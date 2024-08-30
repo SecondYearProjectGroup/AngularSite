@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { TileIdService } from '../../../services/tile-id.service';
 
 @Component({
   selector: 'app-feedback-tile',
@@ -7,5 +8,6 @@ import { Component, Input } from '@angular/core';
 })
 export class FeedbackTileComponent {
   @Input() title: string = '';
-  @Input() routerLink: string = '';
+  @Input() id: number = 0;
+
 }

@@ -8,6 +8,11 @@
       {{ buttonName }}
     </button>
 
+    <!-- Delete button, visible only to admins -->
+  <button *ngIf="userRole === 'ADMIN'" (click)="openDeleteSection()" style="float: right; margin-right: 10px;">
+    <i class="fa fa-delete"></i>Delete
+  </button>
+
     <!-- Edit button, visible only to admins -->
   <button *ngIf="userRole === 'ADMIN'" (click)="openEditSection()" style="float: right; margin-right: 10px;">
     <i class="fa fa-edit"></i>Edit
@@ -17,10 +22,10 @@
   <div [ngClass]="{'content-collapsed': isCollapsed, 'content-expanded': !isCollapsed}">
     
     <div *ngFor="let tile of tiles">
-      <app-feedback-tile *ngIf="tile.type === 'forum'" [title]="tile.title" [routerLink]="tile.routerLink"></app-feedback-tile>
-      <app-assignment-submission-tile *ngIf="tile.type === 'submission'" [title]="tile.title" [routerLink]="tile.routerLink"></app-assignment-submission-tile>
-      <!-- Add more *ngIf blocks here if you have more tile types -->
+      <app-feedback-tile *ngIf="tile.type === 'forum'" [title]="tile.title" [id]="tile.id"></app-feedback-tile>
+      <app-assignment-submission-tile *ngIf="tile.type === 'submission'" [title]="tile.title" [id]="tile.id"></app-assignment-submission-tile>
     </div>
-
   </div>
+
+  
 </div>

@@ -1,3 +1,44 @@
 .dashb{
     width: 100%;  
 }
+
+.action {
+    width: 250px;
+    height: 200px;
+    background-color: green;
+    border-radius: 20px;
+    max-width: 250px;
+    display: flex;
+    justify-content: center; /* Centers .action1 horizontally */
+    align-items: center; /* Centers .action1 vertically */
+}
+
+.action1 {
+    width: 230px;
+    height: 180px;
+    background-color: gray;
+    border-radius: 20px;
+}
+
+.event-box {
+    width: auto;
+    padding: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.even-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.even-box {
+    background-color: sandybrown;
+    width: 250px;
+    height: 120px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
