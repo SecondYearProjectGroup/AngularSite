@@ -32,9 +32,10 @@
                 <th>From</th>
                 <th>To</th>
                 <th>Degree</th>
+                <th>Attachment File</th>
                 <th>Field</th>
                 <th>Class/Pass</th>
-                <!-- <th>Attached Files</th> -->
+                <th>Attached Files</th>
                 <th>Publications</th>
                 <th>Program of Study</th>
             </tr>
@@ -67,6 +68,11 @@
                 <td>{{ row.fromDate }}</td>
                 <td>{{ row.toDate }}</td>
                 <td>{{ row.degree }}</td>
+                  <td>
+                    <a href="javascript:void(0)" (click)="download(row.attachementFile, row.attachementFileOriginalName)">
+                      {{ row.attachementFileOriginalName }}
+                    </a>
+                  </td>
                 <td>{{ row.field }}</td>
                 <td>{{ row.classPass }}</td>
                 <td>{{ row.publications }}</td>
