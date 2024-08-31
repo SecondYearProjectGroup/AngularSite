@@ -53,18 +53,32 @@ export class SidebarRightComponent implements AfterViewInit {
     const hideSidebarBtn = this.el.nativeElement.querySelector('#hideSidebarBtn');
     const showSidebarBtn = this.el.nativeElement.querySelector('#showSidebarBtn');
 
+    // Set initial state based on localStorage
+    const savedState = localStorage.getItem('sidebarState');
+
+    if (savedState === 'full') {
+        this.renderer.addClass(sidebar, 'hidden');
+        this.renderer.setStyle(showSidebarBtn, 'display', 'block');
+    } else {
+        // Default to 'reduced' if no state is saved
+        this.renderer.removeClass(sidebar, 'hidden');
+        this.renderer.setStyle(showSidebarBtn, 'display', 'none');
+    }
+
     this.renderer.listen(hideSidebarBtn, 'click', () => {
-      console.log('Hide button clicked');
-      this.renderer.addClass(sidebar, 'hidden');
-      this.renderer.setStyle(showSidebarBtn, 'display', 'block');
-      this.dispatchResizeEvent('full');
+        console.log('Hide button clicked');
+        this.renderer.addClass(sidebar, 'hidden');
+        this.renderer.setStyle(showSidebarBtn, 'display', 'block');
+        localStorage.setItem('sidebarState', 'full');
+        this.dispatchResizeEvent('full');
     });
 
     this.renderer.listen(showSidebarBtn, 'click', () => {
-      console.log('Show button clicked');
-      this.renderer.removeClass(sidebar, 'hidden');
-      this.renderer.setStyle(showSidebarBtn, 'display', 'none');
-      this.dispatchResizeEvent('reduced');
+        console.log('Show button clicked');
+        this.renderer.removeClass(sidebar, 'hidden');
+        this.renderer.setStyle(showSidebarBtn, 'display', 'none');
+        localStorage.setItem('sidebarState', 'reduced');
+        this.dispatchResizeEvent('reduced');
     });
   }
 
@@ -73,3 +87,4 @@ export class SidebarRightComponent implements AfterViewInit {
     window.dispatchEvent(event);
   }
 }
+

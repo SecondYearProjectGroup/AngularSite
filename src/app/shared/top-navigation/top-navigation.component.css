@@ -10,6 +10,7 @@ ul.topnav {
     background-color: white;
     height: 44px;
     left: 232px;
+    z-index: 2;
 }
 ul.topnav li {float: left;}
 
@@ -26,7 +27,7 @@ ul.topnav li button {
 
 ul.topnav li button.active {
   background-color: white;
-  color: red;
+  color: gray;
 }
 
 ul.topnav li.right {float: right;}
