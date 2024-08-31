@@ -4,78 +4,54 @@
 
 <br>
 <div class="feedback-form">
-    <!-- <table style="width: 100%;">
-        <tr>
-            <td>Opened Date:</td>
-            <td>2024/08/.... time</td>
-        </tr>
-        <tr>
-            <td>Due Date:</td>
-            <td>2024/08/.... time</td>
-        </tr>
-        <tr>
-            <td>Set Due Date:</td>
-            <td><input type="date" name="date"><input type="time" name="time"></td>
-        </tr>
-        
-        <button>Set deadline</button>
-        <tr>
-            <td>Assignment:</td>
-            <td>File (if there anything)</td>
-        </tr>
-        <br>
-    </table> -->
-
     <form (ngSubmit)="onSubmit()">
         <table style="width: 100%;">
+          <tr>
+            <td>Opened Date:</td>
+            <td>{{ openedDate }}</td>
+          </tr>
+          <tr>
+            <td>Due Date:</td>
+            <td>{{ dueDate }}</td>
+          </tr>
+          <tr>
+            <td>Set Due Date:</td>
+            <td>
+              <input type="date" name="date" [(ngModel)]="setDueDate.date" required>
+              <input type="time" name="time" [(ngModel)]="setDueDate.time" required>
+              <button type="submit">Set Deadline</button>
+            </td>
+          </tr>
+        </table>
+        
+    </form>
+
+    <form (ngSubmit)="uploadFiles()">
+        <table style="width: 100%;">
             <tr>
-                <td>Opened Date:</td>
-                <td>{{ openedDate }}</td>
-            </tr>
-            <tr>
-                <td>Due Date:</td>
-                <td>{{ dueDate }}</td>
-            </tr>
-            <tr>
-                <td>Set Due Date:</td>
-                <td>
-                    <input type="date" name="date" [(ngModel)]="setDueDate.date" required>
-                    <input type="time" name="time" [(ngModel)]="setDueDate.time" required>
-                </td>
+                <td><input type="file" (change)="onFileChange($event)" multiple></td>
+                <td><button type="submit">Upload</button></td>
             </tr>
         </table>
-        <button type="submit">Set Deadline</button>
     </form>
 
     <table style="width: 100%;">
         <tr>
-            <td><input type="file"></td>
-        </tr>
-        <br>
-    </table>
-
-    <table style="width: 100%;">
-        <br>
-        <tr>
             <td><h4>Status</h4></td>
         </tr>
-        <br>
         <tr>
             <td>Submission status:</td>
-            <td>Submitted</td>
+            <td>{{ submissionStatus }}</td>
         </tr>
         <tr>
             <td>Time remaining:</td>
-            <td>2 Days</td>
+            <td>{{ timeRemaining }}</td>
         </tr>
         <tr>
             <td>Last Modified:</td>
-            <td>2 Days ago</td>
+            <td>{{ lastModified }}</td>
         </tr>
-    
     </table>
     <br><br><hr><br><br>
     <input type="submit" value="Edit/ Submit"><br><br>
 </div>
-<br>
-<br>
