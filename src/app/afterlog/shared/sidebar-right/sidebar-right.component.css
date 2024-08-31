@@ -12,6 +12,13 @@
     transition: transform 0.3s ease;
     transform: translateX(0);
     z-index: 1;
+
+    background: 
+    /* Solid color layer */
+    linear-gradient(to bottom, rgba(244, 244, 244, 0.9), rgba(255, 255, 255, 0.9)),
+    /* Image layer */
+    url('/images/slide-4New.jpg') no-repeat center center;
+    background-size: cover;
 }
 
 .sidebar-right.hidden {

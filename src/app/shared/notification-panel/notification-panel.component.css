@@ -3,14 +3,14 @@
     display: none;
     position: fixed;
     top: 45px;
-    right: 10px;
+    right: 50px;
     background-color: #d1d1d1;
     border: 1px solid #ccc;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 300px;
     padding: 10px;
     z-index: 9999;
-    border-radius: 15px;
+    border-radius: 10px;
 }
 
 .notification-panel p {

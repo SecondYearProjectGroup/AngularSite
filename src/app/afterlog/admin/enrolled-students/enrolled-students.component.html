@@ -7,19 +7,18 @@
     <div>
         <input [(ngModel)]="searchText" placeholder="Search" class="form-control" />
     </div>
-    <br>
 
-    <table>
-        <thead>
-            <tr>
-                <th></th>
-                <th colspan="6">Student Details</th>
-                <th colspan="6">Educational/ Professional Qualifications</th>
-                <th></th>
-                <th></th>
-                <!-- <th></th> -->
-            </tr>
-
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th colspan="6">Student Details</th>
+                    <th colspan="6">Educational/ Professional Qualifications</th>
+                    <th></th>
+                    <th></th>
+                    <!-- <th></th> -->
+                </tr>
             <tr>
                 <th>Status</th>
                 <th>Student ID</th>
@@ -41,9 +40,9 @@
             </tr>
         </thead>
         <tbody>
-            
+
             <tr *ngFor="let row of filteredData">
-                
+
                 <td id="status-cell-{{row.id}}">
                     <div *ngIf="!row.status; else statusText" class="btn-group">
                         <button (click)="updateStatus(row.id, 'Approved')" [id]="'approve-button-' + row.id" class="approve-button">
@@ -57,7 +56,7 @@
                         <strong [ngStyle]="{ color: row.status === 'Approved' ? 'green' : 'red' }">{{ row.status }}</strong>
                     </ng-template>
                 </td>
-                
+
                 <td>{{ row.id }}</td>
                 <td>{{ row.nameWithInitials }}</td>
                 <td>{{ row.fullName }}</td>
@@ -80,5 +79,6 @@
             </tr>
         </tbody>
     </table>
+
 </div>
 <br><br><br><br><br>
