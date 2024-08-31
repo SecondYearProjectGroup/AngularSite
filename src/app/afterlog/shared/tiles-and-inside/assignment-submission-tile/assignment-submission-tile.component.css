@@ -1,9 +1,7 @@
 .tile {
-    border: 1px solid #ddd;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    padding: 0px;
+    padding-left: 10px;
+    padding-bottom: 5px;
 }
   
 .tile-content {

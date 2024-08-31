@@ -56,10 +56,6 @@ export class AdminDashboardComponent {
 
 
   // Cards
-  // ngOnInit(): void {
-  //   this.adjustCardSize();
-  // }
-
   @HostListener('window:middleContentResize', ['$event'])
   onResizeEvent(event: CustomEvent): void {
     this.adjustCardSize(event.detail);
@@ -89,25 +85,24 @@ export class AdminDashboardComponent {
     } else {
         this.applyReducedWidthStyles();
     }
-}
+  }
 
-applyFullWidthStyles(): void {
-    // Apply styles for full-width
-    const elements = document.querySelectorAll('.card, .icon-container, .function-card, .function-icon-container');
-    elements.forEach(element => {
-        this.renderer.addClass(element, 'full-width');
-        this.renderer.removeClass(element, 'reduced-width');
-    });
-}
+  applyFullWidthStyles(): void {
+      // Apply styles for full-width
+      const elements = document.querySelectorAll('.card, .icon-container, .function-card, .function-icon-container');
+      elements.forEach(element => {
+          this.renderer.addClass(element, 'full-width');
+          this.renderer.removeClass(element, 'reduced-width');
+      });
+  }
 
-applyReducedWidthStyles(): void {
-    // Apply styles for reduced-width
-    const elements = document.querySelectorAll('.card, .icon-container, .function-card, .function-icon-container');
-    elements.forEach(element => {
-        this.renderer.addClass(element, 'reduced-width');
-        this.renderer.removeClass(element, 'full-width');
-    });
-}
-
+  applyReducedWidthStyles(): void {
+      // Apply styles for reduced-width
+      const elements = document.querySelectorAll('.card, .icon-container, .function-card, .function-icon-container');
+      elements.forEach(element => {
+          this.renderer.addClass(element, 'reduced-width');
+          this.renderer.removeClass(element, 'full-width');
+      });
+  }
 
 }

@@ -6,6 +6,10 @@
 <div class="feedback-form">
     <table style="width: 100%;">
         <tr>
+            <td>Assignment Name:</td>
+            <td>assignment name</td>
+        </tr>
+        <tr>
             <td>Opened Date:</td>
             <td>2024/08/.... time</td>
         </tr>
@@ -21,8 +25,47 @@
     </table>
 
     <table style="width: 100%;">
+        <tr>Choose file/ files:</tr>
         <tr>
-            <td><input type="file"></td>
+            <div class="upload-container">
+                                
+                <div
+                    class="drop-zone"
+                    [class.active]="isDragging"
+                    (dragover)="onDragOver($event)"
+                    (dragleave)="onDragLeave($event)"
+                    (drop)="onDrop($event)"
+                    (click)="fileInput.click()"
+                >
+                    <input
+                    type="file"
+                    #fileInput
+                    multiple
+                    (change)="onFileSelected($event)"
+                    hidden
+                    />
+                    <p>Drag & Drop files here or click to select files</p>
+                </div>
+                
+                <div class="file-list" *ngIf="files.length > 0">
+                    <h5>Selected Files</h5>
+                    <ul>
+                    <li *ngFor="let file of files; let i = index">
+                        <i class="fa fa-file"></i>
+                        <span>{{ file.name }}</span>
+                        <span class="file-size">{{ formatBytes(file.size) }}</span>
+                        <i class="fa fa-times remove-icon" (click)="removeFile(i)"></i>
+                    </li>
+                    </ul>
+                </div>
+                
+                <div class="actions" *ngIf="files.length > 0">
+                    <button class="upload-btn" (click)="uploadFiles()">Upload Files</button>
+                    <button class="clear-btn" (click)="clearFiles()">Clear Files</button>
+                </div>
+            </div>
+
+            
         </tr>
         <br>
     </table>
@@ -47,6 +90,9 @@
         </tr>
     
     </table>
+
+    
+      
     <br><br><hr><br><br>
     <input type="submit" value="Edit/ Submit"><br><br>
 </div>

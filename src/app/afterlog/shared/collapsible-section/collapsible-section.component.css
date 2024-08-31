@@ -17,7 +17,10 @@ transition: transform 0.3s ease;
 }
 
 .collapsible-container {
-padding: 10px;
+    padding: 5px;
+    border: 1.5px solid #ddd;
+    margin: 15px;
+    border-radius: 10px;
 }
 
 .content-collapsed, .content-expanded {
@@ -40,4 +43,7 @@ transition: max-height 1s ease, opacity 1s ease;
 .collapsible-header{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding-bottom: 7px;
+    padding-top: 7px;
 }

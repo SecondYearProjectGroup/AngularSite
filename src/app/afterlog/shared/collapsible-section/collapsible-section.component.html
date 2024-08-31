@@ -3,25 +3,28 @@
   <div class="collapsible-header">
     <button (click)="toggleCollapse()">
       <span [ngClass]="{'arrow-collapsed': isCollapsed, 'arrow-expanded': !isCollapsed}">
-        <i [ngClass]="isCollapsed ? 'fa fa-arrow-down-short-wide' : 'fa fa-arrow-up-wide-short'"></i>
+        <i [ngClass]="isCollapsed ? 'fa fa-arrow-down-short-wide' : 'fa fa-arrow-up-wide-short'" style="font-size: 18px; color: rgba(18, 55, 71, 1);"></i>
       </span>
-      {{ buttonName }}
+      <div style="font-size: 16px; margin-left: 8px; color: rgba(18, 55, 71, 1); font-weight: 1000;">{{ buttonName }}</div>
     </button>
 
-    <!-- Delete button, visible only to admins -->
-  <button *ngIf="userRole === 'ADMIN'" (click)="openDeleteSection()" style="float: right; margin-right: 10px;">
-    <i class="fa fa-delete"></i>Delete
-  </button>
+    <div>
+        <!-- Delete button, visible only to admins -->
+      <button *ngIf="userRole === 'ADMIN'" (click)="openDeleteSection()" style="float: right; margin-right: 10px; font-size: 14px;">
+        <i class="fa fa-trash"></i>Delete
+      </button>
 
-    <!-- Edit button, visible only to admins -->
-  <button *ngIf="userRole === 'ADMIN'" (click)="openEditSection()" style="float: right; margin-right: 10px;">
-    <i class="fa fa-edit"></i>Edit
-  </button>
+        <!-- Edit button, visible only to admins -->
+      <button *ngIf="userRole === 'ADMIN'" (click)="openEditSection()" style="float: right; margin-right: 10px; font-size: 14px;">
+        <i class="fa fa-edit"></i>Edit
+      </button>
+    </div>
   </div>
 
   <div [ngClass]="{'content-collapsed': isCollapsed, 'content-expanded': !isCollapsed}">
     
     <div *ngFor="let tile of tiles">
+      <hr style="margin: 0px; margin-bottom: 8px; color: #c0c0c0; border-width: 1px;">
       <app-feedback-tile *ngIf="tile.type === 'forum'" [title]="tile.title" [id]="tile.id"></app-feedback-tile>
       <app-assignment-submission-tile *ngIf="tile.type === 'submission'" [title]="tile.title" [id]="tile.id"></app-assignment-submission-tile>
     </div>
