@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserRoleService } from '../../services/user-role.service';
-import { TileIdService } from '../../services/tile-id.service';
 
 @Component({
   selector: 'app-collapsible-section',

@@ -18,13 +18,11 @@ export class CreateCollapsibleSectionComponent {
   constructor(private collapsibleSectionService: CollapsibleSectionService) {}
 
   addForumTile() {
-    const id = this.generateUniqueId();
     this.tiles.push({ type: 'forum', title: '' });
     // this.tiles.push({ type: 'forum', title: '', routerLink: `/forum/${id}` });
   }
 
-  addSubmissionTile() {
-    const id = this.generateUniqueId();                                                                               
+  addSubmissionTile() {                                                                             
     this.tiles.push({ type: 'submission', title: '' });
     // this.tiles.push({ type: 'submission', title: '', routerLink: `/submission/${id}` });
   }
@@ -59,10 +57,8 @@ export class CreateCollapsibleSectionComponent {
         console.error('Error saving section', error);
       }
     });
-  }
 
-  generateUniqueId(): string {
-    return '_' + Math.random().toString(36).substr(2, 9);
+    window.location.reload();
   }
 
   closeModal(): void {

@@ -3,75 +3,146 @@
 </div>
 
 <div class="event-box">
-  <h3>Events</h3><br>
+  <h5>Events</h5><br>
 
   <div class="even-container">
 
-      <div class="action">
-        <div class="action1">
-          Course 1
+    <div class="card">
+      <div class="icon-container" style="background-color: rgba(47, 79, 79, 0.9);">
+        <div class="image-box">
+          <i class="fa fa-users-rectangle" style="font-size: 30px; color: white;"></i>
         </div>
+        <button (click)="navigateToEnrolledStudents()" class="btn">Registered Students</button>
       </div>
+      <div class="content"></div>
+    </div>
 
-      <div class="action">
-        <div class="action1">
-          Course 1
+    <div class="card">
+      <div class="icon-container" style="background-color: rgba(0, 128, 128, 0.9);">
+        <div class="image-box">
+          <i class="fa fa-graduation-cap" style="font-size: 30px; color: white;"></i>
         </div>
+        <button (click)="navigateToStudentsToAdmin()" class="btn">Students</button>
       </div>
+      <div class="content"></div>
+    </div>
 
-      <div class="action">
-        <div class="action1">
-          Course 1
+    <div class="card">
+      <div class="icon-container" style="background-color: rgba(25, 25, 112, 0.9);">
+        <div class="image-box">
+          <i class="fa fa-user-tie" style="font-size: 30px; color: white;"></i>
         </div>
+        <button (click)="navigateToSupervisorsToAdmin()" class="btn">Supervisors</button>
       </div>
+      <div class="content"></div>
+    </div>
   </div>
 
   <br>
   <div class="even-container">
 
-    <div class="action">
-      <div class="action1">
-        Course 1
+    <div class="card">
+      <div class="icon-container" style="background-color: rgba(95, 158, 160, 0.9);">
+        <div class="image-box">
+          <i class="fa fa-user-pen" style="font-size: 30px; color: white;"></i>
+        </div>
+        <button (click)="navigateToExaminersToAdmin()" class="btn">Examiners</button>
       </div>
+      <div class="content"></div>
     </div>
 
-    <div class="action">
-      <div class="action1">
-        Course 1
+    <div class="card">
+      <div class="icon-container" style="background-color: rgba(70, 130, 180, 0.9);">
+        <div class="image-box">
+          <i class="fa fa-book-open" style="font-size: 30px; color: white;"></i>
+        </div>
+        <button  class="btn">Report Submissions</button>
       </div>
+      <div class="content"></div>
     </div>
 
-    <div class="action">
-      <div class="action1">
-        Course 1
+    <div class="card">
+      <div class="icon-container" style="background-color: rgba(0, 139, 139, 0.9);">
+        <div class="image-box">
+          <img src="https://via.placeholder.com/64x64.png?text=Icon" alt="Icon" style="width: 65px; height: 65px;">
+        </div>
+        <button class="btn">Vivas</button>
       </div>
+      <div class="content"></div>
     </div>
+
   </div>
 </div>
+
 <br>
 
 
 
-<div class="myButtonDesign">
+<!-- <div class="myButtonDesign">
   <a (click)="navigateToEnrolledStudents()" class="my-button">Registered Students</a>
+</div> -->
+<div class="event-box">
+  <h5>Functions</h5><br>
+
+  <div class="function-even-container">
+
+    <div class="function-card">
+      <div class="function-icon-container" style="background-color: rgba(47, 79, 79, 0.9);">
+        <div class="function-image-box">
+          <i class="fa fa-users" style="font-size: 30px; color: white;"></i>
+        </div>
+        <button (click)="openAddStaffMembersByAdmin()" class="btn functionBtn">Add Staff Members</button>
+      </div>
+      <div class="content"></div>
+    </div>
+
+  </div>
+
+  <div class="function-even-container">
+
+    <div class="function-card">
+      <div class="function-icon-container" style="background-color: rgba(0, 128, 128, 0.9);">
+        <div class="function-image-box">
+          <i class="fa fa-users" style="font-size: 30px; color: white;"></i>
+        </div>
+        <button class="btn functionBtn">Report Submissions</button>
+      </div>
+      <div class="content"></div>
+    </div>
+
+  </div>
+
+  <div class="function-even-container">
+
+    <div class="function-card">
+      <div class="function-icon-container" style="background-color: rgba(95, 158, 160, 0.9);">
+        <div class="function-image-box">
+          <i class="fa fa-users" style="font-size: 30px; color: white;"></i>
+        </div>
+        <button class="btn functionBtn">Assign Supervisors</button>
+      </div>
+      <div class="content"></div>
+    </div>
+
+  </div>
+  
 </div>
-<h2>Events</h2>
 
-<button (click)="navigateToStudentsToAdmin()" class="btn btn-primary btn-lg">Students</button><br><br>
-<button (click)="navigateToSupervisorsToAdmin()" class="btn btn-primary btn-lg">Supervisors</button><br><br>
-<button (click)="navigateToExaminersToAdmin()" class="btn btn-primary btn-lg">Examinors</button><br><br>
+<br>
 
-<button (click)="openAddStaffMembersByAdmin()" class="btn btn-primary btn-lg">Add Staff Members</button><br><br>
+<!-- <button (click)="openAddStaffMembersByAdmin()" class="btn btn-primary btn-lg">Add Staff Members</button><br><br> -->
 <app-add-staff-members-by-admin *ngIf="isAddStaffMembersByAdminOpen" (close)="closeAddStaffMembersByAdmin()"></app-add-staff-members-by-admin>
 
-<button class="btn btn-primary btn-lg">Report Submisions</button><br><br>
-<button class="btn btn-primary btn-lg">Vivas</button><br><br>
-<button (click)="testingButton()" class="btn btn-primary btn-lg">Testing</button><br><br>
 
-<h2>Calendar</h2>
-<br>
+<div class="event-box" style="padding: 0px;">
+  <h5>Calendar</h5>
+  <br>
+  <div class="myButtonDesign">
+    <a (click)="openCreateCalendarEvent()" class="my-button">New Event</a>
+  </div>
+</div>
 
-<button (click)="openCreateCalendarEvent()" class="btn btn-primary btn-lg">New Event</button><br>
+<!-- <button (click)="openCreateCalendarEvent()" class="btn btn-primary btn-lg">New Event</button><br> -->
 <app-create-calendar-event *ngIf="isCreateCalendarEventOpen" (close)="closeCreateCalendarEvent()"></app-create-calendar-event>
 <app-main-calendar></app-main-calendar>
 
