@@ -9,10 +9,6 @@ export class RolesMainComponent implements OnInit {
 
   constructor(private renderer: Renderer2) {}
 
-  ngOnInit(): void {
-    this.adjustContentSize();
-  }
-
   @HostListener('window:middleContentResize', ['$event'])
   onResizeEvent(event: CustomEvent): void {
     this.adjustContentSize(event.detail);
@@ -27,5 +23,33 @@ export class RolesMainComponent implements OnInit {
       this.renderer.addClass(content, 'reduced-width');
       this.renderer.removeClass(content, 'full-width');
     }
+  }
+
+  ngOnInit(): void {
+    const sidebarState = localStorage.getItem('sidebarState');
+
+    if (sidebarState === 'full') {
+        this.applyFullWidthStyles();
+    } else {
+        this.applyReducedWidthStyles();
+    }
+  }
+
+  applyFullWidthStyles(): void {
+      // Apply styles for full-width
+      const element = document.querySelector('.middle-content');
+      
+      this.renderer.addClass(element, 'full-width');
+      this.renderer.removeClass(element, 'reduced-width');
+      
+  }
+
+  applyReducedWidthStyles(): void {
+      // Apply styles for reduced-width
+      const element = document.querySelector('.middle-content');
+    
+      this.renderer.addClass(element, 'reduced-width');
+      this.renderer.removeClass(element, 'full-width');
+
   }
 }
