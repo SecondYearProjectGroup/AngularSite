@@ -24,12 +24,6 @@ export class SubmissionService {
   }
 
 
-  // uploadFiles(formData: FormData, tileId: number): Observable<string> {
-  //   const headers = new HttpHeaders({
-  //     'Accept': 'text/plain'
-  //   });
-  //   return this.http.post<string>(`http://localhost:8080/complete-assignment/${tileId}`, formData, { headers });
-  // }
 
   uploadFiles(formData: FormData, tileId: number): Observable<any> {
     return this.http.post(`http://localhost:8080/complete-assignment/${tileId}`, formData, {
@@ -37,5 +31,9 @@ export class SubmissionService {
     });
   }
   
+  getUploadedFiles(submissionId: number): Observable<{ name: string; size: number }[]> {
+    return this.http.get<{ name: string; size: number }[]>(`/api/submissions/${submissionId}/files`);
+}
+
   
 }

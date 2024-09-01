@@ -20,6 +20,7 @@ export class AssignmentSubmissionComponent implements OnInit {
 
   id: number = 0;
 
+  title: string = '';
   openedDate: string = ''; // Example value
   dueDate: string = ''; // Example value
   setDueDate: { date: string; time: string } = { date: '', time: '' };
@@ -38,6 +39,7 @@ export class AssignmentSubmissionComponent implements OnInit {
     // Fetch existing submission details if available
     this.submissionService.getSubmissionDetails(this.id).subscribe(details => {
       if (details) {
+        this.title = details.title || '';
         this.openedDate = details.openedDate ? this.formatDate(details.openedDate) : ''; // Format openedDate
         this.dueDate = details.dueDate ? this.formatDate(details.dueDate) : ''; // Format dueDate
 
@@ -106,42 +108,20 @@ export class AssignmentSubmissionComponent implements OnInit {
 
 
 
-  uploadFiles(): void {
-    if (this.selectedFiles.length === 0) {
-      alert('Please select files to upload.');
-      return;
-    }
-
-    const formData: FormData = new FormData();
-    this.selectedFiles.forEach(file => {
-      formData.append('files', file);
-    });
-
-    this.submissionService.uploadFiles(formData, this.id)
-  .subscribe({
-    next: (response: string) => {
-      console.log('Response:', response);
-      alert(response);
-    },
-    error: (error: HttpErrorResponse) => {
-      console.error('Error:', error);
-      alert(`Error uploading files: ${error.message}`);
-    }
-  });
-
-  }
-
   onFileChange(event: any): void {
     const files: FileList = event.target.files;
     this.selectedFiles = Array.from(files);
   }
 
-}
 
   // Many Files Upload -------------
   @ViewChild('fileInput') fileInput!: ElementRef;
   files: File[] = [];
   isDragging = false;
+  isUploading = false;
+  uploadError: string | null = null;
+  uploadedFiles: { name: string; size: number }[] = [];
+
 
   onDragOver(event: DragEvent) {
     event.preventDefault();
@@ -192,14 +172,25 @@ export class AssignmentSubmissionComponent implements OnInit {
   uploadFiles() {
     if (this.files.length === 0) return;
 
-    // Simulate upload process
-    console.log('Uploading files:', this.files);
+    this.isUploading = true;
+    this.uploadError = null;
 
-    // TODO: Implement actual upload logic here using HTTP requests
+    const formData = new FormData();
+    this.files.forEach(file => formData.append('files', file));
 
-    // After successful upload
-    alert(`${this.files.length} file(s) successfully uploaded.`);
-    this.clearFiles();
+    this.submissionService.uploadFiles(formData, this.id).subscribe({
+      next: (response) => {
+        alert(`${this.files.length} file(s) successfully uploaded.`);
+        this.clearFiles();
+      },
+      error: (error) => {
+        this.uploadError = 'Failed to upload files. Please try again.';
+        console.error('Upload error:', error);
+      },
+      complete: () => {
+        this.isUploading = false;
+      }
+    });
   }
 
   formatBytes(bytes: number, decimals = 2) {
@@ -211,5 +202,50 @@ export class AssignmentSubmissionComponent implements OnInit {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
   // End of Many Files Upload -------------
+
+
+  loadUploadedFiles(): void {
+    this.submissionService.getUploadedFiles(this.id).subscribe(files => {
+        this.uploadedFiles = files.map(file => ({
+            name: file.name,
+            size: file.size,
+        }));
+    }, (error: HttpErrorResponse) => {
+        console.error('Failed to load uploaded files:', error);
+    });
 }
+}
+
+
+
+
+
+
+
+
+
+  // uploadFiles(): void {
+  //   if (this.selectedFiles.length === 0) {
+  //     alert('Please select files to upload.');
+  //     return;
+  //   }
+
+  //   const formData: FormData = new FormData();
+  //   this.selectedFiles.forEach(file => {
+  //     formData.append('files', file);
+  //   });
+
+  //   this.submissionService.uploadFiles(formData, this.id)
+  // .subscribe({
+  //   next: (response: string) => {
+  //     console.log('Response:', response);
+  //     alert(response);
+  //   },
+  //   error: (error: HttpErrorResponse) => {
+  //     console.error('Error:', error);
+  //     alert(`Error uploading files: ${error.message}`);
+  //   }
+  // });
+
+  // }
 
