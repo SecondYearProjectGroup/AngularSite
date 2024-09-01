@@ -49,6 +49,7 @@
 .card.full-width {
     background: linear-gradient(135deg, gray, rgb(231, 231, 231));
     border-radius: 20px;
+    border: 0px;
     padding: 20px;
     width: 300px;
     height: 140px;
@@ -60,6 +61,7 @@
 .card.reduced-width {
     background: linear-gradient(135deg, gray, rgb(231, 231, 231));
     border-radius: 20px;
+    border: 0px;
     padding: 20px;
     width: 220px;
     height: 140px;

@@ -43,7 +43,7 @@
                 
                 <tr *ngFor="let row of filteredData">
                     
-                    <td id="status-cell-{{row.id}}">
+                    <td id="status-cell-{{row.id}}" style="text-align: center;">
                         <div *ngIf="!row.status; else statusText" class="btn-group">
                             <button (click)="updateStatus(row.id, 'Approved')" [id]="'approve-button-' + row.id" class="approve-button">
                                 Approve

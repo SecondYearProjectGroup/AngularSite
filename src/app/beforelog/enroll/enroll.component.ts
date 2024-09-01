@@ -43,6 +43,11 @@ export class EnrollComponent {
         next: (response) => {
           console.log('Enrollment successful', response);
           window.alert('You enrolled successfully.');
+
+          // Clear the form fields
+          form.resetForm();
+
+          this.enrollmentData.email = ''; // Clear the enrollmentData object if needed
         },
         error: (error) => {
           console.error('Enrollment failed', error);
@@ -51,6 +56,7 @@ export class EnrollComponent {
         complete: () => {
           console.log('Enrollment process completed');
         }
+        
       });
       
     } else {

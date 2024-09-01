@@ -2,31 +2,68 @@
 
   <div class="modal-content">
 
-    <span class="close" (click)="closeModal()">&times;</span>
-    <h2>Add New Section</h2>
-
-    <form (ngSubmit)="submitSection()">
-
-      <label for="buttonName">Section Name:</label>
-      <input type="text" id="buttonName" [(ngModel)]="buttonName" name="buttonName" required>
+    <div class="modal-header">
+      <h5 class="modal-title"><b>Add New Section</b></h5>
+      <span class="close" (click)="closeModal()">&times;</span>
+    </div><br>
+    
+    <div class="modal-form">
       
-      <div *ngFor="let tile of tiles; let i = index">
+      <form (ngSubmit)="submitSection()">
 
-        <label for="title">Title:</label>
-        <input type="text" id="title{{i}}" [(ngModel)]="tile.title" name="title{{i}}" required>
-        <!-- <label for="link">Link:</label>
-        <input type="text" id="link" [(ngModel)]="tile.routerLink" name="link{{i}}" required> -->
-        <button type="button" (click)="removeTile(i)">Remove Tile</button>
+        <table style="width: 100%;">
+          <tr>
+            <td>
+              <label for="buttonName">Section Name:</label>
+            </td>
+            <td>
+              <input type="text" id="buttonName" [(ngModel)]="buttonName" name="buttonName" required>
+            </td>
+          </tr>
+          
+          <tr>
+            <td colspan="2">
+              <div *ngFor="let tile of tiles; let i = index">
+                
+               
+                <label for="title">Title {{i+1}}:</label>
 
-      </div>
-      
-      
-      <button type="button" (click)="addForumTile()">Add Forum</button>
-      <button type="button" (click)="addSubmissionTile()">Add Submission</button>
-      <button type="submit">Create</button>
-      
-    </form>
+                <div style="display: flex; align-items: center;">
+                  <input type="text" id="title{{i}}" [(ngModel)]="tile.title" name="title{{i}}" required style="width: 70%;">
+                
+                  <!-- <button type="button" (click)="removeTile(i)">Remove Tile</button> -->
+                  <div class="myButtonDesign">
+                    <a (click)="removeTile(i)" class="my-button" style="width: 100px; height: 35px; margin-left: 20px;">Remove Tile</a>
+                  </div>
+                </div>
+              
+              </div>
+            </td>
+          </tr>
+          
+          <br>
+          <tr>
+            <td></td>
+            <td>
+              <div style="display: flex;">
+                <div class="myButtonDesign">
+                  <a (click)="addForumTile()" class="my-button">Add Forum</a>
+                </div>
+                
+                <div class="myButtonDesign">
+                  <a (click)="addSubmissionTile()" class="my-button" style="margin-left: 20px;">Add Submission</a>
+                </div>
+              </div>
+            </td>
+          </tr>
 
+        </table>
+
+        <hr>
+        <input type="submit" value="Create" style="width: 40%; float: right;">
+        
+      </form>
+    </div>
   </div>
 
 </div>
