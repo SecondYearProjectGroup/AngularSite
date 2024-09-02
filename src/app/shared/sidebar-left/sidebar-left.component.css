@@ -6,7 +6,7 @@
     box-shadow: 5px 0 5px rgba(0,0,0,0.1);
     position: fixed;
     height: 100%;
-    overflow-y: auto;
+    overflow: hidden;
     top: 0px;
     display: flex;
     flex-direction: column; /* Arrange children in a column */
@@ -22,6 +22,8 @@
 
 .sidebar-content {
     flex-grow: 1; /* Grow this area to fill available space */
+    overflow: hidden;
+    position: relative;
 }
 
 .sidebar-left ul {
@@ -53,6 +55,21 @@
 
 .sidebar-left ul li a:hover {
     background-color: rgba(255, 255, 255, 0.5); /* Change hover background color to be more visible */
+}
+
+.second-dropdown {
+    margin-left: 30px;
+    padding-top: 3px;
+}
+
+.sidebar-left ul .second-dropdown li a{
+    padding: 5px;
+    font-size: 14px;
+}
+
+.first-dropdown {
+    margin-left:10px;
+    font-size: 14px;
 }
 
 /* Dropdown Toggle Styling */
