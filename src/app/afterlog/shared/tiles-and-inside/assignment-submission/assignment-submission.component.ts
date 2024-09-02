@@ -13,6 +13,7 @@ export class AssignmentSubmissionComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   id: number = 0;
+  isUploading: boolean = false;
 
   ngOnInit(): void {
     scrollTo(0, 0);
@@ -25,6 +26,7 @@ export class AssignmentSubmissionComponent implements OnInit {
   // Many Files Upload -------------
   @ViewChild('fileInput') fileInput!: ElementRef;
   files: File[] = [];
+  uploadedFiles: File[] = [];
   isDragging = false;
 
   onDragOver(event: DragEvent) {
@@ -61,6 +63,7 @@ export class AssignmentSubmissionComponent implements OnInit {
       const file = files.item(i);
       if (file && !this.files.some(f => f.name === file.name)) {
         this.files.push(file);
+        this.uploadedFiles.push(file);
       }
     }
   }
@@ -78,6 +81,7 @@ export class AssignmentSubmissionComponent implements OnInit {
 
     // Simulate upload process
     console.log('Uploading files:', this.files);
+    this.isUploading = true;
 
     // TODO: Implement actual upload logic here using HTTP requests
 

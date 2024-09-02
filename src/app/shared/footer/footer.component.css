@@ -2,7 +2,7 @@
 footer {
     width: calc(100% - 232px);
     text-align: center;
-    background-color: white;
+    background-color: rgb(243, 243, 243);
     color: gray;
     position: absolute;
     left: 232px;
