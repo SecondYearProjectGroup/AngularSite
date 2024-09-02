@@ -30,6 +30,12 @@ export class SubmissionService {
       responseType: 'text' // This forces Angular to treat the response as plain text
     });
   }
+
+  uploadFilesbyAdmin(formData: FormData, tileId: number): Observable<any> {
+    return this.http.post(`http://localhost:8080/files/upload/${tileId}`, formData, {
+      responseType: 'text' // This forces Angular to treat the response as plain text
+    });
+  }
   
   getUploadedFiles(submissionId: number): Observable<{ name: string; size: number }[]> {
     return this.http.get<{ name: string; size: number }[]>(`/api/submissions/${submissionId}/files`);

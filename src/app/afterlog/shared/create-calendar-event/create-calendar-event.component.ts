@@ -47,7 +47,7 @@ onSubmit() {
     endDate: this.event.endDate
   };
 
-  this.http.post('http://localhost:8080/user/create-event', eventPayload, {
+  this.http.post('http://localhost:8080/create-event', eventPayload, {
     headers: { 'Content-Type': 'application/json' }
   }).subscribe({
     next: (response) => {

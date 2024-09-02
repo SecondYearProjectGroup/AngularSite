@@ -106,7 +106,21 @@ export class AssignmentSubmissionComponent implements OnInit {
     }
   }
 
-
+   // Separate function for file upload
+   onFileUpload(): void {
+    const formData = new FormData();
+    if (this.selectedFiles.length > 0) {
+      this.selectedFiles.forEach(file => formData.append('files', file));
+      this.submissionService.uploadFilesbyAdmin(formData, this.id)
+        .subscribe(response => {
+          alert('Files uploaded successfully!');
+        }, (error: HttpErrorResponse) => {
+          alert('Error uploading files.');
+        });
+    } else {
+      alert('No files selected.');
+    }
+  }
 
   onFileChange(event: any): void {
     const files: FileList = event.target.files;
@@ -215,37 +229,4 @@ export class AssignmentSubmissionComponent implements OnInit {
     });
 }
 }
-
-
-
-
-
-
-
-
-
-  // uploadFiles(): void {
-  //   if (this.selectedFiles.length === 0) {
-  //     alert('Please select files to upload.');
-  //     return;
-  //   }
-
-  //   const formData: FormData = new FormData();
-  //   this.selectedFiles.forEach(file => {
-  //     formData.append('files', file);
-  //   });
-
-  //   this.submissionService.uploadFiles(formData, this.id)
-  // .subscribe({
-  //   next: (response: string) => {
-  //     console.log('Response:', response);
-  //     alert(response);
-  //   },
-  //   error: (error: HttpErrorResponse) => {
-  //     console.error('Error:', error);
-  //     alert(`Error uploading files: ${error.message}`);
-  //   }
-  // });
-
-  // }
 

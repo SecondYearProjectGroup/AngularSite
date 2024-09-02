@@ -31,14 +31,21 @@
 
     </form>
 
-    <form (ngSubmit)="uploadFiles()">
-        <table style="width: 100%;">
-            <tr>
-                <td><input type="file" (change)="onFileChange($event)" multiple></td>
-                <td><button type="submit">Upload</button></td>
-            </tr>
-        </table>
-    </form>
+<!-- File Upload Form -->
+<form (ngSubmit)="onFileUpload()" enctype="multipart/form-data">
+    <table style="width: 100%;">
+      <tr>
+        <td>
+          <input type="file" (change)="onFileChange($event)" multiple>
+          <span *ngIf="selectedFiles.length > 0">{{ selectedFiles.length }} files selected</span>
+        </td>
+        <td>
+          <button type="submit">Upload Files</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+  
 
     <table style="width: 100%;">
         <tr>Choose file/ files:</tr>
