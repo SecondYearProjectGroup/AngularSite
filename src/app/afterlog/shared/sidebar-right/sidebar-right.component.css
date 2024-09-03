@@ -61,7 +61,7 @@
     background-color: rgb(180, 180, 180);
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
-    
+    display: block;
 }
 
 #showSidebarBtn {
@@ -93,4 +93,10 @@
     z-index: 0;
     transform: scale(0.34); /* Scale down to 34% */
     transform-origin: top left; /* Set the transform origin to the top left */
+}
+
+@media only screen and (max-width: 800px) {
+    #showSidebarBtn {
+        display: none;
+    }
 }
