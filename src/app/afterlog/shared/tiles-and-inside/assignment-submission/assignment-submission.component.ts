@@ -4,6 +4,8 @@ import { SubmissionService } from '../../../../services/submission.service';
 import { TileIdService } from '../../../services/tile-id.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { UploadedFile } from '../../../../models/uploaded-file';
+import { FileService } from '../../../../services/file.service';
 
 @Component({
   selector: 'app-assignment-submission',
@@ -16,7 +18,8 @@ export class AssignmentSubmissionComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private submissionService: SubmissionService) { }
+    private submissionService: SubmissionService,
+    private fileService : FileService) { }
 
   id: number = 0;
   isUploading: boolean = false;
@@ -36,6 +39,7 @@ export class AssignmentSubmissionComponent implements OnInit {
     const idParam = this.route.snapshot.paramMap.get('id');
     this.id = idParam ? parseInt(idParam, 10) : 0; // Default to 0 if idParam is null
     console.log('Retrieved tile id from route params:', this.id);
+    this.loadUploadedFiles();
 
     // Fetch existing submission details if available
     this.submissionService.getSubmissionDetails(this.id).subscribe(details => {
@@ -51,6 +55,8 @@ export class AssignmentSubmissionComponent implements OnInit {
         this.submissionStatus = details.submissionStatus ? 'Submitted' : 'Not Submitted';
       }
     });
+
+    
   }
 
   // Helper function to format the date
@@ -107,7 +113,7 @@ export class AssignmentSubmissionComponent implements OnInit {
     }
   }
 
-   // Separate function for file upload
+   // Separate function for file upload - For admin to upload the assignment task
    onFileUpload(): void {
     const formData = new FormData();
     if (this.selectedFiles.length > 0) {
@@ -132,11 +138,11 @@ export class AssignmentSubmissionComponent implements OnInit {
   // Many Files Upload -------------
   @ViewChild('fileInput') fileInput!: ElementRef;
   files: File[] = [];
-  uploadedFiles: File[] = [];
+  uploadedFiles: UploadedFile[] = []; 
   isDragging = false;
-  isUploading = false;
   uploadError: string | null = null;
-  uploadedFiles: { name: string; size: number }[] = [];
+
+  
 
 
   onDragOver(event: DragEvent) {
@@ -168,15 +174,25 @@ export class AssignmentSubmissionComponent implements OnInit {
     }
   }
 
+
   addFiles(files: FileList) {
     for (let i = 0; i < files.length; i++) {
       const file = files.item(i);
       if (file && !this.files.some(f => f.name === file.name)) {
         this.files.push(file);
-        this.uploadedFiles.push(file);
+  
+        // Transform File to UploadedFile
+        const uploadedFile: UploadedFile = {
+          fileName: file.name,
+          originalFileName: file.name, // Assuming the original name is the same
+          fileSize: file.size
+        };
+        this.uploadedFiles.push(uploadedFile);
       }
     }
   }
+  
+
 
   removeFile(index: number) {
     this.files.splice(index, 1);
@@ -205,9 +221,6 @@ export class AssignmentSubmissionComponent implements OnInit {
       error: (error) => {
         this.uploadError = 'Failed to upload files. Please try again.';
         console.error('Upload error:', error);
-      },
-      complete: () => {
-        this.isUploading = false;
       }
     });
   }
@@ -225,13 +238,45 @@ export class AssignmentSubmissionComponent implements OnInit {
 
   loadUploadedFiles(): void {
     this.submissionService.getUploadedFiles(this.id).subscribe(files => {
-        this.uploadedFiles = files.map(file => ({
-            name: file.name,
-            size: file.size,
-        }));
-    }, (error: HttpErrorResponse) => {
-        console.error('Failed to load uploaded files:', error);
+      this.uploadedFiles = files;
+      console.log('files received');
+      console.log(this.isUploading);
+      this.isUploading = this.uploadedFiles.length > 0;
+      if (this.uploadedFiles.length === 0) {
+        this.isUploading = false;
+      }
+    }, (error) => {
+      console.error('Failed to load uploaded files:', error);
     });
-}
+  }
+
+  //Method to download the files 
+  //To download the uploaded file
+  download(uniqueFileName: string, originalFileName: string) {
+    this.fileService.downloadFile(uniqueFileName).subscribe(response => {
+      const blob = new Blob([response as Blob], { type: 'application/octet-stream' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = originalFileName; // Set the original file name for the downloaded file
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }, error => {
+      console.error('File download failed', error);
+    });
+  }
+
+
+  // Method to view the file in a new tab
+  viewFile(fileName: string) {
+    this.fileService.viewFile(fileName).subscribe((file: Blob) => {
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    }, error => {
+      console.error('Error while viewing the file', error);
+    });
+  }
+  
+  
 }
 

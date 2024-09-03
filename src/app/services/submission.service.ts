@@ -1,6 +1,13 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs';
+
+interface UploadedFile {
+  fileName: string;
+  originalFileName: string;
+  fileSize: number;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -37,9 +44,18 @@ export class SubmissionService {
     });
   }
   
-  getUploadedFiles(submissionId: number): Observable<{ name: string; size: number }[]> {
-    return this.http.get<{ name: string; size: number }[]>(`/api/submissions/${submissionId}/files`);
-}
+//   getUploadedFiles(submissionId: number): Observable<{ name: string; size: number }[]> {
+//     return this.http.get<{ name: string; size: number }[]>(`/api/submissions/${submissionId}/files`);
+// }
+
+  getUploadedFiles(tileId: number): Observable<UploadedFile[]> {
+    return this.http.get<UploadedFile[]>(`${this.apiUrl}/submissions/uploaded/${tileId}`)
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    console.error('An error occurred:', error.message);
+    return throwError('Something went wrong; please try again later.');
+  }
 
   
 }

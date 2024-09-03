@@ -38,22 +38,47 @@ export class FileService {
   }
 
 
-
-  downloadFile(id: number): Observable<Blob> {
-    const token = localStorage.getItem('authToken'); // Retrieve JWT token from localStorage
+  
+  downloadFile(fileName: string) {
+    const token = localStorage.getItem('authToken'); // Get the JWT token from localStorage
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.get(`${this.baseUrl}/download/${id}`, {
+    return this.http.get(`${this.baseUrl}/download/${fileName}`, {
       headers: headers,
-      responseType: 'blob'
-    }).pipe(
-      map((response: Blob) => {
-        // Here you can manipulate the Blob if needed before returning it
-        return response;
-      }),
-      catchError(this.handleError)
-    );
+      responseType: 'blob' as 'json' // The response type is 'blob' since it's a file download
+    });
   }
+
+  viewFile(fileName: string) {
+    const token = localStorage.getItem('authToken'); // Get the JWT token from localStorage
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+    return this.http.get(`${this.baseUrl}/view/${fileName}`, {
+      headers: headers,
+      responseType: 'blob' // Correctly specify that the response type is 'blob'
+    });
+  }
+  
+
+  
+
+
+
+  // downloadFile(id: number): Observable<Blob> {
+  //   const token = localStorage.getItem('authToken'); // Retrieve JWT token from localStorage
+  //   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+  //   return this.http.get(`${this.baseUrl}/download/${id}`, {
+  //     headers: headers,
+  //     responseType: 'blob'
+  //   }).pipe(
+  //     map((response: Blob) => {
+  //       // Here you can manipulate the Blob if needed before returning it
+  //       return response;
+  //     }),
+  //     catchError(this.handleError)
+  //   );
+  // }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     // Customize this based on your application's error handling strategy
