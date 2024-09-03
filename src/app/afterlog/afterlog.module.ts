@@ -32,6 +32,7 @@ import { EditProfileForStaffComponent } from './shared/edit-profile-for-staff/ed
 import { CreateCalendarEventComponent } from './shared/create-calendar-event/create-calendar-event.component';
 import { FeedbackTileComponent } from './shared/tiles-and-inside/feedback-tile/feedback-tile.component';
 import { AssignmentSubmissionTileComponent } from './shared/tiles-and-inside/assignment-submission-tile/assignment-submission-tile.component';
+import { HomeForRolesComponent } from './shared/home-for-roles/home-for-roles.component';
 
 
 
@@ -66,7 +67,8 @@ import { AssignmentSubmissionTileComponent } from './shared/tiles-and-inside/ass
     EditProfileForStaffComponent,
     CreateCalendarEventComponent,
     FeedbackTileComponent,
-    AssignmentSubmissionTileComponent
+    AssignmentSubmissionTileComponent,
+    HomeForRolesComponent
   ],
   imports: [
     CommonModule,

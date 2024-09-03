@@ -42,18 +42,18 @@
 }
 .approve-button {
     border-radius: 8px 0px 0px 8px;
-    background-color: #12aa72; /* Green background */
-    border: 1px solid green; /* Green border */
+    background-color: #1D716F; /* Green background */
+    border: 1px solid #1D716F; /* Green border */
 }
 .approve-button:hover{
-    background-color: #3e8e41;
+    background-color: #279694;
 }
 .reject-button {
     border-radius: 0px 8px 8px 0px;
     padding: 10px 15px;
-    background-color: #be1212; /* Red background */
-    border: 1px solid rgb(99, 9, 9); /* Red border */
+    background-color: #081A20; /* Red background */
+    border: 1px solid #081A20; /* Red border */
 }
 .reject-button:hover {
-    background-color: #af4343;
+    background-color: #113642;
 }

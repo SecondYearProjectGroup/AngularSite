@@ -6,7 +6,7 @@
 }
 .login-form input[type=submit] {
     width: 100%;
-    background: linear-gradient(135deg, rgba(18, 55, 71, 1), rgba(95, 158, 160, 1));
+    background: linear-gradient(135deg, #394251, #556379);
     color: white;
     padding: 10px 20px;
     margin: 8px 0;
@@ -15,7 +15,7 @@
     cursor: pointer;
 }
 .login-form input[type=submit]:hover {
-    background: linear-gradient(135deg, rgba(18, 55, 71, 1), rgba(18, 55, 71, 1));
+    background: linear-gradient(135deg, #394251, #394251);
 }
 .login-form input[type=text],input[type=password], select {
     width: 100%;

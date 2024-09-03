@@ -19,6 +19,7 @@ export class AssignmentSubmissionComponent implements OnInit {
     private submissionService: SubmissionService) { }
 
   id: number = 0;
+  isUploading: boolean = false;
 
   title: string = '';
   openedDate: string = ''; // Example value
@@ -131,6 +132,7 @@ export class AssignmentSubmissionComponent implements OnInit {
   // Many Files Upload -------------
   @ViewChild('fileInput') fileInput!: ElementRef;
   files: File[] = [];
+  uploadedFiles: File[] = [];
   isDragging = false;
   isUploading = false;
   uploadError: string | null = null;
@@ -171,6 +173,7 @@ export class AssignmentSubmissionComponent implements OnInit {
       const file = files.item(i);
       if (file && !this.files.some(f => f.name === file.name)) {
         this.files.push(file);
+        this.uploadedFiles.push(file);
       }
     }
   }
@@ -186,6 +189,8 @@ export class AssignmentSubmissionComponent implements OnInit {
   uploadFiles() {
     if (this.files.length === 0) return;
 
+    // Simulate upload process
+    console.log('Uploading files:', this.files);
     this.isUploading = true;
     this.uploadError = null;
 

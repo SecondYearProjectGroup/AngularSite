@@ -45,11 +45,11 @@
       </tr>
     </table>
   </form>
-  
+
 
     <table style="width: 100%;">
         <tr>Choose file/ files:</tr>
-        <tr>
+        <tr *ngIf="!isUploading">
 
             <div class="upload-container">
 
@@ -89,9 +89,22 @@
                 </div>
             </div>
 
-            
 
 
+
+        </tr>
+        <tr *ngIf="isUploading">
+            <div class="file-list">
+                <h6>Uploaded Files</h6>
+                <ul>
+                <li *ngFor="let file of uploadedFiles; let i = index">
+                    <i class="fa fa-file"></i>
+                    <span>{{ file.name }}</span>
+                    <span class="file-size">{{ formatBytes(file.size) }}</span>
+                    <!-- <i class="fa fa-times remove-icon" (click)="removeFile(i)"></i> -->
+                </li>
+                </ul>
+            </div>
         </tr>
         <br>
     </table>
