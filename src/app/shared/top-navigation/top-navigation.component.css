@@ -35,6 +35,9 @@ ul.topnav li.right {float: right;}
 ul.topnav li button.sandwitch{
   display: none;
 }
+ul.topnav li.sandwitch2{
+  display: block;
+}
 
 /* Apply styles for screens less than 800px */
 @media screen and (max-width: 800px) {
@@ -53,6 +56,11 @@ ul.topnav li button.sandwitch{
     color: white;
   }
   
+}
+@media screen and (max-width: 450px) {
+  ul.topnav li.sandwitch2{
+    display: none;
+  }
 }
 /* @media screen and (max-width: 600px) {
   ul.topnav li.right, 

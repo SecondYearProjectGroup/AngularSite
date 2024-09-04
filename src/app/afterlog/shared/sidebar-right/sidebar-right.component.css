@@ -95,7 +95,7 @@
     transform-origin: top left; /* Set the transform origin to the top left */
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
     #showSidebarBtn {
         display: none;
     }

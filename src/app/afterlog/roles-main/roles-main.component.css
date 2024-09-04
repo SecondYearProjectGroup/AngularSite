@@ -62,6 +62,19 @@ background-color: #333;
     display: block;
 }
 
+@media only screen and (max-width: 900px) {
+    .middle-content.full-width {
+        margin-left: 232px;
+        width: calc(100% - 232px);
+    }
+    .middle-content.reduced-width{
+        margin-left: 232px;
+        width: calc(100% - 232px);
+    }
+    .right-sidebar{
+        display: none;
+    }
+}
 @media only screen and (max-width: 800px) {
     .middle-content.full-width {
         margin-left: 0px;
