@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { FileService } from '../../../services/file.service';
 
 @Component({
   selector: 'app-enrolled-students',
@@ -8,7 +9,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class EnrolledStudentsComponent implements OnInit{
 
-  constructor( private http:HttpClient) {}
+  constructor( private http:HttpClient, private fileService : FileService) {}
 
   tableData: Array<{ 
     id: number,
@@ -22,10 +23,12 @@ export class EnrolledStudentsComponent implements OnInit{
     toDate: string,
     degree: string,
     field: string,
+    attachementFile: string,
+    attachementFileOriginalName: string,
     classPass: string,
     publications: string,
     programOfStudy: string,
-    status: string
+    status: string,
   }> = [];
 
   searchText: string = '';
@@ -42,6 +45,8 @@ export class EnrolledStudentsComponent implements OnInit{
       fromDate: string, 
       toDate: string,
       degree: string,
+      attachementFile: string,
+      attachementFileOriginalName: string,
       field: string,
       classPass: string,
       publications: string,
@@ -120,4 +125,21 @@ export class EnrolledStudentsComponent implements OnInit{
         }
       });
   }
+
+
+//To download the uploaded file
+  download(uniqueFileName: string, originalFileName: string) {
+    this.fileService.downloadFileFromEnrolldStu(uniqueFileName).subscribe(response => {
+      const blob = new Blob([response as Blob], { type: 'application/octet-stream' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = originalFileName; // Set the original file name for the downloaded file
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }, error => {
+      console.error('File download failed', error);
+    });
+  }
+  
 }

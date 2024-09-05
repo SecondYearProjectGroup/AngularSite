@@ -19,61 +19,65 @@
                     <th></th>
                     <!-- <th></th> -->
                 </tr>
+            <tr>
+                <th>Status</th>
+                <th>Student ID</th>
+                <th>Name with Initials</th>
+                <th>Full Name</th>
+                <th>Contact Number</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>University/Institute</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Degree</th>
+                <th>Attachment File</th>
+                <th>Field</th>
+                <th>Class/Pass</th>
+                <th>Attached Files</th>
+                <th>Publications</th>
+                <th>Program of Study</th>
+            </tr>
+        </thead>
+        <tbody>
 
-                <tr>
-                    <th>Status</th>
-                    <th>Student ID</th>
-                    <th>Name with Initials</th>
-                    <th>Full Name</th>
-                    <th>Contact Number</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>University/Institute</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Degree</th>
-                    <th>Field</th>
-                    <th>Class/Pass</th>
-                    <!-- <th>Attached Files</th> -->
-                    <th>Publications</th>
-                    <th>Program of Study</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-                <tr *ngFor="let row of filteredData">
-                    
-                    <td id="status-cell-{{row.id}}" style="text-align: center;">
-                        <div *ngIf="!row.status; else statusText" class="btn-group">
-                            <button (click)="updateStatus(row.id, 'Approved')" [id]="'approve-button-' + row.id" class="approve-button">
-                                Approve
-                            </button>
-                            <button (click)="updateStatus(row.id, 'Rejected')" [id]="'reject-button-' + row.id" class="reject-button">
-                                Reject
-                            </button>
-                        </div>
-                        <ng-template #statusText>
-                            <strong [ngStyle]="{ color: row.status === 'Approved' ? 'green' : 'red' }">{{ row.status }}</strong>
-                        </ng-template>
-                    </td>
-                    
-                    <td>{{ row.id }}</td>
-                    <td>{{ row.nameWithInitials }}</td>
-                    <td>{{ row.fullName }}</td>
-                    <td>{{ row.contactNumber }}</td>
-                    <td>{{ row.email }}</td>
-                    <td>{{ row.address }}</td>
-                    <td>{{ row.university }}</td>
-                    <td>{{ row.fromDate }}</td>
-                    <td>{{ row.toDate }}</td>
-                    <td>{{ row.degree }}</td>
-                    <td>{{ row.field }}</td>
-                    <td>{{ row.classPass }}</td>
-                    <td>{{ row.publications }}</td>
-                    <td>{{ row.programOfStudy }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+            <tr *ngFor="let row of filteredData">
+
+                <td id="status-cell-{{row.id}}">
+                    <div *ngIf="!row.status; else statusText" class="btn-group">
+                        <button (click)="updateStatus(row.id, 'Approved')" [id]="'approve-button-' + row.id" class="approve-button">
+                            Approve
+                        </button>
+                        <button (click)="updateStatus(row.id, 'Rejected')" [id]="'reject-button-' + row.id" class="reject-button">
+                            Reject
+                        </button>
+                    </div>
+                    <ng-template #statusText>
+                        <strong [ngStyle]="{ color: row.status === 'Approved' ? 'green' : 'red' }">{{ row.status }}</strong>
+                    </ng-template>
+                </td>
+
+                <td>{{ row.id }}</td>
+                <td>{{ row.nameWithInitials }}</td>
+                <td>{{ row.fullName }}</td>
+                <td>{{ row.contactNumber }}</td>
+                <td>{{ row.email }}</td>
+                <td>{{ row.address }}</td>
+                <td>{{ row.university }}</td>
+                <td>{{ row.fromDate }}</td>
+                <td>{{ row.toDate }}</td>
+                <td>{{ row.degree }}</td>
+                  <td>
+                    <a href="javascript:void(0)" (click)="download(row.attachementFile, row.attachementFileOriginalName)">
+                      {{ row.attachementFileOriginalName }}
+                    </a>
+                  </td>
+                <td>{{ row.field }}</td>
+                <td>{{ row.classPass }}</td>
+                <td>{{ row.publications }}</td>
+                <td>{{ row.programOfStudy }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 <br><br><br><br><br>

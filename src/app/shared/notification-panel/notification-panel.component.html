@@ -1,7 +1,15 @@
-<div id="notificationPanel" class="notification-panel" style="display: none;">
-    <h5 style="text-align: center; color:rgb(0, 0, 54); margin:0px"><b>Notifications</b></h5>
+ <div id="notificationPanel" class="notification-panel" [style.display]="notifications.length > 0 ? 'block' : 'none'">
+    <h4 style="text-align: center; color:rgb(0, 0, 54); margin:0px">Notifications</h4>
     <hr>
-    <p>You have new notifications!</p>
-    <p>You have new notifications2!</p>
-    <p>You have new notifications3!</p>
-</div>
+    <ng-container *ngIf="notifications.length > 0; else noNotifications">
+      <p *ngFor="let notification of notifications">
+        {{ notification.title }}
+        <!-- : {{ notification.message }}  -->
+        <span>{{ notification.timestamp | date:'short' }}</span>
+      </p>
+    </ng-container>
+    <ng-template #noNotifications>
+      <p>No new notifications.</p>
+    </ng-template>
+  </div>
+
