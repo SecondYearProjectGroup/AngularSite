@@ -3,9 +3,10 @@ import { Component, ElementRef, OnInit, ViewChild, Input } from '@angular/core';
 import { SubmissionService } from '../../../../services/submission.service';
 import { TileIdService } from '../../../services/tile-id.service';
 import { ActivatedRoute } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UploadedFile } from '../../../../models/uploaded-file';
 import { FileService } from '../../../../services/file.service';
+import { Examiner, ExaminerService } from '../../../services/examiner.service';
 
 @Component({
   selector: 'app-assignment-submission',
@@ -19,7 +20,9 @@ export class AssignmentSubmissionComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private submissionService: SubmissionService,
-    private fileService : FileService) { }
+    private fileService : FileService,
+    private examinerService: ExaminerService,
+    private http: HttpClient) { }
 
   id: number = 0;
   isUploading: boolean = false;
@@ -55,6 +58,10 @@ export class AssignmentSubmissionComponent implements OnInit {
         this.submissionStatus = details.submissionStatus ? 'Submitted' : 'Not Submitted';
       }
     });
+
+
+    //Loading the examiners assigned the submission
+    this.loadAssignedExaminers();
 
     
   }
@@ -277,6 +284,36 @@ export class AssignmentSubmissionComponent implements OnInit {
     });
   }
   
+
+  //To load the assign examiners for the submission
+  isAssignExaminersByAdminOpen = false;
+  openAssignExaminersByAdmin(): void{
+    this.isAssignExaminersByAdminOpen = true;
+  }
+  closeAssignExaminersByAdmin(): void{
+    this.isAssignExaminersByAdminOpen = false;
+  }
+
+
+  //To load the examiners who are previosly assigned 
+  assignedExaminers: Examiner[] = [];
+  loadAssignedExaminers(): void {
+    this.examinerService.getAssignedExaminers(this.id).subscribe((data) => {
+      this.assignedExaminers = data;
+    });
+  }
+
+
+  //To delete the examiners
+  deleteExaminer(examinerId: number) {
+    this.http.delete(`http://localhost:8080/submissions/examiners/${this.id}/${examinerId}`)
+      .subscribe(() => {
+        // Remove the deleted examiner from the list
+        this.assignedExaminers = this.assignedExaminers.filter(examiner => examiner.id !== examinerId);
+      }, error => {
+        console.error('Error deleting examiner:', error);
+      });
+  }
   
 }
 

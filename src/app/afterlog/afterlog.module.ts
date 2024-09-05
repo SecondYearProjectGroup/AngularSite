@@ -33,6 +33,7 @@ import { CreateCalendarEventComponent } from './shared/create-calendar-event/cre
 import { FeedbackTileComponent } from './shared/tiles-and-inside/feedback-tile/feedback-tile.component';
 import { AssignmentSubmissionTileComponent } from './shared/tiles-and-inside/assignment-submission-tile/assignment-submission-tile.component';
 import { HomeForRolesComponent } from './shared/home-for-roles/home-for-roles.component';
+import { AssignExaminerByAdminComponent } from './admin/assign-examiner-by-admin/assign-examiner-by-admin.component';
 
 
 
@@ -68,7 +69,8 @@ import { HomeForRolesComponent } from './shared/home-for-roles/home-for-roles.co
     CreateCalendarEventComponent,
     FeedbackTileComponent,
     AssignmentSubmissionTileComponent,
-    HomeForRolesComponent
+    HomeForRolesComponent,
+    AssignExaminerByAdminComponent
   ],
   imports: [
     CommonModule,
