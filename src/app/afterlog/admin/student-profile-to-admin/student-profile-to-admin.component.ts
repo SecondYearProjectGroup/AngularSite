@@ -204,4 +204,20 @@ export class StudentProfileToAdminComponent implements OnInit {
   closeAssignSupervisorByAdmin(): void{
     this.isAssignSupervisorByAdminOpen = false;
   }
+
+  // Tabs
+  activeTab: string = 'tab1';
+  selectTab(tab: string) {
+    this.activeTab = tab;
+  }
+
+  // Edit Student Profile header
+  isEditStudentProfileBoxHeaderOpen = false;
+  openEditStudentProfileBoxHeader(): void {
+    this.isEditStudentProfileBoxHeaderOpen = true;
+  }
+  closeEditStudentProfileBoxHeader(): void {
+    this.isEditStudentProfileBoxHeaderOpen = false;
+  }
+
 }

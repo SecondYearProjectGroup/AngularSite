@@ -6,7 +6,17 @@
             <li class="sandwitch2"><button class="nice-button" (click)="navigateToDashboard()"><b>Dashboard</b></button></li>
             <li class="right sandwitch2"><button class="nice-button" (click)="navigateToLogin()"><b>Log out</b></button></li>
             <li class="right"><button class="dp" (click)="navigateToEditProfile()"><i class="fa fa-circle-user"></i></button></li>
-            <li class="right"><button class="notify" id="notificationButton"><i class="fa fa-bell" style="font-size: 19px; margin-top: 3px;"></i></button></li>
+            <li class="right">
+              <button class="notify position-relative" id="notificationButton">
+                <i class="fa fa-bell" style="font-size: 19px; margin-top: 3px;"></i>
+
+                <!-- Notification Badge -->
+                <span class="position-absolute top-5 start-98 translate-middle badge rounded-pill bg-danger">
+                  9+
+                  <span class="visually-hidden">unread messages</span>
+                </span>
+              </button>
+            </li>
         </ul>
 
         <!-- Sidebar when minimized -->

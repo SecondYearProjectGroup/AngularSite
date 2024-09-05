@@ -1,14 +1,28 @@
-<br>
-<div class="profile-box">
+
+
+<div class="research-box">
+
+    <br>
+    <!-- <div style="display: flex; flex-direction: row; align-items: center; flex-wrap: nowrap;"> -->
     <h4><b>{{ student.regNumber }}</b></h4>
+
     <h6>{{ student.nameWithInitials }}</h6>
     <h6>{{ student.programOfStudy }}</h6>
     <h6>Registered Date</h6>
-    <h6>{{ student.status }}</h6>
-</div>
-<br>
 
-<div class="research-box">
+    <div style="display: flex; align-items: center;">
+        <h6 style="white-space: nowrap;">{{ student.status }}</h6>
+        
+        <div *ngIf="userRole === 'ADMIN'" class="myButtonDesign" style="justify-content: flex-end;">
+            <a (click)="openEditStudentProfileBoxHeader()" class="my-button" style="font-size: 14px; margin-right: 50px; padding: 5px 20px;">Edit</a>
+        </div>
+
+        <app-edit-student-profile-box-header *ngIf="isEditStudentProfileBoxHeaderOpen" (close)="closeEditStudentProfileBoxHeader()" [regNumber]="regNumber"></app-edit-student-profile-box-header>
+    </div>
+
+    <hr style="margin: 0px; margin-bottom: 8px; color: #c0c0c0; border-width: 1px; margin-top: 5px;">
+
+    <br>
     <h5><b>Research</b></h5>
     <br>
     <h6>Effective Date of Degree:</h6>
@@ -18,7 +32,7 @@
     <div *ngIf="userRole === 'ADMIN'">
         <div *ngIf="hasSupervisor; else assignButton">
             <div class="myButtonDesign">
-                <a class="my-button">Change Supervisor</a>
+                <a (click)="openAssignSupervisorByAdmin()" class="my-button">Change Supervisor</a>
             </div>
         </div>
         <ng-template #assignButton>
@@ -28,23 +42,69 @@
         </ng-template>
     </div>
 
-    <!-- <button (click)="openAssignSupervisorByAdmin()" class="btn">Assign Supervisor</button> -->
-    <app-assign-supervisor-by-admin *ngIf="isAssignSupervisorByAdminOpen" (close)="closeAssignSupervisorByAdmin()" [regNumber]="regNumber"></app-assign-supervisor-by-admin>
-    <!-- <app-collapsible-section
-        buttonName="General"
-        [tiles]="[
-            { type: 'forum', title: 'Forum 1', routerLink: '/afterlog/feedback-page' },
-            { type: 'submission', title: 'Application Submission', routerLink: '/afterlog/assignment-submission' }
-        ]"></app-collapsible-section> -->
-    
-    
-    
-    <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
+    <br>
+    <div class="tabs">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'tab1'" (click)="selectTab('tab1')">Year 1</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'tab2'" (click)="selectTab('tab2')">Year 2</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'tab3'" (click)="selectTab('tab3')">Year 3</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'tab4'" (click)="selectTab('tab4')">Thesis</a>
+            </li>
+        </ul>
 
-    <div class="myButtonDesign">
-        <a (click)="openModal()" class="my-button">Add Section</a>
-    </div><br><br>
-    <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)" [regNumber]="regNumber"></app-create-collapsible-section>
+        <div class="tab-content">
+            <div *ngIf="activeTab === 'tab1'">
+            <!-- Content for Tab 1 -->
+                <!-- <button (click)="openAssignSupervisorByAdmin()" class="btn">Assign Supervisor</button> -->
+                <app-assign-supervisor-by-admin *ngIf="isAssignSupervisorByAdminOpen" (close)="closeAssignSupervisorByAdmin()" [regNumber]="regNumber"></app-assign-supervisor-by-admin>
+                <!-- <app-collapsible-section
+                    buttonName="General"
+                    [tiles]="[
+                        { type: 'forum', title: 'Forum 1', routerLink: '/afterlog/feedback-page' },
+                        { type: 'submission', title: 'Application Submission', routerLink: '/afterlog/assignment-submission' }
+                    ]"></app-collapsible-section> -->
+                
+                
+                
+                <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
+
+                <div class="myButtonDesign">
+                    <a (click)="openModal()" class="my-button">Add Section</a>
+                </div><br><br>
+                <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)" [regNumber]="regNumber"></app-create-collapsible-section>
+
+            </div>
+            <div *ngIf="activeTab === 'tab2'">
+            <!-- Content for Tab 2 -->
+                <!-- <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section> -->
+
+                <div class="myButtonDesign">
+                    <a (click)="openModal()" class="my-button">Add Section</a>
+                </div><br><br>
+                <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)" [regNumber]="regNumber"></app-create-collapsible-section>
+
+            <p>This is the content for Tab 2.</p>
+            </div>
+            <div *ngIf="activeTab === 'tab3'">
+            <!-- Content for Tab 3 -->
+                <!-- <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section> -->
+
+                <div class="myButtonDesign">
+                    <a (click)="openModal()" class="my-button">Add Section</a>
+                </div><br><br>
+                <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)" [regNumber]="regNumber"></app-create-collapsible-section>
+        </div>
+    </div>
+</div>
+
+    
 
     
 </div>
