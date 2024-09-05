@@ -1,7 +1,9 @@
-import { Component, HostListener, Renderer2 } from '@angular/core';
+
+import { Component, HostListener, Renderer2, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../../../services/auth-service.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { WebsocketService } from '../../../services/websocket.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -14,7 +16,9 @@ export class AdminDashboardComponent {
     private router: Router,
     private authService : AuthServiceService,
     private http:HttpClient,
-    private renderer: Renderer2) {}
+    private renderer: Renderer2,
+    private webSocketService: WebsocketService) {}
+
 
   navigateToEnrolledStudents(){
     this.router.navigate(['afterlog/enrolled-students']);
@@ -31,7 +35,7 @@ export class AdminDashboardComponent {
   navigateToExaminersToAdmin(){
     this.router.navigate(['afterlog/examiners-to-admin']);
   }
-  
+
   testingButton(){
 
   }
