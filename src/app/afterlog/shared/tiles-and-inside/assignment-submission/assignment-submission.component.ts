@@ -257,7 +257,6 @@ export class AssignmentSubmissionComponent implements OnInit {
     });
   }
 
-  //Method to download the files 
   //To download the uploaded file
   download(uniqueFileName: string, originalFileName: string) {
     this.fileService.downloadFile(uniqueFileName).subscribe(response => {

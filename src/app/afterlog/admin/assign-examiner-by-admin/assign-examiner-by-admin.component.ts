@@ -19,13 +19,13 @@ export class AssignExaminerByAdminComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.loadExaminers();
+    this.loadExaminers(this.id);
     this.loadAssignedExaminers(); // Load previously assigned examiners
   }
 
   // Load examiners from the backend
-  loadExaminers() {
-    this.http.get<Array<{ id: number, fullName: string, email: string }>>('http://localhost:8080/examiners')
+  loadExaminers(submissionId : number | null) {
+    this.http.get<Array<{ id: number, fullName: string, email: string }>>(`http://localhost:8080/examiners/${submissionId}`)
       .subscribe({
         next: (data) => {
           this.tableData = data.map(examiner => ({

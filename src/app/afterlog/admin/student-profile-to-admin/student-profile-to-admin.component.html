@@ -18,7 +18,7 @@
     <div *ngIf="userRole === 'ADMIN'">
         <div *ngIf="hasSupervisor; else assignButton">
             <div class="myButtonDesign">
-                <a class="my-button">Change Supervisor</a>
+                <a  (click)="openAssignSupervisorByAdmin()" class="my-button">Change Supervisor</a>
             </div>
         </div>
         <ng-template #assignButton>
