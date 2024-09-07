@@ -53,6 +53,7 @@ import { WebsocketService } from '../../services/websocket.service';
 interface DecodedToken {
   exp: number;
   iat: number;
+  userId: number;
   roles: { authority: string }[]; // Update based on actual structure
   [key: string]: any;
 }
@@ -86,6 +87,12 @@ export class LoginComponent {
           
           const userId = decodedToken['sub']; // Assume the user ID is in the 'sub' field
           this.userRoleService.setUserId(userId);
+          console.log("user Name: ", userId);
+
+          const userIdId= decodedToken['userId'];
+          this.userRoleService.setUserIdId(userIdId);
+          console.log("user Id: ", userIdId);
+
 
   
           console.log(roles);
