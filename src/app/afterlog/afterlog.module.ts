@@ -71,7 +71,7 @@ import { EditStudentProfileBoxHeaderComponent } from './admin/edit-student-profi
     FeedbackTileComponent,
     AssignmentSubmissionTileComponent,
     HomeForRolesComponent,
-    AssignExaminerByAdminComponent
+    AssignExaminerByAdminComponent,
     EditStudentProfileBoxHeaderComponent
   ],
   imports: [

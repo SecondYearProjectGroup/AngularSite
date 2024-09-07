@@ -17,7 +17,9 @@
             <a (click)="openEditStudentProfileBoxHeader()" class="my-button" style="font-size: 14px; margin-right: 50px; padding: 5px 20px;">Edit</a>
         </div>
 
-        <app-edit-student-profile-box-header *ngIf="isEditStudentProfileBoxHeaderOpen" (close)="closeEditStudentProfileBoxHeader()" [regNumber]="regNumber"></app-edit-student-profile-box-header>
+        <app-edit-student-profile-box-header *ngIf="isEditStudentProfileBoxHeaderOpen" (close)="closeEditStudentProfileBoxHeader()" [regNumber]="regNumber"  
+        [nameWithInitials]="student.nameWithInitials"
+        [programOfStudy]="student.programOfStudy"></app-edit-student-profile-box-header>
     </div>
 
     <hr style="margin: 0px; margin-bottom: 8px; color: #c0c0c0; border-width: 1px; margin-top: 5px;">
