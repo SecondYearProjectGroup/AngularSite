@@ -50,3 +50,20 @@
     font-size: 13px;
     text-align: right;
 }
+
+/* Hide Sidebar on Small Screens */
+@media only screen and (max-width: 800px) {
+    .middle-content-beforelog {
+        margin-left: 0px;
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 650px) {
+    .form-container {
+        width: 80%;
+        font-size: 13px;
+    }
+    h3{
+        font-size: 17px;
+    }
+}

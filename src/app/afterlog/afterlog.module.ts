@@ -34,6 +34,7 @@ import { FeedbackTileComponent } from './shared/tiles-and-inside/feedback-tile/f
 import { AssignmentSubmissionTileComponent } from './shared/tiles-and-inside/assignment-submission-tile/assignment-submission-tile.component';
 import { HomeForRolesComponent } from './shared/home-for-roles/home-for-roles.component';
 import { AssignExaminerByAdminComponent } from './admin/assign-examiner-by-admin/assign-examiner-by-admin.component';
+import { EditStudentProfileBoxHeaderComponent } from './admin/edit-student-profile-box-header/edit-student-profile-box-header.component';
 
 
 
@@ -71,6 +72,7 @@ import { AssignExaminerByAdminComponent } from './admin/assign-examiner-by-admin
     AssignmentSubmissionTileComponent,
     HomeForRolesComponent,
     AssignExaminerByAdminComponent
+    EditStudentProfileBoxHeaderComponent
   ],
   imports: [
     CommonModule,

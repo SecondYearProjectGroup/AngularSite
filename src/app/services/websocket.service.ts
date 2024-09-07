@@ -165,7 +165,7 @@ export class WebsocketService {
           resolve();
         });
       } else {
-        resolve(); // If not connected, resolve immediately
+        resolve(); // If not connected, resolve immediatel
       }
     });
   }
