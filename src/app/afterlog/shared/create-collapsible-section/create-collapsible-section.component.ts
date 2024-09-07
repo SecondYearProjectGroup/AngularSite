@@ -23,8 +23,9 @@ export class CreateCollapsibleSectionComponent {
   }
 
   addSubmissionTile() {                                                                             
-    this.tiles.push({ type: 'submission', title: '' });
+    this.tiles.push({ type: 'submission', title: 'Pre-report-Submission' });
     // this.tiles.push({ type: 'submission', title: '', routerLink: `/submission/${id}` });
+    this.tiles.push({ type: 'finalSubmission', title: 'Final-report-Submission' });
   }
 
   removeTile(index: number): void {
@@ -41,8 +42,6 @@ export class CreateCollapsibleSectionComponent {
         buttonName: this.buttonName, 
         tiles: tilesArray 
     };
-
-    console.log('Newsection before submission:', newSection);
 
     // Emit the event
     this.create.emit(newSection);

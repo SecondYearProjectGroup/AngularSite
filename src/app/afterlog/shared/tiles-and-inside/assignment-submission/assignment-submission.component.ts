@@ -277,6 +277,17 @@ export class AssignmentSubmissionComponent implements OnInit {
     });
   }
   
+  showError: boolean = false;
+
+  onChangeDeadline() {
+    if (!this.setDueDate.date || !this.setDueDate.time) {
+      this.showError = true; // Show error message if inputs are not filled
+    } else {
+      this.showError = false; // Hide error message when inputs are valid
+      // Logic to handle deadline change
+      console.log('Deadline changed:', this.setDueDate);
+    }
+  }
   
 }
 

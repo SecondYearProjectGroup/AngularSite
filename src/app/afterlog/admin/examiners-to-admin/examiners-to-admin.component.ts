@@ -22,7 +22,7 @@ export class ExaminersToAdminComponent implements OnInit {
   // ];
 
   loadExaminers() {
-    this.http.get<Array<{ id: number, fullName: string, department:string, email:string }>>('http://localhost:8080/examiners')
+    this.http.get<Array<{ id: number, fullName: string, department:string, email:string }>>('http://localhost:8080/examinersToAdmin')
       .subscribe({
         next: (data) => {
           this.tableData = data;

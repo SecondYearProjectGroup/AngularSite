@@ -22,7 +22,7 @@ export class SupervisorsToAdminComponent implements OnInit{
   
   //To load Supervisors 
   loadSupervisors() {
-  this.http.get<Array<{ id: number, fullName: string, email: string, noOfSupervisees: number }>>('http://localhost:8080/supervisors')
+  this.http.get<Array<{ id: number, fullName: string, email: string, noOfSupervisees: number }>>('http://localhost:8080/supervisorsToAdmin')
     .subscribe({
       next: (data) => {
         this.tableData = data;
