@@ -18,8 +18,8 @@ export class AssignSupervisorByAdminComponent implements OnInit{
   searchText: string = '';
   
   //To load Supervisors 
-  loadSupervisors() {
-  this.http.get<Array<{ id: number, fullName: string, email: string, noOfSupervisees: number }>>('http://localhost:8080/supervisors')
+  loadSupervisors(regNumber : string | null) {
+  this.http.get<Array<{ id: number, fullName: string, email: string, noOfSupervisees: number }>>(`http://localhost:8080/supervisors/${regNumber}`)
     .subscribe({
       next: (data) => {
         this.tableData = data;
@@ -34,7 +34,7 @@ export class AssignSupervisorByAdminComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.loadSupervisors();
+    this.loadSupervisors(this.regNumber);
   }
 
   get filteredData() {
