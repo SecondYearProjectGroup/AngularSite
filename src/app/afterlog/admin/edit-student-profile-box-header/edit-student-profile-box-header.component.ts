@@ -10,6 +10,8 @@ import { Student } from '../../../models/student';
 export class EditStudentProfileBoxHeaderComponent {
 
   @Input() regNumber: string | null = null;
+  @Input() nameWithInitials: string | null = null;
+  @Input() programOfStudy: string | null = null;
   @Output() close = new EventEmitter<void>();
 
   student: Student = {
@@ -25,25 +27,13 @@ export class EditStudentProfileBoxHeaderComponent {
 
   constructor(private http: HttpClient) {}
 
-    // Function to handle form submission
   onSubmit() {
-    // const params = new HttpParams()
-    //   .set('name', this.staffMember.name)
-    //   .set('email', this.staffMember.email)
-    //   .set('role', this.staffMember.roles.join(','));
-  
-    // this.http.post('http://localhost:8080/addStaffMembers', params).subscribe({
-    //   next: (response) => {
-    //     console.log('Staff member added successfully:', response);
-    //     alert('Staff member added successfully!');
-    //     // Reset the form fields
-    //     this.staffMember = { name: '', email: '', roles: [] };
-    //   },
-    //   error: (error) => {
-    //     console.error('Error adding staff member:', error);
-    //     alert('Error adding staff member: ' + error.message);
-    //   }
-    // });
+
+  }
+
+  ngOnInit(): void {
+    this.student.nameWithInitials = this.nameWithInitials ?? '';
+    this.student.programOfStudy = this.programOfStudy ?? '';
   }
    
 

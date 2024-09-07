@@ -12,12 +12,14 @@
 
     <div style="display: flex; align-items: center;">
         <h6 style="white-space: nowrap;">{{ student.status }}</h6>
-        
+
         <div *ngIf="userRole === 'ADMIN'" class="myButtonDesign" style="justify-content: flex-end;">
             <a (click)="openEditStudentProfileBoxHeader()" class="my-button" style="font-size: 14px; margin-right: 50px; padding: 5px 20px;">Edit</a>
         </div>
 
-        <app-edit-student-profile-box-header *ngIf="isEditStudentProfileBoxHeaderOpen" (close)="closeEditStudentProfileBoxHeader()" [regNumber]="regNumber"></app-edit-student-profile-box-header>
+        <app-edit-student-profile-box-header *ngIf="isEditStudentProfileBoxHeaderOpen" (close)="closeEditStudentProfileBoxHeader()" [regNumber]="regNumber"  
+        [nameWithInitials]="student.nameWithInitials"
+        [programOfStudy]="student.programOfStudy"></app-edit-student-profile-box-header>
     </div>
 
     <hr style="margin: 0px; margin-bottom: 8px; color: #c0c0c0; border-width: 1px; margin-top: 5px;">
@@ -32,6 +34,7 @@
     <div *ngIf="userRole === 'ADMIN'">
         <div *ngIf="hasSupervisor; else assignButton">
             <div class="myButtonDesign">
+
                 <a (click)="openAssignSupervisorByAdmin()" class="my-button">Change Supervisor</a>
             </div>
         </div>
@@ -70,9 +73,9 @@
                         { type: 'forum', title: 'Forum 1', routerLink: '/afterlog/feedback-page' },
                         { type: 'submission', title: 'Application Submission', routerLink: '/afterlog/assignment-submission' }
                     ]"></app-collapsible-section> -->
-                
-                
-                
+
+
+
                 <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
 
                 <div class="myButtonDesign">
@@ -104,9 +107,9 @@
     </div>
 </div>
 
-    
 
-    
+
+
 </div>
 <br>
 

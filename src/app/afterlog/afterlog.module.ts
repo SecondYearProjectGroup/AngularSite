@@ -33,6 +33,7 @@ import { CreateCalendarEventComponent } from './shared/create-calendar-event/cre
 import { FeedbackTileComponent } from './shared/tiles-and-inside/feedback-tile/feedback-tile.component';
 import { AssignmentSubmissionTileComponent } from './shared/tiles-and-inside/assignment-submission-tile/assignment-submission-tile.component';
 import { HomeForRolesComponent } from './shared/home-for-roles/home-for-roles.component';
+import { AssignExaminerByAdminComponent } from './admin/assign-examiner-by-admin/assign-examiner-by-admin.component';
 import { EditStudentProfileBoxHeaderComponent } from './admin/edit-student-profile-box-header/edit-student-profile-box-header.component';
 import { FinalAssignmentSubmissionComponent } from './shared/tiles-and-inside/final-assignment-submission/final-assignment-submission.component';
 import { FinalAssignmentSubmissionTileComponent } from './shared/tiles-and-inside/final-assignment-submission-tile/final-assignment-submission-tile.component';
@@ -75,6 +76,7 @@ import { FinalAssignmentSubmissionTileComponent } from './shared/tiles-and-insid
     EditStudentProfileBoxHeaderComponent,
     FinalAssignmentSubmissionComponent,
     FinalAssignmentSubmissionTileComponent
+    AssignExaminerByAdminComponent
   ],
   imports: [
     CommonModule,
