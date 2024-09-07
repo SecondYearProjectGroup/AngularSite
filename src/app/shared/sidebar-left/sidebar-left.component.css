@@ -60,6 +60,7 @@
 .second-dropdown {
     margin-left: 30px;
     padding-top: 3px;
+    cursor: pointer;
 }
 
 .sidebar-left ul .second-dropdown li a{
@@ -70,6 +71,7 @@
 .first-dropdown {
     margin-left:10px;
     font-size: 14px;
+    cursor: pointer;
 }
 
 /* Dropdown Toggle Styling */
@@ -90,4 +92,11 @@
 /* Dropdown Toggle Styling */
 .sidebar-footer {
     margin-top: auto; /* Push the footer to the bottom */
+}
+
+/* Hide Sidebar on Small Screens */
+@media only screen and (max-width: 800px) {
+    .sidebar-left {
+        display: none; /* Hide the sidebar */
+    }
 }

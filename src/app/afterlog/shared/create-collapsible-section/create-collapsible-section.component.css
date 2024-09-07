@@ -85,3 +85,29 @@
     justify-content: left;
     width: auto;
 }
+
+@media screen and (max-width: 900px) {
+    .modal-content{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 700px) {
+    .modal-content{
+        width: 80%;
+    }
+    .modal-form {
+        width: 80%;
+    }
+}
+@media screen and (max-width: 450px) {
+    .modal-content{
+        width: 95%;
+        font-size: 12px;
+    }
+    .modal-form {
+        width: 95%;
+    }
+    .myButtonDesign{
+        font-size: 12px;
+    }
+}

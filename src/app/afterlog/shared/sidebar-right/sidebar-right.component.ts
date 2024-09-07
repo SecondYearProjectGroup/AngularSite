@@ -56,9 +56,12 @@ export class SidebarRightComponent implements AfterViewInit {
     // Set initial state based on localStorage
     const savedState = localStorage.getItem('sidebarState');
 
+    // if (window.innerWidth > 800) {
+
     if (savedState === 'full') {
         this.renderer.addClass(sidebar, 'hidden');
         this.renderer.setStyle(showSidebarBtn, 'display', 'block');
+      
     } else {
         // Default to 'reduced' if no state is saved
         this.renderer.removeClass(sidebar, 'hidden');

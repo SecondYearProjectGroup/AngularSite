@@ -100,6 +100,11 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/beforelog/enroll']);
   }
 
+  isShowLeftNavBar = false;
+  toggleLeftNavBar(){
+    this.isShowLeftNavBar = !this.isShowLeftNavBar;
+  }
+
   navigateToDashboard() {
 
     if (this.userRole === 'ADMIN') {
@@ -171,5 +176,48 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
         }
       });
     }
+  }
+
+  // Sidebar when minimized
+  isDropdownActive: boolean = false;
+  dropdown1: boolean = false;
+  dropdown2: boolean = false;
+  dropdown3: boolean = false;
+  dropdown4: boolean = false;
+
+  toggleDropdown(): void {
+    this.isDropdownActive = !this.isDropdownActive;
+  }
+
+  toggleDropdown1(): void {
+    this.dropdown1 = !this.dropdown1;
+  }
+  toggleDropdown2(): void {
+    this.dropdown2 = !this.dropdown2;
+  }
+  toggleDropdown3(): void {
+    this.dropdown3 = !this.dropdown3;
+  }
+  toggleDropdown4(): void { 
+    this.dropdown4 = !this.dropdown4;
+  }
+
+  isDashboardActive(): boolean {
+    const currentUrl = this.router.url;
+
+    // Check if the current URL matches any of the dashboard URLs
+    return currentUrl === '/afterlog/admin-dashboard' ||
+           currentUrl === '/afterlog/student-dashboard' ||
+           currentUrl === '/afterlog/supervisor-dashboard' ||
+           currentUrl === '/afterlog/examiner-dashboard';
+  }
+
+
+  isEditProfileActive(): boolean {
+    const currentUrl = this.router.url;
+
+    // Check if the current URL matches any of the dashboard URLs
+    return currentUrl === '/afterlog/edit-profile-for-staff' ||
+           currentUrl === '/afterlog/edit-profile'
   }
 }
