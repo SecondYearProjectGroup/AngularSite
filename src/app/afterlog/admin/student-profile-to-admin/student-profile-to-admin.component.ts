@@ -15,6 +15,7 @@ import { UserRoleService } from '../../services/user-role.service';
 export class StudentProfileToAdminComponent implements OnInit {
 
   student: Student = {
+    registrationNumber: '',
     regNumber: '',
     nameWithInitials: '',
     programOfStudy: '',

@@ -13,6 +13,7 @@
 // Assuming this is the structure of your Student model
 export interface Student {
     regNumber: string;
+    registrationNumber: string;
     nameWithInitials: string;
     programOfStudy: string;
     status: string;
@@ -20,5 +21,6 @@ export interface Student {
     email: string;
     address: string;
     university: string;
+    registeredDate?: Date;
   }
   

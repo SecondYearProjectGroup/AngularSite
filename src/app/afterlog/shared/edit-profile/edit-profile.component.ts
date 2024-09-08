@@ -26,6 +26,7 @@ export class EditProfileComponent implements OnInit{
 
   student: Student = {
     regNumber: '',
+    registrationNumber: '',
     nameWithInitials: '',
     contactNumber: '',
     email: '',
