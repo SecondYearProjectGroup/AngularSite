@@ -11,7 +11,7 @@
                 <table class="form-tables" style="width: 100%;">
                     <tr>
                         <td>Reg. Number:</td>
-                        <td><input type="text" name="title" [(ngModel)]="student.regNumber" placeholder="Reg Number..."></td>
+                        <td><input type="text" name="title" [(ngModel)]="student.registrationNumber" placeholder="Reg Number..."></td>
                     </tr>
                     <tr>
                         <td>Name with Initials:</td>
@@ -24,7 +24,7 @@
                     
                     <tr>
                         <td>Registered Date:</td>
-                        <td><input type="date" name="registeredDate" placeholder="Registered Date..."></td>
+                        <td><input type="date" name="registeredDate" [(ngModel)]="student.registeredDate" placeholder="Registered Date..."></td>
                     </tr>
                     <tr>
                         <td>Status:</td>
