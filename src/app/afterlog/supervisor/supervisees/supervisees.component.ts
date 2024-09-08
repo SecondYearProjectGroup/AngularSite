@@ -74,9 +74,9 @@ export class SuperviseesComponent {
     );
   }
 
-  navigateToStudentProfileToSupervisor(){
-    this.router.navigate(['afterlog/student-profile-to-supervisor']);
-  }
+  // navigateToStudentProfileToSupervisor(){
+  //   this.router.navigate(['afterlog/student-profile-to-supervisor']);
+  // }
 }
 
 
