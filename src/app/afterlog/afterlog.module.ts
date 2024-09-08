@@ -37,6 +37,10 @@ import { AssignExaminerByAdminComponent } from './admin/assign-examiner-by-admin
 import { EditStudentProfileBoxHeaderComponent } from './admin/edit-student-profile-box-header/edit-student-profile-box-header.component';
 import { FinalAssignmentSubmissionComponent } from './shared/tiles-and-inside/final-assignment-submission/final-assignment-submission.component';
 import { FinalAssignmentSubmissionTileComponent } from './shared/tiles-and-inside/final-assignment-submission-tile/final-assignment-submission-tile.component';
+import { AssignedSupervisorsToAdminComponent } from './admin/assigned-supervisors-to-admin/assigned-supervisors-to-admin.component';
+import { AssignedExaminersToAdminComponent } from './admin/assigned-examiners-to-admin/assigned-examiners-to-admin.component';
+import { ReportSubmissionsToAdminComponent } from './admin/report-submissions-to-admin/report-submissions-to-admin.component';
+import { VivasToAdminComponent } from './admin/vivas-to-admin/vivas-to-admin.component';
 
 
 
@@ -75,8 +79,12 @@ import { FinalAssignmentSubmissionTileComponent } from './shared/tiles-and-insid
     HomeForRolesComponent,
     EditStudentProfileBoxHeaderComponent,
     FinalAssignmentSubmissionComponent,
-    FinalAssignmentSubmissionTileComponent
-    AssignExaminerByAdminComponent
+    FinalAssignmentSubmissionTileComponent,
+    AssignExaminerByAdminComponent,
+    AssignedSupervisorsToAdminComponent,
+    AssignedExaminersToAdminComponent,
+    ReportSubmissionsToAdminComponent,
+    VivasToAdminComponent
   ],
   imports: [
     CommonModule,

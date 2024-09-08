@@ -1,12 +1,13 @@
 /* Footer */
 footer {
     width: calc(100% - 232px);
-    text-align: center;
+    text-align: left;
     background-color: rgb(243, 243, 243);
     color: gray;
     position: absolute;
     left: 232px;
     z-index: 0;
+    font-size: 14px;
 }
 
 /* Hide Sidebar on Small Screens */
