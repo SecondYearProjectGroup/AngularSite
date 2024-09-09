@@ -10,39 +10,35 @@ export class AssignedSupervisorsToAdminComponent {
 
   constructor(private http: HttpClient){}
 
-  // tableData: Array<{ id: number, fullName: string, email:string, noOfSupervisees:number }> = [];
+  tableData: Array<{ 
+    regNumber: string,
+    registrationNumber: string,
+    nameWithInitials: string, 
+    supervisorFullName: string
+  }> = [];
 
   searchText: string = '';
 
   ngOnInit(): void {
+    this.getAssignedSupervisors();
     scrollTo(0,0);
-    // this.loadSupervisors();
   }
-    
-  //To load Supervisors 
-  // loadSupervisors() {
-  // this.http.get<Array<{ id: number, fullName: string, email: string, noOfSupervisees: number }>>('http://localhost:8080/supervisorsToAdmin')
-  //   .subscribe({
-  //     next: (data) => {
-  //       this.tableData = data;
-  //     },
-  //     error: (error) => {
-  //       console.error('Error loading supervisor data', error);
-  //     },
-  //     complete: () => {
-  //       console.log('Supervisor data loading complete');
-  //     }
-  //   });
-  // }
 
+  getAssignedSupervisors(): void {
+    this.http.get<Array<{ regNumber: string, registrationNumber: string, nameWithInitials: string, supervisorFullName: string }>>('http://localhost:8080/assignedSupervisors')
+      .subscribe(data => {
+        this.tableData = data;
+      }, error => {
+        console.error('Error fetching assigned supervisors', error);
+      });
+  }
+
+  get filteredData() {
+    return this.tableData.filter(row => 
+      (row.regNumber ? row.regNumber.toString().toLowerCase() : '').includes(this.searchText.toLowerCase()) ||
+      (row.registrationNumber ? row.registrationNumber.toLowerCase() : '').includes(this.searchText.toLowerCase()) ||
+      (row.nameWithInitials ? row.nameWithInitials.toLowerCase() : '').includes(this.searchText.toLowerCase())
+    );
+  }
   
-
-  // get filteredData() {
-  //   return this.tableData.filter(row =>
-  //     row.id.toString().toLowerCase().includes(this.searchText.toLowerCase()) ||
-  //     row.fullName.toLowerCase().includes(this.searchText.toLowerCase()) ||
-  //     row.email.toLowerCase().includes(this.searchText.toLowerCase()) ||
-  //     row.noOfSupervisees.toString().toLowerCase().includes(this.searchText.toLowerCase()) 
-  //   );
-  // }
 }
