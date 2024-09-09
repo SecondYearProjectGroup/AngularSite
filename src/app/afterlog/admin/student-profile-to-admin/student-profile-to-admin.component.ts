@@ -45,6 +45,7 @@ export class StudentProfileToAdminComponent implements OnInit {
   regNumber: string | null = null;
   supervisorName: string = '';
   hasSupervisor: boolean = false;
+  activeTab: string = 'tab1';
 
   sections: { buttonName: string, tiles: { type: string, title: string }[] }[] = [];
   loadingSections: { buttonName: string, loadingTiles: { id: number, type: string, title: string }[] }[] = [];
@@ -69,6 +70,14 @@ export class StudentProfileToAdminComponent implements OnInit {
 
     this.regNumber = this.route.snapshot.paramMap.get('regNumber');
     console.log('Retrieved regNumber from route params:', this.regNumber);
+
+    // Retrieve activeTab from localStorage if it exists
+    const storedTab = localStorage.getItem('activeTab');
+    if (storedTab) {
+      this.activeTab = storedTab;
+    } else {
+      this.activeTab = 'tab1'; // Set default tab
+    }
     
     if (this.regNumber) {
       console.log('Loading student profile for regNumber:', this.regNumber);
@@ -206,11 +215,19 @@ export class StudentProfileToAdminComponent implements OnInit {
   closeAssignSupervisorByAdmin(): void{
     this.isAssignSupervisorByAdminOpen = false;
   }
+  // Method to handle the event when a supervisor is assigned
+  onSupervisorAssigned(newSupervisorName: string): void {
+    this.supervisorName = newSupervisorName;
+    this.hasSupervisor = true; // Set hasSupervisor to true if a supervisor is assigned
+  }
 
   // Tabs
-  activeTab: string = 'tab1';
   selectTab(tab: string) {
     this.activeTab = tab;
+
+    // Store the activeTab in localStorage
+    localStorage.setItem('activeTab', this.activeTab);
+
     if (this.regNumber) {
       this.loadSections(this.regNumber, this.activeTab);
     } else {

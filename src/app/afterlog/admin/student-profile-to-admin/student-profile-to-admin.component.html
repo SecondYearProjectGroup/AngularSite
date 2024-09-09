@@ -44,6 +44,15 @@
                 <a (click)="openAssignSupervisorByAdmin()" class="my-button">Assign Supervisor</a>
             </div>
         </ng-template>
+
+        <!-- <button (click)="openAssignSupervisorByAdmin()" class="btn">Assign Supervisor</button> -->
+        <app-assign-supervisor-by-admin *ngIf="isAssignSupervisorByAdminOpen" (close)="closeAssignSupervisorByAdmin()" (supervisorAssigned)="onSupervisorAssigned($event)" [regNumber]="regNumber" ></app-assign-supervisor-by-admin>
+        <!-- <app-collapsible-section
+            buttonName="General"
+            [tiles]="[
+                { type: 'forum', title: 'Forum 1', routerLink: '/afterlog/feedback-page' },
+                { type: 'submission', title: 'Application Submission', routerLink: '/afterlog/assignment-submission' }
+            ]"></app-collapsible-section> -->
     </div>
 
     <br>
@@ -69,18 +78,7 @@
         <div class="tab-content">
 
             <div *ngIf="activeTab === 'tab1'">
-            <!-- Content for Tab 1 -->
-                <!-- <button (click)="openAssignSupervisorByAdmin()" class="btn">Assign Supervisor</button> -->
-                <app-assign-supervisor-by-admin *ngIf="isAssignSupervisorByAdminOpen" (close)="closeAssignSupervisorByAdmin()" [regNumber]="regNumber" ></app-assign-supervisor-by-admin>
-                <!-- <app-collapsible-section
-                    buttonName="General"
-                    [tiles]="[
-                        { type: 'forum', title: 'Forum 1', routerLink: '/afterlog/feedback-page' },
-                        { type: 'submission', title: 'Application Submission', routerLink: '/afterlog/assignment-submission' }
-                    ]"></app-collapsible-section> -->
-
-
-
+                <!-- Content for Tab 1 -->
                 <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles" ></app-collapsible-section>
 
                 <div class="myButtonDesign">
@@ -89,6 +87,7 @@
                 <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)" [regNumber]="regNumber" [activeTab]="activeTab"></app-create-collapsible-section>
 
             </div>
+
             <div *ngIf="activeTab === 'tab2'">
             <!-- Content for Tab 2 -->
                 <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
@@ -100,19 +99,18 @@
 
             </div>
 
-            <div *ngIf="activeTab === 'tab2'">
-                <!-- Content for Tab 2 -->
-                    <!-- <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section> -->
+            <div *ngIf="activeTab === 'tab3'">
+                <!-- Content for Tab 3 -->
+                <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
 
-                    <div class="myButtonDesign">
-                        <a (click)="openModal()" class="my-button">Add Section</a>
-                    </div><br><br>
-                    <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)" [regNumber]="regNumber"></app-create-collapsible-section>
+                <div class="myButtonDesign">
+                    <a (click)="openModal()" class="my-button">Add Section</a>
+                </div><br><br>
+                <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)" [regNumber]="regNumber" [activeTab]="activeTab"></app-create-collapsible-section>
 
-                <p>This is the content for Tab 2.</p>
             </div>
 
-            <div *ngIf="activeTab === 'tab3'">
+            <div *ngIf="activeTab === 'tab4'">
             <!-- Content for Tab 3 -->
                 <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
 
@@ -124,25 +122,16 @@
 
             </div>
 
-            <div *ngIf="activeTab === 'tab4'">
-                <!-- Content for Tab 3 -->
-                     <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
-
-                    <div class="myButtonDesign">
-                        <a (click)="openModal()" class="my-button">Add Section</a>
-                    </div><br><br>
-                    <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)" [regNumber]="regNumber"></app-create-collapsible-section>
-            </div>
-
             <div *ngIf="activeTab === 'tab5'">
                 <!-- Content for Tab 3 -->
-                     <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
+                <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
 
-                    <div class="myButtonDesign">
-                        <a (click)="openModal()" class="my-button">Add Section</a>
-                    </div><br><br>
-                    <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)" [regNumber]="regNumber"></app-create-collapsible-section>
+                <div class="myButtonDesign">
+                    <a (click)="openModal()" class="my-button">Add Section</a>
+                </div><br><br>
+                <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)" [regNumber]="regNumber" [activeTab]="activeTab"></app-create-collapsible-section>
             </div>
+
         </div>
     </div>
 </div>
