@@ -10,36 +10,50 @@ export class ReportSubmissionsToAdminComponent {
 
   constructor(private http: HttpClient){}
 
-  // tableData: Array<{ id: number, fullName: string, department:string, email:string }> = [];
+  // Define the data structure to align with backend response
+tableData: Array<{ 
+  regNumber: string,
+  registrationNumber: string,
+  nameWithInitials: string,
+  title: string,
+  deadline: string, // Assuming deadline is returned as an ISO string
+  submissionStatus: boolean, // Assuming submissionStatus is a boolean
+  examiners: string[] // List of examiners' full names
+}> = [];
 
   searchText: string = '';
 
   ngOnInit(): void {
     scrollTo(0,0);
-    // this.loadExaminers();
+    this.getAssignedExaminers();
   }
   
-  // loadExaminers() {
-  //   this.http.get<Array<{ id: number, fullName: string, department:string, email:string }>>('http://localhost:8080/examinersToAdmin')
-  //     .subscribe({
-  //       next: (data) => {
-  //         this.tableData = data;
-  //       },
-  //       error: (error) => {
-  //         console.error('Error loading supervisor data', error);
-  //       },
-  //       complete: () => {
-  //         console.log('Examiner data loading complete');
-  //       }
-  //     });
-  //   }
+  // Fetch assigned examiners from the backend
+  getAssignedExaminers(): void {
+    this.http.get<Array<{ 
+      regNumber: string,
+      registrationNumber: string,
+      nameWithInitials: string,
+      title: string,
+      deadline: string, // Assuming deadline is an ISO string
+      submissionStatus: boolean, // Assuming submissionStatus is a boolean
+      examiners: string[]
+    }>>('http://localhost:8080/report-submissions-examiners')
+      .subscribe(data => {
+        this.tableData = data;
+        console.log(this.tableData);
+      }, error => {
+        console.error('Error fetching assigned examiners', error);
+      });
+  }
 
-  // get filteredData() {
-  //   return this.tableData.filter(row =>
-  //     row.id.toString().toLowerCase().includes(this.searchText.toLowerCase()) ||
-  //     row.fullName.toLowerCase().includes(this.searchText.toLowerCase()) ||
-  //     row.department.toLowerCase().includes(this.searchText.toLowerCase()) ||
-  //     row.email.toLowerCase().includes(this.searchText.toLowerCase()) 
-  //   );
-  // }
+
+  // Filter data based on the search input
+  get filteredData() {
+    return this.tableData.filter(row =>
+      row.regNumber.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      row.title.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      row.examiners.some(examiner => examiner.toLowerCase().includes(this.searchText.toLowerCase()))
+    );
+  }
 }
