@@ -28,6 +28,7 @@
       <app-feedback-tile *ngIf="tile.type === 'forum'" [title]="tile.title" [id]="tile.id"></app-feedback-tile>
       <app-assignment-submission-tile *ngIf="tile.type === 'submission'" [title]="tile.title" [id]="tile.id"></app-assignment-submission-tile>
       <app-final-assignment-submission-tile *ngIf="tile.type === 'finalSubmission'" [title]="tile.title" [id]="tile.id"></app-final-assignment-submission-tile>
+      <app-viva-tile *ngIf="tile.type === 'viva'" [title]="tile.title" [id]="tile.id"></app-viva-tile>
     </div>
   </div>
 

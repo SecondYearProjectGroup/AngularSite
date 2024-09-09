@@ -14,10 +14,10 @@
         <table style="width: 100%;">
           <tr>
             <td>
-              <label for="buttonName">Section Name:</label>
+              <label for="buttonName" title="This field is required">Section Name:<span class="req" title="This field is required">*</span></label>
             </td>
             <td>
-              <input type="text" id="buttonName" [(ngModel)]="buttonName" name="buttonName" required>
+              <input type="text" id="buttonName" [(ngModel)]="buttonName" name="buttonName" placeholder="Section Title..." title="This field is required" required>
             </td>
           </tr>
           
@@ -29,7 +29,7 @@
                 <label for="title">Title {{i+1}}:</label>
 
                 <div style="display: flex; align-items: center;">
-                  <input type="text" id="title{{i}}" [(ngModel)]="tile.title" name="title{{i}}" required style="width: 70%;">
+                  <input type="text" id="title{{i}}" [(ngModel)]="tile.title" name="title{{i}}" placeholder="Tile Title..." required style="width: 70%;">
                 
                   <!-- <button type="button" (click)="removeTile(i)">Remove Tile</button> -->
                   <div class="myButtonDesign">
@@ -47,7 +47,11 @@
             <td>
               <div style="display: flex;">
                 <div class="myButtonDesign">
-                  <a (click)="addForumTile()" class="my-button">Add Forum</a>
+                  <a (click)="addVivaTile()" class="my-button" style="margin-left: 20px;">Add Viva</a>
+                </div>
+
+                <div class="myButtonDesign">
+                  <a (click)="addForumTile()" class="my-button" style="margin-left: 20px;">Add Forum</a>
                 </div>
                 
                 <div class="myButtonDesign">
@@ -60,7 +64,8 @@
         </table>
 
         <hr>
-        <input type="submit" value="Create" style="width: 40%; float: right;">
+        <input type="submit" value="Create" style="width: 40%; float: right;" [disabled]="!buttonName" [title]="!buttonName ? 'Button is disabled because fields are incomplete.' : ''">
+        
         
       </form>
     </div>

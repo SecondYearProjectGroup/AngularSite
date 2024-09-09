@@ -19,6 +19,8 @@
             <td>Due Date:</td>
             <td>{{ dueDate }}</td>
           </tr>
+
+          <!-- For Admin in Final Report/ For Admin/ Supervisor in Pre Report -->
           <tr >
             <td>Set Due Date:</td>
             <td>
@@ -30,11 +32,13 @@
               <div *ngIf="showError" style="color: red;">Fill all</div>
             </td>
           </tr>
+          <!-- End For Admin in Final Report/ For Admin/ Supervisor in Pre Report -->
         </table>
 
     </form>
     <br>
 
+    <!-- For Students -->
     <!-- File Upload Form -->
     <form enctype="multipart/form-data">
       <table style="width: 100%;">
@@ -108,10 +112,33 @@
           </ul>
         </div>
       </tr>
-      <br>
-    </table>
-  
+      <!-- End For Students -->
 
+      <br>
+      
+      <!-- For Admin, Supervisor, Examiners -->
+      <tr>
+        <div class="file-list">
+          <h6>Uploaded Files</h6>
+          <ul>
+            <li *ngFor="let file of uploadedFiles; let i = index">
+              <i class="fa fa-file"></i>
+              <a (click)="viewFile(file.fileName)" style="cursor: pointer;">{{ file.originalFileName }}</a>
+              <!-- <a href="javascript:void(0)" (click)="download(file.fileName,file.originalFileName)">{{ file.originalFileName }}</a> -->
+              <!-- <span>{{ file.originalFileName }}</span> -->
+              <span class="file-size">{{ formatBytes(file.fileSize) }}</span>
+            </li>
+          </ul>
+        </div>
+      </tr>
+      <!-- End For Admin, Supervisor, Examiners -->
+    </table>
+
+
+    <hr><br>
+    <input type="submit" value="Edit/ Submit"><br><br>
+  
+    <hr>
     <table style="width: 100%;">
         <br>
         <tr>
@@ -134,9 +161,16 @@
 
 
 
-    <br><br><hr><br><br>
-    <input type="submit" value="Edit/ Submit"><br><br>
-    <button (click)="openAssignExaminersByAdmin()" class="btn">Assign Examiners</button>
+    <br>
+    <hr>
+    <br>
+
+    <!-- For Admin -->
+    <h4>Manage Examiners</h4>
+    <div class="myButtonDesign">
+      <a class="my-button" (click)="openAssignExaminersByAdmin()">Assign/ Change Examiners</a>
+    </div>
+    
     <div *ngIf="assignedExaminers.length > 0">
       <h3>Assigned Examiners:</h3>
       <ul>
@@ -147,4 +181,64 @@
       </ul>
     </div>
     <app-assign-examiner-by-admin *ngIf="isAssignExaminersByAdminOpen" (close)="closeAssignExaminersByAdmin()" [id]="id"></app-assign-examiner-by-admin>
+
+    <div class="myButtonDesign">
+      <a class="my-button" (click)="openAssignExaminersByAdmin()">Set Deadlines to Examiners</a>
+    </div>
+    <!-- End For Admin -->
+
+    <br>
+    <!-- For Supervisor -->
+    <h4>Your Feedback</h4>
+    <!-- For Student -->
+    <h4>Supervisor Feedback</h4>
+
+    <div class="feedback-form">
+        <table style="width: 100%;">
+            <tr>
+                <td>Feedback:</td>
+                <td><textarea name="feedback" rows="4" style="width: 100%;"></textarea></td>
+            </tr>
+            <br>
+            <tr>
+                <td>Feedback file:</td>
+                <td><input type="file"></td>
+            </tr>
+            
+        </table>
+        <br><br>
+        <input type="submit" value="Upload Feedback"><br><br>
+
+        <!-- After submit show the feedback in a box -->
+    </div>
+    <br>
+    <hr>
+    <br>
+
+    <!-- For Examiners -->
+    <h4>Your Feedback</h4>
+    <!-- For Student, Supervisors -->
+    <h4>Examiner Feedback</h4>
+
+    <div class="feedback-form">
+      <table style="width: 100%;">
+          <tr>
+              <td>Feedback:</td>
+              <td><textarea name="feedback" rows="4" style="width: 100%;"></textarea></td>
+          </tr>
+          <br>
+          <tr>
+              <td>Feedback file:</td>
+              <td><input type="file"></td>
+          </tr>
+          
+      </table>
+      <br><br>
+      <input type="submit" value="Upload Feedback"><br><br>
+
+      <!-- After submit show the feedback in a box -->
+  </div>
+  <br>
+
+
 </div>
