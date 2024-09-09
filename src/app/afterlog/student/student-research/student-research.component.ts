@@ -42,7 +42,7 @@ export class StudentResearchComponent implements OnInit{
   }
 
   loadSections(regNumber: string): void {
-    this.collapsibleSectionService.getSections(regNumber).subscribe({
+    this.collapsibleSectionService.getSections(regNumber, this.activeTab).subscribe({
       next: (data) => {
         this.sections = data.map(section => ({
           buttonName: section.buttonName, // Adjust these field names according to your backend response
@@ -58,4 +58,10 @@ export class StudentResearchComponent implements OnInit{
       }
     });
   }
+
+    // Tabs
+    activeTab: string = 'tab1';
+    selectTab(tab: string) {
+      this.activeTab = tab;
+    }
 }

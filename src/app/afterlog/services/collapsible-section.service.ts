@@ -11,12 +11,15 @@ export class CollapsibleSectionService {
 
   constructor(private http: HttpClient) {}
 
-  saveSection(section: { regNumber: string | null; buttonName: string; tiles: { type: string; title: string }[] }): Observable<any> {
+  saveSection(section: { regNumber: string | null; 
+    buttonName: string; 
+    activeTab: string | null;
+    tiles: { type: string; title: string }[] }): Observable<any> {
     return this.http.post(this.apiUrl, section);
   }
 
-  getSections(regNumber: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/${regNumber}`);
+  getSections(regNumber: string , activeTab: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/${regNumber}/${activeTab}`);
   }
 
   deleteSection(id: number): Observable<void> {
