@@ -18,7 +18,7 @@
             <a (click)="openEditStudentProfileBoxHeader()" class="my-button" style="font-size: 14px; margin-right: 50px; padding: 5px 20px;">Edit</a>
         </div>
 
-        <app-edit-student-profile-box-header *ngIf="isEditStudentProfileBoxHeaderOpen" (close)="closeEditStudentProfileBoxHeader()" [regNumber]="regNumber"  
+        <app-edit-student-profile-box-header *ngIf="isEditStudentProfileBoxHeaderOpen" (close)="closeEditStudentProfileBoxHeader()" [regNumber]="regNumber"
         [nameWithInitials]="student.nameWithInitials"
         [programOfStudy]="student.programOfStudy"></app-edit-student-profile-box-header>
     </div>
@@ -71,7 +71,7 @@
             <div *ngIf="activeTab === 'tab1'">
             <!-- Content for Tab 1 -->
                 <!-- <button (click)="openAssignSupervisorByAdmin()" class="btn">Assign Supervisor</button> -->
-                <app-assign-supervisor-by-admin *ngIf="isAssignSupervisorByAdminOpen" (close)="closeAssignSupervisorByAdmin()" [regNumber]="regNumber"></app-assign-supervisor-by-admin>
+                <app-assign-supervisor-by-admin *ngIf="isAssignSupervisorByAdminOpen" (close)="closeAssignSupervisorByAdmin()" [regNumber]="regNumber" ></app-assign-supervisor-by-admin>
                 <!-- <app-collapsible-section
                     buttonName="General"
                     [tiles]="[
@@ -81,12 +81,22 @@
 
 
 
+                <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles" ></app-collapsible-section>
+
+                <div class="myButtonDesign">
+                    <a (click)="openModal()" class="my-button">Add Section</a>
+                </div><br><br>
+                <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)" [regNumber]="regNumber" [activeTab]="activeTab"></app-create-collapsible-section>
+
+            </div>
+            <div *ngIf="activeTab === 'tab2'">
+            <!-- Content for Tab 2 -->
                 <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
 
                 <div class="myButtonDesign">
                     <a (click)="openModal()" class="my-button">Add Section</a>
                 </div><br><br>
-                <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)" [regNumber]="regNumber"></app-create-collapsible-section>
+                <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)" [regNumber]="regNumber" [activeTab]="activeTab"></app-create-collapsible-section>
 
             </div>
 
@@ -104,18 +114,20 @@
 
             <div *ngIf="activeTab === 'tab3'">
             <!-- Content for Tab 3 -->
-                <!-- <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section> -->
+                <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
 
                 <div class="myButtonDesign">
                     <a (click)="openModal()" class="my-button">Add Section</a>
                 </div><br><br>
-                <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)" [regNumber]="regNumber"></app-create-collapsible-section>
+
+                <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" (create)="addNewSection($event)" [regNumber]="regNumber" [activeTab]="activeTab"></app-create-collapsible-section>
+
             </div>
 
             <div *ngIf="activeTab === 'tab4'">
                 <!-- Content for Tab 3 -->
-                    <!-- <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section> -->
-    
+                     <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
+
                     <div class="myButtonDesign">
                         <a (click)="openModal()" class="my-button">Add Section</a>
                     </div><br><br>
@@ -124,8 +136,8 @@
 
             <div *ngIf="activeTab === 'tab5'">
                 <!-- Content for Tab 3 -->
-                    <!-- <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section> -->
-    
+                     <app-collapsible-section *ngFor="let section of loadingSections" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
+
                     <div class="myButtonDesign">
                         <a (click)="openModal()" class="my-button">Add Section</a>
                     </div><br><br>

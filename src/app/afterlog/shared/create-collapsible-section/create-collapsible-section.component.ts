@@ -9,6 +9,7 @@ import { CollapsibleSectionService } from '../../services/collapsible-section.se
 export class CreateCollapsibleSectionComponent {
 
   @Input() regNumber: string | null = null;
+  @Input() activeTab: string | null = null;
   @Output() close = new EventEmitter<void>();
   @Output() create = new EventEmitter<{ buttonName: string, tiles: { type: string, title: string }[] }>();
 
@@ -39,6 +40,7 @@ export class CreateCollapsibleSectionComponent {
 
     const newSection = { 
         regNumber: this.regNumber, 
+        activeTab: this.activeTab,
         buttonName: this.buttonName, 
         tiles: tilesArray 
     };

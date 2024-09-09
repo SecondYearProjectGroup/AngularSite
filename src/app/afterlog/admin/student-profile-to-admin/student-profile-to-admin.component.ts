@@ -73,7 +73,7 @@ export class StudentProfileToAdminComponent implements OnInit {
     if (this.regNumber) {
       console.log('Loading student profile for regNumber:', this.regNumber);
       this.loadStudentProfile(this.regNumber);
-      this.loadSections(this.regNumber);
+      this.loadSections(this.regNumber, this.activeTab);
       this.loadSupervisorName(this.regNumber);
     } else {
       console.warn('No regNumber found in route parameters.');
@@ -120,8 +120,9 @@ export class StudentProfileToAdminComponent implements OnInit {
 
 
   // Load Sections data of a student from the backend
-  loadSections(regNumber: string): void {
-    this.collapsibleSectionService.getSections(regNumber).subscribe({
+  loadSections(regNumber: string , activeTab: string): void {
+    console.log('Active Tab' + activeTab);
+    this.collapsibleSectionService.getSections(regNumber, activeTab).subscribe({
       next: (data) => {
         this.loadingSections = data.map(section => ({
           buttonName: section.buttonName, // Adjust these field names according to your backend response
@@ -210,6 +211,11 @@ export class StudentProfileToAdminComponent implements OnInit {
   activeTab: string = 'tab1';
   selectTab(tab: string) {
     this.activeTab = tab;
+    if (this.regNumber) {
+      this.loadSections(this.regNumber, this.activeTab);
+    } else {
+      console.error('Registration number is null.');
+    }
   }
 
   // Edit Student Profile header
