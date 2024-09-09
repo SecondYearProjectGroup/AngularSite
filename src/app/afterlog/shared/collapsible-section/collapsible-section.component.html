@@ -27,6 +27,7 @@
       <hr style="margin: 0px; margin-bottom: 8px; color: #c0c0c0; border-width: 1px;">
       <app-feedback-tile *ngIf="tile.type === 'forum'" [title]="tile.title" [id]="tile.id"></app-feedback-tile>
       <app-assignment-submission-tile *ngIf="tile.type === 'submission'" [title]="tile.title" [id]="tile.id"></app-assignment-submission-tile>
+      <app-final-assignment-submission-tile *ngIf="tile.type === 'finalSubmission'" [title]="tile.title" [id]="tile.id"></app-final-assignment-submission-tile>
     </div>
   </div>
 

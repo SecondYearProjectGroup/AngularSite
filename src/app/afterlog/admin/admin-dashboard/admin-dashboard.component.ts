@@ -23,22 +23,29 @@ export class AdminDashboardComponent {
   navigateToEnrolledStudents(){
     this.router.navigate(['afterlog/enrolled-students']);
   }
-
   navigateToStudentsToAdmin(){
     this.router.navigate(['afterlog/students-to-admin']);
   }
-
   navigateToSupervisorsToAdmin(){
     this.router.navigate(['afterlog/supervisors-to-admin']);
   }
-
   navigateToExaminersToAdmin(){
     this.router.navigate(['afterlog/examiners-to-admin']);
   }
-
-  testingButton(){
-
+  navigateToAssignedSupervisorsToAdmin(){
+    this.router.navigate(['afterlog/assigned-supervisors-to-admin']);
   }
+  navigateToAssignedExaminersToAdmin(){
+    this.router.navigate(['afterlog/assigned-examiners-to-admin']);
+  }
+  navigateToReportSubmissionsToAdmin(){
+    this.router.navigate(['afterlog/report-submissions-to-admin']);
+  }
+  navigateToVivasToAdmin(){
+    this.router.navigate(['afterlog/vivas-to-admin']);
+  }
+
+  
 
   // Add Staff Members By Admin
   isAddStaffMembersByAdminOpen = false;
@@ -59,7 +66,7 @@ export class AdminDashboardComponent {
   }
 
 
-  // Cards
+  // Cards according to the screen size
   @HostListener('window:middleContentResize', ['$event'])
   onResizeEvent(event: CustomEvent): void {
     this.adjustCardSize(event.detail);
