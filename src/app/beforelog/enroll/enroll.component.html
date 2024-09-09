@@ -92,7 +92,7 @@
                     <h3>Educational/Professional Qualifications</h3>
                     
                     <div id="form-sections-container">
-                        <div class="form-section" id="original-form-section">
+                        <div class="form-section" *ngFor="let section of sections; let i = index">
                             <table style="width: 100%;">
                                 <tr>
                                     <td>University / Institute</td>
@@ -174,17 +174,25 @@
 
                             </table>
                             <br>
-                            Attach Files: <input type="file" (change)="onFileChange($event)" required>
+                            Attach Files: <input type="file" (change)="onFileChange($event, i)" required>
                             <!-- Error message display -->
-                            <div *ngIf="fileErrorMessage" class="error-message">
-                                {{ fileErrorMessage }}
+                            <div *ngIf="section.fileErrorMessage" class="error-message">
+                                {{ section.fileErrorMessage }}
                             </div>
                             <br><br>
                         </div>
                     </div>
 
-                    <!-- <button type="button" id="add-section">Add Section</button>
-                    <button type="button" id="remove-section" style="display:none;">--</button> -->
+                    <!-- <button type="button" (click)="addSection()">Add Section</button> -->
+                    <div style="display: flex;">
+                        <div class="myButtonDesign" style="width: 30%;">
+                            <a class="my-button" (click)="addSection()">Add Section</a>
+                        </div>
+                        <div class="myButtonDesign">
+                            <a class="my-button" (click)="removeSection()" [ngStyle]="{'display': sections.length <= 1 ? 'none' : 'block'}">--</a>
+                        </div>
+                    </div>
+                    <!-- <button type="button" (click)="removeSection()" [disabled]="sections.length <= 1" [ngStyle]="{'display': sections.length <= 1 ? 'none' : 'block'}">--</button> -->
 
                     <hr>
 

@@ -22,6 +22,10 @@ import { FeedbackPageComponent } from './shared/tiles-and-inside/feedback-page/f
 import { AssignmentSubmissionComponent } from './shared/tiles-and-inside/assignment-submission/assignment-submission.component';
 import { EditProfileForStaffComponent } from './shared/edit-profile-for-staff/edit-profile-for-staff.component';
 import { HomeForRolesComponent } from './shared/home-for-roles/home-for-roles.component';
+import { AssignedSupervisorsToAdminComponent } from './admin/assigned-supervisors-to-admin/assigned-supervisors-to-admin.component';
+import { AssignedExaminersToAdminComponent } from './admin/assigned-examiners-to-admin/assigned-examiners-to-admin.component';
+import { ReportSubmissionsToAdminComponent } from './admin/report-submissions-to-admin/report-submissions-to-admin.component';
+import { VivasToAdminComponent } from './admin/vivas-to-admin/vivas-to-admin.component';
 // import { RoleGuardService as RoleGuard } from '../shared/services/role-guard.service';
 
 const routes: Routes = [
@@ -37,6 +41,10 @@ const routes: Routes = [
       { path: 'examiners-to-admin', component: ExaminersToAdminComponent },
       { path: 'student-profile-to-admin', component: StudentProfileToAdminComponent },
       { path: 'student-profile-to-admin/:regNumber', component: StudentProfileToAdminComponent },
+      { path: 'assigned-supervisors-to-admin', component: AssignedSupervisorsToAdminComponent },
+      { path: 'assigned-examiners-to-admin', component: AssignedExaminersToAdminComponent },
+      { path: 'report-submissions-to-admin', component: ReportSubmissionsToAdminComponent },
+      { path: 'vivas-to-admin', component: VivasToAdminComponent },
 
       // Student
       { path: 'student-dashboard', component: StudentDashboardComponent },

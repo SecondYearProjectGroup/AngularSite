@@ -5,6 +5,15 @@
     display: block;
 }
 
+.research-box {
+    background-color: rgb(243, 243, 243);
+    width: auto;
+    padding: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+    font-size: 14px;
+}
+
 /* Hide Sidebar on Small Screens */
 @media only screen and (max-width: 800px) {
     .middle-content-beforelog {

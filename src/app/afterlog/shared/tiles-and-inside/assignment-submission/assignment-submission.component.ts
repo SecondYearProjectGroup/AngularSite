@@ -284,6 +284,20 @@ export class AssignmentSubmissionComponent implements OnInit {
   }
   
 
+  // Change deadline Mangage
+  showError: boolean = false;
+
+  onChangeDeadline() {
+    if (!this.setDueDate.date || !this.setDueDate.time) {
+      this.showError = true; // Show error message if inputs are not filled
+    } else {
+      this.showError = false; // Hide error message when inputs are valid
+      // Logic to handle deadline change
+      console.log('Deadline changed:', this.setDueDate);
+    }
+  }
+
+
   //To load the assign examiners for the submission
   isAssignExaminersByAdminOpen = false;
   openAssignExaminersByAdmin(): void{
@@ -312,6 +326,7 @@ export class AssignmentSubmissionComponent implements OnInit {
       }, error => {
         console.error('Error deleting examiner:', error);
       });
+
   }
   
 }

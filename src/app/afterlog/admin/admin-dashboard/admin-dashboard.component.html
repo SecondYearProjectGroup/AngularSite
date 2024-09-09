@@ -49,20 +49,20 @@
 
     <div class="card">
       <div class="icon-container" style="background-color: rgba(70, 130, 180, 0.9);">
-        <a><div class="image-box">
+        <a (click)="navigateToReportSubmissionsToAdmin()"><div class="image-box">
           <i class="fa fa-book-open" style="font-size: 30px; color: white;"></i>
         </div></a>
-        <button  class="btnn">Report Submissions</button>
+        <button (click)="navigateToReportSubmissionsToAdmin()" class="btnn">Report Submissions</button>
       </div>
       <div class="content"></div>
     </div>
 
     <div class="card">
       <div class="icon-container" style="background-color: rgba(0, 139, 139, 0.9);">
-        <a><div class="image-box">
-          <img src="https://via.placeholder.com/64x64.png?text=Icon" alt="Icon" style="width: 65px; height: 65px;">
+        <a (click)="navigateToVivasToAdmin()"><div class="image-box">
+          <i class="fa fa-microphone-lines" style="font-size: 30px; color: white;"></i>
         </div></a>
-        <button class="btnn">Vivas</button>
+        <button (click)="navigateToVivasToAdmin()" class="btnn">Vivas</button>
       </div>
       <div class="content"></div>
     </div>
@@ -98,10 +98,10 @@
 
     <div class="function-card">
       <div class="function-icon-container" style="background-color: rgba(0, 128, 128, 0.9);">
-        <a><div class="function-image-box">
-          <i class="fa fa-users" style="font-size: 30px; color: white;"></i>
+        <a (click)="navigateToAssignedSupervisorsToAdmin()"><div class="function-image-box">
+          <i class="fa fa-users-viewfinder" style="font-size: 30px; color: white;"></i>
         </div></a>
-        <button class="btnn functionBtn">Report Submissions</button>
+        <button (click)="navigateToAssignedSupervisorsToAdmin()" class="btnn functionBtn">Assign Supervisors</button>
       </div>
       <div class="content"></div>
     </div>
@@ -112,10 +112,10 @@
 
     <div class="function-card">
       <div class="function-icon-container" style="background-color: rgba(95, 158, 160, 0.9);">
-        <a><div class="function-image-box">
-          <i class="fa fa-users" style="font-size: 30px; color: white;"></i>
+        <a (click)="navigateToAssignedExaminersToAdmin()"><div class="function-image-box">
+          <i class="fa fa-user-shield" style="font-size: 30px; color: white;"></i>
         </div></a>
-        <button class="btnn functionBtn">Assign Supervisors</button>
+        <button (click)="navigateToAssignedExaminersToAdmin()" class="btnn functionBtn">Assign Examiners</button>
       </div>
       <div class="content"></div>
     </div>

@@ -2,7 +2,7 @@
 .sidebar-right {
     width: 240px;
     background-color: #f4f4f4;
-    padding: 5px;
+    padding: 15px;
     box-shadow: -7px 0 5px -3px rgba(0,0,0,0.1); /* Left side shadow */
     position: fixed;
     height: 100%;
@@ -36,15 +36,18 @@
 
 .sidebar-right ul li a {
     text-decoration: none;
+    background-color: rgba(211, 211, 211, 0.404);
+    text-align: center;
+    font-size: 14px;
     color: #333;
     display: block;
-    padding: 10px;
+    padding: 7px;
     border-radius: 4px;
     transition: background-color 0.3s;
 }
 
 .sidebar-right ul li a:hover {
-    background-color: #ddd;
+    background-color: #c0c0c0;
 }
 
 .toggle-btn {
