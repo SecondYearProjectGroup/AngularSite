@@ -71,7 +71,7 @@ export class AssignExaminerByAdminComponent implements OnInit {
   }
 
   // Close the modal
-  closeAssignSupervisorByAdmin(): void {
+  closeAssignExaminerByAdmin(): void {
     this.close.emit();
   }
 

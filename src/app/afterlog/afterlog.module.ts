@@ -43,6 +43,7 @@ import { ReportSubmissionsToAdminComponent } from './admin/report-submissions-to
 import { VivasToAdminComponent } from './admin/vivas-to-admin/vivas-to-admin.component';
 import { VivaTileComponent } from './shared/tiles-and-inside/viva-tile/viva-tile.component';
 import { VivaPageComponent } from './shared/tiles-and-inside/viva-page/viva-page.component';
+import { SetDeadlinesToExaminersComponent } from './admin/set-deadlines-to-examiners/set-deadlines-to-examiners.component';
 
 
 
@@ -88,7 +89,8 @@ import { VivaPageComponent } from './shared/tiles-and-inside/viva-page/viva-page
     ReportSubmissionsToAdminComponent,
     VivasToAdminComponent,
     VivaTileComponent,
-    VivaPageComponent
+    VivaPageComponent,
+    SetDeadlinesToExaminersComponent
   ],
   imports: [
     CommonModule,
