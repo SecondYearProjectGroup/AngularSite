@@ -1,11 +1,18 @@
 <br>
 <div class="Edit-profile-top">
-    <div class="dp">
+    <!-- <div class="dp">
         <i class="fa fa-circle-user"></i>
+    </div> -->
+    <div class="dp">
+        <!-- Show profile picture if it exists, otherwise show default icon -->
+        <img *ngIf="profilePictureUrl; else defaultIcon" [src]="profilePictureUrl" alt="Profile Picture" style="width: 160px; height: 160px; border-radius: 50%;">
+        <ng-template #defaultIcon>
+            <i class="fa fa-circle-user" style="font-size: 100px;"></i>
+        </ng-template>
     </div>
     <div class="profile-box">
         <!-- <h3>Reg. No</h3> -->
-        <h3>Name</h3>
+        <h3>{{ user.name }}</h3>
         <h5>Roles</h5>
         <h5>Company</h5>
         <!-- <h5>Status</h5> -->
@@ -25,24 +32,28 @@
             <table class="form-tables">
                 <tr>
                     <td>Name</td>
-                    <td><input type="text" name="firstName" placeholder="First Name..."></td>
+                    <td><input type="text" name="firstName" placeholder="Name..."></td>
+                </tr>
+                <tr>
+                    <td>Username</td>
+                    <td><input type="text" name="firstName" placeholder="Username..."></td>
                 </tr>
                 <tr>
                     <td>Contact Number</td>
                     <td><input type="tel" name="contactNumber" placeholder="Contact Number..."></td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>Mobile Number</td>
                     <td><input type="tel" name="mobileNumber" placeholder="Mobile Number..."></td>
-                </tr>
+                </tr> -->
                 <tr>
                     <td>Email</td>
                     <td><input type="email" name="email" placeholder="Email Address..."></td>
                 </tr>
                 <tr>
-                    <td>Description</td>
+                    <!-- <td>Description</td>
                     <td><textarea name="description" rows="4"></textarea></td>
-                </tr>
+                </tr> -->
             </table>
             <hr>
             
@@ -51,14 +62,19 @@
                 <tr>
                     <td>Current Picture</td>
                     <td>
-                        <i class="fa fa-circle-user" style="font-size: 100px;"></i><br>
-                        <label style="font-size: 14px;"><input type="checkbox" name="agree" value="terms"> Delete picture</label>
+                        <!-- <i class="fa fa-circle-user" style="font-size: 100px;"></i><br> -->
+                        <img *ngIf="profilePictureUrl; else defaultIcon" [src]="profilePictureUrl" alt="Profile Picture"  style="width: 160px; height: 160px; border-radius: 50%;">
+                        <!-- <label style="font-size: 14px;"><input type="checkbox" name="agree" value="terms"> Delete picture</label> -->
+                        <label>
+                            <input type="checkbox" [(ngModel)]="deletePictureChecked" name="deletePictureChecked"> Delete picture
+                        </label>
+                        
                     </td>
                 </tr>
                 <br>
                 <tr>
                     <td>New Picture</td>
-                    <td><input type="file"></td>
+                    <td><input type="file" (change)="onFileSelected($event)">
                 </tr>
                 <br>
                 <tr>
@@ -66,7 +82,7 @@
                     <td><input type="text" name="pictureDescription" placeholder="Picture Description..."></td>
                 </tr>
             </table>
-            <hr>
+            <!-- <hr>
 
             <h4>Optional</h4>
             <table class="form-tables">
@@ -82,7 +98,7 @@
                     <td>Address</td>
                     <td><textarea name="address" rows="4"></textarea></td>
                 </tr>
-            </table>
+            </table> -->
             <hr>
             
             <br>
