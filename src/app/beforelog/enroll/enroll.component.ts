@@ -44,9 +44,9 @@ export class EnrollComponent {
 
   constructor(private enrollService: EnrollService) {}
 
-  // onFileChange(event: any) {
-  //   this.selectedFile = event.target.files[0];
-  // }
+  onFileChange(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
 
   onEnrollSubmit(form: NgForm) {
     if (this.selectedFile) {
@@ -86,33 +86,33 @@ export class EnrollComponent {
   }
 
   // Add a new section
-  addSection() {
-    this.sections.push({
-      university: '',
-      fromDate: '',
-      toDate: '',
-      degree: '',
-      field: '',
-      class: '',
-      fileErrorMessage: ''
-    });
-  }
+  // addSection() {
+  //   this.sections.push({
+  //     university: '',
+  //     fromDate: '',
+  //     toDate: '',
+  //     degree: '',
+  //     field: '',
+  //     class: '',
+  //     fileErrorMessage: ''
+  //   });
+  // }
 
   // Remove the last section
-  removeSection() {
-    if (this.sections.length > 1) {
-      this.sections.pop();
-    }
-  }
+  // removeSection() {
+  //   if (this.sections.length > 1) {
+  //     this.sections.pop();
+  //   }
+  // }
 
   // Handle file changes
-  onFileChange(event: any, sectionIndex: number) {
-    const file = event.target.files[0];
-    if (!file) {
-      this.sections[sectionIndex].fileErrorMessage = 'File is required.';
-    } else {
-      this.sections[sectionIndex].fileErrorMessage = '';  // Clear any previous errors
-    }
-  }
+  // onFileChange(event: any, sectionIndex: number) {
+  //   const file = event.target.files[0];
+  //   if (!file) {
+  //     this.sections[sectionIndex].fileErrorMessage = 'File is required.';
+  //   } else {
+  //     this.sections[sectionIndex].fileErrorMessage = '';  // Clear any previous errors
+  //   }
+  // }
 }
 

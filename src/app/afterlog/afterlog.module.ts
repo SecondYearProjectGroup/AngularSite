@@ -41,6 +41,10 @@ import { AssignedSupervisorsToAdminComponent } from './admin/assigned-supervisor
 import { AssignedExaminersToAdminComponent } from './admin/assigned-examiners-to-admin/assigned-examiners-to-admin.component';
 import { ReportSubmissionsToAdminComponent } from './admin/report-submissions-to-admin/report-submissions-to-admin.component';
 import { VivasToAdminComponent } from './admin/vivas-to-admin/vivas-to-admin.component';
+import { VivaTileComponent } from './shared/tiles-and-inside/viva-tile/viva-tile.component';
+import { VivaPageComponent } from './shared/tiles-and-inside/viva-page/viva-page.component';
+import { SetDeadlinesToExaminersComponent } from './admin/set-deadlines-to-examiners/set-deadlines-to-examiners.component';
+import { RemoveSubmissionPopupComponent } from './shared/remove-submission-popup/remove-submission-popup.component';
 
 
 
@@ -84,7 +88,11 @@ import { VivasToAdminComponent } from './admin/vivas-to-admin/vivas-to-admin.com
     AssignedSupervisorsToAdminComponent,
     AssignedExaminersToAdminComponent,
     ReportSubmissionsToAdminComponent,
-    VivasToAdminComponent
+    VivasToAdminComponent,
+    VivaTileComponent,
+    VivaPageComponent,
+    SetDeadlinesToExaminersComponent,
+    RemoveSubmissionPopupComponent
   ],
   imports: [
     CommonModule,

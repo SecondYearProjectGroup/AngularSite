@@ -1,7 +1,10 @@
 <div class="modal">
     <div class="modal-content">
-      <span class="close" (click)="closeAssignSupervisorByAdmin()">&times;</span>
-      <h2>Assign Examiners</h2>
+      
+      <div class="modal-header"> 
+        <h5 class="modal-title"><b>Assign Examiners</b></h5>
+        <span class="close" (click)="closeAssignExaminerByAdmin()">&times;</span>
+      </div><br>
   
       <!-- Display previously assigned examiners if any -->
       <div *ngIf="assignedExaminers.length > 0">
@@ -12,46 +15,44 @@
           </li>
         </ul>
       </div>
-  
-      <form (ngSubmit)="assignExaminers()">
-        <div>
-          <input 
-            type="text" 
-            placeholder="Search examiners..." 
-            [(ngModel)]="searchText" 
-            name="searchText"
-          />
-        </div>
-  
-        <div class="table-container">
-          <table class="student-table">
-            <thead>
-              <tr>
-                <th>Select</th>
-                <th>ID</th>
-                <th>Examiner Name</th>
-                <th>Email</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let row of filteredData; let i = index">
-                <td>
-                  <input 
-                    type="checkbox" 
-                    [(ngModel)]="row.selected" 
-                    name="examiner{{i}}"
-                  />
-                </td>
-                <td>{{ row.id }}</td>
-                <td>{{ row.fullName }}</td>
-                <td>{{ row.email }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        
-        <button type="submit" style="width: 100px;">Assign</button>
-      </form>
+      
+      <div class="modal-form">
+        <form (ngSubmit)="assignExaminers()">
+              
+          <div class="RegisteredTable">
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Select</th>
+                    <th>ID</th>
+                    <th>Examiner Name</th>
+                    <th>Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of filteredData; let i = index">
+                    <td>
+                      <input 
+                        type="checkbox" 
+                        [(ngModel)]="row.selected" 
+                        name="examiner{{i}}"
+                      />
+                    </td>
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.fullName }}</td>
+                    <td>{{ row.email }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <hr>
+          <!-- <button type="submit" style="width: 100px;">Assign</button> -->
+          <input type="submit" value="Assign" style="width: 40%; float: right; margin-right: 20px;">
+        </form>
+      </div>
     </div>
   </div>
   

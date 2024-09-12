@@ -42,6 +42,7 @@ export class AddStaffMembersByAdminComponent {
       next: (response) => {
         console.log('Staff member added successfully:', response);
         alert('Staff member added successfully!');
+        this.closeAddStaffMembersByAdmin();
         // Reset the form fields
         this.staffMember = { name: '', email: '', roles: [] };
       },

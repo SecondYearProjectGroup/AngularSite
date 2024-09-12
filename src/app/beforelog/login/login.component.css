@@ -40,6 +40,19 @@
     text-align: right;
 }
 
+/* Toggle Password Visibility */
+.password-container {
+    position: relative;
+    width: 100%;
+}
+.toggle-password-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
 /* Hide Sidebar on Small Screens */
 @media only screen and (max-width: 1150px) {
     .login-form{

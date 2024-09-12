@@ -7,6 +7,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UploadedFile } from '../../../../models/uploaded-file';
 import { FileService } from '../../../../services/file.service';
 import { Examiner, ExaminerService } from '../../../services/examiner.service';
+import { UserRoleService } from '../../../services/user-role.service';
 
 @Component({
   selector: 'app-assignment-submission',
@@ -17,12 +18,23 @@ export class AssignmentSubmissionComponent implements OnInit {
 
   @Input() regNumber : string = '';
 
+  userRole: string | null = null;
+  userIdId : number = 0;
+
   constructor(
     private route: ActivatedRoute,
     private submissionService: SubmissionService,
     private fileService : FileService,
     private examinerService: ExaminerService,
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private userRoleService: UserRoleService) {
+      this.userRoleService.userRole$.subscribe(role => {
+        this.userRole = role;
+      });
+      this.userRoleService.userIdId$.subscribe(userIdId => {
+        this.userIdId = userIdId || 0;
+      });
+    }
 
   id: number = 0;
   isUploading: boolean = false;
@@ -305,6 +317,15 @@ export class AssignmentSubmissionComponent implements OnInit {
   }
   closeAssignExaminersByAdmin(): void{
     this.isAssignExaminersByAdminOpen = false;
+  }
+
+  //To remove submissions
+  isRemoveSubmissionPopupOpen = false;
+  openRemoveSubmissionPopup(): void {
+    this.isRemoveSubmissionPopupOpen = true;
+  }
+  closeRemoveSubmissionPopup(): void {
+    this.isRemoveSubmissionPopupOpen = false;
   }
 
 
