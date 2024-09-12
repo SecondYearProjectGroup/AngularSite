@@ -1,5 +1,5 @@
 <div class="topic">
-    <h1>Assignment Submission</h1>
+    <h1>Pre Assignment Submission</h1>
 </div>
 
 <br>
@@ -21,7 +21,7 @@
           </tr>
 
           <!-- For Admin in Final Report/ For Admin/ Supervisor in Pre Report -->
-          <tr >
+          <tr *ngIf="userRole === 'ADMIN' || userRole=== 'SUPERVISOR'">
             <td>Set Due Date:</td>
             <td>
               <div style="display: flex;">
@@ -38,9 +38,9 @@
     </form>
     <br>
 
-    <!-- For Students -->
+    <!-- For Admin in Final Report/ For Admin/ Supervisor in Pre Report -->
     <!-- File Upload Form -->
-    <form enctype="multipart/form-data">
+    <form enctype="multipart/form-data" *ngIf="userRole === 'ADMIN' || userRole=== 'SUPERVISOR'">
       <table style="width: 100%;">
         <tr>
           <td>
@@ -50,7 +50,7 @@
           <td>
             <!-- <button type="submit">Upload Files</button> -->
             <div class="myButtonDesign">
-              <a class="my-button" (click)="onFileUpload()">Upload Files</a>
+              <a class="my-button" (click)="onFileUpload()">Upload File</a>
             </div>
           </td>
         </tr>
@@ -58,8 +58,9 @@
     </form>
     <br>
 
-    <table style="width: 100%;">
-      <tr>Choose file/files:</tr>
+    <!-- For Students -->
+    <table style="width: 100%;" *ngIf="userRole === 'STUDENT'">
+      <tr *ngIf="!isUploading">Choose file/files:</tr>
       <tr *ngIf="!isUploading">
         <div class="upload-container">
           <div
@@ -93,7 +94,7 @@
           </div>
     
           <div class="actions" *ngIf="files.length > 0">
-            <button class="upload-btn" (click)="uploadFiles()">Upload Files</button>
+            <button class="upload-btn" (click)="uploadFiles()">Submit Files</button>
             <button class="clear-btn" (click)="clearFiles()">Clear Files</button>
           </div>
         </div>
@@ -112,12 +113,15 @@
           </ul>
         </div>
       </tr>
+    </table>
       <!-- End For Students -->
 
       <br>
-      
-      <!-- For Admin, Supervisor, Examiners -->
-      <tr>
+    
+    
+    <!-- For Admin, Supervisor, Examiners -->
+    <table style="width: 100%;">
+      <tr *ngIf="userRole === 'ADMIN' || userRole === 'SUPERVISOR'">
         <div class="file-list">
           <h6>Uploaded Files</h6>
           <ul>
@@ -135,15 +139,17 @@
     </table>
 
 
-    <hr><br>
-    <input type="submit" value="Edit/ Submit"><br><br>
+    <!-- For Students -->
+    <!-- Submission Removing Button -->
+    <input *ngIf="isUploading && userRole === 'STUDENT'" type="submit" value="Remove Submission" (click)="openRemoveSubmissionPopup()" (close)="closeRemoveSubmissionPopup()"><br><br>
+    <app-remove-submission-popup *ngIf="isRemoveSubmissionPopupOpen" (close)="closeRemoveSubmissionPopup()"></app-remove-submission-popup>
   
     <hr>
     <table style="width: 100%;">
         <br>
         <tr>
 
-            <td><h4>Status</h4></td>
+            <td><h6><b>Status</b></h6></td>
         </tr>
         <tr>
             <td>Submission status:</td>
@@ -165,79 +171,22 @@
     <hr>
     <br>
 
-    <!-- For Admin -->
-    <h4>Manage Examiners</h4>
-    <div class="myButtonDesign">
-      <a class="my-button" (click)="openAssignExaminersByAdmin()">Assign/ Change Examiners</a>
-    </div>
-    
-    <div *ngIf="assignedExaminers.length > 0">
-      <h3>Assigned Examiners:</h3>
-      <ul>
-        <li *ngFor="let examiner of assignedExaminers">
-          {{ examiner.fullName }}
-          <button (click)="deleteExaminer(examiner.id)">Delete</button>
-        </li>
-      </ul>
-    </div>
-    <app-assign-examiner-by-admin *ngIf="isAssignExaminersByAdminOpen" (close)="closeAssignExaminersByAdmin()" [id]="id"></app-assign-examiner-by-admin>
-
-    <div class="myButtonDesign">
-      <a class="my-button" (click)="openAssignExaminersByAdmin()">Set Deadlines to Examiners</a>
-    </div>
-    <!-- End For Admin -->
 
     <br>
     <!-- For Supervisor -->
-    <h4>Your Feedback</h4>
-    <!-- For Student -->
-    <h4>Supervisor Feedback</h4>
-
-    <div class="feedback-form">
-        <table style="width: 100%;">
-            <tr>
-                <td>Feedback:</td>
-                <td><textarea name="feedback" rows="4" style="width: 100%;"></textarea></td>
-            </tr>
-            <br>
-            <tr>
-                <td>Feedback file:</td>
-                <td><input type="file"></td>
-            </tr>
-            
-        </table>
-        <br><br>
-        <input type="submit" value="Upload Feedback"><br><br>
-
-        <!-- After submit show the feedback in a box -->
+    <div *ngIf="userRole === 'SUPERVISOR'">
+      <h6><b>Your Feedback</b></h6>
+      <app-feedback-page mode="feedbackProvider"></app-feedback-page>
     </div>
+    <!-- For Student -->
+    <div *ngIf="userRole === 'STUDENT' || userRole=== 'ADMIN'">
+      <h6><b>Supervisor Feedback</b></h6>
+      <app-feedback-page mode="feedbackReciever"></app-feedback-page>
+    </div>
+
+
     <br>
-    <hr>
-    <br>
 
-    <!-- For Examiners -->
-    <h4>Your Feedback</h4>
-    <!-- For Student, Supervisors -->
-    <h4>Examiner Feedback</h4>
-
-    <div class="feedback-form">
-      <table style="width: 100%;">
-          <tr>
-              <td>Feedback:</td>
-              <td><textarea name="feedback" rows="4" style="width: 100%;"></textarea></td>
-          </tr>
-          <br>
-          <tr>
-              <td>Feedback file:</td>
-              <td><input type="file"></td>
-          </tr>
-          
-      </table>
-      <br><br>
-      <input type="submit" value="Upload Feedback"><br><br>
-
-      <!-- After submit show the feedback in a box -->
-  </div>
   <br>
 
 

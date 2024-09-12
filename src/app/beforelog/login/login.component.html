@@ -28,7 +28,28 @@
                             </div>
                         </tr>
                         <tr>
-                            <td><input type="password" [(ngModel)]="password" id="password" name="password" placeholder="Password..." required minlength="6" #passwordInput="ngModel"></td>
+                            <div class="password-container">
+                                <input 
+                                  [type]="isPasswordVisible ? 'text' : 'password'" 
+                                  [(ngModel)]="password" 
+                                  id="password" 
+                                  name="password" 
+                                  placeholder="Password..." 
+                                  required 
+                                  minlength="6" 
+                                  #passwordInput="ngModel"
+                                >
+                                <!-- Eye icon inside the input field -->
+                                <span 
+                                    class="toggle-password-icon" 
+                                    (mousedown)="showPassword()" 
+                                    (mouseup)="hidePassword()" 
+                                    (mouseleave)="hidePassword()"
+                                    style="cursor: pointer;"
+                                    >
+                                    <i class="fa fa-eye" style="color: gray;"></i>
+                                </span>
+                            </div>
                         </tr>
                         <tr>
                             <!-- Error message for password -->
