@@ -1,13 +1,17 @@
 <br>
 <div class="Edit-profile-top">
     <div class="dp">
-        <i class="fa fa-circle-user"></i>
+        <!-- Show profile picture if it exists, otherwise show default icon -->
+        <img *ngIf="profilePictureUrl; else defaultIcon" [src]="profilePictureUrl" alt="Profile Picture" style="width: 160px; height: 160px; border-radius: 50%;">
+        <ng-template #defaultIcon>
+            <i class="fa fa-circle-user" style="font-size: 100px;"></i>
+        </ng-template>
     </div>
     <div class="profile-box">
         <h3> {{ student.regNumber }}</h3>
         <h5>{{ student.nameWithInitials }}</h5>
         <h5> {{student.programOfStudy }}</h5>
-        <h5>Registered Date</h5>
+        <h5>Registered Date: {{student.registeredDate}}</h5>
         <h5>{{ student.status}}</h5>
     </div>
     
@@ -25,7 +29,7 @@
             <table class="form-tables">
                 <tr>
                     <td>Reg Number</td>
-                    <td><input type="text" name="regNumber" [(ngModel)]="student.regNumber" placeholder="First Name..."></td>
+                    <td><input type="text" name="regNumber" [(ngModel)]="student.regNumber" placeholder="Reg Number..." disabled></td>
                 </tr>
                 <tr>
                     <td>Full Name</td>
@@ -35,22 +39,14 @@
                     <td>Contact Number</td>
                     <td><input type="tel" name="contactNumber" [(ngModel)]="student.contactNumber" placeholder="Contact Number..."></td>
                 </tr>
-                <!-- <tr>
-                    <td>Mobile Number</td>
-                    <td><input type="tel" name="mobileNumber" placeholder="Mobile Number..."></td>
-                </tr> -->
                 <tr>
                     <td>Email</td>
                     <td><input type="email" [(ngModel)]="student.email" name="email" placeholder="Email Address..."></td>
                 </tr>
                 <!-- <tr>
-                    <td>Other Email</td>
-                    <td><input type="email" name="otherEmail" placeholder="Other Email..."></td>
-                </tr> -->
-                <tr>
                     <td>Description</td>
                     <td><textarea name="description" rows="4"></textarea></td>
-                </tr>
+                </tr> -->
             </table>
             <hr>
             
@@ -59,22 +55,28 @@
                 <tr>
                     <td>Current Picture</td>
                     <td>
-                        <i class="fa fa-circle-user" style="font-size: 100px;"></i><br>
-                        <label style="font-size: 14px;"><input type="checkbox" name="agree" value="terms"> Delete picture</label>
+                        <!-- <i class="fa fa-circle-user" style="font-size: 100px;"></i><br> -->
+                        <img *ngIf="profilePictureUrl; else defaultIcon" [src]="profilePictureUrl" alt="Profile Picture"  style="width: 160px; height: 160px; border-radius: 50%;">
+                        <!-- <label style="font-size: 14px;"><input type="checkbox" name="agree" value="terms"> Delete picture</label> -->
+                        <label>
+                            <input type="checkbox" [(ngModel)]="deletePictureChecked" name="deletePictureChecked"> Delete picture
+                        </label>
+                        
                     </td>
                 </tr>
                 <br>
                 <tr>
                     <td>New Picture</td>
-                    <td><input type="file"></td>
+                    <td><input type="file" (change)="onFileSelected($event)">
+                    </td>
                 </tr>
                 <br>
-                <tr>
+                <!-- <tr>
                     <td>Picture Description</td>
                     <td><input type="text" name="pictureDescription" placeholder="Picture Description..."></td>
-                </tr>
+                </tr> -->
             </table>
-            <hr>
+            <!-- <hr>
 
             <h4>Optional</h4>
             <table class="form-tables">
@@ -95,7 +97,7 @@
                     <td><textarea name="address" rows="4"></textarea></td>
                 </tr>
             </table>
-            <hr>
+            <hr> -->
             
             <br>
             <input type="submit" value="Update Profile"><br><br>

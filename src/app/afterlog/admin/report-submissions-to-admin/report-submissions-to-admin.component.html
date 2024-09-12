@@ -13,26 +13,22 @@
             <thead>
                 <tr>
                     <th>Student Reg. No</th>
-                    <th>Year</th>
-                    <th>Submission Id</th>
+                    <th>Student Name</th>
+                    <!-- <th>Submission Id</th> -->
                     <th>Submission Title</th>
-                    <th>Submission Type</th> <!-- Pre / Final -->
+                    <!-- <th>Submission Type</th> Pre / Final -->
                     <th>Status</th>
                     <th>Submit/ Due Date</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- <tr *ngFor="let row of filteredData">
-                    <td>{{ row.id }}</td>
-                    <td>{{ row.fullName }}</td>
+                <tr *ngFor="let row of filteredData">
+                    <td>{{ row.registrationNumber }}</td>
+                    <td>{{ row.nameWithInitials }}</td>
+                    <td>{{ row.title }}</td>
+                    <td>{{ row.submissionStatus ? 'Submitted' : 'Not Submitted' }}</td>
+                    <td>{{ row.deadline }}</td>
                     <td>
-                        <a [routerLink]="[*ngIf submissionType === 'Pre' ? '/afterlog/assignment-submission' : '/afterlog/final-assignment-submission', row.submissionId]">
-                            {{ row.submissionId }}
-                        </a>
-                    </td>
-                    <td>{{ row.department }}</td>
-                    <td>{{ row.email }}</td>
-                </tr> -->
             </tbody>
         </table>
     </div>
