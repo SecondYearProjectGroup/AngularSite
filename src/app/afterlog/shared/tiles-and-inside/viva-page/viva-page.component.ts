@@ -7,6 +7,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './viva-page.component.css'
 })
 export class VivaPageComponent implements OnInit {
+  dueDate: any;
+  
+  onSubmit() {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(
     private route: ActivatedRoute) { }

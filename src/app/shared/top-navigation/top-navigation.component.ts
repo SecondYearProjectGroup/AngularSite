@@ -17,10 +17,9 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
     private router: Router,
     private userRoleService: UserRoleService,
     private http: HttpClient,
-
-    private notificationService: NotificationService
-
-    private profilePictureService: ProfilePictureService
+    private notificationService: NotificationService,
+    private profilePictureService: ProfilePictureService,
+    private authService: AuthServiceService
 
   ) {}
 
