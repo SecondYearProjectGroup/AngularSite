@@ -18,6 +18,11 @@ export class CreateCollapsibleSectionComponent {
 
   constructor(private collapsibleSectionService: CollapsibleSectionService) {}
 
+  addVivaTile() {
+    this.tiles.push({ type: 'viva', title: 'Viva' });
+    // this.tiles.push({ type: 'forum', title: '', routerLink: `/forum/${id}` });
+  }
+
   addForumTile() {
     this.tiles.push({ type: 'forum', title: '' });
     // this.tiles.push({ type: 'forum', title: '', routerLink: `/forum/${id}` });

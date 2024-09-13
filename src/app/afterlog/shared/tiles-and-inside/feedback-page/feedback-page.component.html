@@ -1,9 +1,9 @@
-<div class="topic">
+<!-- <div class="topic">
     <h1>Feedback Form</h1>
-</div>
+</div> -->
 
 <br>
-<div class="feedback-form">
+<div class="feedback-form" *ngIf= "mode === 'feedbackProvider'">
     <table style="width: 100%;">
         <tr>
             <td>Feedback:</td>
@@ -16,8 +16,35 @@
         </tr>
         
     </table>
-    <br><br><hr><br><br>
+    <br><hr>
     <input type="submit" value="Upload Feedback"><br><br>
 </div>
+
+<div class="feedback-form" *ngIf="mode === 'feedbackReciever'">
+    <table style="width: 100%;">
+        <tr>
+            <td>Feedback:</td>
+            <td>
+                <!-- Display textarea if feedback is uploaded -->
+                <textarea *ngIf="isFeedbackUploaded" name="feedback" rows="4" style="width: 100%;"></textarea>
+
+                <!-- Display message if feedback is not uploaded -->
+                <span *ngIf="!isFeedbackUploaded">Feedback is not uploaded yet.</span>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>Feedback file:</td>
+            <td>
+                <!-- Display file input if feedback is uploaded -->
+                <span *ngIf="isFeedbackFileUploaded">Show the Feedback file as a link.</span>
+                
+                <!-- Display message if feedback is not uploaded -->
+                <span *ngIf="!isFeedbackFileUploaded">No Feedback file.</span>
+            </td>
+        </tr>
+    </table>
+</div>
+
 <br>
 <br>

@@ -26,6 +26,8 @@ import { AssignedSupervisorsToAdminComponent } from './admin/assigned-supervisor
 import { AssignedExaminersToAdminComponent } from './admin/assigned-examiners-to-admin/assigned-examiners-to-admin.component';
 import { ReportSubmissionsToAdminComponent } from './admin/report-submissions-to-admin/report-submissions-to-admin.component';
 import { VivasToAdminComponent } from './admin/vivas-to-admin/vivas-to-admin.component';
+import { FinalAssignmentSubmissionComponent } from './shared/tiles-and-inside/final-assignment-submission/final-assignment-submission.component';
+import { VivaPageComponent } from './shared/tiles-and-inside/viva-page/viva-page.component';
 // import { RoleGuardService as RoleGuard } from '../shared/services/role-guard.service';
 
 const routes: Routes = [
@@ -68,7 +70,11 @@ const routes: Routes = [
       { path: 'feedback-page', component: FeedbackPageComponent },
       { path: 'feedback-page/:id', component: FeedbackPageComponent },
       { path: 'assignment-submission', component: AssignmentSubmissionComponent },
-      { path: 'assignment-submission/:id', component: AssignmentSubmissionComponent }
+      { path: 'assignment-submission/:id', component: AssignmentSubmissionComponent },
+      { path: 'final-assignment-submission', component: FinalAssignmentSubmissionComponent },
+      { path: 'final-assignment-submission/:id', component: FinalAssignmentSubmissionComponent },
+      { path: 'viva-page', component: VivaPageComponent },
+      { path: 'viva-page/:id', component: VivaPageComponent }
       
     ]
   }

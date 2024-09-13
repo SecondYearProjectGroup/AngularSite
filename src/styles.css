@@ -107,7 +107,13 @@ body, html {
 }
 /* End Buttons */
 
-
+/* Required Asterisk Mark */
+.req {
+  color: red;
+  margin-left: 4px; /* To create some space between label and the asterisk */
+  font-size: 14px; /* Adjust the font size to fit the label size */
+  cursor: pointer;
+}
 
 /* Table */
 .RegisteredTable {
