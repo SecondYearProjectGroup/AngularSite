@@ -32,15 +32,15 @@
             <table class="form-tables">
                 <tr>
                     <td>Name</td>
-                    <td><input type="text" name="firstName" placeholder="Name..."></td>
+                    <td><input type="text" name="name" [(ngModel)]="user.name" placeholder="Name..."></td>
                 </tr>
                 <tr>
                     <td>Username</td>
-                    <td><input type="text" name="firstName" placeholder="Username..."></td>
+                    <td><input type="text" name="username"  [(ngModel)]="user.username" placeholder="Username..."></td>
                 </tr>
                 <tr>
                     <td>Contact Number</td>
-                    <td><input type="tel" name="contactNumber" placeholder="Contact Number..."></td>
+                    <td><input type="tel" name="contactNumber"  [(ngModel)]="user.contactNumber" placeholder="Contact Number..."></td>
                 </tr>
                 <!-- <tr>
                     <td>Mobile Number</td>
@@ -48,7 +48,7 @@
                 </tr> -->
                 <tr>
                     <td>Email</td>
-                    <td><input type="email" name="email" placeholder="Email Address..."></td>
+                    <td><input type="email" name="email"  [(ngModel)]="user.email" placeholder="Email Address..."></td>
                 </tr>
                 <tr>
                     <!-- <td>Description</td>

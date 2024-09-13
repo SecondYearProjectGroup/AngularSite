@@ -60,6 +60,34 @@ export class EditProfileForStaffComponent implements OnInit {
         } else {
           console.log('Profile picture deletion is not checked.');
         }
+
+        //To update the user data
+        const userIdId = this.userRoleService.getUserId();
+        //To have edit option
+        if (this.userIdId !== null) {
+          /////////////
+          // Update the non-disabled fields
+          const updateData = {
+            name: this.user.name,
+            username: this.user.username,
+            contactNumber: this.user.contactNumber,
+            email: this.user.email,
+          };
+
+          this.http.put(`http://localhost:8080/profile/user/update/${this.userIdId}`, updateData)
+            .subscribe(
+              response => {
+                console.log('Profile updated successfully:', response);
+              },
+              error => {
+                console.error('Error updating profile:', error);
+              }
+            );/////////////////
+            console.log('User ID:', this.userIdId);
+          } else {
+            console.log('User ID is null');
+            // Handle the case when id is null, if needed
+        }
   }
 
   profilePictureUrl: string | null = null;
