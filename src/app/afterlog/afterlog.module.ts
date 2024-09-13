@@ -45,6 +45,7 @@ import { VivaTileComponent } from './shared/tiles-and-inside/viva-tile/viva-tile
 import { VivaPageComponent } from './shared/tiles-and-inside/viva-page/viva-page.component';
 import { SetDeadlinesToExaminersComponent } from './admin/set-deadlines-to-examiners/set-deadlines-to-examiners.component';
 import { RemoveSubmissionPopupComponent } from './shared/remove-submission-popup/remove-submission-popup.component';
+import { SupervisorExaminerDashboardComponent } from './supervisor-examiner/supervisor-examiner-dashboard/supervisor-examiner-dashboard.component';
 
 
 
@@ -92,7 +93,8 @@ import { RemoveSubmissionPopupComponent } from './shared/remove-submission-popup
     VivaTileComponent,
     VivaPageComponent,
     SetDeadlinesToExaminersComponent,
-    RemoveSubmissionPopupComponent
+    RemoveSubmissionPopupComponent,
+    SupervisorExaminerDashboardComponent
   ],
   imports: [
     CommonModule,

@@ -71,11 +71,6 @@ export class AssignmentSubmissionComponent implements OnInit {
       }
     });
 
-
-    //Loading the examiners assigned the submission
-    this.loadAssignedExaminers();
-
-    
   }
 
   // Helper function to format the date
@@ -309,16 +304,6 @@ export class AssignmentSubmissionComponent implements OnInit {
     }
   }
 
-
-  //To load the assign examiners for the submission
-  isAssignExaminersByAdminOpen = false;
-  openAssignExaminersByAdmin(): void{
-    this.isAssignExaminersByAdminOpen = true;
-  }
-  closeAssignExaminersByAdmin(): void{
-    this.isAssignExaminersByAdminOpen = false;
-  }
-
   //To remove submissions
   isRemoveSubmissionPopupOpen = false;
   openRemoveSubmissionPopup(): void {
@@ -326,28 +311,6 @@ export class AssignmentSubmissionComponent implements OnInit {
   }
   closeRemoveSubmissionPopup(): void {
     this.isRemoveSubmissionPopupOpen = false;
-  }
-
-
-  //To load the examiners who are previosly assigned 
-  assignedExaminers: Examiner[] = [];
-  loadAssignedExaminers(): void {
-    this.examinerService.getAssignedExaminers(this.id).subscribe((data) => {
-      this.assignedExaminers = data;
-    });
-  }
-
-
-  //To delete the examiners
-  deleteExaminer(examinerId: number) {
-    this.http.delete(`http://localhost:8080/submissions/examiners/${this.id}/${examinerId}`)
-      .subscribe(() => {
-        // Remove the deleted examiner from the list
-        this.assignedExaminers = this.assignedExaminers.filter(examiner => examiner.id !== examinerId);
-      }, error => {
-        console.error('Error deleting examiner:', error);
-      });
-
   }
   
 }

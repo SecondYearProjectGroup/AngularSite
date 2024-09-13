@@ -71,7 +71,6 @@ export class FinalAssignmentSubmissionComponent {
       }
     });
 
-
     //Loading the examiners assigned the submission
     this.loadAssignedExaminers();
 
@@ -325,6 +324,15 @@ export class FinalAssignmentSubmissionComponent {
   }
   closeSetDeadlinesForExaminers(): void{
     this.isSetDeadlinesForExaminersOpen = false;
+  }
+
+  //To remove submissions
+  isRemoveSubmissionPopupOpen = false;
+  openRemoveSubmissionPopup(): void {
+    this.isRemoveSubmissionPopupOpen = true;
+  }
+  closeRemoveSubmissionPopup(): void {
+    this.isRemoveSubmissionPopupOpen = false;
   }
 
 

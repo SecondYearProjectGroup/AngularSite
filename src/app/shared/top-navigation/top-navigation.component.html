@@ -5,7 +5,17 @@
           <li><button class="sandwitch" (click)="toggleLeftNavBar()"><i class="fa fa-bars" style="font-size: 19px; margin-top: 3px; color: #123747;"></i></button></li>
             <li class="sandwitch2"><button class="nice-button" (click)="navigateToDashboard()"><b>Dashboard</b></button></li>
             <li class="right sandwitch2"><button class="nice-button" (click)="navigateToLogin()"><b>Log out</b></button></li>
-            <li class="right"><button class="dp" (click)="navigateToEditProfile()"><i class="fa fa-circle-user"></i></button></li>
+            <li class="right"><button class="dp" (click)="navigateToEditProfile()">
+              <!-- <i class="fa fa-circle-user"></i> -->
+              <!-- Show profile picture if it exists, otherwise show default icon -->
+              <div class="pp">
+                <img *ngIf="isThereProfilePicture" [src]="profilePictureUrl" alt="Profile Picture" style="width: 33px; height: 33px; border-radius: 50%; font-size: unset;">
+                <div *ngIf="!isThereProfilePicture">
+                    <i class="fa fa-circle-user" style="font-size: 30px;"></i>
+                </div>
+              </div>
+            </button></li>
+            
             <li class="right">
               <button class="notify position-relative" id="notificationButton">
                 <i class="fa fa-bell" style="font-size: 19px; margin-top: 3px;"></i>
