@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthServiceService } from '../../services/auth-service.service';
 import { UserRoleService } from '../../afterlog/services/user-role.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-top-navigation',
@@ -15,7 +16,8 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
     private router: Router, 
     private userRoleService: UserRoleService, 
     private http: HttpClient, 
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private notificationService: NotificationService
   ) {}
 
   userRole: string | null = null; // Variable of the user Role & Initialize with null
@@ -31,10 +33,21 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
     this.userRoleService.userId$.subscribe(id => {
       this.userId = id;
     });
+    this.loadUnreadNotifications(); 
   }
 
   ngAfterViewInit(): void {
     this.initializeNotificationPanel();
+  }
+
+  // Method to load unread notifications count
+  unreadCount: number = 0;
+  loadUnreadNotifications(): void {
+    this.notificationService.getUnreadNotificationCount().subscribe(count => {
+      this.unreadCount = count;
+    }, error => {
+      console.error('Error fetching unread notification count', error);
+    });
   }
 
   logout() {

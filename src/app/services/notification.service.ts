@@ -16,5 +16,9 @@ export class NotificationService {
     return this.http.get(this.apiUrl + '/unread', { responseType: 'text' });
 }
 
+  // Fetch the count of unread notifications from the backend
+  getUnreadNotificationCount(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/unread/count`);
+  }
 
 }
