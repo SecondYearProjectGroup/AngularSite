@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { UserRoleService } from '../../services/user-role.service';
 import { User } from '../../../models/user.model';
+import { ProfilePictureService } from '../../services/profile-picture.service';
 
 @Component({
   selector: 'app-edit-profile-for-staff',
@@ -12,7 +13,9 @@ export class EditProfileForStaffComponent implements OnInit {
   userIdId: number | null = null;
   userId: string | null = null;
 
-  constructor(private http: HttpClient, private userRoleService: UserRoleService) {}
+  constructor(private http: HttpClient,
+    private userRoleService: UserRoleService,
+    private profilePictureService: ProfilePictureService) {}
 
   user: User = {
     username: '',
@@ -54,30 +57,39 @@ export class EditProfileForStaffComponent implements OnInit {
  
 
   onEditProfileSubmit() {
-        // Handle form submission logic here
-        if (this.deletePictureChecked) {
-          this.deleteProfilePicture();
-        } else {
-          console.log('Profile picture deletion is not checked.');
-        }
+    // Handle form submission logic here
+    if (this.deletePictureChecked) {
+      this.deleteProfilePicture();
+    } else {
+      console.log('Profile picture deletion is not checked.');
+    }
+
+    if (this.userIdId !== null) {
+      this.loadProfilePicture(this.userIdId);
+    }
   }
 
   profilePictureUrl: string | null = null;
+  isThereProfilePicture: boolean = false;
 
   loadProfilePicture(userId: number) {
     this.http.get(`http://localhost:8080/profile/picture/${userId}`, { responseType: 'blob' })
-        .subscribe(
-            (response) => {
-                // Create a URL for the image blob
-                const url = window.URL.createObjectURL(response);
-                this.profilePictureUrl = url;
-            },
-            (error) => {
-                console.error('Error loading profile picture:', error);
-                this.profilePictureUrl =  'fa fa-circle-user'; // Optional fallback image
-            }
-        );
-}
+    .subscribe(
+      (response) => {
+          // Create a URL for the image blob
+          const url = window.URL.createObjectURL(response);
+          this.profilePictureUrl = url;
+          this.isThereProfilePicture = true;
+          this.profilePictureService.notifyProfilePictureUpdated(true);
+      },
+      (error) => {
+          console.error('Error loading profile picture:', error);
+          // this.profilePictureUrl = 'fa fa-circle-user';
+          this.isThereProfilePicture = false;
+          this.profilePictureService.notifyProfilePictureUpdated(false);
+      }
+    );
+  }
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
@@ -103,7 +115,7 @@ deleteProfilePicture(): void {
       this.http.delete<string>(`http://localhost:8080/profile/picture/delete/${this.userIdId}`).subscribe(
         (response) => {
           console.log(response);  // Success message
-          this.profilePictureUrl = 'path-to-default-image.jpg';  // Set to a default image or remove the picture
+          this.isThereProfilePicture = false;
         },
         (error) => {
           console.error('Error deleting profile picture:', error);

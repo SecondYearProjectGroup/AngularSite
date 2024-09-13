@@ -20,6 +20,20 @@
     border-bottom: 1px solid #eee;
 }
 
+.tick-button {
+    position: absolute;
+    bottom: 10px; /* Position the button to the bottom */
+    right: 10px;  /* Align it to the right */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+  
+.tick-button i {
+color: green;
+font-size: 14px;  /* Adjust size if needed */
+}
+
 @media screen and (max-width: 600px) {
     .notification-panel{
         width: 200px;

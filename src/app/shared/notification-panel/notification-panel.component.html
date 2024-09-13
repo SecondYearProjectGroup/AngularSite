@@ -6,6 +6,11 @@
         {{ notification.title }}
         <!-- : {{ notification.message }}  -->
         <span>{{ notification.timestamp | date:'short' }}</span>
+        
+        <!-- Add the button with the tick icon -->
+        <button class="tick-button">
+          <i class="fa fa-check"></i>
+        </button>
       </p>
     </ng-container>
     <ng-template #noNotifications>
