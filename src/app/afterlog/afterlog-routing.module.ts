@@ -28,6 +28,7 @@ import { ReportSubmissionsToAdminComponent } from './admin/report-submissions-to
 import { VivasToAdminComponent } from './admin/vivas-to-admin/vivas-to-admin.component';
 import { FinalAssignmentSubmissionComponent } from './shared/tiles-and-inside/final-assignment-submission/final-assignment-submission.component';
 import { VivaPageComponent } from './shared/tiles-and-inside/viva-page/viva-page.component';
+import { SupervisorExaminerDashboardComponent } from './supervisor-examiner/supervisor-examiner-dashboard/supervisor-examiner-dashboard.component';
 // import { RoleGuardService as RoleGuard } from '../shared/services/role-guard.service';
 
 const routes: Routes = [
@@ -63,6 +64,9 @@ const routes: Routes = [
       { path: 'examiner-dashboard', component: ExaminerDashboardComponent },
       { path: 'students-to-examiner', component: StudentsToExaminerComponent },
       { path: 'student-profile-to-examiner', component: StudentProfileToExaminerComponent },
+
+      // Supervisor-Examiner
+      { path: 'supervisor-examiner-dashboard', component: SupervisorExaminerDashboardComponent},
 
 
       { path: 'home-for-roles', component: HomeForRolesComponent },

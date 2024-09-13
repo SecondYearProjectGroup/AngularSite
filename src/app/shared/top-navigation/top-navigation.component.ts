@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthServiceService } from '../../services/auth-service.service';
 import { UserRoleService } from '../../afterlog/services/user-role.service';
+import { ProfilePictureService } from '../../afterlog/services/profile-picture.service';
 
 @Component({
   selector: 'app-top-navigation',
@@ -15,11 +16,13 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
     private router: Router, 
     private userRoleService: UserRoleService, 
     private http: HttpClient, 
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private profilePictureService: ProfilePictureService
   ) {}
 
   userRole: string | null = null; // Variable of the user Role & Initialize with null
   userId: string | null = null; // Variable of the user ID & Initialize
+  userIdId: number | null = null; // Variable of the user ID & Initialize
 
   @Input() mode: 'beforeLog' | 'login' | 'afterLog' = 'afterLog';
 
@@ -30,6 +33,27 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
 
     this.userRoleService.userId$.subscribe(id => {
       this.userId = id;
+    });
+
+    this.userRoleService.userIdId$.subscribe(idId => {
+      this.userIdId = idId;
+    });
+
+    if (this.userIdId !== null) {
+      this.loadProfilePicture(this.userIdId);
+    }
+
+    // Subscribe to listen for profile picture updates
+    this.profilePictureService.profilePictureUpdated$.subscribe(isLoaded => {
+      if (isLoaded) {
+        if (this.userIdId !== null) {
+          this.loadProfilePicture(this.userIdId);
+        }
+      } else {
+        if (this.userIdId !== null) {
+          this.loadProfilePicture(this.userIdId);
+        }
+      }
     });
   }
 
@@ -111,6 +135,8 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
       this.router.navigate(['/afterlog/admin-dashboard']);
     } else if (this.userRole === 'STUDENT') {
       this.router.navigate(['/afterlog/student-dashboard']);
+    } else if (this.userRole === 'SUPERVISOR-EXAMINER') {
+      this.router.navigate(['/afterlog/supervisor-examiner-dashboard']);
     } else if (this.userRole === 'SUPERVISOR') {
       this.router.navigate(['/afterlog/supervisor-dashboard']);
     } else if (this.userRole === 'EXAMINER') {
@@ -118,22 +144,6 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
     } else {
       console.error('Unknown role:', this.userRole);
     }
-  }
-
-  navigateToStuDashboard() {
-    this.router.navigate(['/afterlog/student-dashboard']);
-  }
-
-  navigateToAdminDashboard() {
-    this.router.navigate(['/afterlog/admin-dashboard']);
-  }
-
-  navigateToSupervisorDashboard() {
-    this.router.navigate(['/afterlog/supervisor-dashboard']);
-  }
-
-  navigateToExaminerDashboard() {
-    this.router.navigate(['/afterlog/examiner-dashboard']);
   }
 
   navigateToHome() {
@@ -149,6 +159,8 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
       this.router.navigate(['/afterlog/edit-profile-for-staff']);
     } else if (this.userRole === 'STUDENT') {
       this.router.navigate(['/afterlog/edit-profile']);
+    } else if (this.userRole === 'SUPERVISOR-EXAMINER') {
+      this.router.navigate(['/afterlog/edit-profile-for-staff']);
     } else if (this.userRole === 'SUPERVISOR') {
       this.router.navigate(['/afterlog/edit-profile-for-staff']);
     } else if (this.userRole === 'EXAMINER') {
@@ -208,6 +220,7 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
     // Check if the current URL matches any of the dashboard URLs
     return currentUrl === '/afterlog/admin-dashboard' ||
            currentUrl === '/afterlog/student-dashboard' ||
+           currentUrl === '/afterlog/supervisor-examiner-dashboard' ||
            currentUrl === '/afterlog/supervisor-dashboard' ||
            currentUrl === '/afterlog/examiner-dashboard';
   }
@@ -219,5 +232,26 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
     // Check if the current URL matches any of the dashboard URLs
     return currentUrl === '/afterlog/edit-profile-for-staff' ||
            currentUrl === '/afterlog/edit-profile'
+  }
+
+  // Handle Profile Picture
+  profilePictureUrl: string | null = null;
+  isThereProfilePicture: boolean = false;
+
+  loadProfilePicture(userId: number) {
+    this.http.get(`http://localhost:8080/profile/picture/${userId}`, { responseType: 'blob' })
+      .subscribe(
+        (response) => {
+            // Create a URL for the image blob
+            const url = window.URL.createObjectURL(response);
+            this.profilePictureUrl = url;
+            this.isThereProfilePicture = true;
+        },
+        (error) => {
+            console.error('Error loading profile picture:', error);
+            // this.profilePictureUrl = 'fa fa-circle-user';
+            this.isThereProfilePicture = false;
+        }
+      );
   }
 }

@@ -76,8 +76,7 @@ ul.topnav li.sandwitch2{
 }
 
 /* Target the icon directly */
-.right i.fa-circle-user {
-  font-size: 30px; /* Change this value to adjust the size */
+.right .pp {
   margin-right: 15px;
   margin-left: 15px;
 }

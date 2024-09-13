@@ -20,21 +20,22 @@ export class AuthServiceService {
     return this.http.post<{ jwt: string }>(loginUrl, body, { headers })
       .pipe(map(response => {
         const token = response.jwt;
-        localStorage.setItem(this.tokenKey, token);
+        sessionStorage.setItem(this.tokenKey, token);
         return token;  // Return the token as a string
       }));
   }
 
   logout(): void {
+    sessionStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.tokenKey);
   }
 
   isAuthenticated(): boolean {
-    return !!localStorage.getItem(this.tokenKey);
+    return !!sessionStorage.getItem(this.tokenKey);
   }
 
   getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
+    return sessionStorage.getItem(this.tokenKey);
   }
 }
 

@@ -50,6 +50,8 @@ export class SidebarLeftComponent {
       this.router.navigate(['/afterlog/admin-dashboard']);
     } else if (this.userRole === 'STUDENT') {
       this.router.navigate(['/afterlog/student-dashboard']);
+    } else if (this.userRole === 'SUPERVISOR-EXAMINER') {
+      this.router.navigate(['/afterlog/supervisor-examiner-dashboard']);
     } else if (this.userRole === 'SUPERVISOR') {
       this.router.navigate(['/afterlog/supervisor-dashboard']);
     } else if (this.userRole === 'EXAMINER') {
@@ -65,6 +67,7 @@ export class SidebarLeftComponent {
     // Check if the current URL matches any of the dashboard URLs
     return currentUrl === '/afterlog/admin-dashboard' ||
            currentUrl === '/afterlog/student-dashboard' ||
+           currentUrl === '/afterlog/supervisor-examiner-dashboard' ||
            currentUrl === '/afterlog/supervisor-dashboard' ||
            currentUrl === '/afterlog/examiner-dashboard';
   }
@@ -75,6 +78,8 @@ export class SidebarLeftComponent {
       this.router.navigate(['/afterlog/edit-profile-for-staff']);
     } else if (this.userRole === 'STUDENT') {
       this.router.navigate(['/afterlog/edit-profile']);
+    } else if (this.userRole === 'SUPERVISOR-EXAMINER') {
+      this.router.navigate(['/afterlog/edit-profile-for-staff']);
     } else if (this.userRole === 'SUPERVISOR') {
       this.router.navigate(['/afterlog/edit-profile-for-staff']);
     } else if (this.userRole === 'EXAMINER') {
