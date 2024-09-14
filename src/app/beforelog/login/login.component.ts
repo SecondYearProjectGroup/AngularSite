@@ -62,7 +62,7 @@ export class LoginComponent {
             this.userRoleService.setUserRole('STUDENT');
             this.router.navigate(['/afterlog/student-dashboard']);
 
-          } else if (roles.includes('SUPERVISOR' && 'EXAMINER')) {
+          } else if (roles.includes('SUPERVISOR') && roles.includes('EXAMINER')) {
             this.userRoleService.setUserRole('SUPERVISOR-EXAMINER');
             this.router.navigate(['/afterlog/supervisor-examiner-dashboard']);
 
