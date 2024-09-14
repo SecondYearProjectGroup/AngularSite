@@ -1,5 +1,5 @@
 
-import { Component, ElementRef, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { SubmissionService } from '../../../../services/submission.service';
 import { TileIdService } from '../../../services/tile-id.service';
 import { ActivatedRoute } from '@angular/router';
@@ -17,6 +17,7 @@ import { UserRoleService } from '../../../services/user-role.service';
 export class AssignmentSubmissionComponent implements OnInit {
 
   @Input() regNumber : string = '';
+  @Output() openRemoveSubmissionPopupEvent = new EventEmitter<number>();
 
   userRole: string | null = null;
   userIdId : number = 0;
@@ -307,6 +308,7 @@ export class AssignmentSubmissionComponent implements OnInit {
   //To remove submissions
   isRemoveSubmissionPopupOpen = false;
   openRemoveSubmissionPopup(): void {
+    this.openRemoveSubmissionPopupEvent.emit(this.id);
     this.isRemoveSubmissionPopupOpen = true;
   }
   closeRemoveSubmissionPopup(): void {

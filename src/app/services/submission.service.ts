@@ -57,5 +57,12 @@ export class SubmissionService {
     return throwError('Something went wrong; please try again later.');
   }
 
+   // Delete a file based on the submission ID and file name
+   deleteFile(submissionId: number): Observable<any> {
+    const url = `${this.apiUrl}/submissions/delete/submittedFiles/${submissionId}`;
+    return this.http.delete(url, { responseType: 'text' }) // Response type text for simplicity
+      .pipe(catchError(this.handleError));
+  }
+
   
 }
