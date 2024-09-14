@@ -2,7 +2,7 @@
     <h6 style="text-align: center; color:rgb(0, 0, 54); margin:0px"><b>Notifications</b></h6>
     <hr>
     <ng-container *ngIf="notifications.length > 0; else noNotifications">
-      <p *ngFor="let notification of notifications">
+      <p *ngFor="let notification of notifications" class="notification-item">
         {{ notification.title }}
         <!-- : {{ notification.message }}  -->
         <span>{{ notification.timestamp | date:'short' }}</span>

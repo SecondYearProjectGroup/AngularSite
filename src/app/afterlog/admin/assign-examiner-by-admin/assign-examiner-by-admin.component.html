@@ -8,7 +8,7 @@
   
       <!-- Display previously assigned examiners if any -->
       <div *ngIf="assignedExaminers.length > 0">
-        <h3>Previously Assigned Examiners:</h3>
+        <h6><b>Previously Assigned Examiners:</b></h6>
         <ul>
           <li *ngFor="let examiner of assignedExaminers">
             {{ examiner.fullName }}

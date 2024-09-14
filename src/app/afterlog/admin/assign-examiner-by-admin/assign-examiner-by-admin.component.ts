@@ -10,6 +10,7 @@ export class AssignExaminerByAdminComponent implements OnInit {
 
   @Input() id: number | null = null;
   @Output() close = new EventEmitter<void>();
+  @Output() assignedExaminersChange = new EventEmitter<void>();
 
   tableData: Array<{ id: number, fullName: string, email: string, selected?: boolean }> = [];
   assignedExaminers: Array<{ id: number, fullName: string }> = []; // Store previously assigned examiners
@@ -102,7 +103,13 @@ export class AssignExaminerByAdminComponent implements OnInit {
       next: (response) => {
         console.log('Examiners assigned successfully:', response);
         alert('Examiners assigned successfully.');
+
+        // Assuming `loadAssignedExaminers()` updates an `assignedExaminers` array
+        // Emit the updated assignedExaminers array
+        this.assignedExaminersChange.emit();
+
         this.loadAssignedExaminers(); // Reload the assigned examiners list
+        this.closeAssignExaminerByAdmin();
       },
       error: (error) => {
         console.error('Error assigning examiners:', error);
