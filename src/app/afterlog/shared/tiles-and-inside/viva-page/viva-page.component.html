@@ -4,6 +4,7 @@
 
 <br>
 <div class="feedback-form">
+  <form (ngSubmit)="onSubmit()">
     <table style="width: 100%;">
 
         <tr>
@@ -12,24 +13,45 @@
         </tr>
 
         <tr>
-            <td>Set Date:</td>
-            <td>
-              <div style="display: flex;">
-                <input type="date" name="date" required>
-                <input type="time" name="time" required>
-                <input type="submit" value="Set Deadline">
+          <td>Viva Date:</td>
+          <td>date</td>
+        </tr>
+
+        <tr *ngIf="userRole === 'ADMIN'">
+          <td>Set Date:</td>
+          <td>
+            <div style="display: flex;">
+              <input type="date" name="date" required>
+              <input type="time" name="time" required>
+
+              <div>
+                <input *ngIf="!isCommmented" type="submit" value="Set Deadline">
+                <input *ngIf="isCommmented" type="submit" value="Change Deadline">
               </div>
-            </td>
-          </tr>
+              
+            </div>
+          </td>
+        </tr>
+
         <tr>
             <td>Comments:</td>
-            <td><textarea name="feedback" rows="4" style="width: 100%;"></textarea></td>
+            <td *ngIf="userRole === 'ADMIN'"><textarea name="feedback" rows="4" style="width: 100%;"></textarea></td>
+
+            <td *ngIf="userRole === 'STUDENT'">
+              <span *ngIf="!isCommmented">No comments yet.</span>
+              <textarea *ngIf="isCommmented" name="feedback" rows="4" style="width: 100%;"></textarea>
+            </td>
         </tr>
         
         
     </table>
-    <br><br><hr><br>
-    <input type="submit" value="Confirm Viva"><br><br>
+    <br><br>
+    <div *ngIf="userRole === 'ADMIN'"><hr><br>
+      <input type="submit" value="Confirm Viva"><br><br>
+    </div>
+
+  </form>
+
 </div>
 <br>
 <br>

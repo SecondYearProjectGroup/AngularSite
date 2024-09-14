@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UserRoleService } from '../../../services/user-role.service';
 
 @Component({
   selector: 'app-viva-page',
@@ -9,14 +10,18 @@ import { ActivatedRoute } from '@angular/router';
 export class VivaPageComponent implements OnInit {
   dueDate: any;
   
-  onSubmit() {
-    throw new Error('Method not implemented.');
-  }
+  userRole: string | null = null;
 
   constructor(
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private userRoleService: UserRoleService) { 
+      this.userRoleService.userRole$.subscribe(role => {
+        this.userRole = role;
+      });
+    }
 
   id: number = 0;
+  isCommmented: boolean = false;
 
   ngOnInit(): void {
     scrollTo(0, 0);
@@ -24,5 +29,10 @@ export class VivaPageComponent implements OnInit {
     const idParam = this.route.snapshot.paramMap.get('id');
     this.id = idParam ? parseInt(idParam, 10) : 0; // Default to 0 if idParam is null
     console.log('Retrieved tile id from route params:', this.id);
+  }
+
+  onSubmit(){
+
+    this.isCommmented = true;
   }
 }

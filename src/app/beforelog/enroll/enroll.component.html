@@ -205,8 +205,6 @@
                     <select name="programOfStudy" [(ngModel)]="enrollmentData.programOfStudy" required #selectProgramInput="ngModel">
                         <option value="PhD">PhD</option>
                         <option value="MPhil">MPhil</option>
-                        <option value="Program1">Program1</option>
-                        <option value="Program2">Program2</option>
                     </select>
                     <div *ngIf="selectProgramInput.invalid && (selectProgramInput.dirty || selectProgramInput.touched)" class="error-message">
                         <small *ngIf="selectProgramInput.errors?.['required']">Program of Study is required.</small>

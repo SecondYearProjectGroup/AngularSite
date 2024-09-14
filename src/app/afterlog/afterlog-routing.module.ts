@@ -64,6 +64,7 @@ const routes: Routes = [
       { path: 'examiner-dashboard', component: ExaminerDashboardComponent },
       { path: 'students-to-examiner', component: StudentsToExaminerComponent },
       { path: 'student-profile-to-examiner', component: StudentProfileToExaminerComponent },
+      { path: 'student-profile-to-examiner/:regNumber', component: StudentProfileToExaminerComponent },
 
       // Supervisor-Examiner
       { path: 'supervisor-examiner-dashboard', component: SupervisorExaminerDashboardComponent},

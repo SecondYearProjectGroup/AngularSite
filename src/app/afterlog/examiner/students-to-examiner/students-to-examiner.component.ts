@@ -67,7 +67,7 @@ get filteredData() {
   );
 }
 
-  navigateToStudentProfileToExaminer(){
-    this.router.navigate(['afterlog/student-profile-to-examiner']);
-  }
+  // navigateToStudentProfileToExaminer(){
+  //   this.router.navigate(['afterlog/student-profile-to-examiner']);
+  // }
 }
