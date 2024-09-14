@@ -44,8 +44,8 @@ export class AssignmentSubmissionComponent implements OnInit {
   dueDate: string = ''; // Example value
   setDueDate: { date: string; time: string } = { date: '', time: '' };
   submissionStatus: string = '';
-  timeRemaining: string = '2 Days';
-  lastModified: string = '2 Days ago';
+  timeRemaining: string = '';
+  lastModified: string = '';
   selectedFiles: File[] = [];
 
   ngOnInit(): void {
