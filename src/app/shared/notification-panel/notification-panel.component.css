@@ -20,15 +20,21 @@
     border-bottom: 1px solid #eee;
 }
 
+.notification-item {
+    position: relative; /* Make the p element the reference point for the absolutely positioned button */
+    padding-right: 40px; /* Optional: Add some padding to make space for the button */
+}
+  
 .tick-button {
     position: absolute;
-    bottom: 10px; /* Position the button to the bottom */
-    right: 10px;  /* Align it to the right */
+    bottom: 0; /* Align to the bottom of the p element */
+    right: 0;  /* Align to the right of the p element */
     background-color: transparent;
     border: none;
     cursor: pointer;
+    color: rgb(0, 0, 54); /* Adjust button color */
 }
-  
+
 .tick-button i {
 color: green;
 font-size: 14px;  /* Adjust size if needed */

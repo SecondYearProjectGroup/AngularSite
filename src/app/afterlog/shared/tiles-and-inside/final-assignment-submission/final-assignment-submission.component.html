@@ -139,8 +139,7 @@
 
     <!-- For Students -->
     <!-- Submission Removing Button -->
-    <input *ngIf="isUploading && userRole === 'STUDENT'" type="submit" value="Remove Submission" (click)="openRemoveSubmissionPopup()" (close)="closeRemoveSubmissionPopup()"><br><br>
-    <app-remove-submission-popup *ngIf="isRemoveSubmissionPopupOpen" (close)="closeRemoveSubmissionPopup()"></app-remove-submission-popup>
+    <input *ngIf="isUploading && userRole === 'STUDENT'" type="submit" value="Remove Submission"><br><br>
   
     <hr>
     <table style="width: 100%;">
@@ -171,29 +170,37 @@
 
     <!-- For Admin -->
     <div *ngIf="userRole === 'ADMIN'">
-      <h4>Manage Examiners</h4><br>
+      <h6><b>Manage Examiners</b></h6><br>
 
       <div style="display: flex;">
         <div class="myButtonDesign" style="width: 50%;">
           <a class="my-button" (click)="openAssignExaminersByAdmin()">Assign/ Change Examiners</a>
         </div>
-        <app-assign-examiner-by-admin *ngIf="isAssignExaminersByAdminOpen" (close)="closeAssignExaminersByAdmin()" [id]="id"></app-assign-examiner-by-admin>
+        <app-assign-examiner-by-admin *ngIf="isAssignExaminersByAdminOpen" (close)="closeAssignExaminersByAdmin()" (assignedExaminersChange)="handleAssignedExaminers()" [id]="id"></app-assign-examiner-by-admin>
         
-        <div *ngIf="assignedExaminers.length > 0">
-          <h3>Assigned Examiners:</h3>
-          <ul>
-            <li *ngFor="let examiner of assignedExaminers">
-              {{ examiner.fullName }}
-              <button (click)="deleteExaminer(examiner.id)">Delete</button>
-            </li>
-          </ul>
-        </div>
-
+        
         <div class="myButtonDesign">
           <a class="my-button" (click)="openSetDeadlinesForExaminers()">Set Deadlines to Examiners</a>
         </div>
         <app-set-deadlines-to-examiners *ngIf="isSetDeadlinesForExaminersOpen" (close)="closeSetDeadlinesForExaminers()" [id]="id"></app-set-deadlines-to-examiners>
 
+      </div>
+      <br><br>
+
+
+      <div *ngIf="assignedExaminers.length > 0">
+        <h6><b>Assigned Examiners:</b></h6><br>
+        <ul>
+          <li *ngFor="let examiner of assignedExaminers">
+            <div style="display: flex; margin-bottom: 10px;">
+              {{ examiner.fullName }}
+
+              <div class="myButtonDesign">
+                <a class="my-button"  style="padding: 0px 10px; margin-left: 15px;" (click)="deleteExaminer(examiner.id)">Delete</a>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
 
       <br>

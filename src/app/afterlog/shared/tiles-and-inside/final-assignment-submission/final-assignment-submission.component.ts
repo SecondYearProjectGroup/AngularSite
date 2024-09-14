@@ -354,6 +354,9 @@ export class FinalAssignmentSubmissionComponent {
       }, error => {
         console.error('Error deleting examiner:', error);
       });
+  }
 
+  handleAssignedExaminers() {
+    this.loadAssignedExaminers();
   }
 }
