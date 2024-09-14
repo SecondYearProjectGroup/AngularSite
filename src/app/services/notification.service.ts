@@ -21,4 +21,8 @@ export class NotificationService {
     return this.http.get<number>(`${this.apiUrl}/unread/count`);
   }
 
+  // Mark a specific notification as read
+  markAsRead(notificationId: number): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/markAsRead/${notificationId}`, null);  // Backend expects PUT to update notification status
+  }
 }
