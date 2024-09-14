@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthServiceService } from '../../services/auth-service.service';
 import { UserRoleService } from '../../afterlog/services/user-role.service';
+import { NotificationService } from '../../services/notification.service';
 import { ProfilePictureService } from '../../afterlog/services/profile-picture.service';
 
 @Component({
@@ -13,11 +14,13 @@ import { ProfilePictureService } from '../../afterlog/services/profile-picture.s
 export class TopNavigationComponent implements OnInit, AfterViewInit {
 
   constructor(
-    private router: Router, 
-    private userRoleService: UserRoleService, 
-    private http: HttpClient, 
-    private authService: AuthServiceService,
-    private profilePictureService: ProfilePictureService
+    private router: Router,
+    private userRoleService: UserRoleService,
+    private http: HttpClient,
+    private notificationService: NotificationService,
+    private profilePictureService: ProfilePictureService,
+    private authService: AuthServiceService
+
   ) {}
 
   userRole: string | null = null; // Variable of the user Role & Initialize with null
@@ -34,6 +37,7 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
     this.userRoleService.userId$.subscribe(id => {
       this.userId = id;
     });
+    this.loadUnreadNotifications();
 
     this.userRoleService.userIdId$.subscribe(idId => {
       this.userIdId = idId;
@@ -61,6 +65,16 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
     this.initializeNotificationPanel();
   }
 
+  // Method to load unread notifications count
+  unreadCount: number = 0;
+  loadUnreadNotifications(): void {
+    this.notificationService.getUnreadNotificationCount().subscribe(count => {
+      this.unreadCount = count;
+    }, error => {
+      console.error('Error fetching unread notification count', error);
+    });
+  }
+
   logout() {
     this.http.post('http://localhost:8080/logout', {}, { withCredentials: true }).subscribe({
       next: () => {
@@ -69,7 +83,7 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
         this.authService.logout();
         // Clear role in the service
         this.userRoleService.clearUserRole();
-        
+
         sessionStorage.clear();
         localStorage.clear();
 
@@ -93,27 +107,27 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
       }
     });
   }
-  
+
   // Optional: Clear cookies if authentication uses them
   clearCookies() {
     document.cookie.split(';').forEach((c) => {
       document.cookie = c.replace(/^ +/, '').replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
     });
   }
-  
+
   // // Method to clear browser cache and redirect after logout
   // clearBrowserCacheAndRedirect() {
   //   sessionStorage.clear();
   //   localStorage.clear();
-  
+
   //   // Replace history state to prevent back navigation
   //   window.history.replaceState({}, '', '/beforelog/login');
   //   this.router.navigate(['/beforelog/login']).then(() => {
   //     window.location.reload(); // Reload to enforce fresh navigation
   //   });
   // }
-  
-  
+
+
   navigateToLogin() {
     this.logout(); // Call logout when navigating to login
   }
@@ -149,7 +163,7 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
   navigateToHome() {
     this.router.navigate(['/beforelog/welcome']);
   }
-  
+
   navigateToEditProfile() {
 
     console.log('User role:', this.userRole);
@@ -210,7 +224,7 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
   toggleDropdown3(): void {
     this.dropdown3 = !this.dropdown3;
   }
-  toggleDropdown4(): void { 
+  toggleDropdown4(): void {
     this.dropdown4 = !this.dropdown4;
   }
 

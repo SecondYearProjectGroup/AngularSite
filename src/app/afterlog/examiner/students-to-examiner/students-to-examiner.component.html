@@ -13,25 +13,25 @@
                 <tr>
                     <th>Reg. No</th>
                     <th>Student Name With Initials</th>
-                    <th>Student FullNmae</th>
-                    <th>Contact Number</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Program Of Study</th>
+                    <!-- <th>Student FullNmae</th> -->
+                    <th>Submission Title</th>
+                    <th>Status</th>
+                    <th>Deadline to Review</th>
+                    <!-- <th>Program Of Study</th> -->
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let row of filteredData">
-                    <!-- <td>
+                    <td>
                         <a [routerLink]="['/afterlog/student-profile-to-admin', row.regNumber]">
                             {{ row.regNumber }}
                         </a>
                     </td>
                     <td>{{ row.nameWithInitials }}</td>
-                    <td>{{ row.fullName }}</td>
-                    <td>{{ row.contactNumber }}</td>
-                    <td>{{ row.email }}</td>
-                    <td>{{ row.address }}</td>
+                    <td>{{ row.title }}</td>
+                    <td>{{ row.submissionStatus }}</td>
+                    <td>{{ row.deadlineToReview }}</td>
+                    <!-- <td>{{ row.address }}</td>
                     <td>{{ row.programOfStudy }}</td> -->
                 </tr>
 

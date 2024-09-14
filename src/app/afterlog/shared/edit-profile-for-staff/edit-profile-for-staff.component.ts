@@ -54,7 +54,7 @@ export class EditProfileForStaffComponent implements OnInit {
         }
       );
   }
- 
+
 
   onEditProfileSubmit() {
     // Handle form submission logic here
@@ -96,7 +96,7 @@ export class EditProfileForStaffComponent implements OnInit {
     if (file && this.userIdId !== null) {
       const formData = new FormData();
       formData.append('file', file, file.name);
-      
+
       this.http.post(`http://localhost:8080/profile/updatePicture/${this.userIdId}`, formData)
         .subscribe(response => {
           console.log('Profile picture uploaded successfully', response);

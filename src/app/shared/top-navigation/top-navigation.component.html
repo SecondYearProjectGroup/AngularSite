@@ -19,13 +19,14 @@
             <li class="right">
               <button class="notify position-relative" id="notificationButton">
                 <i class="fa fa-bell" style="font-size: 19px; margin-top: 3px;"></i>
-
+              
                 <!-- Notification Badge -->
-                <span class="position-absolute top-5 start-98 translate-middle badge rounded-pill bg-danger">
-                  9+
+                <span *ngIf="unreadCount > 0" class="position-absolute top-5 start-98 translate-middle badge rounded-pill bg-danger">
+                  {{ unreadCount > 9 ? '9+' : unreadCount }} <!-- Display '9+' if count is more than 9 -->
                   <span class="visually-hidden">unread messages</span>
                 </span>
               </button>
+              
             </li>
         </ul>
 
