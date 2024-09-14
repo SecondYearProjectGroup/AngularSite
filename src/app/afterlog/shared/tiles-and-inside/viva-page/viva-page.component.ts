@@ -10,10 +10,6 @@ import { UserRoleService } from '../../../services/user-role.service';
 export class VivaPageComponent implements OnInit {
   dueDate: any;
   
-  onSubmit() {
-    throw new Error('Method not implemented.');
-  }
-
   userRole: string | null = null;
 
   constructor(

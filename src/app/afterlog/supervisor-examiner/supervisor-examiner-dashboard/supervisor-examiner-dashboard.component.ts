@@ -10,6 +10,10 @@ export class SupervisorExaminerDashboardComponent {
 
   constructor(private router: Router, private renderer: Renderer2 ) {}
 
+  navigateToSupervisees(){
+    this.router.navigate(['afterlog/supervisees']);
+  }
+
   navigateToStudents(){
     this.router.navigate(['afterlog/students-to-examiner']);
   }
