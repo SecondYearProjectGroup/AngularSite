@@ -1,8 +1,8 @@
 
-import { Component, HostListener, Renderer2, OnInit } from '@angular/core';
+import { Component, HostListener, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../../../services/auth-service.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { WebsocketService } from '../../../services/websocket.service';
 
 @Component({
@@ -14,10 +14,7 @@ export class AdminDashboardComponent {
 
   constructor(
     private router: Router,
-    private authService : AuthServiceService,
-    private http:HttpClient,
-    private renderer: Renderer2,
-    private webSocketService: WebsocketService) {}
+    private renderer: Renderer2) {}
 
 
   navigateToEnrolledStudents(){
@@ -55,16 +52,6 @@ export class AdminDashboardComponent {
   closeAddStaffMembersByAdmin(): void{
     this.isAddStaffMembersByAdminOpen = false;
   }
-
-  // Create Calendar Event
-  isCreateCalendarEventOpen = false;
-  openCreateCalendarEvent(): void{
-    this.isCreateCalendarEventOpen = true;
-  }
-  closeCreateCalendarEvent(): void{
-    this.isCreateCalendarEventOpen = false;
-  }
-
 
   // Cards according to the screen size
   @HostListener('window:middleContentResize', ['$event'])
