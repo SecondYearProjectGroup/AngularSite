@@ -22,6 +22,10 @@ export class CollapsibleSectionService {
     return this.http.get<any[]>(`${this.apiUrl}/${regNumber}/${activeTab}`);
   }
 
+  getSectionsForExaminers(regNumber: string , activeTab: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/examiners/${regNumber}/${activeTab}`);
+  }
+
   deleteSection(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }

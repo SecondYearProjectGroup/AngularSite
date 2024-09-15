@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthServiceService } from '../../../services/auth-service.service';
 import { UserRoleService } from '../../services/user-role.service';
+import { CollapsibleSectionService } from '../../services/collapsible-section.service';
 
 @Component({
   selector: 'app-student-profile-to-examiner',
@@ -55,7 +56,8 @@ export class StudentProfileToExaminerComponent {
     private route: ActivatedRoute,
     private http: HttpClient,
     private authService: AuthServiceService,
-    private userRoleService: UserRoleService
+    private userRoleService: UserRoleService,
+    private collapsibleSectionService: CollapsibleSectionService
   ) {
     this.userRoleService.userRole$.subscribe(role => {
       this.userRole = role;
@@ -80,12 +82,44 @@ export class StudentProfileToExaminerComponent {
     if (this.regNumber) {
       console.log('Loading student profile for regNumber:', this.regNumber);
       this.loadStudentProfile(this.regNumber);
-      // this.loadSections(this.regNumber, this.activeTab);
+      this.loadSections(this.regNumber, this.activeTab);
       this.loadSupervisorName(this.regNumber);
     } else {
       console.warn('No regNumber found in route parameters.');
     }
   }
+
+  // Load Sections data of a student from the backend
+  loadSections(regNumber: string , activeTab: string): void {
+    console.log('Active Tab' + activeTab);
+    this.collapsibleSectionService.getSectionsForExaminers(regNumber, activeTab).subscribe({
+      next: (data) => {
+        this.loadingSections = data.map(section => ({
+          buttonName: section.buttonName, // Adjust these field names according to your backend response
+          loadingTiles: section.tiles.map((tile: LoadingTile) => ({
+            id: tile.id, // Adjust these field names according to your backend response
+            type: tile.type, // Adjust these field names according to your backend response
+            title: tile.title
+          }))
+        }));
+
+        // Populate sections with the same data, adjusting the structure if necessary
+        this.sections = this.loadingSections.map(loadingSection => ({
+          buttonName: loadingSection.buttonName,
+          tiles: loadingSection.loadingTiles.map(loadingTile => ({
+            type: loadingTile.type,
+            title: loadingTile.title
+          }))
+        }));
+
+        console.log('Sections loaded successfully', this.loadingSections);
+      },
+      error: (error) => {
+        console.error('Error loading sections', error);
+      }
+    });
+  }
+
 
   // Load student profile data from the backend
   loadStudentProfile(regNumber: string): void {
@@ -123,12 +157,6 @@ export class StudentProfileToExaminerComponent {
           console.log('Student data loading process complete.');
         }
       });
-  }
-
-
-  // Load Sections data of a student from the backend
-  loadSections(regNumber: string , activeTab: string): void {
-    
   }
 
   loadSupervisorName(regNumber: string) {

@@ -6,6 +6,7 @@ import { Examiner, ExaminerService } from '../../../services/examiner.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UploadedFile } from '../../../../models/uploaded-file';
 import { UserRoleService } from '../../../services/user-role.service';
+import { Feedback, FeedbackService } from '../../../services/feedback.service';
 
 @Component({
   selector: 'app-final-assignment-submission',
@@ -25,6 +26,7 @@ export class FinalAssignmentSubmissionComponent {
     private fileService : FileService,
     private examinerService: ExaminerService,
     private http: HttpClient,
+    private feedbackService: FeedbackService,
     private userRoleService: UserRoleService) {
       this.userRoleService.userRole$.subscribe(role => {
         this.userRole = role;
@@ -74,6 +76,8 @@ export class FinalAssignmentSubmissionComponent {
     //Loading the examiners assigned the submission
     this.loadAssignedExaminers();
 
+    //Load feedbacks 
+    this.loadFeedbacks();
   }
 
   // Helper function to format the date
@@ -342,6 +346,19 @@ export class FinalAssignmentSubmissionComponent {
     this.examinerService.getAssignedExaminers(this.id).subscribe((data) => {
       this.assignedExaminers = data;
     });
+  }
+
+  feedbackList: Feedback[] = [];
+  loadFeedbacks(): void {
+    this.feedbackService.getFeedbackBySubmissionId(this.id).subscribe(
+      (data) => {
+        this.feedbackList = data;
+        console.log('feedbacks' + this.feedbackList);
+      },
+      (error) => {
+        console.error('Error fetching feedback:', error);
+      }
+    );
   }
 
 
