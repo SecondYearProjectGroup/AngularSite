@@ -186,28 +186,43 @@
 
       </div>
       <br><br>
+    </div>  
+    <!-- End For Admin -->
+    
+      
+
+    <h6><b>Deadline for Examiners:</b></h6>
+    <div class="feedback-form">
+      <table style="width: 100%;">
+          <tr>
+              <td>Deadline:</td>
+              <td *ngIf="isDeadlineSetforExaminers">{{ openedDate }}</td>
+              <td *ngIf="!isDeadlineSetforExaminers">Not yet provided.</td>
+          </tr>
+      </table>
+    </div>
+    <br><br>
 
 
-      <div *ngIf="assignedExaminers.length > 0">
-        <h6><b>Assigned Examiners:</b></h6><br>
-        <ul>
-          <li *ngFor="let examiner of assignedExaminers">
-            <div style="display: flex; margin-bottom: 10px;">
-              {{ examiner.fullName }}
+    <div *ngIf="assignedExaminers.length > 0">
+      <h6><b>Assigned Examiners:</b></h6>
+      <ul>
+        <li *ngFor="let examiner of assignedExaminers">
+          <div style="display: flex; margin-bottom: 10px;">
+            {{ examiner.fullName }}
 
-              <div class="myButtonDesign">
-                <a class="my-button"  style="padding: 0px 10px; margin-left: 15px;" (click)="deleteExaminer(examiner.id)">Delete</a>
-              </div>
+            <div class="myButtonDesign" *ngIf="userRole === 'ADMIN'">
+              <a class="my-button"  style="padding: 0px 10px; margin-left: 15px;" (click)="deleteExaminer(examiner.id)">Delete</a>
             </div>
-          </li>
-        </ul>
-      </div>
+          </div>
+        </li>
+      </ul>
+    </div>
 
       <br>
       <hr>
       <br>
-    </div>
-    <!-- End For Admin -->
+    
 
 
     

@@ -1,5 +1,5 @@
 <div class="topic">
-    <h1 style="text-align: center;">Sup-Ex Dashboard</h1>
+    <h1 style="text-align: center;">Dashboard</h1>
 </div>
 
 <div class="event-box">
@@ -46,13 +46,7 @@
 <div class="event-box" style="padding: 0px;">
     <h5>Calendar</h5>
     <br>
-    <div class="myButtonDesign">
-      <a (click)="openCreateCalendarEvent()" class="my-button">New Event</a>
-    </div>
-  </div>
-    
-  <!-- <button (click)="openCreateCalendarEvent()" class="btn btn-primary btn-lg">New Event</button><br> -->
-  <app-create-calendar-event *ngIf="isCreateCalendarEventOpen" (close)="closeCreateCalendarEvent()"></app-create-calendar-event>
+</div>
 
 <app-main-calendar></app-main-calendar>
 <br>

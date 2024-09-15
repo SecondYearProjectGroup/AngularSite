@@ -19,6 +19,10 @@ export class SetDeadlinesToExaminersComponent implements OnInit {
     this.loadAssignedExaminers();
   }
 
+  onSubmit(){
+    
+  }
+
   // Load previously assigned examiners
   loadAssignedExaminers() {
     if (this.id !== null) {
