@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserRoleService } from '../../services/user-role.service';
 
 @Component({
   selector: 'app-home-for-roles',
@@ -8,7 +9,15 @@ import { Router } from '@angular/router';
 })
 export class HomeForRolesComponent {
 
-  constructor(private router: Router) {}
+  userName: string | null = null;
+
+  constructor(
+    private router: Router,
+    private userRoleService: UserRoleService) {
+      this.userRoleService.userId$.subscribe(id => {
+        this.userName = id;
+      });
+    }
 
 
 }

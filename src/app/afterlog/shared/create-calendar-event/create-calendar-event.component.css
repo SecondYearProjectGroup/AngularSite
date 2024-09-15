@@ -19,7 +19,7 @@
     border: 1px solid #888;
     width: 60%; /* Could be more or less, depending on screen size */
 }
-  
+
 .modal-header {
     display: flex;
     align-items: center;
@@ -52,7 +52,7 @@
 
 
 .modal-form {
-    width: 50%;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -69,7 +69,7 @@
 .modal-form input[type=submit]:hover {
     background: linear-gradient(135deg, rgba(18, 55, 71, 1), rgba(18, 55, 71, 1));
 }
-.modal-form input[type=text],input[type=date], select, textarea {
+.modal-form input[type=text], input[type=email], input[type=date], textarea, select {
     width: 100%;
     padding: 8px 15px;
     margin: 8px 0;

@@ -71,13 +71,4 @@ export class SupervisorExaminerDashboardComponent {
           this.renderer.removeClass(element, 'full-width');
       });
   }
-
-  // Create Calendar Event
-  isCreateCalendarEventOpen = false;
-  openCreateCalendarEvent(): void{
-    this.isCreateCalendarEventOpen = true;
-  }
-  closeCreateCalendarEvent(): void{
-    this.isCreateCalendarEventOpen = false;
-  }
 }

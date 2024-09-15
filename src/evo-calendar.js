@@ -993,7 +993,7 @@
             $(_.$elements.calendarEl).toggleClass('sidebar-hide');
             _.$UI.hasSidebar = !_.$UI.hasSidebar;
         } else {
-            if(event) {
+            if (event) {
                 $(_.$elements.calendarEl).removeClass('sidebar-hide');
                 _.$UI.hasSidebar = true;
             } else {
@@ -1002,10 +1002,17 @@
             }
         }
 
+        // If the sidebar is opened, close the event list
+        if (_.$UI.hasSidebar) {
+            if (_.$UI.hasEvent) _.toggleEventList(false);  // Close the event list if open
+        }
+
+        // Handle smaller screens
         if (_.windowW <= _.$breakpoints.tablet) {
-            if (_.$UI.hasSidebar && _.$UI.hasEvent) _.toggleEventList();
+            if (_.$UI.hasSidebar && _.$UI.hasEvent) _.toggleEventList(false);
         }
     };
+
 
     // v1.0.0 - Toggle Event list
     EvoCalendar.prototype.toggleEventList = function(event) {
@@ -1015,7 +1022,7 @@
             $(_.$elements.calendarEl).toggleClass('event-hide');
             _.$UI.hasEvent = !_.$UI.hasEvent;
         } else {
-            if(event) {
+            if (event) {
                 $(_.$elements.calendarEl).removeClass('event-hide');
                 _.$UI.hasEvent = true;
             } else {
@@ -1024,8 +1031,14 @@
             }
         }
 
+        // If the event list is opened, close the sidebar
+        if (_.$UI.hasEvent) {
+            if (_.$UI.hasSidebar) _.toggleSidebar(false);  // Close the sidebar if open
+        }
+
+        // Handle smaller screens
         if (_.windowW <= _.$breakpoints.tablet) {
-            if (_.$UI.hasEvent && _.$UI.hasSidebar) _.toggleSidebar();
+            if (_.$UI.hasEvent && _.$UI.hasSidebar) _.toggleSidebar(false);
         }
     };
 
