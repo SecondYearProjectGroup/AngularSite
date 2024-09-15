@@ -38,6 +38,7 @@ export class FinalAssignmentSubmissionComponent {
 
   id: number = 0;
   isUploading: boolean = false;
+  isDeadlineSetforExaminers: boolean = false;
 
   title: string = '';
   openedDate: string = ''; // Example value

@@ -13,15 +13,29 @@
           <li *ngFor="let examiner of assignedExaminers">
             {{ examiner.fullName }}
           </li>
-          <div style="display: flex;">
-            <input type="date" name="date"  required>
-            <input type="time" name="time" required>
-            <input type="submit" value="Set Deadline">
-          </div>
         </ul>
+        <br>
+
+        <h6><b>Set Deadline</b></h6>
+
+        <div class="feedback-form">
+          <form (ngSubmit)="onSubmit()">
+      
+            <table style="width: 100%;">
+              <tr>
+                <td></td>
+                <td>
+                  <div style="display: flex;">
+                    <input type="date" name="date"  required>
+                    <input type="time" name="time" required>
+                    <input type="submit" value="Set Deadline">
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+
       </div>
-      
-      
-    </div>
 </div>
   
