@@ -65,6 +65,9 @@ export class FinalAssignmentSubmissionComponent {
         this.title = details.title || '';
         this.openedDate = details.openedDate ? this.formatDate(details.openedDate) : ''; // Format openedDate
         this.dueDate = details.dueDate ? this.formatDate(details.dueDate) : ''; // Format dueDate
+        this.lastModified = details.lastModified ? this.formatDate(details.lastModified) : '';
+        this.isDeadlineSetforExaminers = details.deadlineToReview ? true : false;
+        this.deadlineToReview = details.deadlineToReview ? this.formatDate(details.deadlineToReview) : '';
 
         // Calculate and set the remaining time
         this.timeRemaining = this.calculateTimeRemaining(details.dueDate);
@@ -376,5 +379,12 @@ export class FinalAssignmentSubmissionComponent {
 
   handleAssignedExaminers() {
     this.loadAssignedExaminers();
+  }
+
+  deadlineToReview: string = '';
+
+  onDeadlineSet(updatedDeadline: string) {
+    this.isDeadlineSetforExaminers = true;
+    this.deadlineToReview = updatedDeadline;
   }
 }

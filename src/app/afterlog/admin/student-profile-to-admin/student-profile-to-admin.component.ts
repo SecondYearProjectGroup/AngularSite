@@ -244,4 +244,27 @@ export class StudentProfileToAdminComponent implements OnInit {
     this.isEditStudentProfileBoxHeaderOpen = false;
   }
 
+
+// Helper function to format the date
+formatDate(date: Date | string | undefined): string {
+  if (!date) {
+    return ''; // Return an empty string or a placeholder if the date is undefined
+  }
+
+  const parsedDate = typeof date === 'string' ? new Date(date) : date;
+
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: true
+  };
+
+  return parsedDate.toLocaleString('en-US', options);
+}
+
+
 }

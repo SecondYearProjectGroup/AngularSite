@@ -64,5 +64,13 @@ export class SubmissionService {
       .pipe(catchError(this.handleError));
   }
 
+  //Set deadline to examiners to review the subitted reports
+  setDeadlineToExaminers(submissionId: number, deadline: Date): Observable<any> {
+    const params = { 
+      deadline: deadline.toISOString(),  // Convert to ISO format
+    };
+    return this.http.post(`${this.apiUrl}/setDeadlineToReview/${submissionId}`, null, { params, responseType: 'text' });
+  }
+
   
 }
