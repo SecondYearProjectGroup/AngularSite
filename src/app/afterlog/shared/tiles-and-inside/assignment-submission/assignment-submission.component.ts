@@ -88,6 +88,7 @@ export class AssignmentSubmissionComponent implements OnInit {
     return new Date(dateString).toLocaleString('en-US', options);
   }
 
+  // Calculate the time remaining for the deadline
   calculateTimeRemaining(dueDateString: string): string {
     if (!dueDateString) {
       return "Deadline has not been set"; // Handle cases where dueDate is not set
@@ -108,7 +109,7 @@ export class AssignmentSubmissionComponent implements OnInit {
   }
 
 
-
+  // Method to set the deadline for Student Submissions
   onSubmit(): void {
     if (this.setDueDate.date && this.setDueDate.time) {
       const deadline = new Date(`${this.setDueDate.date}T${this.setDueDate.time}`);
@@ -251,6 +252,7 @@ export class AssignmentSubmissionComponent implements OnInit {
   // End of Many Files Upload -------------
 
 
+  // Method to load the uploaded files
   loadUploadedFiles(): void {
     this.submissionService.getUploadedFiles(this.id).subscribe(files => {
       this.uploadedFiles = files;
@@ -313,6 +315,12 @@ export class AssignmentSubmissionComponent implements OnInit {
   }
   closeRemoveSubmissionPopup(): void {
     this.isRemoveSubmissionPopupOpen = false;
+  }
+  // Get the Remove Submission Confirmation and change the content
+  onFileRemoved(): void {
+    console.log('Remove event received from child component.');
+    this.isUploading = false;
+    this.loadUploadedFiles();
   }
   
 }

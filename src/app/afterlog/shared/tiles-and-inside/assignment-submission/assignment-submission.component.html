@@ -141,17 +141,11 @@
 
     <!-- For Students -->
     <!-- Submission Removing Button -->
-    <!-- <input *ngIf="isUploading && userRole === 'STUDENT'" type="submit" value="Remove Submission" (click)="openRemoveSubmissionPopup()" (close)="closeRemoveSubmissionPopup()"><br><br>
-    <app-remove-submission-popup *ngIf="isRemoveSubmissionPopupOpen" (close)="closeRemoveSubmissionPopup()"></app-remove-submission-popup> -->
+    <input *ngIf="isUploading && userRole === 'STUDENT'" type="submit" value="Remove Submission" (click)="openRemoveSubmissionPopup()" (close)="closeRemoveSubmissionPopup()"><br><br>
+    <app-remove-submission-popup *ngIf="isRemoveSubmissionPopupOpen" [id]="id" (close)="closeRemoveSubmissionPopup()" (remove)="onFileRemoved()"></app-remove-submission-popup>
     <!-- Button to trigger the popup -->
-    <button (click)="openRemoveSubmissionPopup()">Remove Submission</button>
+    <!-- <button (click)="openRemoveSubmissionPopup()">Remove Submission</button> -->
 
-    <!-- Add the popup component -->
-    <app-remove-submission-popup 
-      *ngIf="isRemoveSubmissionPopupOpen" 
-      [id]="id"
-      (close)="closeRemoveSubmissionPopup()">
-    </app-remove-submission-popup>
 
     <hr>
     <table style="width: 100%;">

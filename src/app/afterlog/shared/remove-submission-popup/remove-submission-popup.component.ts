@@ -5,12 +5,13 @@ import { SubmissionService } from '../../../services/submission.service';
 @Component({
   selector: 'app-remove-submission-popup',
   templateUrl: './remove-submission-popup.component.html',
-  styleUrl: './remove-submission-popup.component.css'
+  styleUrls: ['./remove-submission-popup.component.css']
 })
 export class RemoveSubmissionPopupComponent {
 
   @Input() id: number | null = null;
   @Output() close = new EventEmitter<void>();
+  @Output() remove = new EventEmitter<void>();
 
   constructor(private http: HttpClient, private submissionService: SubmissionService) {}
 
@@ -28,6 +29,7 @@ export class RemoveSubmissionPopupComponent {
       this.submissionService.deleteFile(this.id).subscribe({
         next: () => {
           console.log('File deleted successfully');
+          this.remove.emit();
           this.closeRemoveSubmissionPopup();
         },
         error: (error) => {

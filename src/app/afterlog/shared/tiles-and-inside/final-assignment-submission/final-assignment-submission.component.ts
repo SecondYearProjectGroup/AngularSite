@@ -339,6 +339,11 @@ export class FinalAssignmentSubmissionComponent {
   closeRemoveSubmissionPopup(): void {
     this.isRemoveSubmissionPopupOpen = false;
   }
+  onFileRemoved(): void {
+    console.log('Remove event received from child component.'); // Check if this is logged
+    this.isUploading = false;
+    this.loadUploadedFiles();
+  }
 
 
   //To load the examiners who are previosly assigned 

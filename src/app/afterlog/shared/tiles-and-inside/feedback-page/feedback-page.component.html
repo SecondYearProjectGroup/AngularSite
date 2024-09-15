@@ -7,12 +7,12 @@
     <table style="width: 100%;">
         <tr>
             <td>Feedback:</td>
-            <td><textarea name="feedback" rows="4" style="width: 100%;"></textarea></td>
+            <td><textarea name="feedback" rows="4" style="width: 100%;" [(ngModel)]="feedbackBody"></textarea></td>
         </tr>
         <br>
         <tr>
             <td>Feedback file:</td>
-            <td><input type="file"></td>
+            <td><input type="file" (change)="onFileSelected($event)"></td>
         </tr>
         
     </table>
