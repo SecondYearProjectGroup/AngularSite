@@ -16,6 +16,8 @@ export class AddStaffMembersByAdminComponent {
     roles: [] as string[]
   };
 
+  isStaffMemberChecked: boolean = false;
+
   constructor(private http: HttpClient) {}
 
   // Function to handle checkbox changes
@@ -56,6 +58,10 @@ export class AddStaffMembersByAdminComponent {
 
   closeAddStaffMembersByAdmin(): void {
     this.close.emit();
+  }
+
+  onCheckPresentStaffMember() {
+    this.isStaffMemberChecked = true;
   }
 
 }
