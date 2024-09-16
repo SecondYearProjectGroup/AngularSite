@@ -26,8 +26,10 @@
                 <td></td>
                 <td>
                   <div style="display: flex;">
-                    <input type="date" name="date"  required>
-                    <input type="time" name="time" required>
+                    <!-- <input type="date" name="date"  required>
+                    <input type="time" name="time" required> -->
+                    <input type="date" name="date" [(ngModel)]="setDueDate.date" required>
+                    <input type="time" name="time" [(ngModel)]="setDueDate.time" required>
                     <input type="submit" value="Set Deadline">
                   </div>
                 </td>

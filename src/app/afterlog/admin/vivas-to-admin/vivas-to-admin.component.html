@@ -19,12 +19,13 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- <tr *ngFor="let row of filteredData">
-                    <td>{{ row.id }}</td>
-                    <td>{{ row.fullName }}</td>
-                    <td>{{ row.department }}</td>
-                    <td>{{ row.email }}</td>
-                </tr> -->
+                <tr *ngFor="let row of filteredData">
+                    <td>{{ row.regNumber}}</td>
+                    <td>{{ row.registrationNumber}}</td>
+                    <td>{{ row.title }}</td>
+                    <td>{{ row.vivaDate }}</td>
+                    <td>{{ row.status }}</td>
+                </tr>
             </tbody>
         </table>
     </div>

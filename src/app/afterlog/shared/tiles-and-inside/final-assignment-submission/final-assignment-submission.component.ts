@@ -65,6 +65,9 @@ export class FinalAssignmentSubmissionComponent {
         this.title = details.title || '';
         this.openedDate = details.openedDate ? this.formatDate(details.openedDate) : ''; // Format openedDate
         this.dueDate = details.dueDate ? this.formatDate(details.dueDate) : ''; // Format dueDate
+        this.lastModified = details.lastModified ? this.formatDate(details.lastModified) : '';
+        this.isDeadlineSetforExaminers = details.deadlineToReview ? true : false;
+        this.deadlineToReview = details.deadlineToReview ? this.formatDate(details.deadlineToReview) : '';
 
         // Calculate and set the remaining time
         this.timeRemaining = this.calculateTimeRemaining(details.dueDate);
@@ -95,6 +98,7 @@ export class FinalAssignmentSubmissionComponent {
     return new Date(dateString).toLocaleString('en-US', options);
   }
 
+  //Function to calculate the time remaining for the submission
   calculateTimeRemaining(dueDateString: string): string {
     if (!dueDateString) {
       return "Deadline has not been set"; // Handle cases where dueDate is not set
@@ -257,7 +261,7 @@ export class FinalAssignmentSubmissionComponent {
   }
   // End of Many Files Upload -------------
 
-
+  //Load the uploaded files by the students
   loadUploadedFiles(): void {
     this.submissionService.getUploadedFiles(this.id).subscribe(files => {
       this.uploadedFiles = files;
@@ -376,5 +380,14 @@ export class FinalAssignmentSubmissionComponent {
 
   handleAssignedExaminers() {
     this.loadAssignedExaminers();
+  }
+
+
+  //To handle the deadline for examiners
+  deadlineToReview: string = '';
+
+  onDeadlineSet(updatedDeadline: string) {
+    this.isDeadlineSetforExaminers = true;
+    this.deadlineToReview = updatedDeadline;
   }
 }

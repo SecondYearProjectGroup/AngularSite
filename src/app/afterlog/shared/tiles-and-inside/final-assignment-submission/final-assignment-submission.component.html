@@ -182,7 +182,7 @@
         <div class="myButtonDesign">
           <a class="my-button" (click)="openSetDeadlinesForExaminers()">Set Deadlines to Examiners</a>
         </div>
-        <app-set-deadlines-to-examiners *ngIf="isSetDeadlinesForExaminersOpen" (close)="closeSetDeadlinesForExaminers()" [id]="id"></app-set-deadlines-to-examiners>
+        <app-set-deadlines-to-examiners *ngIf="isSetDeadlinesForExaminersOpen" (close)="closeSetDeadlinesForExaminers()" [id]="id" (deadlineSet)="onDeadlineSet($event)"></app-set-deadlines-to-examiners>
 
       </div>
       <br><br>
@@ -196,7 +196,7 @@
       <table style="width: 100%;">
           <tr>
               <td>Deadline:</td>
-              <td *ngIf="isDeadlineSetforExaminers">{{ openedDate }}</td>
+              <td *ngIf="isDeadlineSetforExaminers">{{deadlineToReview }}</td>
               <td *ngIf="!isDeadlineSetforExaminers">Not yet provided.</td>
           </tr>
       </table>

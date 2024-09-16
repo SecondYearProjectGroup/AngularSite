@@ -9,7 +9,7 @@
 
     <h6>{{ student.nameWithInitials }}</h6>
     <h6>{{ student.programOfStudy }}</h6>
-    <h6>Registered Date: {{student.registeredDate}}</h6>
+    <h6>Registered Date: {{ formatDate(student.registeredDate) }}</h6>
 
     <div style="display: flex; align-items: center;">
         <h6 style="white-space: nowrap;">{{ student.status }}</h6>

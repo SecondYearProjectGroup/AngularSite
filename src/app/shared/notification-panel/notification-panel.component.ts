@@ -49,4 +49,17 @@ export class NotificationPanelComponent implements OnInit {
       return null;
     }
   }
+
+  // Mark a notification as read
+  markNotificationAsRead(notificationId: number) {
+    this.notificationService.markAsRead(notificationId).subscribe(
+      () => {
+        // On success, remove the notification from the array or mark it as read
+        this.notifications = this.notifications.filter(notification => notification.id !== notificationId);
+      },
+      (error) => {
+        console.error('Error marking notification as read:', error);
+      }
+    );
+  }
 }

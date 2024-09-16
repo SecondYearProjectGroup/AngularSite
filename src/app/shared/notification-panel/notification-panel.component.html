@@ -8,7 +8,8 @@
         <span>{{ notification.timestamp | date:'short' }}</span>
         
         <!-- Add the button with the tick icon -->
-        <button class="tick-button">
+        <!-- <button class="tick-button"> -->
+          <button class="tick-button" (click)="markNotificationAsRead(notification.id)">
           <i class="fa fa-check"></i>
         </button>
       </p>
