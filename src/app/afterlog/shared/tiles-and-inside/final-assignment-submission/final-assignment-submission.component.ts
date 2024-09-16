@@ -98,6 +98,7 @@ export class FinalAssignmentSubmissionComponent {
     return new Date(dateString).toLocaleString('en-US', options);
   }
 
+  //Function to calculate the time remaining for the submission
   calculateTimeRemaining(dueDateString: string): string {
     if (!dueDateString) {
       return "Deadline has not been set"; // Handle cases where dueDate is not set
@@ -260,7 +261,7 @@ export class FinalAssignmentSubmissionComponent {
   }
   // End of Many Files Upload -------------
 
-
+  //Load the uploaded files by the students
   loadUploadedFiles(): void {
     this.submissionService.getUploadedFiles(this.id).subscribe(files => {
       this.uploadedFiles = files;
@@ -381,6 +382,8 @@ export class FinalAssignmentSubmissionComponent {
     this.loadAssignedExaminers();
   }
 
+
+  //To handle the deadline for examiners
   deadlineToReview: string = '';
 
   onDeadlineSet(updatedDeadline: string) {
