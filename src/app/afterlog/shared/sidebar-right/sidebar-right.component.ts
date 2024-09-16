@@ -1,4 +1,8 @@
 import { AfterViewInit, Component, ElementRef, Renderer2,  } from '@angular/core';
+import { CalendarService } from '../../../services/calendar.service';
+import { NewEvent } from '../../../models/new-event';
+import { Router } from '@angular/router';
+import { UserRoleService } from '../../services/user-role.service';
 declare var $: any; // Declare jQuery
 
 @Component({
@@ -8,7 +12,28 @@ declare var $: any; // Declare jQuery
 })
 export class SidebarRightComponent implements AfterViewInit {
 
-  constructor(private renderer: Renderer2, private el: ElementRef) { }
+  newEvent: NewEvent = {
+    id: '',
+    name: '',
+    description: '',
+    type: '',
+    color: '',
+    startDate: '',
+    endDate: ''
+  };
+
+  userRole: string | null = null;
+
+  constructor(
+    private router: Router,
+    private renderer: Renderer2,
+    private el: ElementRef,
+    private calendarService: CalendarService,
+    private userRoleService: UserRoleService) { 
+      this.userRoleService.userRole$.subscribe(role => {
+        this.userRole = role;
+      });
+    }
 
   ngAfterViewInit(): void {
     this.initializeSidebar();
@@ -18,34 +43,47 @@ export class SidebarRightComponent implements AfterViewInit {
       'eventDisplayDefault': false,
       'sidebarToggler': false,
       'sidebarDisplayDefault': false,
-      'eventListToggler': false,
-      calendarEvents: [
-        {
-            id: 'bHay68s',
-            name: "New Year",
-            date: "January/1/2020",
-            description: "Happy New Year!",
-            type: "holiday",
-            everyYear: true
-        },
-        {
-            name: "Vacation Leave",
-            badge: "02/13 - 02/15",
-            date: ["February/13/2020", "February/15/2020"],
-            description: "Vacation leave for 3 days.",
-            type: "event",
-            color: "#63d867"
-        },
-        {
-            name: "Project Presentation",
-            date: "July/15/2024", // Date
-            description: "Second Year Project presentation", // Event description (optional)
-            type: "event",
-            color: "red" // Event custom color (optional)
-        }
-      ]
+      'eventListToggler': false
     });
 
+    // Initial load of events
+    this.loadCalendarEvents();
+
+    // Subscribe to the last created event
+    this.calendarService.lastCreatedEvent$.subscribe(event => {
+      if (event) {
+        this.addEventToCalendar(event);
+      }
+    });
+
+  }
+
+  // Navigate to the calendar from the sidebar
+  navigateToCalendar(): void {
+
+    if (this.userRole === 'ADMIN') {
+      this.router.navigate(['/afterlog/admin-dashboard']).then(() => {
+        window.scrollTo(0, 950);
+      });
+    } else if (this.userRole === 'STUDENT') {
+      this.router.navigate(['/afterlog/student-dashboard']).then(() => {
+        window.scrollTo(0, 300);
+      });
+    } else if (this.userRole === 'SUPERVISOR-EXAMINER') {
+      this.router.navigate(['/afterlog/supervisor-examiner-dashboard']).then(() => {
+        window.scrollTo(0, 300);
+      });
+    } else if (this.userRole === 'SUPERVISOR') {
+      this.router.navigate(['/afterlog/supervisor-dashboard']).then(() => {
+        window.scrollTo(0, 300);
+      });
+    } else if (this.userRole === 'EXAMINER') {
+      this.router.navigate(['/afterlog/examiner-dashboard']).then(() => {
+        window.scrollTo(0, 300);
+      });
+    } else {
+      console.error('Unknown role:', this.userRole);
+    }
   }
 
   initializeSidebar(): void {
@@ -88,6 +126,33 @@ export class SidebarRightComponent implements AfterViewInit {
   private dispatchResizeEvent(size: 'full' | 'reduced'): void {
     const event = new CustomEvent('middleContentResize', { detail: size });
     window.dispatchEvent(event);
+  }
+
+  // Load calendar Events
+  loadCalendarEvents() {
+    this.calendarService.getUserEvents().subscribe(events => {
+      const calendarEvents = events.map(event => ({
+        id: event.id,
+        name: event.name,
+        date: event.endDate ? [event.startDate, event.endDate] : event.startDate,
+        description: event.description,
+        type: event.type,
+        color: event.color
+      }));  
+      $('#sidebar-calendar').evoCalendar('addCalendarEvent', calendarEvents);
+    });
+  }
+
+  // Method to add a single event to the calendar
+  addEventToCalendar(event: NewEvent) {
+    $('#sidebar-calendar').evoCalendar('addCalendarEvent', {
+      id: event.id,
+      name: event.name,
+      date: event.endDate ? [event.startDate, event.endDate] : event.startDate,
+      description: event.description,
+      type: event.type,
+      color: event.color
+    });
   }
 }
 

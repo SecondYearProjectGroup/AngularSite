@@ -83,8 +83,8 @@ background: linear-gradient(135deg, rgba(18, 55, 71, 1), rgba(18, 55, 71, 1));
 }
     
 .upload-btn {
-    border-color: rgba(18, 55, 71, 1);
-    color: black;
+    background: linear-gradient(135deg, rgba(18, 55, 71, 1), rgba(95, 158, 160, 1));
+    color: white;
 }
     
 .upload-btn:hover {
@@ -93,14 +93,15 @@ background: linear-gradient(135deg, rgba(18, 55, 71, 1), rgba(18, 55, 71, 1));
 }
     
 .clear-btn {
-    border-color: #dc3545;
+    border-color: rgba(0, 0, 0, 0.568);
+    border-width: 1px;
     color: black;
 }
     
-.clear-btn:hover {
+/* .clear-btn:hover {
     background-color: #c82333;
     color: white;
-}
+} */
 
 @media screen and (max-width: 900px) {
     .modal-content{

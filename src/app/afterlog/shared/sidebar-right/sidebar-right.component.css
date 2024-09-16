@@ -84,11 +84,11 @@
 
 
 /* Calendar in Right Sidebar */
-.sidebarCalendar {
+.sidebar-right .sidebarCalendar {
     width: auto;
     height: 190px;
-    padding: 0px;
-    overflow: hidden;
+    padding: 0px !important;
+    margin: -10px;
 }
 #sidebar-calendar {
     width: 300%;

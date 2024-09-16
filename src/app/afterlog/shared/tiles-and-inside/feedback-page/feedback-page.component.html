@@ -7,17 +7,17 @@
     <table style="width: 100%;">
         <tr>
             <td>Feedback:</td>
-            <td><textarea name="feedback" rows="4" style="width: 100%;"></textarea></td>
+            <td><textarea name="feedback" rows="4" style="width: 100%;" [(ngModel)]="feedbackBody"></textarea></td>
         </tr>
         <br>
         <tr>
             <td>Feedback file:</td>
-            <td><input type="file"></td>
+            <td><input type="file" (change)="onFileSelected($event)"></td>
         </tr>
         
     </table>
     <br><hr>
-    <input type="submit" value="Upload Feedback"><br><br>
+    <input type="submit" value="Upload Feedback" (click)="submitFeedback()"><br><br>
 </div>
 
 <div class="feedback-form" *ngIf="mode === 'feedbackReciever'">
