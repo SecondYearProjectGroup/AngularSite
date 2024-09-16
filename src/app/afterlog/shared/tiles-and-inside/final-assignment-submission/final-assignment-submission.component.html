@@ -119,7 +119,7 @@
       
       <!-- For Admin, Supervisor, Examiners -->
       <table style="width: 100%;">
-      <tr *ngIf="userRole === 'ADMIN' || userRole === 'SUPERVISOR' || userRole === 'EXAMINER'">
+      <tr *ngIf="userRole === 'ADMIN' || userRole === 'SUPERVISOR' || userRole === 'EXAMINER' || userRole === 'SUPERVISOR-EXAMINER'">
         <div class="file-list">
           <h6>Uploaded Files</h6>
           <ul>
@@ -256,12 +256,12 @@
     <!-- For Examiners -->
     <div *ngIf="userRole === 'EXAMINER'">
       <h6><b>Your Feedback</b></h6>
-      <app-feedback-page mode="feedbackProvider"></app-feedback-page>
+      <app-feedback-page mode="feedbackProvider-Examiner"></app-feedback-page>
     </div>
     <!-- For Student, Supervisors -->
-    <div *ngIf="userRole === 'ADMIN' || userRole === 'SUPERVISOR' || userRole === 'STUDENT'">
+    <div *ngIf="userRole === 'ADMIN' || userRole === 'SUPERVISOR' || userRole === 'STUDENT' || userRole === 'SUPERVISOR-EXAMINER'">
       <h6><b>Examiner Feedback</b></h6>
-      <app-feedback-page mode="feedbackReciever"></app-feedback-page>
+      <app-feedback-page mode="feedbackReciever-Examiner"></app-feedback-page>
     </div>
     
   <br>

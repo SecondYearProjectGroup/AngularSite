@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FeedbackService } from '../../../services/feedback.service';
+import { Feedback, FeedbackService } from '../../../services/feedback.service';
 import { UserRoleService } from '../../../services/user-role.service';
+import { FileService } from '../../../../services/file.service';
 
 @Component({
   selector: 'app-feedback-page',
@@ -13,8 +14,6 @@ export class FeedbackPageComponent implements OnInit{
   userRole: string | null = null;
   userIdId : number = 0;
   
-  isFeedbackUploaded: boolean = false;
-  isFeedbackFileUploaded: boolean = false;
   id: number = 0;
   feedbackBody: string = '';
   selectedFile: File | null = null;
@@ -22,11 +21,12 @@ export class FeedbackPageComponent implements OnInit{
   examinerId: number = 0;
   
 
-  @Input() mode: 'feedbackReciever' | 'feedbackProvider' = 'feedbackReciever';
+  @Input() mode: 'feedbackReciever-Supervisor' | 'feedbackProvider-Supervisor' | 'feedbackReciever-Examiner' | 'feedbackProvider-Examiner' = 'feedbackReciever-Examiner';
 
   constructor(
     private route: ActivatedRoute,
     private feedbackService: FeedbackService,
+    private fileService: FileService,
     private userRoleService: UserRoleService) { 
       this.userRoleService.userRole$.subscribe(role => {
         this.userRole = role;
@@ -48,6 +48,8 @@ export class FeedbackPageComponent implements OnInit{
     // Set submissionId and examinerId after values are available
     this.submissionId = this.id;
     this.examinerId = this.userIdId;
+
+    this.loadFeedbacks();
   }
 
   // Handle file selection
@@ -58,11 +60,11 @@ export class FeedbackPageComponent implements OnInit{
     }
   }
 
-  // Handle form submission
-  submitFeedback(): void {
+  // Handle form submission for Examiner
+  submitExaminerFeedback(): void {
     console.log('Submission ID:', this.submissionId, 'Examiner ID:', this.examinerId);
     if (this.selectedFile && this.feedbackBody) {
-      this.feedbackService.updateFeedback(this.submissionId, this.examinerId, this.feedbackBody, this.selectedFile)
+      this.feedbackService.updateExaminerFeedback(this.submissionId, this.examinerId, this.feedbackBody, this.selectedFile)
         .subscribe({
           next: () => {
             console.log('Feedback updated successfully');
@@ -74,6 +76,67 @@ export class FeedbackPageComponent implements OnInit{
     } else {
       alert('Please provide feedback and a file.');
     }
+  }
+
+  // Handle form submission for Supervisor
+  submitSupervisorFeedback(): void {
+    if (this.selectedFile && this.feedbackBody) {
+      this.feedbackService.updateSupervisorFeedback(this.submissionId, this.feedbackBody, this.selectedFile)
+        .subscribe({
+          next: () => {
+            console.log('Feedback updated successfully');
+          },
+          error: (error) => {
+            console.error('Error updating feedback:', error);
+          }
+        });
+    } else {
+      alert('Please provide feedback and a file.');
+    }
+  }
+
+  feedbackList: Feedback[] = [];
+  loadFeedbacks(): void {
+    this.feedbackService.getFeedbackBySubmissionId(this.id).subscribe(
+      (data) => {
+        this.feedbackList = data;
+        // Log each feedback's body and file name
+        this.feedbackList.forEach(feedback => {
+          console.log('Feedback Body:', feedback.body);
+          console.log('File Name:', feedback.fileName);
+
+          // Check if examiner exists before accessing examinerId
+          if (feedback.examiner) {
+            console.log('Examiner Id:', feedback.examiner.id);
+          } else {
+            console.log('No Examiner available for this feedback.');
+          }
+        });
+      },
+      (error) => {
+        console.error('Error fetching feedback:', error);
+      }
+    );
+  }
+
+  // Method to view the file in a new tab
+  viewFile(fileName: string) {
+    this.fileService.viewFile(fileName).subscribe((file: Blob) => {
+      const fileURL = URL.createObjectURL(file);
+      console.log(fileURL);
+      window.open(fileURL);
+    }, error => {
+      console.error('Error while viewing the file', error);
+    });
+  }
+
+  formatBytes(bytes: number, decimals = 2) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
   
 }
