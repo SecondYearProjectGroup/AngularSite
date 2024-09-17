@@ -177,14 +177,14 @@
 
     <br>
     <!-- For Supervisor -->
-    <div *ngIf="userRole === 'SUPERVISOR'">
+    <div *ngIf="userRole === 'SUPERVISOR' || userRole === 'SUPERVISOR-EXAMINER'">
       <h6><b>Your Feedback</b></h6>
-      <app-feedback-page mode="feedbackProvider"></app-feedback-page>
+      <app-feedback-page mode="feedbackProvider-Supervisor"></app-feedback-page>
     </div>
     <!-- For Student -->
     <div *ngIf="userRole === 'STUDENT' || userRole=== 'ADMIN'">
       <h6><b>Supervisor Feedback</b></h6>
-      <app-feedback-page mode="feedbackReciever"></app-feedback-page>
+      <app-feedback-page mode="feedbackReciever-Supervisor"></app-feedback-page>
     </div>
 
 

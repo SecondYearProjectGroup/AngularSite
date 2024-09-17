@@ -26,7 +26,6 @@ export class FinalAssignmentSubmissionComponent {
     private fileService : FileService,
     private examinerService: ExaminerService,
     private http: HttpClient,
-    private feedbackService: FeedbackService,
     private userRoleService: UserRoleService) {
       this.userRoleService.userRole$.subscribe(role => {
         this.userRole = role;
@@ -80,8 +79,6 @@ export class FinalAssignmentSubmissionComponent {
     //Loading the examiners assigned the submission
     this.loadAssignedExaminers();
 
-    //Load feedbacks 
-    this.loadFeedbacks();
   }
 
   // Helper function to format the date
@@ -358,18 +355,22 @@ export class FinalAssignmentSubmissionComponent {
     });
   }
 
-  feedbackList: Feedback[] = [];
-  loadFeedbacks(): void {
-    this.feedbackService.getFeedbackBySubmissionId(this.id).subscribe(
-      (data) => {
-        this.feedbackList = data;
-        console.log('feedbacks' + this.feedbackList);
-      },
-      (error) => {
-        console.error('Error fetching feedback:', error);
-      }
-    );
-  }
+  // feedbackList: Feedback[] = [];
+  // loadFeedbacks(): void {
+  //   this.feedbackService.getFeedbackBySubmissionId(this.id).subscribe(
+  //     (data) => {
+  //       this.feedbackList = data;
+  //       // Log each feedback's body and file name
+  //       this.feedbackList.forEach(feedback => {
+  //         console.log('Feedback Body:', feedback.body);
+  //         console.log('File Name:', feedback.fileName);
+  //       });
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching feedback:', error);
+  //     }
+  //   );
+  // }
 
 
   //To delete the examiners
