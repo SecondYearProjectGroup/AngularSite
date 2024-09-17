@@ -32,7 +32,7 @@ export class FeedbackService {
     formData.append('body', body);
     formData.append('file', file);
 
-    return this.http.put(`${this.apiUrl}/submission/${submissionId}/examiner/${examinerId}`, formData);
+    return this.http.put(`${this.apiUrl}/submission/${submissionId}/examiner/update/${examinerId}`, formData);
   }
 
   // Supervisor-Method to update feedback with a file and body based on submission ID
@@ -42,5 +42,10 @@ export class FeedbackService {
     formData.append('file', file);
 
     return this.http.put(`${this.apiUrl}/supervisorSubmission/${submissionId}`, formData);
+  }
+
+  //To load the feedbacks related to the submission and the examiner 
+  getFeedbackBySubmissionIdAndExaminerId(submissionId: number, examinerId: number): Observable<Feedback[]> {
+    return this.http.get<Feedback[]>(`${this.apiUrl}/submission/${submissionId}/examiner/${examinerId}`);
   }
 }
