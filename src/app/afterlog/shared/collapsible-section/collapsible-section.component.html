@@ -10,9 +10,11 @@
 
     <div>
         <!-- Delete button, visible only to admins -->
-      <button *ngIf="userRole === 'ADMIN'" (click)="openDeleteSection()" style="float: right; margin-right: 10px; font-size: 14px;">
+      <button *ngIf="userRole === 'ADMIN'" (click)="openDeleteSectionPopup()" style="float: right; margin-right: 10px; font-size: 14px;">
         <i class="fa fa-trash"></i>Delete
       </button>
+      <app-delete-section-popup *ngIf="isDeleteSectionPopupOpen" [id]="id" (close)="closeDeleteSectionPopup()"></app-delete-section-popup>
+
 
         <!-- Edit button, visible only to admins -->
       <button *ngIf="userRole === 'ADMIN'" (click)="openEditSection()" style="float: right; margin-right: 10px; font-size: 14px;">

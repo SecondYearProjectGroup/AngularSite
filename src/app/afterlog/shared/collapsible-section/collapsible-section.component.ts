@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserRoleService } from '../../services/user-role.service';
+import { CollapsibleSectionService } from '../../services/collapsible-section.service';
 
 @Component({
   selector: 'app-collapsible-section',
@@ -11,6 +12,7 @@ export class CollapsibleSectionComponent {
   userRole: string | null = null; // Assuming you get the user role from some service
 
   constructor(
+    private collapsibleSectionService: CollapsibleSectionService,
     private userRoleService: UserRoleService
   ) {
     this.userRoleService.userRole$.subscribe(role => {
@@ -18,6 +20,7 @@ export class CollapsibleSectionComponent {
     });
   }
 
+  @Input() id: number = 0;
   @Input() buttonName: string = '';
   @Input() tiles!: { id: number, type: string, title: string }[];
   @Output() editSection = new EventEmitter<{ buttonName: string, tiles: { type: string, title: string }[] }>();
@@ -35,8 +38,12 @@ export class CollapsibleSectionComponent {
     });
   }
 
-  openDeleteSection(): void {
-    
+  isDeleteSectionPopupOpen: boolean = false;
+  openDeleteSectionPopup(){
+    this.isDeleteSectionPopupOpen = true;
   }
-  
+  closeDeleteSectionPopup(){
+    this.isDeleteSectionPopupOpen = false;
+  }
+
 }

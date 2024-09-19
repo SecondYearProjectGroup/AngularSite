@@ -27,6 +27,7 @@ export class StudentProfileToAdminComponent implements OnInit {
   };
 
   section: Section={
+    id: 0,
     buttonName: '',
     tiles: []
   }
@@ -48,7 +49,7 @@ export class StudentProfileToAdminComponent implements OnInit {
   activeTab: string = 'tab1';
 
   sections: { buttonName: string, tiles: { type: string, title: string }[] }[] = [];
-  loadingSections: { buttonName: string, loadingTiles: { id: number, type: string, title: string }[] }[] = [];
+  loadingSections: { id: number, buttonName: string, loadingTiles: { id: number, type: string, title: string }[] }[] = [];
 
   userRole: string | null = null; // Assuming you get the user role from some service
 
@@ -134,6 +135,7 @@ export class StudentProfileToAdminComponent implements OnInit {
     this.collapsibleSectionService.getSections(regNumber, activeTab).subscribe({
       next: (data) => {
         this.loadingSections = data.map(section => ({
+          id: section.id,
           buttonName: section.buttonName, // Adjust these field names according to your backend response
           loadingTiles: section.tiles.map((tile: LoadingTile) => ({
             id: tile.id, // Adjust these field names according to your backend response
@@ -144,6 +146,7 @@ export class StudentProfileToAdminComponent implements OnInit {
 
         // Populate sections with the same data, adjusting the structure if necessary
         this.sections = this.loadingSections.map(loadingSection => ({
+          id: loadingSection.id,
           buttonName: loadingSection.buttonName,
           tiles: loadingSection.loadingTiles.map(loadingTile => ({
             type: loadingTile.type,
