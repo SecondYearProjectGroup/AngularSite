@@ -3,7 +3,7 @@
   <div class="modal-content">
 
     <div class="modal-header">
-      <h5 class="modal-title"><b>Add New Section</b></h5>
+      <h5 class="modal-title"><b>{{ id ? 'Edit Section' : 'Add New Section' }}</b></h5>
       <span class="close" (click)="closeModal()">&times;</span>
     </div><br>
     
@@ -64,7 +64,8 @@
         </table>
 
         <hr>
-        <input type="submit" value="Create" style="width: 40%; float: right;" [disabled]="!buttonName" [title]="!buttonName ? 'Button is disabled because fields are incomplete.' : ''">
+        <input *ngIf="!id" type="submit" value="Create" style="width: 40%; float: right;" [disabled]="!buttonName" [title]="!buttonName ? 'Button is disabled because fields are incomplete.' : ''">
+        <input *ngIf="id" type="submit" value="Edit" style="width: 40%; float: right;" [disabled]="!buttonName" [title]="!buttonName ? 'Button is disabled because fields are incomplete.' : ''">
         
         
       </form>

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserRoleService } from '../../services/user-role.service';
-import { CollapsibleSectionService } from '../../services/collapsible-section.service';
 
 @Component({
   selector: 'app-collapsible-section',
@@ -12,7 +11,6 @@ export class CollapsibleSectionComponent {
   userRole: string | null = null; // Assuming you get the user role from some service
 
   constructor(
-    private collapsibleSectionService: CollapsibleSectionService,
     private userRoleService: UserRoleService
   ) {
     this.userRoleService.userRole$.subscribe(role => {
@@ -31,12 +29,12 @@ export class CollapsibleSectionComponent {
     this.isCollapsed = !this.isCollapsed;
   }
 
-  openEditSection(): void {
-    this.editSection.emit({
-      buttonName: this.buttonName,
-      tiles: this.tiles
-    });
-  }
+  // openEditSection(): void {
+  //   this.editSection.emit({
+  //     buttonName: this.buttonName,
+  //     tiles: this.tiles
+  //   });
+  // }
 
   isDeleteSectionPopupOpen: boolean = false;
   openDeleteSectionPopup(){
@@ -45,5 +43,15 @@ export class CollapsibleSectionComponent {
   closeDeleteSectionPopup(){
     this.isDeleteSectionPopupOpen = false;
   }
+
+  isModalOpen = false;
+  openModal(): void {
+    this.isModalOpen = true;
+  }
+  closeModal(): void {
+    this.isModalOpen = false;
+  }
+
+
 
 }

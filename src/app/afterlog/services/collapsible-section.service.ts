@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoadingSection } from '../../models/section.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,11 +30,10 @@ export class CollapsibleSectionService {
     return this.http.get<any[]>(`${this.apiUrl}/examiners/${regNumber}/${activeTab}`);
   }
 
-  updateSection(id: number, section: LoadingSection): Observable<any> {
+  updateSection(id: number, section: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/${id}`, section);
   }
   
-
   deleteSection(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
