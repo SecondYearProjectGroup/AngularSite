@@ -20,7 +20,7 @@
       <button *ngIf="userRole === 'ADMIN'" (click)="openModal()" style="float: right; margin-right: 10px; font-size: 14px;">
         <i class="fa fa-edit"></i>Edit
       </button>
-      <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" [id]="id"></app-create-collapsible-section>
+      <app-create-collapsible-section *ngIf="isModalOpen" (close)="closeModal()" [id]="id" [regNumber]="regNumber" [activeTab]="activeTab"></app-create-collapsible-section>
 
     </div>
   </div>

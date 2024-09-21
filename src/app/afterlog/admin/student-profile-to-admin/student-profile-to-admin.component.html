@@ -79,7 +79,7 @@
 
             <div *ngIf="activeTab === 'tab1'">
                 <!-- Content for Tab 1 -->
-                <app-collapsible-section *ngFor="let section of loadingSections" [id]="section.id" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
+                <app-collapsible-section *ngFor="let section of loadingSections" [id]="section.id" [buttonName]="section.buttonName" [tiles]="section.loadingTiles" [regNumber]="regNumber" [activeTab]="activeTab"></app-collapsible-section>
 
                 <div class="myButtonDesign">
                     <a (click)="openModal()" class="my-button">Add Section</a>
@@ -90,7 +90,7 @@
 
             <div *ngIf="activeTab === 'tab2'">
             <!-- Content for Tab 2 -->
-                <app-collapsible-section *ngFor="let section of loadingSections" [id]="section.id" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
+                <app-collapsible-section *ngFor="let section of loadingSections" [id]="section.id" [buttonName]="section.buttonName" [tiles]="section.loadingTiles" [regNumber]="regNumber" [activeTab]="activeTab"></app-collapsible-section>
 
                 <div class="myButtonDesign">
                     <a (click)="openModal()" class="my-button">Add Section</a>
@@ -101,7 +101,7 @@
 
             <div *ngIf="activeTab === 'tab3'">
                 <!-- Content for Tab 3 -->
-                <app-collapsible-section *ngFor="let section of loadingSections" [id]="section.id" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
+                <app-collapsible-section *ngFor="let section of loadingSections" [id]="section.id" [buttonName]="section.buttonName" [tiles]="section.loadingTiles" [regNumber]="regNumber" [activeTab]="activeTab"></app-collapsible-section>
 
                 <div class="myButtonDesign">
                     <a (click)="openModal()" class="my-button">Add Section</a>
@@ -112,7 +112,7 @@
 
             <div *ngIf="activeTab === 'tab4'">
             <!-- Content for Tab 3 -->
-                <app-collapsible-section *ngFor="let section of loadingSections" [id]="section.id" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
+                <app-collapsible-section *ngFor="let section of loadingSections" [id]="section.id" [buttonName]="section.buttonName" [tiles]="section.loadingTiles" [regNumber]="regNumber" [activeTab]="activeTab"></app-collapsible-section>
 
                 <div class="myButtonDesign">
                     <a (click)="openModal()" class="my-button">Add Section</a>
@@ -124,7 +124,7 @@
 
             <div *ngIf="activeTab === 'tab5'">
                 <!-- Content for Tab 3 -->
-                <app-collapsible-section *ngFor="let section of loadingSections" [id]="section.id" [buttonName]="section.buttonName" [tiles]="section.loadingTiles"></app-collapsible-section>
+                <app-collapsible-section *ngFor="let section of loadingSections" [id]="section.id" [buttonName]="section.buttonName" [tiles]="section.loadingTiles" [regNumber]="regNumber" [activeTab]="activeTab"></app-collapsible-section>
 
                 <div class="myButtonDesign">
                     <a (click)="openModal()" class="my-button">Add Section</a>

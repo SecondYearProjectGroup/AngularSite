@@ -58,20 +58,6 @@ export class CreateCollapsibleSectionComponent implements OnInit {
         tiles: tilesArray 
     };
 
-    // Emit the event
-    // this.create.emit(newSection);
-
-    // Call the service to save the section
-    // this.collapsibleSectionService.saveSection(newSection).subscribe({
-    //   next: (response) => {
-    //     console.log('Section saved successfully', response);
-    //     this.closeModal(); // Optionally close the modal after saving
-    //   },
-    //   error: (error) => {
-    //     console.error('Error saving section', error);
-    //   }
-    // });
-
     if (this.id) {
       // If section ID exists, update the section
       this.updateSection(sectionPayload);
@@ -98,7 +84,6 @@ export class CreateCollapsibleSectionComponent implements OnInit {
 
   // Method to update an existing section
   updateSection(section: any): void {
-    console.log('Updating section:', section);
     this.collapsibleSectionService.updateSection(this.id, section).subscribe({
       next: (response) => {
         console.log('Section updated successfully', response);
@@ -108,7 +93,7 @@ export class CreateCollapsibleSectionComponent implements OnInit {
         console.error('Error updating section', error);
       }
     });
-  }
+  } 
 
   // Load a single section data by section ID
   loadSectionById(sectionId: number): void {
@@ -125,9 +110,6 @@ export class CreateCollapsibleSectionComponent implements OnInit {
 
         // Print the section data
         console.log('Loaded section:', section);
-
-        // Optionally, store this in a specific variable if needed
-        // this.selectedSection = loadedSection;
       },
       error: (error) => {
         console.error('Error loading section by ID', error);

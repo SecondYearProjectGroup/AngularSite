@@ -19,6 +19,8 @@ export class CollapsibleSectionComponent {
   }
 
   @Input() id: number = 0;
+  @Input() regNumber: string | null = null;
+  @Input() activeTab: string | null = null;
   @Input() buttonName: string = '';
   @Input() tiles!: { id: number, type: string, title: string }[];
   @Output() editSection = new EventEmitter<{ buttonName: string, tiles: { type: string, title: string }[] }>();
@@ -28,13 +30,6 @@ export class CollapsibleSectionComponent {
   toggleCollapse(): void {
     this.isCollapsed = !this.isCollapsed;
   }
-
-  // openEditSection(): void {
-  //   this.editSection.emit({
-  //     buttonName: this.buttonName,
-  //     tiles: this.tiles
-  //   });
-  // }
 
   isDeleteSectionPopupOpen: boolean = false;
   openDeleteSectionPopup(){
@@ -51,7 +46,5 @@ export class CollapsibleSectionComponent {
   closeModal(): void {
     this.isModalOpen = false;
   }
-
-
 
 }
