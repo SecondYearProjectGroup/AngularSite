@@ -141,5 +141,15 @@ export class EnrolledStudentsComponent implements OnInit{
       console.error('File download failed', error);
     });
   }
+
+  isEnrolledStudentsDetailsPopupOpen: boolean = false;
+  selectedRowId: number | null = null;
+  openEnrolledStudentsDetailsPopup(rowId: number) {
+    this.selectedRowId = rowId;
+    this.isEnrolledStudentsDetailsPopupOpen = true;
+  }
+  closeEnrolledStudentsDetailsPopup() {
+    this.isEnrolledStudentsDetailsPopupOpen = false;
+  }
   
 }

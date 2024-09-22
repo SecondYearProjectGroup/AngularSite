@@ -30,6 +30,7 @@ import { FinalAssignmentSubmissionComponent } from './shared/tiles-and-inside/fi
 import { VivaPageComponent } from './shared/tiles-and-inside/viva-page/viva-page.component';
 import { SupervisorExaminerDashboardComponent } from './supervisor-examiner/supervisor-examiner-dashboard/supervisor-examiner-dashboard.component';
 import { PasswordChangeComponent } from '../shared/password-change/password-change.component';
+import { EnrolledStudentsDetailsPopupComponent } from './admin/enrolled-students-details-popup/enrolled-students-details-popup.component';
 // import { RoleGuardService as RoleGuard } from '../shared/services/role-guard.service';
 
 const routes: Routes = [
@@ -66,6 +67,8 @@ const routes: Routes = [
       { path: 'students-to-examiner', component: StudentsToExaminerComponent },
       { path: 'student-profile-to-examiner', component: StudentProfileToExaminerComponent },
       { path: 'student-profile-to-examiner/:regNumber', component: StudentProfileToExaminerComponent },
+      { path: 'enrolled-students-details-popup', component: EnrolledStudentsDetailsPopupComponent },
+      { path: 'enrolled-students-details-popup/:id', component: EnrolledStudentsDetailsPopupComponent },
 
       // Supervisor-Examiner
       { path: 'supervisor-examiner-dashboard', component: SupervisorExaminerDashboardComponent},

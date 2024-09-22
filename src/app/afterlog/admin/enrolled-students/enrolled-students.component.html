@@ -14,10 +14,7 @@
                 <tr>
                     <th></th>
                     <th colspan="6">Student Details</th>
-                    <th>Educational/ Professional Qualifications</th>
-                    <th></th>
-                    <th></th>
-                    <!-- <th></th> -->
+                    <th>Other</th>
                 </tr>
             <tr>
                 <th>Status</th>
@@ -27,16 +24,16 @@
                 <th>Contact Number</th>
                 <th>Email</th>
                 <th>Address</th>
-                <th>Qualification List</th>
+                <th>Educational</th>
                 <!-- <th>University/Institute</th>
                 <th>From</th>
                 <th>To</th>
                 <th>Degree</th>
                 <th>Attachment File</th>
                 <th>Field</th>
-                <th>Class/Pass</th> -->
+                <th>Class/Pass</th>
                 <th>Publications</th>
-                <th>Program of Study</th>
+                <th>Program of Study</th> -->
             </tr>
         </thead>
         <tbody>
@@ -63,7 +60,15 @@
                 <td>{{ row.contactNumber }}</td>
                 <td>{{ row.email }}</td>
                 <td>{{ row.address }}</td>
-                <td>{{ row.university }}</td>
+                <td>
+                    <a (click)="openEnrolledStudentsDetailsPopup(row.id)" style="color: blue; cursor: pointer;">
+                        More Details..
+                    </a>
+                </td>
+
+                <app-enrolled-students-details-popup *ngIf="isEnrolledStudentsDetailsPopupOpen" [rowId]="selectedRowId" (close)="closeEnrolledStudentsDetailsPopup()"></app-enrolled-students-details-popup>
+
+                <!-- <td>{{ row.university }}</td>
                 <td>{{ row.fromDate }}</td>
                 <td>{{ row.toDate }}</td>
                 <td>{{ row.degree }}</td>
@@ -75,7 +80,7 @@
                 <td>{{ row.field }}</td>
                 <td>{{ row.classPass }}</td>
                 <td>{{ row.publications }}</td>
-                <td>{{ row.programOfStudy }}</td>
+                <td>{{ row.programOfStudy }}</td> -->
             </tr>
         </tbody>
     </table>
