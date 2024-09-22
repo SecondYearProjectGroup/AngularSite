@@ -1,0 +1,129 @@
+<div class="modal">
+    <div class="modal-content">
+        <div class="modal-header">            
+            <h5 class="modal-title"><b>Student Educational Details</b></h5>
+            <span class="close" (click)="closeEnrolledStudentsDetailsPopup()">&times;</span>
+        </div><br>
+        
+        <div class="modal-form">
+            <form>
+                <table class="form-tables" style="width: 100%;">
+
+                    <tr>
+                        <td>Name:</td>
+                        <td><input type="text" name="firstName" placeholder="Name..."></td>
+                    </tr>
+                    <tr>
+                        <td>Program of Study:</td>
+                        <td><input type="programOfStudy" name="programOfStudy" placeholder="Program of Study..."></td>
+                    </tr>
+                    <tr>
+                        <td>Publications:</td>
+                        <td>
+                            <textarea name="publications" rows="4" required></textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                    <!-- <tr *ngFor="let row of (Educational details Array name)"> -->
+                        <!-- <td>{{ row.university }}</td>
+                        <td>{{ row.fromDate }}</td>
+                        <td>{{ row.toDate }}</td>
+                        <td>{{ row.degree }}</td>
+                            <td>
+                            <a href="javascript:void(0)" (click)="download(row.attachementFile, row.attachementFileOriginalName)">
+                                {{ row.attachementFileOriginalName }}
+                            </a>
+                            </td>
+                        <td>{{ row.field }}</td>
+                        <td>{{ row.classPass }}</td> -->
+                    </tr>
+
+                </table>
+
+
+
+                    
+                <!-- <h6 style="padding-top: 10px;"><b>Positions</b></h6> -->
+                
+                
+                <!-- <tr>
+                    <td colspan="2">
+                        <hr>
+                        <input type="submit" (click)="onSubmit()" value="Send" style="width: 40%; float: right;">
+                    </td>
+                </tr> -->
+
+
+                
+                
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 
+
+<div class="modal">
+    <div class="modal-content">
+      <div class="modal-header">            
+        <h5 class="modal-title"><b>Add Staff Members</b></h5>
+        <span class="close" (click)="closeAddStaffMembersByAdmin()">&times;</span>
+      </div><br>
+      
+      <div class="modal-form">
+        <form>
+          <table class="form-tables" style="width: 100%;">
+  
+            <tr>
+              <td>Email:</td>
+              <td><input type="email" name="email" [(ngModel)]="staffMember.email" placeholder="Email Address..."></td>
+            </tr>
+            <tr *ngIf="!isStaffMemberChecked">
+              <td colspan="2">
+                <hr>
+                <input type="button" (click)="onCheckPresentStaffMember()" value="Check" style="width: 40%; float: right;">
+              </td>
+            </tr>
+          </table>
+  
+          <table class="form-tables" style="width: 100%;" *ngIf="isStaffMemberChecked">
+  
+            <tr>
+              <td>Name:</td>
+              <td><input type="text" name="name" [(ngModel)]="staffMember.name" placeholder="Name..."></td>
+            </tr>
+            
+            <h6 style="padding-top: 10px;"><b>Positions</b></h6>
+            <tr>
+              <td>
+                <input type="checkbox" id="option1" name="roles" value="SUPERVISOR"
+                  (change)="onCheckboxChange($event)"
+                  [checked]="staffMember.roles.includes('SUPERVISOR')">
+              </td>
+              <td><label for="option1">Supervisor</label></td>
+            </tr>
+            
+            <tr>
+              <td>
+                <input type="checkbox" id="option2" name="roles" value="EXAMINER"
+                  (change)="onCheckboxChange($event)"
+                  [checked]="staffMember.roles.includes('EXAMINER')">
+              </td>
+              <td><label for="option2">Examiner</label></td>
+            </tr>
+          
+            <tr>
+              <td colspan="2">
+                <hr>
+                <input type="button" (click)="onSubmit()" value="Send" style="width: 40%; float: right;">
+              </td>
+            </tr>
+  
+          </table>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+   -->

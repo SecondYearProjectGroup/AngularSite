@@ -47,6 +47,7 @@ import { SetDeadlinesToExaminersComponent } from './admin/set-deadlines-to-exami
 import { RemoveSubmissionPopupComponent } from './shared/remove-submission-popup/remove-submission-popup.component';
 import { SupervisorExaminerDashboardComponent } from './supervisor-examiner/supervisor-examiner-dashboard/supervisor-examiner-dashboard.component';
 import { DeleteSectionPopupComponent } from './shared/delete-section-popup/delete-section-popup.component';
+import { EnrolledStudentsDetailsPopupComponent } from './admin/enrolled-students-details-popup/enrolled-students-details-popup.component';
 
 
 
@@ -96,7 +97,8 @@ import { DeleteSectionPopupComponent } from './shared/delete-section-popup/delet
     SetDeadlinesToExaminersComponent,
     RemoveSubmissionPopupComponent,
     SupervisorExaminerDashboardComponent,
-    DeleteSectionPopupComponent
+    DeleteSectionPopupComponent,
+    EnrolledStudentsDetailsPopupComponent
   ],
   imports: [
     CommonModule,
