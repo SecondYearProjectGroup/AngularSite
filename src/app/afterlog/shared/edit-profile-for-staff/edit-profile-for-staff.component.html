@@ -51,9 +51,13 @@
                     <td><input type="email" name="email"  [(ngModel)]="user.email" placeholder="Email Address..."></td>
                 </tr>
                 <tr>
-                    <!-- <td>Description</td>
-                    <td><textarea name="description" rows="4"></textarea></td>
-                </tr> -->
+                    <td>Password</td>
+                    <td>
+                        <div class="myButtonDesign">
+                            <a (click)="navigateToPasswordChange()" class="my-button">Change Password</a>
+                        </div>
+                    </td>
+                </tr>
             </table>
             <hr>
             
@@ -77,10 +81,6 @@
                     <td><input type="file" (change)="onFileSelected($event)">
                 </tr>
                 <br>
-                <tr>
-                    <td>Picture Description</td>
-                    <td><input type="text" name="pictureDescription" placeholder="Picture Description..."></td>
-                </tr>
             </table>
             <!-- <hr>
 

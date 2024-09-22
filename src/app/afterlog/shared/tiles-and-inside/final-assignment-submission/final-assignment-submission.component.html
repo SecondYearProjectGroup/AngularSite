@@ -100,7 +100,7 @@
       </tr>
       <tr *ngIf="isUploading">
         <div class="file-list">
-          <h6>Uploaded Files</h6>
+          <h6>Uploaded Files:</h6>
           <ul>
             <li *ngFor="let file of uploadedFiles; let i = index">
               <i class="fa fa-file"></i>
@@ -121,7 +121,7 @@
       <table style="width: 100%;">
       <tr *ngIf="userRole === 'ADMIN' || userRole === 'SUPERVISOR' || userRole === 'EXAMINER' || userRole === 'SUPERVISOR-EXAMINER'">
         <div class="file-list">
-          <h6>Uploaded Files</h6>
+          <h6>Uploaded Files:</h6>
           <ul>
             <li *ngFor="let file of uploadedFiles; let i = index">
               <i class="fa fa-file"></i>
@@ -131,6 +131,7 @@
               <span class="file-size">{{ formatBytes(file.fileSize) }}</span>
             </li>
           </ul>
+          <span *ngIf="!isUploading" style="margin-left: 100px;">Submission is not uploaded yet.</span>
         </div>
       </tr>
       <!-- End For Admin, Supervisor, Examiners -->
@@ -159,7 +160,8 @@
         </tr>
         <tr>
             <td>Last Modified:</td>
-            <td>{{ lastModified }}</td>
+            <td *ngIf="isUploading">{{ lastModified }}</td>
+            <td *ngIf="!isUploading">Submission is not uploaded yet.</td>
         </tr>
     </table>
 
@@ -218,6 +220,10 @@
           </div>
         </li>
       </ul>
+    </div>
+    <div *ngIf="!(assignedExaminers.length > 0)">
+      <h6><b>Assigned Examiners:</b></h6>
+      <span style="margin-left: 100px;">Not yet Assigned.</span>
     </div>
 
       <br>

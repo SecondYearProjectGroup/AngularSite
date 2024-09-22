@@ -12,6 +12,8 @@
     z-index: 9999;
     border-radius: 10px;
     font-size: 14px;
+    max-height: 60%;
+    overflow-y: auto;
 }
 
 .notification-panel p {

@@ -4,6 +4,7 @@ export interface Tile {
 }
   
 export interface Section {
+    id: number;
     buttonName: string;
     tiles: Tile[];
 }
@@ -15,6 +16,7 @@ export interface LoadingTile {
 }
 
 export interface LoadingSection {
+    id: number;
     buttonName: string;
     loadingTiles: LoadingTile[];
 }

@@ -35,6 +35,7 @@
 
 .sidebar-left ul li {
     margin: 10px 0;
+    cursor: pointer;
 }
 
 .sidebar-left ul li.active a {

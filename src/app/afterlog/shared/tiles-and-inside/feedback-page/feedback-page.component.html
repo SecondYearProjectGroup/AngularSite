@@ -1,8 +1,5 @@
-<!-- <div class="topic">
-    <h1>Feedback Form</h1>
-</div> -->
-
 <br>
+<!-- For Examiner Feedback Provider -->
 <div class="feedback-form" *ngIf= "mode === 'feedbackProvider-Examiner'">
     <table style="width: 100%;">
         <tr>
@@ -20,6 +17,8 @@
     <input type="submit" value="Upload Feedback" (click)="submitExaminerFeedback()"><br><br>
 </div>
 
+
+<!-- For Examiner Feedback Reciever -->
 <div class="feedback-form" *ngIf="mode === 'feedbackReciever-Examiner'">
     <table style="width: 100%;" *ngFor="let feedback of feedbackList; let i = index">
 
@@ -54,6 +53,7 @@
 </div>
 
 
+<!-- For Supervisor Feedback Provider -->
 <div class="feedback-form" *ngIf= "mode === 'feedbackProvider-Supervisor'">
     <table style="width: 100%;" *ngFor="let feedback of feedbackList">
         <tr>
@@ -85,6 +85,8 @@
     <br><br>
 </div>
 
+
+<!-- For Supervisor Feedback Reciever -->
 <div class="feedback-form" *ngIf="mode === 'feedbackReciever-Supervisor'">
     <table style="width: 100%;" *ngFor="let feedback of feedbackList; let i = index">
 
@@ -106,6 +108,14 @@
                 <!-- Display file input if feedback is uploaded -->
                 <a *ngIf="feedback.fileName" (click)="viewFile(feedback.fileName)" style="cursor: pointer;">{{ feedback.fileName }}</a>
                 <!-- <span class="file-size">{{ formatBytes(feedback.fileSize) }}</span> -->
+                
+                <!-- <li>
+                    <i class="fa fa-file"></i>
+                    <a (click)="viewFile(feedback.fileName)" style="cursor: pointer;">{{ feedback.fileName }}</a>
+                    <a href="javascript:void(0)" (click)="download(file.fileName,file.originalFileName)">{{ file.originalFileName }}</a>
+                    <span>{{ file.originalFileName }}</span>
+                    <span class="file-size">{{ formatBytes(file.fileSize) }}</span>
+                </li> -->
 
                 <!-- Display message if feedback is not uploaded -->
                 <span *ngIf="!feedback.fileName">No Feedback file.</span>

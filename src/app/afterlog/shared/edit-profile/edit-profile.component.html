@@ -43,10 +43,11 @@
                     <td>Email</td>
                     <td><input type="email" [(ngModel)]="student.email" name="email" placeholder="Email Address..."></td>
                 </tr>
-                <!-- <tr>
-                    <td>Description</td>
-                    <td><textarea name="description" rows="4"></textarea></td>
-                </tr> -->
+                <tr>
+                    <div class="myButtonDesign">
+                        <a (click)="navigateToPasswordChange()" class="my-button">Change Password</a>
+                    </div>
+                </tr>
             </table>
             <hr>
             
