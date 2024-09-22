@@ -7,6 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NotificationPanelComponent } from './notification-panel/notification-panel.component';
 import { RouterModule } from '@angular/router';
 import { PasswordChangeComponent } from './password-change/password-change.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +22,8 @@ import { PasswordChangeComponent } from './password-change/password-change.compo
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   exports:[
     TopNavigationComponent,

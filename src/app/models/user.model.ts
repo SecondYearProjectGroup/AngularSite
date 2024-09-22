@@ -13,4 +13,8 @@ export interface staff {
     roles: string[]; // Add this property
 }
 
-
+// //To change the password
+// export interface ExistingUser {
+//     password: string;
+//     email: string;
+// }
