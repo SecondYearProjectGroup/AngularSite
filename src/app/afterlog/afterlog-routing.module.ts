@@ -29,6 +29,7 @@ import { VivasToAdminComponent } from './admin/vivas-to-admin/vivas-to-admin.com
 import { FinalAssignmentSubmissionComponent } from './shared/tiles-and-inside/final-assignment-submission/final-assignment-submission.component';
 import { VivaPageComponent } from './shared/tiles-and-inside/viva-page/viva-page.component';
 import { SupervisorExaminerDashboardComponent } from './supervisor-examiner/supervisor-examiner-dashboard/supervisor-examiner-dashboard.component';
+import { PasswordChangeComponent } from '../shared/password-change/password-change.component';
 // import { RoleGuardService as RoleGuard } from '../shared/services/role-guard.service';
 
 const routes: Routes = [
@@ -79,7 +80,9 @@ const routes: Routes = [
       { path: 'final-assignment-submission', component: FinalAssignmentSubmissionComponent },
       { path: 'final-assignment-submission/:id', component: FinalAssignmentSubmissionComponent },
       { path: 'viva-page', component: VivaPageComponent },
-      { path: 'viva-page/:id', component: VivaPageComponent }
+      { path: 'viva-page/:id', component: VivaPageComponent },
+
+      { path: 'password-change', component: PasswordChangeComponent },
       
     ]
   }

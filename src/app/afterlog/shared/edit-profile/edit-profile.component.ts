@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Student } from '../../../models/student';
 import { UserRoleService } from '../../services/user-role.service';
 import { ProfilePictureService } from '../../services/profile-picture.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,9 @@ export class EditProfileComponent implements OnInit{
   userIdId: number | null = null;
   userId: string | null = null;
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
+    private router: Router,
     private userRoleService: UserRoleService,
     private profilePictureService: ProfilePictureService) {}
 
@@ -33,6 +36,10 @@ export class EditProfileComponent implements OnInit{
       // Handle the case when id is null, if needed
     }
     
+  }
+
+  navigateToPasswordChange(){
+    this.router.navigate(['/afterlog/password-change']);
   }
 
   student: Student = {

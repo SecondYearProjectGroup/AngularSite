@@ -67,7 +67,7 @@ export class StudentProfileToAdminComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('StudentProfileToAdminComponent initialized.');
-    scrollTo(0, 0);
+    // scrollTo(0, 0);
 
     this.regNumber = this.route.snapshot.paramMap.get('regNumber');
     console.log('Retrieved regNumber from route params:', this.regNumber);
