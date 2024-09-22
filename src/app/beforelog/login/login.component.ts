@@ -97,6 +97,10 @@ export class LoginComponent {
     this.router.navigate(['/beforelog/signup']);
   }
 
+  navigateToPasswordChange() {
+    this.router.navigate(['/beforelog/password-manager']);
+  }
+
   // Show password on mousedown
   showPassword() {
     this.isPasswordVisible = true;

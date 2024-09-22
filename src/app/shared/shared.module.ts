@@ -6,6 +6,7 @@ import { SecondNavigationComponent } from './second-navigation/second-navigation
 import { FooterComponent } from './footer/footer.component';
 import { NotificationPanelComponent } from './notification-panel/notification-panel.component';
 import { RouterModule } from '@angular/router';
+import { PasswordChangeComponent } from './password-change/password-change.component';
 
 
 
@@ -15,7 +16,8 @@ import { RouterModule } from '@angular/router';
     SidebarLeftComponent,
     SecondNavigationComponent,
     FooterComponent,
-    NotificationPanelComponent
+    NotificationPanelComponent,
+    PasswordChangeComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { RouterModule } from '@angular/router';
     TopNavigationComponent,
     SidebarLeftComponent,
     SecondNavigationComponent,
-    FooterComponent
+    FooterComponent,
+    PasswordChangeComponent
   ]
 })
 export class SharedModule { }

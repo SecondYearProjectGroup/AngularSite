@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserRoleService } from '../../services/user-role.service';
 import { User } from '../../../models/user.model';
 import { ProfilePictureService } from '../../services/profile-picture.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-profile-for-staff',
@@ -13,7 +14,9 @@ export class EditProfileForStaffComponent implements OnInit {
   userIdId: number | null = null;
   userId: string | null = null;
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
+    private router: Router,
     private userRoleService: UserRoleService,
     private profilePictureService: ProfilePictureService) {}
 
@@ -36,6 +39,10 @@ export class EditProfileForStaffComponent implements OnInit {
       console.log('User ID is null');
       // Handle the case when id is null, if needed
     }
+  }
+
+  navigateToPasswordChange(){
+    this.router.navigate(['/afterlog/password-change']);
   }
 
   loadUserData() {

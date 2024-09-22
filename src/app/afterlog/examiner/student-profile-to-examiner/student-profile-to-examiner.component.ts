@@ -27,6 +27,7 @@ export class StudentProfileToExaminerComponent {
   };
 
   section: Section={
+    id: 0,
     buttonName: '',
     tiles: []
   }
@@ -48,7 +49,7 @@ export class StudentProfileToExaminerComponent {
   activeTab: string = 'tab1';
 
   sections: { buttonName: string, tiles: { type: string, title: string }[] }[] = [];
-  loadingSections: { buttonName: string, loadingTiles: { id: number, type: string, title: string }[] }[] = [];
+  loadingSections: { id: number, buttonName: string, loadingTiles: { id: number, type: string, title: string }[] }[] = [];
 
   userRole: string | null = null; // Assuming you get the user role from some service
 
@@ -95,6 +96,7 @@ export class StudentProfileToExaminerComponent {
     this.collapsibleSectionService.getSectionsForExaminers(regNumber, activeTab).subscribe({
       next: (data) => {
         this.loadingSections = data.map(section => ({
+          id: section.id,
           buttonName: section.buttonName, // Adjust these field names according to your backend response
           loadingTiles: section.tiles.map((tile: LoadingTile) => ({
             id: tile.id, // Adjust these field names according to your backend response
