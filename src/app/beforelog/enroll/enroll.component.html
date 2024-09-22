@@ -17,7 +17,7 @@
                     <table style="width: 100%;">
                         <tr>
                             <td>Name with Initials</td>
-                            <td><input type="text" name="nameWithInitials" [(ngModel)]="enrollmentData.nameWithInitials" placeholder="Your Name..." required #nameInput="ngModel"></td>
+                            <td><input type="text" name="nameWithInitials" [(ngModel)]="studentData.nameWithInitials" placeholder="Your Name..." required #nameInput="ngModel"></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -31,7 +31,7 @@
 
                         <tr>
                             <td>Full Name</td>
-                            <td><input type="text" name="fullName" [(ngModel)]="enrollmentData.fullName" placeholder="Your Full Name..." required #fullnameInput="ngModel"></td>
+                            <td><input type="text" name="fullName" [(ngModel)]="studentData.fullName" placeholder="Your Full Name..." required #fullnameInput="ngModel"></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -45,7 +45,7 @@
 
                         <tr>
                             <td>Contact Number</td>
-                            <td><input type="tel" name="contactNumber" [(ngModel)]="enrollmentData.contactNumber" placeholder="Contact Number..." required pattern="^0\d{9}$" #contactNum="ngModel"></td>
+                            <td><input type="tel" name="contactNumber" [(ngModel)]="studentData.contactNumber" placeholder="Contact Number..." required pattern="^0\d{9}$" #contactNum="ngModel"></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -60,7 +60,7 @@
                             
                         <tr>
                             <td>Email</td>
-                            <td><input type="email" name="email" [(ngModel)]="enrollmentData.email" placeholder="Email Address..." required email #emailInput="ngModel"></td>
+                            <td><input type="email" name="email" [(ngModel)]="studentData.email" placeholder="Email Address..." required email #emailInput="ngModel"></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -74,7 +74,7 @@
 
                         <tr>
                             <td>Address</td>
-                            <td><textarea name="address" [(ngModel)]="enrollmentData.address" rows="4" required #addressInput="ngModel"></textarea></td>
+                            <td><textarea name="address" [(ngModel)]="studentData.address" rows="4" required #addressInput="ngModel"></textarea></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -86,123 +86,76 @@
                         </tr>
 
                     </table>
-                    <br>
-                    <hr>
+
+
+        <!-- New File Inputs for Student ID and Birth Certificate -->
+    <div>
+        <label for="studentIdDocument">Student ID Document:</label>
+        <input type="file" id="studentIdDocument" (change)="onStudentIdChange($event)" required>
+    </div>
+
+    <div>
+        <label for="birthCertificate">Birth Certificate:</label>
+        <input type="file" id="birthCertificate" (change)="onBirthCertificateChange($event)" required>
+    </div>
+
+<br>
+<hr>
                     
-                    <h3>Educational/Professional Qualifications</h3>
+<h3>Educational/Professional Qualifications</h3>
                     
-                    <div id="form-sections-container">
-                        <div class="form-section" *ngFor="let section of sections; let i = index">
-                            <table style="width: 100%;">
-                                <tr>
-                                    <td>University / Institute</td>
-                                    <td><input type="text" name="university" [(ngModel)]="enrollmentData.university" placeholder="University..." required #uniInput="ngModel"></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <div *ngIf="uniInput.invalid && (uniInput.dirty || uniInput.touched)" class="error-message">
-                                            <small *ngIf="uniInput.errors?.['required']">University/ Institute is required.</small>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Start Date</td>
-                                    <td><input type="date" name="fromDate" [(ngModel)]="enrollmentData.fromDate" required #fromDataInput="ngModel"></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <div *ngIf="fromDataInput.invalid && (fromDataInput.dirty || fromDataInput.touched)" class="error-message">
-                                            <small *ngIf="fromDataInput.errors?.['required']">Start Date is required.</small>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>End Date</td>
-                                    <td><input type="date" name="toDate" [(ngModel)]="enrollmentData.toDate" placeholder="To..." required #toDateInput="ngModel"></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <div *ngIf="toDateInput.invalid && (toDateInput.dirty || toDateInput.touched)" class="error-message">
-                                            <small *ngIf="toDateInput.errors?.['required']">End Date is required.</small>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Degree</td>
-                                    <td><input type="text" name="degree" [(ngModel)]="enrollmentData.degree" placeholder="Degree..." required #degreeInput="ngModel"></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <div *ngIf="degreeInput.invalid && (degreeInput.dirty || degreeInput.touched)" class="error-message">
-                                            <small *ngIf="degreeInput.errors?.['required']">Degree is required.</small>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Field</td>
-                                    <td><input type="text" name="field" [(ngModel)]="enrollmentData.field" placeholder="Field..." required #fieldInput="ngModel"></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <div *ngIf="fieldInput.invalid && (fieldInput.dirty || fieldInput.touched)" class="error-message">
-                                            <small *ngIf="fieldInput.errors?.['required']">Field is required.</small>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Class / Pass</td>
-                                    <td><input type="text" name="class" [(ngModel)]="enrollmentData.class" placeholder="Class..." required #ClassInput="ngModel"></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <div *ngIf="ClassInput.invalid && (ClassInput.dirty || ClassInput.touched)" class="error-message">
-                                            <small *ngIf="ClassInput.errors?.['required']">Class/ Pass is required.</small>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                            </table>
-                            <br>
-                            Attach Files: <input type="file" (change)="onFileChange($event)" required>
-                            <!-- Error message display -->
-                            <div *ngIf="section.fileErrorMessage" class="error-message">
-                                {{ section.fileErrorMessage }}
-                            </div>
-                            <br><br>
-                        </div>
-                    </div>
-
-                    <!-- <button type="button" (click)="addSection()">Add Section</button> -->
-                    <!-- <div style="display: flex;">
-                        <div class="myButtonDesign" style="width: 30%;">
-                            <a class="my-button" (click)="addSection()">Add Section</a>
-                        </div>
-                        <div class="myButtonDesign">
-                            <a class="my-button" (click)="removeSection()" [ngStyle]="{'display': sections.length <= 1 ? 'none' : 'block'}">--</a>
-                        </div>
-                    </div> -->
-                    <!-- <button type="button" (click)="removeSection()" [disabled]="sections.length <= 1" [ngStyle]="{'display': sections.length <= 1 ? 'none' : 'block'}">--</button> -->
-
-                    <hr>
+                    
+<!-- Dynamically generated sections for educational qualifications -->
+<div *ngFor="let section of sections; let i = index">
+    <h4>Qualification {{ i + 1 }}</h4>
+    
+    <label for="university-{{ i }}">University</label>
+    <input type="text" 
+           name="educationalQualifications[{{i}}].university" 
+           [(ngModel)]="section.university" 
+           required>
+    
+    <label for="fromDate-{{ i }}">Start Date</label>
+    <input type="date" 
+           name="educationalQualifications[{{i}}].fromDate" 
+           [(ngModel)]="section.fromDate" 
+           required>
+    
+    <label for="toDate-{{ i }}">End Date</label>
+    <input type="date" 
+           name="educationalQualifications[{{i}}].toDate" 
+           [(ngModel)]="section.toDate" 
+           required>
+    
+    <label for="degree-{{ i }}">Degree</label>
+    <input type="text" 
+           name="educationalQualifications[{{i}}].degree" 
+           [(ngModel)]="section.degree" 
+           required>
+    
+    <label for="field-{{ i }}">Field of Study</label>
+    <input type="text" 
+           name="educationalQualifications[{{i}}].field" 
+           [(ngModel)]="section.field" 
+           required>
+  
+    <label for="file-{{ i }}">Attach File</label>
+    <input type="file" (change)="onFileChange($event, i)" required>
+  
+    <button type="button" (click)="removeSection()" *ngIf="sections.length > 1">Remove Section</button>
+  </div>
+  
+  <!-- Add Section Button -->
+  <button type="button" (click)="addSection()">Add Section</button>
+  
 
                     <h3>List of Publications</h3>
-                    <textarea name="publications" [(ngModel)]="enrollmentData.publications" rows="4" style="width: 100%;"></textarea>
+                    <textarea name="publications" [(ngModel)]="studentData.publications" rows="4" style="width: 100%;"></textarea>
                     
                     
                     <br><br><hr>
                     <h3>Proposed Program of Study</h3>
-                    <select name="programOfStudy" [(ngModel)]="enrollmentData.programOfStudy" required #selectProgramInput="ngModel">
+                    <select name="programOfStudy" [(ngModel)]="studentData.programOfStudy" required #selectProgramInput="ngModel">
                         <option value="PhD">PhD</option>
                         <option value="MPhil">MPhil</option>
                     </select>
