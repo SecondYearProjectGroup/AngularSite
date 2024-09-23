@@ -3,61 +3,66 @@
         <div class="modal-header">            
             <h5 class="modal-title"><b>Student Educational Details</b></h5>
             <span class="close" (click)="closeEnrolledStudentsDetailsPopup()">&times;</span>
-        </div><br>
+        </div>
+        <br>
         
         <div class="modal-form">
-            <form>
-                <table class="form-tables" style="width: 100%;">
-
-                    <tr>
-                        <td>Name:</td>
-                        <td><input type="text" name="firstName" placeholder="Name..."></td>
-                    </tr>
-                    <tr>
-                        <td>Program of Study:</td>
-                        <td><input type="programOfStudy" name="programOfStudy" placeholder="Program of Study..."></td>
-                    </tr>
-                    <tr>
-                        <td>Publications:</td>
-                        <td>
-                            <textarea name="publications" rows="4" required></textarea>
-                        </td>
-                    </tr>
-
-                    <tr>
-                    <!-- <tr *ngFor="let row of (Educational details Array name)"> -->
-                        <!-- <td>{{ row.university }}</td>
-                        <td>{{ row.fromDate }}</td>
-                        <td>{{ row.toDate }}</td>
-                        <td>{{ row.degree }}</td>
-                            <td>
-                            <a href="javascript:void(0)" (click)="download(row.attachementFile, row.attachementFileOriginalName)">
-                                {{ row.attachementFileOriginalName }}
-                            </a>
-                            </td>
-                        <td>{{ row.field }}</td>
-                        <td>{{ row.classPass }}</td> -->
-                    </tr>
-
-                </table>
-
-
-
+            <!-- Loading Indicator -->
+            <div *ngIf="isLoading">
+                <p>Loading student details...</p>
+            </div>
+            
+            <!-- Error Message Display -->
+            <div *ngIf="errorMessage">
+                <p class="error">{{ errorMessage }}</p>
+            </div>
+            
+            <!-- Student Details Section -->
+            <div *ngIf="student">
+                <h2>{{ student.fullName }}'s Details</h2>
+                <ul>
+                    <li><strong>ID:</strong> {{ student.id }}</li>
+                    <li><strong>Name with Initials:</strong> {{ student.nameWithInitials }}</li>
+                    <li><strong>Contact Number:</strong> {{ student.contactNumber }}</li>
+                    <li><strong>Email:</strong> {{ student.email }}</li>
+                    <li><strong>Address:</strong> {{ student.address }}</li>
+                    <li><strong>Program of Study:</strong> {{ student.programOfStudy }}</li>
+                    <li><strong>Status:</strong> {{ student.status }}</li>
                     
-                <!-- <h6 style="padding-top: 10px;"><b>Positions</b></h6> -->
+                    <a href="javascript:void(0)" (click)="download(student.studentIdDocument, student.studentIdDocumentOriginalName)"> 
+                      <li><strong>Nation Identity:</strong> {{ student.studentIdDocumentOriginalName }}</li></a>
+                      
+                    <li><strong>Birth Certificate:</strong> {{ student.birthCertificateOriginalName }}</li>
+                    <!-- Additional fields can be added here if necessary -->
+                </ul>
                 
-                
-                <!-- <tr>
-                    <td colspan="2">
-                        <hr>
-                        <input type="submit" (click)="onSubmit()" value="Send" style="width: 40%; float: right;">
-                    </td>
-                </tr> -->
-
-
-                
-                
-            </form>
+                <h3>Educational Qualifications</h3>
+                <!-- Loop through educational qualifications -->
+                <div *ngFor="let eq of student.educationalQualifications" class="qualification">
+                    <p><strong>Degree:</strong> {{ eq.degree }}</p>
+                    <p><strong>University:</strong> {{ eq.university }}</p>
+                    <p><strong>Field:</strong> {{ eq.field }}</p>
+                    <p><strong>From:</strong> {{ eq.fromDate | date }}</p>
+                    <p><strong>To:</strong> {{ eq.toDate | date }}</p>
+                    
+                    <!-- Attachments Section -->
+                    <div *ngIf="eq.attachments && eq.attachments.length > 0">
+                        <h4>Attachments</h4>
+                        <ul>
+                            <li *ngFor="let attachment of eq.attachments">
+                                <a [href]="attachment.fileUrl" target="_blank" rel="noopener noreferrer">
+                                    {{ attachment.originalFileName }}
+                                </a>
+                                <!-- Optionally display file type and size
+                                <span> ({{ attachment.fileType }}, {{ attachment.fileSize }} KB)</span> -->
+                            </li>
+                        </ul>
+                    </div>
+                    <div *ngIf="eq.attachments && eq.attachments.length === 0">
+                        <p>No attachments available.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
