@@ -58,9 +58,7 @@
                                 <small *ngIf="passwordInput.errors?.['minlength']">Password must be at least 6 characters long.</small>
                             </div>
                         </tr>
-                        <tr>
-                            <div style="text-align: right;"><button class="btn" style="padding: 0;" (click)="navigateToPasswordChange()">Forgot Password?</button></div>
-                        </tr>
+                        
                         <tr>
                             <td><hr></td>
                         </tr>
@@ -70,6 +68,10 @@
                             </div>
                         <tr>
                             <td><input type="submit" value="Login" [disabled]="loginForm.invalid"></td>
+                        </tr>
+
+                        <tr>
+                            <div style="text-align: right;"><button class="btn" style="padding: 0;" (click)="navigateToPasswordChange()">Forgot Password?</button></div>
                         </tr>
                         <tr>
                             <td><p style="font-family: Arial, Helvetica, sans-serif; font-size:12px;">New Here? <button class="btn" (click)="navigateToSignup()">Sign Up</button>

@@ -50,6 +50,7 @@ export class FeedbackPageComponent implements OnInit{
     this.examinerId = this.userIdId;
 
     this.loadFeedbacks();
+    this.loadExaminerFeedback();
   }
 
   // Handle file selection
@@ -104,17 +105,23 @@ export class FeedbackPageComponent implements OnInit{
         this.feedbackList.forEach(feedback => {
           console.log('Feedback Body:', feedback.body);
           console.log('File Name:', feedback.fileName);
-
-          // Check if examiner exists before accessing examinerId
-          if (feedback.examiner) {
-            console.log('Examiner Id:', feedback.examiner.id);
-          } else {
-            console.log('No Examiner available for this feedback.');
-          }
         });
       },
       (error) => {
         console.error('Error fetching feedback:', error);
+      }
+    );
+  }
+
+  examinerFeedback: Feedback[] = [];
+  loadExaminerFeedback(): void {
+    console.log('Submission ID:', this.id, 'Examiner ID:', this.examinerId);
+    this.feedbackService.getFeedbackBySubmissionIdAndExaminerId(this.id, this.examinerId).subscribe(
+      (data) => {
+        this.examinerFeedback = data;
+      },
+      (error) => {
+        console.error('Error fetching examiner feedback:', error);
       }
     );
   }

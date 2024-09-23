@@ -17,7 +17,7 @@
 .form-container input[type=submit]:hover {
     background: linear-gradient(135deg, #394251, #394251);
 }
-.form-container input[type=text],input[type=tel], input[type=email], input[type=date],textarea, select {
+.form-container input[type=text],input[type=tel], input[type=email], input[type=date],textarea, select, file {
     width: 100%;
     padding: 8px 16px;
     margin: 8px 0;

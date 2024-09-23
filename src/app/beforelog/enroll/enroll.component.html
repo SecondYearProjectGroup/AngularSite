@@ -85,11 +85,23 @@
                             </td>
                         </tr>
 
+                        <!-- New File Inputs for Student ID and Birth Certificate -->
+                        <tr>
+                            <td><label for="studentIdDocument">Student ID Document:</label></td>
+                            <td><input type="file" id="studentIdDocument" (change)="onStudentIdChange($event)" required></td>
+                        </tr>
+                        <br>
+
+                        <tr>
+                            <td><label for="birthCertificate">Birth Certificate:</label></td>
+                            <td><input type="file" id="birthCertificate" (change)="onBirthCertificateChange($event)" required></td>
+                        </tr>
+
                     </table>
 
 
-        <!-- New File Inputs for Student ID and Birth Certificate -->
-    <div>
+        
+    <!-- <div>
         <label for="studentIdDocument">Student ID Document:</label>
         <input type="file" id="studentIdDocument" (change)="onStudentIdChange($event)" required>
     </div>
@@ -97,64 +109,97 @@
     <div>
         <label for="birthCertificate">Birth Certificate:</label>
         <input type="file" id="birthCertificate" (change)="onBirthCertificateChange($event)" required>
-    </div>
+    </div> -->
 
-<br>
-<hr>
+                    <br>
+                    <hr>
+                                        
+                    <h5><b>Educational/Professional Qualifications</b></h5><br>
+                                        
+                                        
+                    <!-- Dynamically generated sections for educational qualifications -->
+                    <div *ngFor="let section of sections; let i = index">
+                        <h6><b>Qualification {{ i + 1 }}</b></h6>
+                        
+                        <table style="width: 100%;">
+                            <tr>
+                                <td><label for="university-{{ i }}">University / Institute</label></td>
+                                <td><input type="text" 
+                                    name="educationalQualifications[{{i}}].university" 
+                                    [(ngModel)]="section.university"
+                                    placeholder="University..."
+                                    required>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td><label for="fromDate-{{ i }}">Start Date</label></td>
+                                <td><input type="date" 
+                                    name="educationalQualifications[{{i}}].fromDate" 
+                                    [(ngModel)]="section.fromDate" 
+                                    required>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td><label for="toDate-{{ i }}">End Date</label></td>
+                                <td><input type="date" 
+                                    name="educationalQualifications[{{i}}].toDate" 
+                                    [(ngModel)]="section.toDate" 
+                                    required>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td><label for="degree-{{ i }}">Degree</label></td>
+                                <td><input type="text" 
+                                    name="educationalQualifications[{{i}}].degree" 
+                                    [(ngModel)]="section.degree"
+                                    placeholder="Degree..."
+                                    required>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td><label for="field-{{ i }}">Field of Study</label></td>
+                                <td><input type="text" 
+                                    name="educationalQualifications[{{i}}].field" 
+                                    [(ngModel)]="section.field"
+                                    placeholder="Field..."
+                                    required>
+                                </td>
+                            </tr>
                     
-<h3>Educational/Professional Qualifications</h3>
+                            <tr>
+                                <td><label for="file-{{ i }}">Attach File</label></td>
+                                <td><input type="file" (change)="onFileChange($event, i)" required></td>
+                            </tr>
                     
-                    
-<!-- Dynamically generated sections for educational qualifications -->
-<div *ngFor="let section of sections; let i = index">
-    <h4>Qualification {{ i + 1 }}</h4>
-    
-    <label for="university-{{ i }}">University</label>
-    <input type="text" 
-           name="educationalQualifications[{{i}}].university" 
-           [(ngModel)]="section.university" 
-           required>
-    
-    <label for="fromDate-{{ i }}">Start Date</label>
-    <input type="date" 
-           name="educationalQualifications[{{i}}].fromDate" 
-           [(ngModel)]="section.fromDate" 
-           required>
-    
-    <label for="toDate-{{ i }}">End Date</label>
-    <input type="date" 
-           name="educationalQualifications[{{i}}].toDate" 
-           [(ngModel)]="section.toDate" 
-           required>
-    
-    <label for="degree-{{ i }}">Degree</label>
-    <input type="text" 
-           name="educationalQualifications[{{i}}].degree" 
-           [(ngModel)]="section.degree" 
-           required>
-    
-    <label for="field-{{ i }}">Field of Study</label>
-    <input type="text" 
-           name="educationalQualifications[{{i}}].field" 
-           [(ngModel)]="section.field" 
-           required>
-  
-    <label for="file-{{ i }}">Attach File</label>
-    <input type="file" (change)="onFileChange($event, i)" required>
-  
-    <button type="button" (click)="removeSection()" *ngIf="sections.length > 1">Remove Section</button>
-  </div>
-  
-  <!-- Add Section Button -->
-  <button type="button" (click)="addSection()">Add Section</button>
-  
+                            <tr>
+                                <td colspan="2">
+                                    <div style="justify-content: flex-end;" class="myButtonDesign" *ngIf="sections.length > 1" > 
+                                        <a (click)="removeSection()" class="my-button">Remove Section</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <div *ngIf="sections.length > 1"><br></div>
 
-                    <h3>List of Publications</h3>
+                        </table>
+                    </div>
+
+                    <div *ngIf="sections.length === 1"><br></div>
+                    <!-- Add Section Button -->
+                    <div class="myButtonDesign">
+                        <a (click)="addSection()" class="my-button">Add Section</a>
+                    </div>
+                    
+                    <br><br><br>
+                    <h5><b>List of Publications</b></h5>
                     <textarea name="publications" [(ngModel)]="studentData.publications" rows="4" style="width: 100%;"></textarea>
                     
                     
                     <br><br><hr>
-                    <h3>Proposed Program of Study</h3>
+                    <h5><b>Proposed Program of Study</b></h5>
                     <select name="programOfStudy" [(ngModel)]="studentData.programOfStudy" required #selectProgramInput="ngModel">
                         <option value="PhD">PhD</option>
                         <option value="MPhil">MPhil</option>
