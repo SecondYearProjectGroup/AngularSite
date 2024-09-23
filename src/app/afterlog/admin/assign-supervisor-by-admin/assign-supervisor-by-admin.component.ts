@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { delay } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-assign-supervisor-by-admin',
@@ -65,7 +65,21 @@ export class AssignSupervisorByAdminComponent implements OnInit{
       }).subscribe({
         next: (response) => {
           console.log('Supervisor assigned successfully:', response);
-          alert('Supervisor assigned successfully.');
+          Swal.fire({
+            // title: 'Enrollment successful!',
+            // text: 'Supervisor assigned successfully.',
+            html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Supervisor assigned successfully.</b>',
+            timer: 2000,
+            position: 'top',
+            customClass: {
+              popup: 'custom-popup-class',
+              title: 'custom-title-class',
+              htmlContainer: 'custom-text-class'
+            },
+            background: '#fff',
+            backdrop: 'rgba(0, 0, 0, 0.4)',
+            showConfirmButton: false
+          });
           
           // Emit the supervisor's name after a successful assignment
           this.supervisorAssigned.emit(this.selectedSupervisor.fullName); // Emit the selected supervisor's name
@@ -75,11 +89,35 @@ export class AssignSupervisorByAdminComponent implements OnInit{
         },
         error: (error) => {
           console.error('Error assigning supervisor:', error);
-          alert(`Error assigning supervisor: ${error.status} - ${error.statusText}`);
+          Swal.fire({
+            html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error assigning supervisor.</b>',
+            timer: 2000,
+            position: 'top',
+            customClass: {
+              popup: 'custom-popup-class',
+              title: 'custom-title-class',
+              htmlContainer: 'custom-text-class'
+            },
+            background: '#fff',
+            backdrop: 'rgba(0, 0, 0, 0.4)',
+            showConfirmButton: false
+          });
         },
       });
     } else {
-      alert('Please select a supervisor.');
+      Swal.fire({
+        html: '<i class="fas fa-circle-info" style="font-size: 30px; color: blue; margin-bottom: 8px;"></i><br> <b>Please select a supervisor.</b>',
+        timer: 2000,
+        position: 'top',
+        customClass: {
+          popup: 'custom-popup-class',
+          title: 'custom-title-class',
+          htmlContainer: 'custom-text-class'
+        },
+        background: '#fff',
+        backdrop: 'rgba(0, 0, 0, 0.4)',
+        showConfirmButton: false
+      });
     }
   }
 

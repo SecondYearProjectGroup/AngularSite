@@ -459,6 +459,26 @@ body, html {
   margin-bottom: 30px;
 }
 
+
+/* Custom class for the SweetAlert popup */
+.custom-popup-class {
+  width: 250px !important; /* Set the width */
+  height: 130px !important; /* Set the height */
+  font-size: 14px; /* Set the font size */
+  padding: 10px; /* Optional: Adjust padding */
+}
+
+/* Custom class for the SweetAlert title */
+.custom-title-class {
+  font-size: 16px; /* Set the font size for the title */
+}
+
+/* Custom class for the SweetAlert content text */
+.custom-text-class {
+  font-size: 12px; /* Set the font size for the content text */
+}
+
+
 @media screen and (max-width: 1250px) {
   .even-container {
     grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
