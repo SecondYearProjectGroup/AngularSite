@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { FileService } from '../../../services/file.service';
+import { EnrolledStudentService } from '../../services/enrolled-student.service';
+import { EnrolledStudent } from '../../../models/enrolled-studnet';
 
 @Component({
   selector: 'app-enrolled-students',
@@ -9,7 +11,7 @@ import { FileService } from '../../../services/file.service';
 })
 export class EnrolledStudentsComponent implements OnInit{
 
-  constructor( private http:HttpClient, private fileService : FileService) {}
+  constructor( private http:HttpClient, private fileService : FileService , private enrolledStudentService: EnrolledStudentService) {}
 
   tableData: Array<{ 
     id: number,
@@ -33,36 +35,49 @@ export class EnrolledStudentsComponent implements OnInit{
 
   searchText: string = '';
 
-  loadStudents() {
-    this.http.get<Array<{    
-      id: number,
-      nameWithInitials: string, 
-      fullName: string, 
-      contactNumber: string, 
-      email:string, 
-      address: string, 
-      university: string, 
-      fromDate: string, 
-      toDate: string,
-      degree: string,
-      attachementFile: string,
-      attachementFileOriginalName: string,
-      field: string,
-      classPass: string,
-      publications: string,
-      programOfStudy: string,
-      status: string}>>('http://localhost:8080/enrolledstu')
-      .subscribe({
-        next: (data) => {
-          this.tableData = data;
-        },
-        error: (error) => {
-          console.error('Error loading student data', error);
-        },
-        complete: () => {
-          console.log('Student data loading complete');
-        }
-      });
+  // loadStudents() {
+  //   this.http.get<Array<{    
+  //     id: number,
+  //     nameWithInitials: string, 
+  //     fullName: string, 
+  //     contactNumber: string, 
+  //     email:string, 
+  //     address: string, 
+  //     university: string, 
+  //     fromDate: string, 
+  //     toDate: string,
+  //     degree: string,
+  //     attachementFile: string,
+  //     attachementFileOriginalName: string,
+  //     field: string,
+  //     classPass: string,
+  //     publications: string,
+  //     programOfStudy: string,
+  //     status: string}>>('http://localhost:8080/enrolledstu')
+  //     .subscribe({
+  //       next: (data) => {
+  //         this.tableData = data;
+  //       },
+  //       error: (error) => {
+  //         console.error('Error loading student data', error);
+  //       },
+  //       complete: () => {
+  //         console.log('Student data loading complete');
+  //       }
+  //     });
+  // }
+
+  students: EnrolledStudent[] = [];
+
+  loadStudents(): void {
+    this.enrolledStudentService.getAllStudents().subscribe(
+      (data: EnrolledStudent[]) => {
+        this.students = data;
+      },
+      (error) => {
+        console.error('Error fetching students', error);
+      }
+    );
   }
 
   ngOnInit(): void {
@@ -143,9 +158,9 @@ export class EnrolledStudentsComponent implements OnInit{
   }
 
   isEnrolledStudentsDetailsPopupOpen: boolean = false;
-  selectedRowId: number | null = null;
-  openEnrolledStudentsDetailsPopup(rowId: number) {
-    this.selectedRowId = rowId;
+  selectedStudentId: number | null = null;
+  openEnrolledStudentsDetailsPopup(studentId: number) {
+    this.selectedStudentId = studentId;
     this.isEnrolledStudentsDetailsPopupOpen = true;
   }
   closeEnrolledStudentsDetailsPopup() {

@@ -18,7 +18,8 @@
     padding: 20px;
     border: 1px solid #888;
     width: 60%; /* Could be more or less, depending on screen size */
-    max-height: 90%;
+    /* max-height: 90%; */
+    height: auto;
 }
 
 .modal-header {
