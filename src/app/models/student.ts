@@ -23,4 +23,3 @@ export interface Student {
     university: string;
     registeredDate?: Date;
   }
-  
