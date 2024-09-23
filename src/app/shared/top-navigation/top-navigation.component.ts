@@ -26,6 +26,7 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
   userRole: string | null = null; // Variable of the user Role & Initialize with null
   userId: string | null = null; // Variable of the user ID & Initialize
   userIdId: number | null = null; // Variable of the user ID & Initialize
+  unreadCount: number = 0;
 
   @Input() mode: 'beforeLog' | 'login' | 'afterLog' = 'afterLog';
 
@@ -38,6 +39,10 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
       this.userId = id;
     });
     this.loadUnreadNotifications();
+    // Subscribe to unreadCount$ to get the latest count
+    this.notificationService.unreadCount$.subscribe(count => {
+      this.unreadCount = count;
+    });
 
     this.userRoleService.userIdId$.subscribe(idId => {
       this.userIdId = idId;
@@ -66,7 +71,6 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
   }
 
   // Method to load unread notifications count
-  unreadCount: number = 0;
   loadUnreadNotifications(): void {
     this.notificationService.getUnreadNotificationCount().subscribe(count => {
       this.unreadCount = count;
