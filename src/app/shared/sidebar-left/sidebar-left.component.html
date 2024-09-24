@@ -40,7 +40,7 @@
           <li routerLinkActive="active"><a routerLink="/afterlog/home-for-roles">Home</a></li>
           <li [class.active]="isDashboardActive()"><a (click)="navigateToDashboard()">Dashboard</a></li>
           <li [class.active]="isEditProfileActive()"><a (click)="navigateToEditProfile()">Profile</a></li>
-          <li><a (click)="navigateToEditProfile()">Notification</a></li>
+          <li [class.active]="isAllNotificationActive()"><a (click)="navigateToAllNotifications()">Notification</a></li>
         </div>
 
       </nav>
@@ -55,10 +55,21 @@
       <li (click)="toggleDropdown1()"><a class="first-dropdown">Postgraduate Studies <i class="fa fa-caret-down" style="margin-left: 5px; font-size: 12px;"></i></a></li>
 
       <ul *ngIf="dropdown1" class="second-dropdown">
-        <li routerLinkActive="active"><a routerLink="/dropdown/item1">Programmes</a></li>
-        <li routerLinkActive="active"><a routerLink="/dropdown/item2">Admission</a></li>
-        <li routerLinkActive="active"><a routerLink="/dropdown/item3">Scholarships</a></li>
-        <li routerLinkActive="active"><a routerLink="/dropdown/item3">Research</a></li>
+        <nav>
+          <div *ngIf="mode === 'beforeLog'">
+            <li routerLinkActive="active"><a routerLink="/dropdown/item1">Programmes</a></li>
+            <li routerLinkActive="active"><a routerLink="/dropdown/item2">Admission</a></li>
+            <li routerLinkActive="active"><a routerLink="/dropdown/item3">Scholarships</a></li>
+            <li routerLinkActive="active"><a routerLink="/beforelog/mphil-phd-research">Research</a></li>
+          </div>
+
+          <div *ngIf="mode === 'afterLog'">
+            <li routerLinkActive="active"><a routerLink="/dropdown/item1">Programmes</a></li>
+            <li routerLinkActive="active"><a routerLink="/dropdown/item2">Admission</a></li>
+            <li routerLinkActive="active"><a routerLink="/dropdown/item3">Scholarships</a></li>
+            <li routerLinkActive="active"><a routerLink="/afterlog/mphil-phd-research">Research</a></li>
+          </div>
+        </nav>
       </ul>
 
       <li (click)="toggleDropdown2()"><a class="first-dropdown">Computer Engineering <i class="fa fa-caret-down" style="margin-left: 5px; font-size: 12px;"></i></a></li>
