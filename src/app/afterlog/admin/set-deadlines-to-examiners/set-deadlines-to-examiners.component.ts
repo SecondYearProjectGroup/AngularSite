@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SubmissionService } from '../../../services/submission.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-set-deadlines-to-examiners',
@@ -33,11 +34,35 @@ export class SetDeadlinesToExaminersComponent implements OnInit {
       this.submissionService.setDeadlineToExaminers(this.id, deadline)
         .subscribe(response => {
           this.dueDate = this.formatDate(deadline.toISOString());
-          alert(response);
+          Swal.fire({
+            html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Deadline set successfully.</b>',
+            timer: 2000,
+            position: 'top',
+            customClass: {
+              popup: 'custom-popup-class',
+              title: 'custom-title-class',
+              htmlContainer: 'custom-text-class'
+            },
+            background: '#fff',
+            backdrop: 'rgba(0, 0, 0, 0.4)',
+            showConfirmButton: false
+          });
           // Emit the formatted deadline to the parent component
           this.deadlineSet.emit(this.dueDate);
         }, error => {
-          alert('Error setting deadline.');
+          Swal.fire({
+            html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error setting deadline.</b>',
+            timer: 2000,
+            position: 'top',
+            customClass: {
+              popup: 'custom-popup-class',
+              title: 'custom-title-class',
+              htmlContainer: 'custom-text-class'
+            },
+            background: '#fff',
+            backdrop: 'rgba(0, 0, 0, 0.4)',
+            showConfirmButton: false
+          });
         });
     }
   }

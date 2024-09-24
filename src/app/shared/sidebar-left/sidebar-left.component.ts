@@ -97,4 +97,15 @@ export class SidebarLeftComponent {
            currentUrl === '/afterlog/edit-profile'
   }
 
+  navigateToAllNotifications(){
+    this.router.navigate(['/afterlog/all-notifications']);
+  }
+
+  isAllNotificationActive(): boolean {
+    const currentUrl = this.router.url;
+
+    // Check if the current URL matches any of the dashboard URLs
+    return currentUrl === '/afterlog/all-notifications'
+  }
+
 }

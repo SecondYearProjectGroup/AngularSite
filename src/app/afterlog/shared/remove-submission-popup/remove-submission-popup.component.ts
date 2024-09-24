@@ -28,7 +28,6 @@ export class RemoveSubmissionPopupComponent {
     if (this.id !== null) {
       this.submissionService.deleteFile(this.id).subscribe({
         next: () => {
-          console.log('File deleted successfully');
           this.remove.emit();
           this.closeRemoveSubmissionPopup();
         },

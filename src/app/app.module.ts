@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { authInterceptor } from './services/auth-interceptor.service';
+import { RouterModule } from '@angular/router';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 @NgModule({
@@ -14,7 +16,10 @@ import { authInterceptor } from './services/auth-interceptor.service';
   imports: [
     BrowserModule,
     AppRoutingModule, 
-    FormsModule
+    FormsModule,
+    RouterModule,
+    SweetAlert2Module.forRoot()
+    
   ],
   providers: [
     provideHttpClient(

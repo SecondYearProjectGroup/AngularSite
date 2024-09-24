@@ -76,6 +76,7 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { CalendarService } from '../../../services/calendar.service';
 import { NewEvent } from '../../../models/new-event';
+import Swal from 'sweetalert2';
 declare var $: any; // Declare jQuery
 
 
@@ -198,8 +199,6 @@ export class MainCalendarComponent implements OnInit {
         color: event.color
       }));
   
-      console.log('Formatted Events:', calendarEvents);
-  
       $('#main-calendar').evoCalendar('addCalendarEvent', calendarEvents);
     });
   }
@@ -213,7 +212,19 @@ export class MainCalendarComponent implements OnInit {
     if (this.lastSelectedEventId) {
       this.deleteEvent(this.lastSelectedEventId);
     } else {
-      alert('No event selected for deletion.');
+      Swal.fire({
+        html: '<i class="fas fa-circle-info" style="font-size: 30px; color: blue; margin-bottom: 8px;"></i><br> <b>No event selected for deletion.</b>',
+        timer: 2000,
+        position: 'top',
+        customClass: {
+          popup: 'custom-popup-class',
+          title: 'custom-title-class',
+          htmlContainer: 'custom-text-class'
+        },
+        background: '#fff',
+        backdrop: 'rgba(0, 0, 0, 0.4)',
+        showConfirmButton: false
+      });
     }
   }
 
@@ -229,7 +240,19 @@ export class MainCalendarComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error deleting event:', error);
-        alert('Error deleting event: ' + error.message);
+        Swal.fire({
+          html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error deleting event.</b>',
+          timer: 2000,
+          position: 'top',
+          customClass: {
+            popup: 'custom-popup-class',
+            title: 'custom-title-class',
+            htmlContainer: 'custom-text-class'
+          },
+          background: '#fff',
+          backdrop: 'rgba(0, 0, 0, 0.4)',
+          showConfirmButton: false
+        });
       }
     });
   }

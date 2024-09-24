@@ -5,6 +5,7 @@ import { AuthServiceService } from '../../services/auth-service.service';
 import { UserRoleService } from '../../afterlog/services/user-role.service';
 import { NotificationService } from '../../services/notification.service';
 import { ProfilePictureService } from '../../afterlog/services/profile-picture.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-top-navigation',
@@ -26,6 +27,7 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
   userRole: string | null = null; // Variable of the user Role & Initialize with null
   userId: string | null = null; // Variable of the user ID & Initialize
   userIdId: number | null = null; // Variable of the user ID & Initialize
+  unreadCount: number = 0;
 
   @Input() mode: 'beforeLog' | 'login' | 'afterLog' = 'afterLog';
 
@@ -38,6 +40,10 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
       this.userId = id;
     });
     this.loadUnreadNotifications();
+    // Subscribe to unreadCount$ to get the latest count
+    this.notificationService.unreadCount$.subscribe(count => {
+      this.unreadCount = count;
+    });
 
     this.userRoleService.userIdId$.subscribe(idId => {
       this.userIdId = idId;
@@ -66,7 +72,6 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
   }
 
   // Method to load unread notifications count
-  unreadCount: number = 0;
   loadUnreadNotifications(): void {
     this.notificationService.getUnreadNotificationCount().subscribe(count => {
       this.unreadCount = count;
@@ -101,6 +106,19 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
       error: (error) => {
         console.error('Logout failed:', error);
         alert('Logout failed. Please try again.');
+        Swal.fire({
+          html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Logout failed. Please try again.</b>',
+          timer: 2000,
+          position: 'top',
+          customClass: {
+            popup: 'custom-popup-class',
+            title: 'custom-title-class',
+            htmlContainer: 'custom-text-class'
+          },
+          background: '#fff',
+          backdrop: 'rgba(0, 0, 0, 0.4)',
+          showConfirmButton: false
+        });
       },
       complete: () => {
         console.log('Logout request completed.');

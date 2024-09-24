@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { StaffmemberService } from '../../services/staffmember.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-staff-members-by-admin',
@@ -50,15 +51,38 @@ export class AddStaffMembersByAdminComponent {
    
       this.http.post('http://localhost:8080/addStaffMembers', params, { responseType: 'text' }).subscribe({
       next: (response) => {
-        console.log('Staff member added successfully:', response);
-        alert('Staff member added successfully!');
+        Swal.fire({
+          html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Staff member added successfully!</b>',
+          timer: 2000,
+          position: 'top',
+          customClass: {
+            popup: 'custom-popup-class',
+            title: 'custom-title-class',
+            htmlContainer: 'custom-text-class'
+          },
+          background: '#fff',
+          backdrop: 'rgba(0, 0, 0, 0.4)',
+          showConfirmButton: false
+        });
         this.closeAddStaffMembersByAdmin();
         // Reset the form fields
         this.staffMember = { name: '', email: '', roles: [] };
       },
       error: (error) => {
         console.error('Error adding staff member:', error);
-        alert('Error adding staff member: ' + error.message);
+        Swal.fire({
+          html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error adding staff member.</b>',
+          timer: 2000,
+          position: 'top',
+          customClass: {
+            popup: 'custom-popup-class',
+            title: 'custom-title-class',
+            htmlContainer: 'custom-text-class'
+          },
+          background: '#fff',
+          backdrop: 'rgba(0, 0, 0, 0.4)',
+          showConfirmButton: false
+        });
       }
     });
   }

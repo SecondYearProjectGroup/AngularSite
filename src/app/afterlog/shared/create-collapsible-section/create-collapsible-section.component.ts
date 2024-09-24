@@ -35,7 +35,7 @@ export class CreateCollapsibleSectionComponent implements OnInit {
     this.tiles.push({ type: 'forum', title: '' });
     // this.tiles.push({ type: 'forum', title: '', routerLink: `/forum/${id}` });
   }
-
+  
   addSubmissionTile() {                                                                             
     this.tiles.push({ type: 'submission', title: 'Pre-report-Submission' });
     // this.tiles.push({ type: 'submission', title: '', routerLink: `/submission/${id}` });
@@ -47,7 +47,6 @@ export class CreateCollapsibleSectionComponent implements OnInit {
   }
 
   submitSection(): void {
-    console.log('Tiles before submission:', this.tiles);
 
     const tilesArray: { type: string, title: string }[] = this.tiles;
 
@@ -73,7 +72,6 @@ export class CreateCollapsibleSectionComponent implements OnInit {
   createSection(section: any): void {
     this.collapsibleSectionService.saveSection(section).subscribe({
       next: (response) => {
-        console.log('Section created successfully', response);
         this.closeModal();  // Optionally close the modal after creating
       },
       error: (error) => {
@@ -86,7 +84,6 @@ export class CreateCollapsibleSectionComponent implements OnInit {
   updateSection(section: any): void {
     this.collapsibleSectionService.updateSection(this.id, section).subscribe({
       next: (response) => {
-        console.log('Section updated successfully', response);
         this.closeModal();  // Optionally close the modal after updating
       },
       error: (error) => {
@@ -107,9 +104,6 @@ export class CreateCollapsibleSectionComponent implements OnInit {
           type: tile.type,
           title: tile.title
         }));
-
-        // Print the section data
-        console.log('Loaded section:', section);
       },
       error: (error) => {
         console.error('Error loading section by ID', error);

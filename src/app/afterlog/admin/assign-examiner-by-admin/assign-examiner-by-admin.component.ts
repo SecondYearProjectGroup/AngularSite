@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-assign-examiner-by-admin',
@@ -79,7 +80,19 @@ export class AssignExaminerByAdminComponent implements OnInit {
   // Assign selected examiners
   assignExaminers(): void {
     if (this.id === null) {
-      alert('Submission ID is missing');
+      Swal.fire({
+        html: '<i class="fas fa-circle-info" style="font-size: 30px; color: blue; margin-bottom: 8px;"></i><br> <b>Submission ID is missing.</b>',
+        timer: 2000,
+        position: 'top',
+        customClass: {
+          popup: 'custom-popup-class',
+          title: 'custom-title-class',
+          htmlContainer: 'custom-text-class'
+        },
+        background: '#fff',
+        backdrop: 'rgba(0, 0, 0, 0.4)',
+        showConfirmButton: false
+      });
       return;
     }
 
@@ -89,7 +102,19 @@ export class AssignExaminerByAdminComponent implements OnInit {
       .map(examiner => examiner.id);
 
     if (selectedExaminerIds.length === 0) {
-      alert('No examiners selected');
+      Swal.fire({
+        html: '<i class="fas fa-circle-info" style="font-size: 30px; color: blue; margin-bottom: 8px;"></i><br> <b>No examiners selected.</b>',
+        timer: 2000,
+        position: 'top',
+        customClass: {
+          popup: 'custom-popup-class',
+          title: 'custom-title-class',
+          htmlContainer: 'custom-text-class'
+        },
+        background: '#fff',
+        backdrop: 'rgba(0, 0, 0, 0.4)',
+        showConfirmButton: false
+      });
       return;
     }
 
@@ -101,8 +126,19 @@ export class AssignExaminerByAdminComponent implements OnInit {
       responseType: 'text'
     }).subscribe({
       next: (response) => {
-        console.log('Examiners assigned successfully:', response);
-        alert('Examiners assigned successfully.');
+        Swal.fire({
+          html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Examiners assigned successfully.</b>',
+          timer: 2000,
+          position: 'top',
+          customClass: {
+            popup: 'custom-popup-class',
+            title: 'custom-title-class',
+            htmlContainer: 'custom-text-class'
+          },
+          background: '#fff',
+          backdrop: 'rgba(0, 0, 0, 0.4)',
+          showConfirmButton: false
+        });
 
         // Assuming `loadAssignedExaminers()` updates an `assignedExaminers` array
         // Emit the updated assignedExaminers array
@@ -113,7 +149,19 @@ export class AssignExaminerByAdminComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error assigning examiners:', error);
-        alert(`Error assigning examiners: ${error.status} - ${error.statusText}`);
+        Swal.fire({
+          html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error assigning examiners.</b>',
+          timer: 2000,
+          position: 'top',
+          customClass: {
+            popup: 'custom-popup-class',
+            title: 'custom-title-class',
+            htmlContainer: 'custom-text-class'
+          },
+          background: '#fff',
+          backdrop: 'rgba(0, 0, 0, 0.4)',
+          showConfirmButton: false
+        });
       },
     });
   }

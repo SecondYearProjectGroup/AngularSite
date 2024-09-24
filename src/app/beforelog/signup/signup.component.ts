@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SignupService } from './signup.service';
 import { NgForm } from '@angular/forms';
 import { NONE_TYPE } from '@angular/compiler';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signup',
@@ -36,7 +37,19 @@ export class SignupComponent {
       error: (error) => {
         console.error('Signup error:', error.message);
         if (error.status === 409) {
-          alert('Username already exists. Please choose another.');
+          Swal.fire({
+            html: '<i class="fas fa-circle-info" style="font-size: 30px; color: blue; margin-bottom: 8px;"></i><br> <b>Username already exists. Please choose another.</b>',
+            timer: 2000,
+            position: 'top',
+            customClass: {
+              popup: 'custom-popup-class',
+              title: 'custom-title-class',
+              htmlContainer: 'custom-text-class'
+            },
+            background: '#fff',
+            backdrop: 'rgba(0, 0, 0, 0.4)',
+            showConfirmButton: false
+          });
         } else {
           NONE_TYPE
         }

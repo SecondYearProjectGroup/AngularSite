@@ -19,48 +19,115 @@
             
             <!-- Student Details Section -->
             <div *ngIf="student">
-                <h2>{{ student.fullName }}'s Details</h2>
-                <ul>
-                    <li><strong>ID:</strong> {{ student.id }}</li>
-                    <li><strong>Name with Initials:</strong> {{ student.nameWithInitials }}</li>
-                    <li><strong>Contact Number:</strong> {{ student.contactNumber }}</li>
-                    <li><strong>Email:</strong> {{ student.email }}</li>
-                    <li><strong>Address:</strong> {{ student.address }}</li>
-                    <li><strong>Program of Study:</strong> {{ student.programOfStudy }}</li>
-                    <li><strong>Status:</strong> {{ student.status }}</li>
-                    
-                    <a href="javascript:void(0)" (click)="download(student.studentIdDocument, student.studentIdDocumentOriginalName)"> 
-                      <li><strong>Nation Identity:</strong> {{ student.studentIdDocumentOriginalName }}</li></a>
-                      
-                    <li><strong>Birth Certificate:</strong> {{ student.birthCertificateOriginalName }}</li>
-                    <!-- Additional fields can be added here if necessary -->
-                </ul>
+                <h6><b>{{ student.fullName }}'s Details</b></h6>
+
+                <table>
+                  <tr>
+                    <td>ID:</td>
+                    <td>{{ student.id }}</td>
+                  </tr>
+                  <tr>
+                    <td>Name with Initials:</td>
+                    <td>{{ student.nameWithInitials }}</td>
+                  </tr>
+                  <tr>
+                    <td>Contact Number:</td>
+                    <td>{{ student.contactNumber }}</td>
+                  </tr>
+                  <tr>
+                    <td>Email:</td>
+                    <td>{{ student.email }}</td>
+                  </tr>
+                  <tr>
+                    <td>Address:</td>
+                    <td>{{ student.address }}</td>
+                  </tr>
+                  <tr>
+                    <td>Program of Study:</td>
+                    <td>{{ student.programOfStudy }}</td>
+                  </tr>
+                  <tr>
+                    <td>Status:</td>
+                    <td>{{ student.status }}</td>
+                  </tr>
+                  <tr>
+                    <td>National Identity:</td>
+                    <td>
+                      <a href="javascript:void(0)" (click)="download(student.studentIdDocument, student.studentIdDocumentOriginalName)">
+                        {{ student.studentIdDocumentOriginalName }}
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Birth Certificate</td>
+                    <td>
+                      <a href="javascript:void(0)" (click)="download(student.birthCertificate, student.birthCertificateOriginalName)">
+                        {{ student.birthCertificateOriginalName }}
+                      </a>
+                    </td>
+                  </tr>
+                  <br>
+                </table>
                 
-                <h3>Educational Qualifications</h3>
+                <h6><b>Educational Qualifications</b></h6>
                 <!-- Loop through educational qualifications -->
-                <div *ngFor="let eq of student.educationalQualifications" class="qualification">
-                    <p><strong>Degree:</strong> {{ eq.degree }}</p>
-                    <p><strong>University:</strong> {{ eq.university }}</p>
-                    <p><strong>Field:</strong> {{ eq.field }}</p>
-                    <p><strong>From:</strong> {{ eq.fromDate | date }}</p>
-                    <p><strong>To:</strong> {{ eq.toDate | date }}</p>
+                <div *ngFor="let eq of student.educationalQualifications; let i = index">
+
+                  <h6 style="margin-left: 40px;"><u>Qualification {{ i+1 }}</u></h6>
+                  <table>
+                    <tr>
+                      <td>Degree:</td>
+                      <td>{{ eq.degree }}</td>
+                    </tr>
+                    <tr>
+                      <td>University:</td>
+                      <td>{{ eq.university }}</td>
+                    </tr>
+                    <tr>
+                      <td>Field:</td>
+                      <td>{{ eq.field }}</td>
+                    </tr>
+                    <tr>
+                      <td>From:</td>
+                      <td>{{ eq.fromDate | date }}</td>
+                    </tr>
+                    <tr>
+                      <td>To:</td>
+                      <td>{{ eq.toDate | date }}</td>
+                    </tr>
+                    <br>
+
+                    <p><i>Attachments</i></p>
                     
-                    <!-- Attachments Section -->
-                    <div *ngIf="eq.attachments && eq.attachments.length > 0">
+                    <tr>
+                      <td>File:</td>
+                      <td *ngIf="eq.attachments && eq.attachments.length > 0">
+                        <a href="javascript:void(0)" (click)="download(eq.attachments[0].fileName, eq.attachments[0].originalFileName)">
+                          {{ eq.attachments[0].originalFileName }}
+                        </a>
+                      </td>
+                      <td *ngIf="eq.attachments && eq.attachments.length === 0">No attachment available.</td>
+                    </tr>
+                    
+                    
+                    
+                    <!-- <div *ngIf="eq.attachments && eq.attachments.length > 0">
                         <h4>Attachments</h4>
                         <ul>
                             <li *ngFor="let attachment of eq.attachments">
                                 <a [href]="attachment.fileUrl" target="_blank" rel="noopener noreferrer">
                                     {{ attachment.originalFileName }}
-                                </a>
+                                </a> -->
                                 <!-- Optionally display file type and size
                                 <span> ({{ attachment.fileType }}, {{ attachment.fileSize }} KB)</span> -->
-                            </li>
+                            <!-- </li>
                         </ul>
                     </div>
                     <div *ngIf="eq.attachments && eq.attachments.length === 0">
                         <p>No attachments available.</p>
-                    </div>
+                    </div> -->
+                    <br><br>
+                  </table>
                 </div>
             </div>
         </div>

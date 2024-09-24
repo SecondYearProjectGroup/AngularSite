@@ -34,7 +34,6 @@ export class LoginComponent {
   onSubmit() {
     this.authService.login(this.username, this.password).subscribe(
       (response: string) => {
-        console.log('Login successful:', response);
   
         localStorage.setItem('jwt', response);
   
@@ -50,8 +49,6 @@ export class LoginComponent {
           this.userRoleService.setUserIdId(userIdId);
           console.log("user Id: ", userIdId);
 
-
-  
           console.log(roles);
   
           if (roles.includes('ADMIN')) {

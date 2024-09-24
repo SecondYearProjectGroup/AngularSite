@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { EnrollService } from './enroll.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-enroll',
@@ -108,7 +109,19 @@ export class EnrollComponent {
     this.enrollService.enrollStudent(this.studentData, attachments, this.studentIdDocument,this.birthCertificate).subscribe({
       next: (response) => {
         console.log('Enrollment successful', response);
-        window.alert('Enrollment successful!');
+        Swal.fire({
+          html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Enrollment successful.</b>',
+          timer: 2000,
+          position: 'top',
+          customClass: {
+            popup: 'custom-popup-class',
+            title: 'custom-title-class',
+            htmlContainer: 'custom-text-class'
+          },
+          background: '#fff',
+          backdrop: 'rgba(0, 0, 0, 0.4)',
+          showConfirmButton: false
+        });
         form.resetForm();
         this.studentData = {
           nameWithInitials: '',

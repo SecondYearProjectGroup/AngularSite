@@ -1,7 +1,7 @@
 <br>
 <!-- For Examiner Feedback Provider -->
 <div class="feedback-form" *ngIf= "mode === 'feedbackProvider-Examiner'">
-    <table style="width: 100%;">
+    <!-- <table style="width: 100%;">
         <tr>
             <td>Feedback:</td>
             <td><textarea name="feedback" rows="4" style="width: 100%;" [(ngModel)]="feedbackBody"></textarea></td>
@@ -14,7 +14,36 @@
         
     </table>
     <br><hr>
-    <input type="submit" value="Upload Feedback" (click)="submitExaminerFeedback()"><br><br>
+    <input type="submit" value="Upload Feedback" (click)="submitExaminerFeedback()"><br><br> -->
+
+    <table style="width: 100%;" *ngFor="let feedback of examinerFeedback">
+        <tr>
+            <td>Feedback:</td>
+            <td>
+                <textarea *ngIf="!feedback.body" name="feedback" rows="4" style="width: 100%;" [(ngModel)]="feedbackBody"></textarea>
+
+                <textarea *ngIf="feedback.body" name="feedback" rows="4" style="width: 100%;">{{ feedback.body }}</textarea>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>Feedback file:</td>
+            <td>
+                <input *ngIf="!feedback.fileName && !feedback.body" type="file" (change)="onFileSelected($event)">
+
+                <span *ngIf="feedback.body && !feedback.body">No Feedback file.</span>
+
+                <a *ngIf="feedback.fileName" (click)="viewFile(feedback.fileName)" style="cursor: pointer;">{{ feedback.fileName }}</a>
+            </td>
+        </tr>
+        
+    </table>
+    <br>
+    <!-- <div *ngIf="!examinerFeedback[0].body && !examinerFeedback[0].fileName">
+        <hr>
+        <input type="submit" value="Upload Feedback" (click)="submitExaminerFeedback()">
+    </div> -->
+    <br><br>
 </div>
 
 

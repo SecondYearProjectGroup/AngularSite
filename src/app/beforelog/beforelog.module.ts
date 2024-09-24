@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { EnrollService } from './enroll/enroll.service';
 import { FormsModule } from '@angular/forms';
 import { PasswordManagerComponent } from './password-manager/password-manager.component';
+import { BeforelogMainComponent } from './beforelog-main/beforelog-main.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PasswordManagerComponent } from './password-manager/password-manager.co
     SignupComponent,
     EnrollComponent,
     WelcomeComponent,
-    PasswordManagerComponent
+    PasswordManagerComponent,
+    BeforelogMainComponent
   ],
   imports: [
     CommonModule,
