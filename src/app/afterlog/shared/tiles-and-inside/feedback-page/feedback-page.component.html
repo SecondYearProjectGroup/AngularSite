@@ -16,33 +16,33 @@
     <br><hr>
     <input type="submit" value="Upload Feedback" (click)="submitExaminerFeedback()"><br><br> -->
 
-    <table style="width: 100%;" *ngFor="let feedback of examinerFeedback">
+    <table style="width: 100%;" >
         <tr>
             <td>Feedback:</td>
             <td>
-                <textarea *ngIf="!feedback.body" name="feedback" rows="4" style="width: 100%;" [(ngModel)]="feedbackBody"></textarea>
+                <textarea *ngIf="!examinerFeedback.body" name="feedback" rows="4" style="width: 100%;" [(ngModel)]="feedbackBody"></textarea>
 
-                <textarea *ngIf="feedback.body" name="feedback" rows="4" style="width: 100%;">{{ feedback.body }}</textarea>
+                <textarea *ngIf="examinerFeedback.body" name="feedback" rows="4" style="width: 100%;">{{ examinerFeedback.body }}</textarea>
             </td>
         </tr>
         <br>
         <tr>
             <td>Feedback file:</td>
             <td>
-                <input *ngIf="!feedback.fileName && !feedback.body" type="file" (change)="onFileSelected($event)">
+                <input *ngIf="!examinerFeedback.fileName && !examinerFeedback.body" type="file" (change)="onFileSelected($event)">
 
-                <span *ngIf="feedback.body && !feedback.body">No Feedback file.</span>
+                <span *ngIf="examinerFeedback.body && !examinerFeedback.body">No Feedback file.</span>
 
-                <a *ngIf="feedback.fileName" (click)="viewFile(feedback.fileName)" style="cursor: pointer;">{{ feedback.fileName }}</a>
+                <a *ngIf="examinerFeedback.fileName" (click)="viewFile(examinerFeedback.fileName)" style="cursor: pointer;">{{ examinerFeedback.fileName }}</a>
             </td>
         </tr>
         
     </table>
     <br>
-    <!-- <div *ngIf="!examinerFeedback[0].body && !examinerFeedback[0].fileName">
+    <div *ngIf="!examinerFeedback.body && !examinerFeedback.fileName">
         <hr>
         <input type="submit" value="Upload Feedback" (click)="submitExaminerFeedback()">
-    </div> -->
+    </div>
     <br><br>
 </div>
 
