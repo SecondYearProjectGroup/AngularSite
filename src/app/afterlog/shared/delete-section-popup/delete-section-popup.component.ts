@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CollapsibleSectionService } from '../../services/collapsible-section.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-delete-section-popup',
@@ -25,16 +26,39 @@ export class DeleteSectionPopupComponent {
 
   // Method to handle section deletion
   deleteSection(): void {
-    console.log('Delete section', this.id, this.buttonName);
     this.collapsibleSectionService.deleteSection(this.id).subscribe({
       next: () => {
-        alert('Section deleted successfully.');
+        Swal.fire({
+          html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Section deleted successfully.</b>',
+          timer: 2000,
+          position: 'top',
+          customClass: {
+            popup: 'custom-popup-class',
+            title: 'custom-title-class',
+            htmlContainer: 'custom-text-class'
+          },
+          background: '#fff',
+          backdrop: 'rgba(0, 0, 0, 0.4)',
+          showConfirmButton: false
+        });
         // Optionally, you can emit an event or call a function to update the view
         window.location.reload();
       },
       error: (err) => {
         console.error('Error deleting section', err);
-        alert('An error occurred while deleting the section.');
+        Swal.fire({
+          html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>An error occurred while deleting the section.</b>',
+          timer: 2000,
+          position: 'top',
+          customClass: {
+            popup: 'custom-popup-class',
+            title: 'custom-title-class',
+            htmlContainer: 'custom-text-class'
+          },
+          background: '#fff',
+          backdrop: 'rgba(0, 0, 0, 0.4)',
+          showConfirmButton: false
+        });
       }
     });
     

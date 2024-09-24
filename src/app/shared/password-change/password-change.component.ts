@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProfilePictureService } from '../../afterlog/services/profile-picture.service';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-password-change',
@@ -35,7 +36,19 @@ export class PasswordChangeComponent {
     // Call the service to change the password
     this.profileService.changePassword(this.user.email, this.user.password).subscribe({
       next: (response) => {
-        window.alert('Password changed successfully!');
+        Swal.fire({
+          html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Password changed successfully!</b>',
+          timer: 2000,
+          position: 'top',
+          customClass: {
+            popup: 'custom-popup-class',
+            title: 'custom-title-class',
+            htmlContainer: 'custom-text-class'
+          },
+          background: '#fff',
+          backdrop: 'rgba(0, 0, 0, 0.4)',
+          showConfirmButton: false
+        });
         // Reset the form or navigate away
       },
       // error: (error) => {

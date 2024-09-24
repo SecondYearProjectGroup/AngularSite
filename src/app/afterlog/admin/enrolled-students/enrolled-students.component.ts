@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { FileService } from '../../../services/file.service';
 import { EnrolledStudentService } from '../../services/enrolled-student.service';
 import { EnrolledStudent } from '../../../models/enrolled-studnet';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-enrolled-students',
@@ -114,7 +115,19 @@ export class EnrolledStudentsComponent implements OnInit{
     this.http.post(`http://localhost:8080/handleApproval/${studentId}`, {}, { params, responseType: 'text' })
       .subscribe({
         next: (response: string) => {
-          alert(`Success: ${response}`);
+          Swal.fire({
+            html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Approval email sent successfully.</b>',
+            timer: 2000,
+            position: 'top',
+            customClass: {
+              popup: 'custom-popup-class',
+              title: 'custom-title-class',
+              htmlContainer: 'custom-text-class'
+            },
+            background: '#fff',
+            backdrop: 'rgba(0, 0, 0, 0.4)',
+            showConfirmButton: false
+          });
           const statusCell = document.getElementById(`status-cell-${studentId}`);
           if (statusCell) {
             statusCell.innerHTML = `<strong>${status}</strong>`;
@@ -136,7 +149,19 @@ export class EnrolledStudentsComponent implements OnInit{
             // Server-side error
             errorMessage = `Error ${error.status}: ${error.message}`;
           }
-          alert(errorMessage);
+          Swal.fire({
+            html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error approving student.</b>',
+            timer: 2000,
+            position: 'top',
+            customClass: {
+              popup: 'custom-popup-class',
+              title: 'custom-title-class',
+              htmlContainer: 'custom-text-class'
+            },
+            background: '#fff',
+            backdrop: 'rgba(0, 0, 0, 0.4)',
+            showConfirmButton: false
+          });
         }
       });
   }

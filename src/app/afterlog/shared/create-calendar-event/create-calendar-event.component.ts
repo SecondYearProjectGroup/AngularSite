@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CalendarService } from '../../../services/calendar.service';
 import { NewEvent } from '../../../models/new-event';
+import Swal from 'sweetalert2';
 declare var $: any; // Declare jQuery
 
 @Component({
@@ -28,14 +29,36 @@ export class CreateCalendarEventComponent {
   onSubmit() {
     this.calendarService.createEvent(this.event).subscribe({
       next: (newEvent) => {
-        console.log('Event added successfully:', newEvent);
-        alert('Event added successfully!');
+        Swal.fire({
+          html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Event added successfully!</b>',
+          timer: 2000,
+          position: 'top',
+          customClass: {
+            popup: 'custom-popup-class',
+            title: 'custom-title-class',
+            htmlContainer: 'custom-text-class'
+          },
+          background: '#fff',
+          backdrop: 'rgba(0, 0, 0, 0.4)',
+          showConfirmButton: false
+        });
         this.closeCreateCalendarEvent();
         this.event = { id: '', name: '', description: '', type: '', color: '', startDate: '', endDate: '' };
       },
       error: (error) => {
-        console.error('Error adding event:', error);
-        alert('Error adding event: ' + error.message);
+        Swal.fire({
+          html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error adding event!</b>',
+          timer: 2000,
+          position: 'top',
+          customClass: {
+            popup: 'custom-popup-class',
+            title: 'custom-title-class',
+            htmlContainer: 'custom-text-class'
+          },
+          background: '#fff',
+          backdrop: 'rgba(0, 0, 0, 0.4)',
+          showConfirmButton: false
+        });
       }
     });
   }

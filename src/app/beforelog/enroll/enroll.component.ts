@@ -109,7 +109,19 @@ export class EnrollComponent {
     this.enrollService.enrollStudent(this.studentData, attachments, this.studentIdDocument,this.birthCertificate).subscribe({
       next: (response) => {
         console.log('Enrollment successful', response);
-        Swal.fire('Enrollment successful!', '', 'success');
+        Swal.fire({
+          html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Enrollment successful.</b>',
+          timer: 2000,
+          position: 'top',
+          customClass: {
+            popup: 'custom-popup-class',
+            title: 'custom-title-class',
+            htmlContainer: 'custom-text-class'
+          },
+          background: '#fff',
+          backdrop: 'rgba(0, 0, 0, 0.4)',
+          showConfirmButton: false
+        });
         form.resetForm();
         this.studentData = {
           nameWithInitials: '',

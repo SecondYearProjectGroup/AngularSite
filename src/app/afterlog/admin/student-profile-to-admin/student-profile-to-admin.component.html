@@ -20,7 +20,7 @@
 
         <app-edit-student-profile-box-header *ngIf="isEditStudentProfileBoxHeaderOpen" (close)="closeEditStudentProfileBoxHeader()" [regNumber]="regNumber"
         [nameWithInitials]="student.nameWithInitials"
-        [programOfStudy]="student.programOfStudy"></app-edit-student-profile-box-header>
+        [programOfStudy]="student.programOfStudy" (studentUpdated)="updateStudentDetails($event)"></app-edit-student-profile-box-header>
     </div>
 
     <hr style="margin: 0px; margin-bottom: 8px; color: #c0c0c0; border-width: 1px; margin-top: 5px;">
@@ -137,10 +137,10 @@
 </div>
 <br>
 
-<div class="research-box">
+<!-- <div class="research-box">
     <h5><b>Courses</b></h5>
 
-    <!-- <div class="course-container">
+    <div class="course-container">
         <div class="course-box">Course 1</div>
         <div class="course-box">Course 2</div>
         <div class="course-box">Course 3</div>
@@ -151,12 +151,12 @@
         <div class="course-box">Course 4</div>
         <div class="course-box">Course 5</div>
         <div class="course-box">Course 6</div>
-    </div> -->
+    </div>
 </div>
 <br>
 
 <div class="research-box">
     <h5><b>Email</b></h5>
-</div>
+</div> -->
 
 <br><br><br>

@@ -246,6 +246,11 @@ export class StudentProfileToAdminComponent implements OnInit {
   closeEditStudentProfileBoxHeader(): void {
     this.isEditStudentProfileBoxHeaderOpen = false;
   }
+  // Update student details in real time
+  updateStudentDetails(updatedStudent: Student): void {
+    this.student = updatedStudent; // Update the student data in the parent component
+    this.closeEditStudentProfileBoxHeader(); // Close the edit box
+  }
 
 
 // Helper function to format the date

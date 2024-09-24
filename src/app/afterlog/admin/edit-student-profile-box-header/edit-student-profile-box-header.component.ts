@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Student } from '../../../models/student';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-student-profile-box-header',
@@ -13,6 +14,7 @@ export class EditStudentProfileBoxHeaderComponent {
   @Input() nameWithInitials: string | null = null;
   @Input() programOfStudy: string | null = null;
   @Output() close = new EventEmitter<void>();
+  @Output() studentUpdated = new EventEmitter<Student>();
 
   student: Student = {
     regNumber: '',
@@ -47,6 +49,24 @@ export class EditStudentProfileBoxHeaderComponent {
       next: (response) => {
         // Log the plain text response
         console.log('Profile updated successfully:', response);
+        this.closeEditProfileHeader();
+
+        // Emit the updated student data to the parent component
+        this.studentUpdated.emit(this.student);
+
+        Swal.fire({
+          html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Profile updated successfully.</b>',
+          timer: 2000,
+          position: 'top',
+          customClass: {
+            popup: 'custom-popup-class',
+            title: 'custom-title-class',
+            htmlContainer: 'custom-text-class'
+          },
+          background: '#fff',
+          backdrop: 'rgba(0, 0, 0, 0.4)',
+          showConfirmButton: false
+        });
       },
       error: (err) => {
         // Handle any errors that occur
@@ -62,7 +82,7 @@ export class EditStudentProfileBoxHeaderComponent {
   }
    
 
-  closeCreateCalendarEvent(): void {
+  closeEditProfileHeader(): void {
     this.close.emit();
   }
 }

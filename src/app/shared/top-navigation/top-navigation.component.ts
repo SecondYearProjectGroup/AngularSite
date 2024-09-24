@@ -5,6 +5,7 @@ import { AuthServiceService } from '../../services/auth-service.service';
 import { UserRoleService } from '../../afterlog/services/user-role.service';
 import { NotificationService } from '../../services/notification.service';
 import { ProfilePictureService } from '../../afterlog/services/profile-picture.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-top-navigation',
@@ -105,6 +106,19 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
       error: (error) => {
         console.error('Logout failed:', error);
         alert('Logout failed. Please try again.');
+        Swal.fire({
+          html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Logout failed. Please try again.</b>',
+          timer: 2000,
+          position: 'top',
+          customClass: {
+            popup: 'custom-popup-class',
+            title: 'custom-title-class',
+            htmlContainer: 'custom-text-class'
+          },
+          background: '#fff',
+          backdrop: 'rgba(0, 0, 0, 0.4)',
+          showConfirmButton: false
+        });
       },
       complete: () => {
         console.log('Logout request completed.');
