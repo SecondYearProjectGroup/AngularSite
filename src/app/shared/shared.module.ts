@@ -8,6 +8,7 @@ import { NotificationPanelComponent } from './notification-panel/notification-pa
 import { RouterModule } from '@angular/router';
 import { PasswordChangeComponent } from './password-change/password-change.component';
 import { FormsModule } from '@angular/forms';
+import { MphilPhdResearchComponent } from './details/mphil-phd-research/mphil-phd-research.component';
 
 
 
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     SecondNavigationComponent,
     FooterComponent,
     NotificationPanelComponent,
-    PasswordChangeComponent
+    PasswordChangeComponent,
+    MphilPhdResearchComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { FormsModule } from '@angular/forms';
     SidebarLeftComponent,
     SecondNavigationComponent,
     FooterComponent,
-    PasswordChangeComponent
+    PasswordChangeComponent,
+    MphilPhdResearchComponent
   ]
 })
 export class SharedModule { }
