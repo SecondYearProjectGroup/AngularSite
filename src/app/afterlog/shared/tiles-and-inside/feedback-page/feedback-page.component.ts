@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Feedback, FeedbackService } from '../../../services/feedback.service';
 import { UserRoleService } from '../../../services/user-role.service';
 import { FileService } from '../../../../services/file.service';
+import { Examiner, ExaminerService } from '../../../services/examiner.service';
 
 @Component({
   selector: 'app-feedback-page',
@@ -105,6 +106,7 @@ export class FeedbackPageComponent implements OnInit{
         this.feedbackList.forEach(feedback => {
           console.log('Feedback Body:', feedback.body);
           console.log('File Name:', feedback.fileName);
+          console.log('Examiner Id: ' , feedback.examiner.id)
         });
       },
       (error) => {
@@ -113,7 +115,19 @@ export class FeedbackPageComponent implements OnInit{
     );
   }
 
-  examinerFeedback: Feedback[] = [];
+  examiner : Examiner = {
+    fullName: '',
+    id: 0,
+    email: '',
+  }
+
+  examinerFeedback: Feedback = {
+    id: 0,
+    body: '',
+    fileName: '',
+    originalFileName: '',
+    examiner: this.examiner
+  } ;
   loadExaminerFeedback(): void {
     console.log('Submission ID:', this.id, 'Examiner ID:', this.examinerId);
     this.feedbackService.getFeedbackBySubmissionIdAndExaminerId(this.id, this.examinerId).subscribe(
