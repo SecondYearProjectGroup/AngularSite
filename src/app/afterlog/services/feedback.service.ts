@@ -46,7 +46,7 @@ export class FeedbackService {
   }
 
   //To load the feedbacks related to the submission and the examiner 
-  getFeedbackBySubmissionIdAndExaminerId(submissionId: number, examinerId: number): Observable<Feedback> {
-    return this.http.get<Feedback>(`${this.apiUrl}/submission/${submissionId}/examiner/${examinerId}`);
-  }
+  // getFeedbackBySubmissionIdAndExaminerId(submissionId: number, examinerId: number): Observable<Feedback> {
+  //   return this.http.get<Feedback>(`${this.apiUrl}/submission/${submissionId}/examiner/${examinerId}`);
+  // }
 }

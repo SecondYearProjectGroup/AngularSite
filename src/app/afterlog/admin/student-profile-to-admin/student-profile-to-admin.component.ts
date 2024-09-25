@@ -6,6 +6,7 @@ import { AuthServiceService } from '../../../services/auth-service.service';
 import { CollapsibleSectionService } from '../../services/collapsible-section.service';
 import { LoadingTile, Section, Tile } from '../../../models/section.model';
 import { UserRoleService } from '../../services/user-role.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-student-profile-to-admin',
@@ -198,7 +199,24 @@ export class StudentProfileToAdminComponent implements OnInit {
   // ];
 
   openModal(): void {
-    this.isModalOpen = true;
+    if(this.hasSupervisor){
+      this.isModalOpen = true;
+    }
+    else{
+      Swal.fire({
+        html: '<i class="fas fa-circle-info" style="font-size: 30px; color: blue; margin-bottom: 8px;"></i><br> <b>Please assign a supervisor.</b>',
+        timer: 2000,
+        position: 'top',
+        customClass: {
+          popup: 'custom-popup-class',
+          title: 'custom-title-class',
+          htmlContainer: 'custom-text-class'
+        },
+        background: '#fff',
+        backdrop: 'rgba(0, 0, 0, 0.4)',
+        showConfirmButton: false
+      });
+    }
   }
 
   closeModal(): void {
