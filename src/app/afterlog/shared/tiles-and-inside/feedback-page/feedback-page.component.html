@@ -33,7 +33,7 @@
 
                 <span *ngIf="examinerFeedback.body && !examinerFeedback.body">No Feedback file.</span>
 
-                <a *ngIf="examinerFeedback.fileName" (click)="viewFile(examinerFeedback.fileName)" style="cursor: pointer;">{{ examinerFeedback.fileName }}</a>
+                <a *ngIf="examinerFeedback.fileName" (click)="viewFile(examinerFeedback.fileName)" style="cursor: pointer;">{{ examinerFeedback.originalFileName }}</a>
             </td>
         </tr>
         
@@ -71,7 +71,8 @@
             <td>Feedback file:</td>
             <td>
                 <!-- Display file input if feedback is uploaded -->
-                <a *ngIf="feedback.fileName" [href]="'/path-to-files/' + feedback.fileName" target="_blank">{{ feedback.fileName }}</a>
+                <!-- <a *ngIf="feedback.fileName" [href]="'/path-to-files/' + feedback.fileName" target="_blank">{{ feedback.fileName }}</a> -->
+                <a *ngIf="feedback.fileName" (click)="viewFile(feedback.fileName)" style="cursor: pointer;">{{ feedback.originalFileName }}</a>
 
                 <!-- Display message if feedback is not uploaded -->
                 <span *ngIf="!feedback.fileName">No Feedback file.</span>
@@ -101,7 +102,7 @@
 
                 <span *ngIf="feedback.body && !feedback.body">No Feedback file.</span>
 
-                <a *ngIf="feedback.fileName" (click)="viewFile(feedback.fileName)" style="cursor: pointer;">{{ feedback.fileName }}</a>
+                <a *ngIf="feedback.fileName" (click)="viewFile(feedback.fileName)" style="cursor: pointer;">{{ feedback.originalFileName }}</a>
             </td>
         </tr>
         
@@ -135,7 +136,7 @@
             <td>Feedback file:</td>
             <td>
                 <!-- Display file input if feedback is uploaded -->
-                <a *ngIf="feedback.fileName" (click)="viewFile(feedback.fileName)" style="cursor: pointer;">{{ feedback.fileName }}</a>
+                <a *ngIf="feedback.fileName" (click)="viewFile(feedback.fileName)" style="cursor: pointer;">{{ feedback.originalFileName }}</a>
                 <!-- <span class="file-size">{{ formatBytes(feedback.fileSize) }}</span> -->
                 
                 <!-- <li>
