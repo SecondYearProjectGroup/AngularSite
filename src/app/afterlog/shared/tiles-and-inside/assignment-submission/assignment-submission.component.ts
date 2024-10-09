@@ -8,6 +8,7 @@ import { UploadedFile } from '../../../../models/uploaded-file';
 import { FileService } from '../../../../services/file.service';
 import { Examiner, ExaminerService } from '../../../services/examiner.service';
 import { UserRoleService } from '../../../services/user-role.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-assignment-submission',
@@ -122,9 +123,33 @@ export class AssignmentSubmissionComponent implements OnInit {
           this.openedDate= opendate.toLocaleString();
           // Recalculate the time remaining after setting the new deadline
           this.timeRemaining = this.calculateTimeRemaining(deadline.toISOString());
-          alert(response);
+          Swal.fire({
+            html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Deadline set successfully.</b>',
+            timer: 2000,
+            position: 'top',
+            customClass: {
+              popup: 'custom-popup-class',
+              title: 'custom-title-class',
+              htmlContainer: 'custom-text-class'
+            },
+            background: '#fff',
+            backdrop: 'rgba(0, 0, 0, 0.4)',
+            showConfirmButton: false
+          });
         }, error => {
-          alert('Error setting deadline.');
+          Swal.fire({
+            html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error setting deadline.</b>',
+            timer: 2000,
+            position: 'top',
+            customClass: {
+              popup: 'custom-popup-class',
+              title: 'custom-title-class',
+              htmlContainer: 'custom-text-class'
+            },
+            background: '#fff',
+            backdrop: 'rgba(0, 0, 0, 0.4)',
+            showConfirmButton: false
+          });
         });
     }
   }
@@ -136,12 +161,48 @@ export class AssignmentSubmissionComponent implements OnInit {
       this.selectedFiles.forEach(file => formData.append('files', file));
       this.submissionService.uploadFilesbyAdmin(formData, this.id)
         .subscribe(response => {
-          alert('Files uploaded successfully!');
+          Swal.fire({
+            html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Files uploaded successfully!</b>',
+            timer: 2000,
+            position: 'top',
+            customClass: {
+              popup: 'custom-popup-class',
+              title: 'custom-title-class',
+              htmlContainer: 'custom-text-class'
+            },
+            background: '#fff',
+            backdrop: 'rgba(0, 0, 0, 0.4)',
+            showConfirmButton: false
+          });
         }, (error: HttpErrorResponse) => {
-          alert('Error uploading files.');
+          Swal.fire({
+            html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error uploading files.</b>',
+            timer: 2000,
+            position: 'top',
+            customClass: {
+              popup: 'custom-popup-class',
+              title: 'custom-title-class',
+              htmlContainer: 'custom-text-class'
+            },
+            background: '#fff',
+            backdrop: 'rgba(0, 0, 0, 0.4)',
+            showConfirmButton: false
+          });
         });
     } else {
-      alert('No files selected.');
+      Swal.fire({
+        html: '<i class="fas fa-circle-info" style="font-size: 30px; color: blue; margin-bottom: 8px;"></i><br> <b>No files selected.</b>',
+        timer: 2000,
+        position: 'top',
+        customClass: {
+          popup: 'custom-popup-class',
+          title: 'custom-title-class',
+          htmlContainer: 'custom-text-class'
+        },
+        background: '#fff',
+        backdrop: 'rgba(0, 0, 0, 0.4)',
+        showConfirmButton: false
+      });
     }
   }
 
@@ -231,8 +292,20 @@ export class AssignmentSubmissionComponent implements OnInit {
 
     this.submissionService.uploadFiles(formData, this.id).subscribe({
       next: (response) => {
-        alert(`${this.files.length} file(s) successfully uploaded.`);
         this.clearFiles();
+        Swal.fire({
+          html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>File(s) successfully uploaded.</b>',
+          timer: 2000,
+          position: 'top',
+          customClass: {
+            popup: 'custom-popup-class',
+            title: 'custom-title-class',
+            htmlContainer: 'custom-text-class'
+          },
+          background: '#fff',
+          backdrop: 'rgba(0, 0, 0, 0.4)',
+          showConfirmButton: false
+        });
       },
       error: (error) => {
         this.uploadError = 'Failed to upload files. Please try again.';

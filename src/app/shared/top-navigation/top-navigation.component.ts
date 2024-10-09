@@ -105,7 +105,6 @@ export class TopNavigationComponent implements OnInit, AfterViewInit {
       },
       error: (error) => {
         console.error('Logout failed:', error);
-        alert('Logout failed. Please try again.');
         Swal.fire({
           html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Logout failed. Please try again.</b>',
           timer: 2000,

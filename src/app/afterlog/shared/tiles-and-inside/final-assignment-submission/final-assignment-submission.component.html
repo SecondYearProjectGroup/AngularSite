@@ -229,46 +229,8 @@
       <br>
       <hr>
       <br>
-    
-
-
-    
-    <!-- For Supervisor -->
-    <!-- <div *ngIf="userRole === 'SUPERVISOR'"><h4>Your Feedback</h4></div> -->
-    <!-- For Student -->
-    <!-- <div *ngIf="userRole === 'STUDENT' || userRole=== 'ADMIN'"><h4>Supervisor Feedback</h4></div> -->
-
-    <!-- <div class="feedback-form" *ngIf="userRole === 'ADMIN' || userRole === 'SUPERVISOR' || userRole === 'STUDENT'">
-        <table style="width: 100%;">
-            <tr>
-                <td>Feedback:</td>
-                <td><textarea name="feedback" rows="4" style="width: 100%;"></textarea></td>
-            </tr>
-            <br>
-            <tr>
-                <td>Feedback file:</td>
-                <td><input type="file"></td>
-            </tr>
-            
-        </table>
-        <br><br>
-        <div *ngIf="userRole === 'SUPERVISOR'"><input type="submit" value="Upload Feedback"></div><br><br>
-
-        After submit show the feedback in a box
-
-    </div> -->
-    
-
-    <!-- For Examiners -->
-    <div *ngIf="userRole === 'EXAMINER'">
-      <h6><b>Your Feedback</b></h6>
-      <app-feedback-page mode="feedbackProvider-Examiner"></app-feedback-page>
-    </div>
-    <!-- For Student, Supervisors -->
-    <div *ngIf="userRole === 'ADMIN' || userRole === 'SUPERVISOR' || userRole === 'STUDENT' || userRole === 'SUPERVISOR-EXAMINER'">
-      <h6><b>Examiner Feedback</b></h6>
-      <app-feedback-page mode="feedbackReciever-Examiner"></app-feedback-page>
-    </div>
+  
+    <app-feedback-page mode="feedback-Examiner" ></app-feedback-page>
     
   <br>
 

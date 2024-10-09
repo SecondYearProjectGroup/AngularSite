@@ -6,7 +6,8 @@ import { Examiner, ExaminerService } from '../../../services/examiner.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UploadedFile } from '../../../../models/uploaded-file';
 import { UserRoleService } from '../../../services/user-role.service';
-import { Feedback, FeedbackService } from '../../../services/feedback.service';
+import { FeedbackPageComponent } from '../feedback-page/feedback-page.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-final-assignment-submission',
@@ -16,6 +17,7 @@ import { Feedback, FeedbackService } from '../../../services/feedback.service';
 export class FinalAssignmentSubmissionComponent {
 
   @Input() regNumber : string = '';
+  @ViewChild(FeedbackPageComponent) feedbackPage!: FeedbackPageComponent;
 
   userRole: string | null = null;
   userIdId : number = 0;
@@ -129,9 +131,33 @@ export class FinalAssignmentSubmissionComponent {
           this.openedDate= opendate.toLocaleString();
           // Recalculate the time remaining after setting the new deadline
           this.timeRemaining = this.calculateTimeRemaining(deadline.toISOString());
-          alert(response);
+          Swal.fire({
+            html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Deadline set successfully.</b>',
+            timer: 2000,
+            position: 'top',
+            customClass: {
+              popup: 'custom-popup-class',
+              title: 'custom-title-class',
+              htmlContainer: 'custom-text-class'
+            },
+            background: '#fff',
+            backdrop: 'rgba(0, 0, 0, 0.4)',
+            showConfirmButton: false
+          });
         }, error => {
-          alert('Error setting deadline.');
+          Swal.fire({
+            html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error setting deadline.</b>',
+            timer: 2000,
+            position: 'top',
+            customClass: {
+              popup: 'custom-popup-class',
+              title: 'custom-title-class',
+              htmlContainer: 'custom-text-class'
+            },
+            background: '#fff',
+            backdrop: 'rgba(0, 0, 0, 0.4)',
+            showConfirmButton: false
+          });
         });
     }
   }
@@ -143,12 +169,48 @@ export class FinalAssignmentSubmissionComponent {
       this.selectedFiles.forEach(file => formData.append('files', file));
       this.submissionService.uploadFilesbyAdmin(formData, this.id)
         .subscribe(response => {
-          alert('Files uploaded successfully!');
+          Swal.fire({
+            html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Files uploaded successfully!</b>',
+            timer: 2000,
+            position: 'top',
+            customClass: {
+              popup: 'custom-popup-class',
+              title: 'custom-title-class',
+              htmlContainer: 'custom-text-class'
+            },
+            background: '#fff',
+            backdrop: 'rgba(0, 0, 0, 0.4)',
+            showConfirmButton: false
+          });
         }, (error: HttpErrorResponse) => {
-          alert('Error uploading files.');
+          Swal.fire({
+            html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error uploading files.</b>',
+            timer: 2000,
+            position: 'top',
+            customClass: {
+              popup: 'custom-popup-class',
+              title: 'custom-title-class',
+              htmlContainer: 'custom-text-class'
+            },
+            background: '#fff',
+            backdrop: 'rgba(0, 0, 0, 0.4)',
+            showConfirmButton: false
+          });
         });
     } else {
-      alert('No files selected.');
+      Swal.fire({
+        html: '<i class="fas fa-circle-info" style="font-size: 30px; color: blue; margin-bottom: 8px;"></i><br> <b>No files selected.</b>',
+        timer: 2000,
+        position: 'top',
+        customClass: {
+          popup: 'custom-popup-class',
+          title: 'custom-title-class',
+          htmlContainer: 'custom-text-class'
+        },
+        background: '#fff',
+        backdrop: 'rgba(0, 0, 0, 0.4)',
+        showConfirmButton: false
+      });
     }
   }
 
@@ -238,8 +300,20 @@ export class FinalAssignmentSubmissionComponent {
 
     this.submissionService.uploadFiles(formData, this.id).subscribe({
       next: (response) => {
-        alert(`${this.files.length} file(s) successfully uploaded.`);
         this.clearFiles();
+        Swal.fire({
+          html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>File(s) successfully uploaded.</b>',
+          timer: 2000,
+          position: 'top',
+          customClass: {
+            popup: 'custom-popup-class',
+            title: 'custom-title-class',
+            htmlContainer: 'custom-text-class'
+          },
+          background: '#fff',
+          backdrop: 'rgba(0, 0, 0, 0.4)',
+          showConfirmButton: false
+        });
       },
       error: (error) => {
         this.uploadError = 'Failed to upload files. Please try again.';
@@ -379,6 +453,11 @@ export class FinalAssignmentSubmissionComponent {
       .subscribe(() => {
         // Remove the deleted examiner from the list
         this.assignedExaminers = this.assignedExaminers.filter(examiner => examiner.id !== examinerId);
+
+        // Call a method on the FeedbackPageComponent
+        if (this.feedbackPage) {
+          this.feedbackPage.handleExaminersAssigned();
+        }
       }, error => {
         console.error('Error deleting examiner:', error);
       });
@@ -386,6 +465,11 @@ export class FinalAssignmentSubmissionComponent {
 
   handleAssignedExaminers() {
     this.loadAssignedExaminers();
+
+    // Call a method on the FeedbackPageComponent
+    if (this.feedbackPage) {
+      this.feedbackPage.handleExaminersAssigned();
+    }
   }
 
 

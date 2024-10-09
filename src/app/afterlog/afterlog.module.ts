@@ -49,6 +49,8 @@ import { SupervisorExaminerDashboardComponent } from './supervisor-examiner/supe
 import { DeleteSectionPopupComponent } from './shared/delete-section-popup/delete-section-popup.component';
 import { EnrolledStudentsDetailsPopupComponent } from './admin/enrolled-students-details-popup/enrolled-students-details-popup.component';
 import { AllNotificationsComponent } from './shared/all-notifications/all-notifications.component';
+import { EmailsPageComponent } from './admin/emails-page/emails-page.component';
+import { QuillModule } from 'ngx-quill';
 
 
 
@@ -100,13 +102,15 @@ import { AllNotificationsComponent } from './shared/all-notifications/all-notifi
     SupervisorExaminerDashboardComponent,
     DeleteSectionPopupComponent,
     EnrolledStudentsDetailsPopupComponent,
-    AllNotificationsComponent
+    AllNotificationsComponent,
+    EmailsPageComponent
   ],
   imports: [
     CommonModule,
     AfterlogRoutingModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    QuillModule.forRoot()
   ]
 })
 export class AfterlogModule { }
