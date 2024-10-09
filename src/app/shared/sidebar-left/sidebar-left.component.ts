@@ -108,4 +108,14 @@ export class SidebarLeftComponent {
     return currentUrl === '/afterlog/all-notifications'
   }
 
+  navigateToEmails(){
+    this.router.navigate(['/afterlog/emails-page']);
+  }
+  isEmailsActive(): boolean {
+    const currentUrl = this.router.url;
+
+    // Check if the current URL matches any of the dashboard URLs
+    return currentUrl === '/afterlog/emails-page'
+  }
+
 }

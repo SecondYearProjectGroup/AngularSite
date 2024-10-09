@@ -33,6 +33,7 @@ import { PasswordChangeComponent } from '../shared/password-change/password-chan
 import { EnrolledStudentsDetailsPopupComponent } from './admin/enrolled-students-details-popup/enrolled-students-details-popup.component';
 import { AllNotificationsComponent } from './shared/all-notifications/all-notifications.component';
 import { MphilPhdResearchComponent } from '../shared/details/mphil-phd-research/mphil-phd-research.component';
+import { EmailsPageComponent } from './admin/emails-page/emails-page.component';
 // import { RoleGuardService as RoleGuard } from '../shared/services/role-guard.service';
 
 const routes: Routes = [
@@ -52,6 +53,7 @@ const routes: Routes = [
       { path: 'assigned-examiners-to-admin', component: AssignedExaminersToAdminComponent },
       { path: 'report-submissions-to-admin', component: ReportSubmissionsToAdminComponent },
       { path: 'vivas-to-admin', component: VivasToAdminComponent },
+      { path: 'emails-page', component: EmailsPageComponent },
 
       // Student
       { path: 'student-dashboard', component: StudentDashboardComponent },

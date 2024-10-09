@@ -1,0 +1,45 @@
+<div class="research-box">
+    <h6><b>Email Templates</b></h6>
+
+    <select name="emailTemplate" required>
+        <option value="1">Name1</option>
+        <option value="2">Name2</option>
+        <option value="3">Name3</option>
+        <option value="4">Name4</option>
+    </select>
+    <br><br>
+
+    <h6><b>Template Content</b></h6><br>
+
+    <div class="form-container">
+        <form (submit)="onTemplateSubmit()" method="post">
+            <table style="width: 100%;">
+                <tr>
+                    <td>Subject</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="emailSubject" placeholder="Email Subject..." required></td>
+                </tr><br>
+
+                <tr>
+                    <td>Email heading</td>                    
+                </tr>
+                <tr>
+                    <td><input type="text" name="emailHeading" placeholder="Email Heading..." required></td>
+                </tr><br>
+
+                <tr>
+                    <td>Additional Content</td>                    
+                </tr>
+                <tr>
+                    <td>
+                        <quill-editor [(ngModel)]="editorContent"></quill-editor>
+                    </td>
+                </tr>
+            </table><br>
+
+            <input type="submit" value="Save" style="width: 40%; float: right;">
+        </form>
+        <br><br><br>
+    </div>
+</div>

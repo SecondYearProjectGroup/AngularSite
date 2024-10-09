@@ -46,7 +46,8 @@
               "src/styles.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "src/evo-calendar.css",
-              "src/evo-calendar.royal-navy.css"
+              "src/evo-calendar.royal-navy.css",
+              "node_modules/quill/dist/quill.snow.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
