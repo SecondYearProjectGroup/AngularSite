@@ -4,6 +4,7 @@ import { Feedback, FeedbackService } from '../../../services/feedback.service';
 import { UserRoleService } from '../../../services/user-role.service';
 import { FileService } from '../../../../services/file.service';
 import { Examiner, ExaminerService } from '../../../services/examiner.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-feedback-page',
@@ -22,7 +23,7 @@ export class FeedbackPageComponent implements OnInit{
   examinerId: number = 0;
   
 
-  @Input() mode: 'feedbackReciever-Supervisor' | 'feedbackProvider-Supervisor' | 'feedbackReciever-Examiner' | 'feedbackProvider-Examiner' = 'feedbackReciever-Examiner';
+  @Input() mode: 'feedbackReciever-Supervisor' | 'feedbackProvider-Supervisor' | 'feedback-Examiner' = 'feedback-Examiner';
 
   constructor(
     private route: ActivatedRoute,
@@ -51,7 +52,6 @@ export class FeedbackPageComponent implements OnInit{
     this.examinerId = this.userIdId;
 
     this.loadFeedbacks();
-    this.loadExaminerFeedback();
   }
 
   // Handle file selection
@@ -70,6 +70,19 @@ export class FeedbackPageComponent implements OnInit{
         .subscribe({
           next: () => {
             console.log('Feedback updated successfully');
+            Swal.fire({
+              html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Feedback updated successfully.</b>',
+              timer: 2000,
+              position: 'top',
+              customClass: {
+                popup: 'custom-popup-class',
+                title: 'custom-title-class',
+                htmlContainer: 'custom-text-class'
+              },
+              background: '#fff',
+              backdrop: 'rgba(0, 0, 0, 0.4)',
+              showConfirmButton: false
+            });
           },
           error: (error) => {
             console.error('Error updating feedback:', error);
@@ -87,6 +100,19 @@ export class FeedbackPageComponent implements OnInit{
         .subscribe({
           next: () => {
             console.log('Feedback updated successfully');
+            Swal.fire({
+              html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Feedback updated successfully.</b>',
+              timer: 2000,
+              position: 'top',
+              customClass: {
+                popup: 'custom-popup-class',
+                title: 'custom-title-class',
+                htmlContainer: 'custom-text-class'
+              },
+              background: '#fff',
+              backdrop: 'rgba(0, 0, 0, 0.4)',
+              showConfirmButton: false
+            });
           },
           error: (error) => {
             console.error('Error updating feedback:', error);
@@ -115,30 +141,30 @@ export class FeedbackPageComponent implements OnInit{
     );
   }
 
-  examiner : Examiner = {
-    fullName: '',
-    id: 0,
-    email: '',
-  }
+  // examiner : Examiner = {
+  //   fullName: '',
+  //   id: 0,
+  //   email: '',
+  // }
 
-  examinerFeedback: Feedback = {
-    id: 0,
-    body: '',
-    fileName: '',
-    originalFileName: '',
-    examiner: this.examiner
-  } ;
-  loadExaminerFeedback(): void {
-    console.log('Submission ID:', this.id, 'Examiner ID:', this.examinerId);
-    this.feedbackService.getFeedbackBySubmissionIdAndExaminerId(this.id, this.examinerId).subscribe(
-      (data) => {
-        this.examinerFeedback = data;
-      },
-      (error) => {
-        console.error('Error fetching examiner feedback:', error);
-      }
-    );
-  }
+  // examinerFeedback: Feedback = {
+  //   id: 0,
+  //   body: '',
+  //   fileName: '',
+  //   originalFileName: '',
+  //   examiner: this.examiner
+  // } ;
+  // loadExaminerFeedback(): void {
+  //   console.log('Submission ID:', this.id, 'Examiner ID:', this.examinerId);
+  //   this.feedbackService.getFeedbackBySubmissionIdAndExaminerId(this.id, this.examinerId).subscribe(
+  //     (data) => {
+  //       this.examinerFeedback = data;
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching examiner feedback:', error);
+  //     }
+  //   );
+  // }
 
   // Method to view the file in a new tab
   viewFile(fileName: string) {
@@ -158,6 +184,10 @@ export class FeedbackPageComponent implements OnInit{
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  }
+
+  handleExaminersAssigned(){
+    this.loadFeedbacks();
   }
   
 }
