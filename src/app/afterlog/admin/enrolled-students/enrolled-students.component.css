@@ -26,3 +26,9 @@
     background-color: #113642;
 }
 
+.custom1-popup-class {
+    width: 250px !important; /* Set the width */
+    height: 250px !important; /* Set the height */
+    font-size: 14px; /* Set the font size */
+    padding: 10px; /* Optional: Adjust padding */
+  }

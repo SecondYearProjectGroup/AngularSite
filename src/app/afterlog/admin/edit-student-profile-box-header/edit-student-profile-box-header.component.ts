@@ -13,6 +13,8 @@ export class EditStudentProfileBoxHeaderComponent {
   @Input() regNumber: string | null = null;
   @Input() nameWithInitials: string | null = null;
   @Input() programOfStudy: string | null = null;
+  @Input() registeredDate: Date | undefined = undefined;
+  @Input() status: string | null = null;
   @Output() close = new EventEmitter<void>();
   @Output() studentUpdated = new EventEmitter<Student>();
 
@@ -31,8 +33,18 @@ export class EditStudentProfileBoxHeaderComponent {
 
   constructor(private http: HttpClient) {}
 
+  ngOnInit(): void {
+    this.student.nameWithInitials = this.nameWithInitials ?? '';
+    this.student.programOfStudy = this.programOfStudy ?? '';
+    this.student.status = this.status ?? '';
+    this.student.registeredDate = this.registeredDate ?? undefined;
+    this.student.registrationNumber =  this.regNumber ?? '';
+    console.log('date', this.student.registeredDate);
+  }
+
   onSubmit() {
     const updatedFields = {
+      nameWithInitials: this.student.nameWithInitials,
       status: this.student.status,
       registeredDate: this.student.registeredDate ,// Assume you added this to the model
       registrationNumber: this.student.registrationNumber
@@ -75,12 +87,6 @@ export class EditStudentProfileBoxHeaderComponent {
     });
   }
   
-
-  ngOnInit(): void {
-    this.student.nameWithInitials = this.nameWithInitials ?? '';
-    this.student.programOfStudy = this.programOfStudy ?? '';
-  }
-   
 
   closeEditProfileHeader(): void {
     this.close.emit();
