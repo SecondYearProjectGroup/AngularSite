@@ -33,7 +33,22 @@
                 </tr>
                 <tr>
                     <td>
-                        <quill-editor [(ngModel)]="editorContent"></quill-editor>
+                        <quill-editor [(ngModel)]="editorContent"
+                        [modules]="{
+                            toolbar: [
+                              ['bold', 'italic', 'underline', 'strike'],
+                              [{ 'font': [] }],
+                              [{ 'size': ['small', false, 'large', 'huge'] }],
+                              [{ 'align': [] }],
+                              ['blockquote', 'code-block'],
+                              [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                              [{ 'indent': '-1'}, { 'indent': '+1' }],
+                              [{ 'color': [] }, { 'background': [] }],
+                              [{ 'script': 'sub'}, { 'script': 'super' }],
+                              ['link', 'formula'],
+                              ['clean']
+                            ]
+                        }"></quill-editor>
                     </td>
                 </tr>
             </table><br>

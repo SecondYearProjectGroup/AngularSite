@@ -21,4 +21,10 @@ export class EnrolledStudentService {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<EnrolledStudent>(url);
   }
+
+  // New method to update a student
+  updateStudent(studentId: number ,updatedStudent: Partial<EnrolledStudent>): Observable<EnrolledStudent> {
+    const url = `${this.apiUrl}/${studentId}`;
+    return this.http.put<EnrolledStudent>(url, updatedStudent);
+  }
 }

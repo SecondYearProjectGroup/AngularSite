@@ -109,61 +109,86 @@ export class EnrolledStudentsComponent implements OnInit{
 
 
 
-  updateStatus(studentId: number, status: string): void {
-    const params = new HttpParams().set('action', status); // Set the 'action' parameter
-    
-    this.http.post(`http://localhost:8080/handleApproval/${studentId}`, {}, { params, responseType: 'text' })
-      .subscribe({
-        next: (response: string) => {
-          Swal.fire({
-            html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Approval email sent successfully.</b>',
-            timer: 2000,
-            position: 'top',
-            customClass: {
-              popup: 'custom-popup-class',
-              title: 'custom-title-class',
-              htmlContainer: 'custom-text-class'
-            },
-            background: '#fff',
-            backdrop: 'rgba(0, 0, 0, 0.4)',
-            showConfirmButton: false
-          });
-          const statusCell = document.getElementById(`status-cell-${studentId}`);
-          if (statusCell) {
-            statusCell.innerHTML = `<strong>${status}</strong>`;
-            statusCell.style.color = status === 'Approved' ? 'green' : 'red';
-          }
+  updateStatus(studentId: number, status: string, alertText: string): void {
+    Swal.fire({
+      html: '<b>Edit Student details before continue.</b>',
+      position: 'top',
+      customClass: {
+        popup: 'custom1-popup-class',
+        title: 'custom-title-class',
+        htmlContainer: 'custom-text-class'
+      },
+      background: '#fff',
+      backdrop: 'rgba(0, 0, 0, 0.4)',
+      showConfirmButton: true, // Shows confirm button
+      confirmButtonText: alertText, // Custom text for confirm button
+      showCancelButton: true, // Shows cancel button
+      cancelButtonText: 'Cancel', // Custom text for cancel button
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Logic for confirm button (Save)
 
-          // Update the local state to reflect the status change
-          const student = this.tableData.find(s => s.id === studentId);
-          if (student) {
-            student.status = status;
-          }
-        },
-        error: (error) => {
-          let errorMessage = 'An unknown error occurred';
-          if (error.error instanceof ErrorEvent) {
-            // Client-side error
-            errorMessage = `Error: ${error.error.message}`;
-          } else {
-            // Server-side error
-            errorMessage = `Error ${error.status}: ${error.message}`;
-          }
-          Swal.fire({
-            html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error approving student.</b>',
-            timer: 2000,
-            position: 'top',
-            customClass: {
-              popup: 'custom-popup-class',
-              title: 'custom-title-class',
-              htmlContainer: 'custom-text-class'
+        const params = new HttpParams().set('action', status); // Set the 'action' parameter
+    
+        this.http.post(`http://localhost:8080/handleApproval/${studentId}`, {}, { params, responseType: 'text' })
+          .subscribe({
+            next: (response: string) => {
+              Swal.fire({
+                html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Approval email sent successfully.</b>',
+                timer: 2000,
+                position: 'top',
+                customClass: {
+                  popup: 'custom-popup-class',
+                  title: 'custom-title-class',
+                  htmlContainer: 'custom-text-class'
+                },
+                background: '#fff',
+                backdrop: 'rgba(0, 0, 0, 0.4)',
+                showConfirmButton: false
+              });
+              const statusCell = document.getElementById(`status-cell-${studentId}`);
+              if (statusCell) {
+                statusCell.innerHTML = `<strong>${status}</strong>`;
+                statusCell.style.color = status === 'Enrolled' ? 'green' : 'red';
+              }
+
+              // Update the local state to reflect the status change
+              const student = this.tableData.find(s => s.id === studentId);
+              if (student) {
+                student.status = status;
+              }
             },
-            background: '#fff',
-            backdrop: 'rgba(0, 0, 0, 0.4)',
-            showConfirmButton: false
+            error: (error) => {
+              let errorMessage = 'An unknown error occurred';
+              if (error.error instanceof ErrorEvent) {
+                // Client-side error
+                errorMessage = `Error: ${error.error.message}`;
+              } else {
+                // Server-side error
+                errorMessage = `Error ${error.status}: ${error.message}`;
+              }
+              Swal.fire({
+                html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error approving student.</b>',
+                timer: 2000,
+                position: 'top',
+                customClass: {
+                  popup: 'custom-popup-class',
+                  title: 'custom-title-class',
+                  htmlContainer: 'custom-text-class'
+                },
+                background: '#fff',
+                backdrop: 'rgba(0, 0, 0, 0.4)',
+                showConfirmButton: false
+              });
+            }
           });
-        }
-      });
+
+      } else if (result.isDismissed) {
+        // Logic for cancel button
+        console.log('Cancelled: No changes');
+      }
+    });
+    
   }
 
 
@@ -184,12 +209,18 @@ export class EnrolledStudentsComponent implements OnInit{
 
   isEnrolledStudentsDetailsPopupOpen: boolean = false;
   selectedStudentId: number | null = null;
-  openEnrolledStudentsDetailsPopup(studentId: number) {
+  selectedMode: string = '';
+  openEnrolledStudentsDetailsPopup(studentId: number, mode: string) {
     this.selectedStudentId = studentId;
+    this.selectedMode = mode;
     this.isEnrolledStudentsDetailsPopupOpen = true;
   }
   closeEnrolledStudentsDetailsPopup() {
     this.isEnrolledStudentsDetailsPopupOpen = false;
+  }
+
+  handleStudentUpdate() {
+    this.loadStudents();
   }
   
 }

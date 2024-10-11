@@ -71,7 +71,7 @@
 .modal-form input[type=submit]:hover {
     background: linear-gradient(135deg, rgba(18, 55, 71, 1), rgba(18, 55, 71, 1));
 }
-.modal-form input[type=text],input[type=email], select {
+.modal-form input[type=text],input[type=email],input[type=tel], input[type=date], select {
     width: 100%;
     padding: 8px 15px;
     margin: 8px 0;

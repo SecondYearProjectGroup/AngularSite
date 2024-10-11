@@ -1,5 +1,6 @@
 export interface EnrolledStudent {
     id: number;
+    registrationNumber: string;
     nameWithInitials: string;
     fullName: string;
     contactNumber: string;
@@ -8,6 +9,8 @@ export interface EnrolledStudent {
     publications: string;
     programOfStudy: string;
     status: string;
+    registrationStatus: string;
+    registeredDate: Date;
     studentIdDocument: string;
     studentIdDocumentOriginalName: string;
     birthCertificate: string;
