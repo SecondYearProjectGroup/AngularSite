@@ -1,6 +1,8 @@
 <div class="modal">
     <div class="modal-content">
-        <div class="modal-header">            
+
+      <div *ngIf="mode === 'seeQualification'">
+        <div class="modal-header">           
             <h5 class="modal-title"><b>Student Educational Details</b></h5>
             <span class="close" (click)="closeEnrolledStudentsDetailsPopup()">&times;</span>
         </div>
@@ -25,6 +27,10 @@
                   <tr>
                     <td>ID:</td>
                     <td>{{ student.id }}</td>
+                  </tr>
+                  <tr>
+                    <td>Registration Number:</td>
+                    <td>{{ student.registrationNumber }}</td>
                   </tr>
                   <tr>
                     <td>Name with Initials:</td>
@@ -131,8 +137,95 @@
                 </div>
             </div>
         </div>
+      </div>
+
+      <div *ngIf="mode === 'edit'">
+        <div class="modal-header">           
+          <h5 class="modal-title"><b>Edit Student Details</b></h5>
+          <span class="close" (click)="closeEnrolledStudentsDetailsPopup()">&times;</span>
+        </div>
+        <br>
+      
+        <div class="modal-form">            
+          <form (ngSubmit)="onSubmit()">
+            <!-- Loading Indicator -->
+            <div *ngIf="isLoading">
+              <p>Loading student details...</p>
+            </div>
+            
+            <!-- Error Message Display -->
+            <div *ngIf="errorMessage">
+                <p class="error">{{ errorMessage }}</p>
+            </div>
+            
+            <!-- Student Details Section -->
+            <div *ngIf="student">
+              <h6><b>{{ student.fullName }}'s Details</b></h6>
+
+              <table class="form-tables" style="width: 100%;">
+                <tr>
+                  <td>Reg. Number:</td>
+                  <td><input type="text" name="title" [(ngModel)]="student.registrationNumber" placeholder="Reg Number..."></td>
+                </tr>
+
+                <tr>
+                  <td>Name with Initials:</td>
+                  <td><input type="text" name="nameWithInitials" [(ngModel)]="student.nameWithInitials" placeholder="Name with Initials..."></td>
+                </tr>
+
+                <tr>
+                  <td>Full Name:</td>
+                  <td><input type="text" name="fullName" [(ngModel)]="student.fullName" placeholder="Full name..."></td>
+                </tr>
+
+                <tr>
+                  <td>Contact Number:</td>
+                  <td><input type="tel" name="contactNumber" [(ngModel)]="student.contactNumber" placeholder="Contact Number..."></td>
+                </tr>
+
+                <tr>
+                  <td>Email:</td>
+                  <td><input type="email" name="email" [(ngModel)]="student.email" placeholder="Email..."></td>
+                </tr>
+
+                <tr>
+                  <td>Address:</td>
+                  <td>{{ student.address }}</td>
+                </tr>
+
+                <tr>
+                  <td>Program of Study:</td>
+                  <td>{{ student.programOfStudy }}</td>
+                </tr>
+
+                <tr>
+                  <td>Registered Date:</td>
+                  <td><input type="date" name="date" [(ngModel)]="student.registeredDate" placeholder="Registered date..."></td>
+                </tr>
+
+                <tr>
+                  <td>Educational Status:</td>
+                  <td>
+                    <select name="status" [(ngModel)]="student.status">
+                      <option value="Provicial Registered">Provicial Registered</option>
+                      <option value="Fully Registered">Fully Registered</option>
+                    </select>
+                  </td>
+                </tr>
+                <br>
+
+              </table>
+              <hr>
+                <input type="submit" value="Edit Details" style="width: 40%; float: right;">
+            </div>
+          </form>
+        </div>
+              
+      </div>
+
     </div>
 </div>
+<br><br><br><br>
 
 <!-- 
 

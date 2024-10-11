@@ -4,12 +4,13 @@
 
     <br>
     <!-- <div style="display: flex; flex-direction: row; align-items: center; flex-wrap: nowrap;"> -->
-    <h4><b>{{ student.regNumber }}</b></h4>
-    <h4><b>{{ student.registrationNumber }}</b></h4>
+    <div *ngIf="student.registrationNumber"><h4><b>{{ student.registrationNumber }}</b></h4></div>
+    <div *ngIf="!student.registrationNumber"><h4><b>{{ student.regNumber }}</b></h4></div>
+
 
     <h6>{{ student.nameWithInitials }}</h6>
     <h6>{{ student.programOfStudy }}</h6>
-    <h6>Registered Date: {{ formatDate(student.registeredDate) }}</h6>
+    <h6>Registered Date:  {{ student.registeredDate | date:'dd-MM-yyyy' }}</h6>
 
     <div style="display: flex; align-items: center;">
         <h6 style="white-space: nowrap;">{{ student.status }}</h6>
@@ -18,9 +19,13 @@
             <a (click)="openEditStudentProfileBoxHeader()" class="my-button" style="font-size: 14px; margin-right: 50px; padding: 5px 20px;">Edit</a>
         </div>
 
-        <app-edit-student-profile-box-header *ngIf="isEditStudentProfileBoxHeaderOpen" (close)="closeEditStudentProfileBoxHeader()" [regNumber]="regNumber"
+        <app-edit-student-profile-box-header *ngIf="isEditStudentProfileBoxHeaderOpen" (close)="closeEditStudentProfileBoxHeader()" 
+        [regNumber]="student.registrationNumber ? student.registrationNumber : student.regNumber"
         [nameWithInitials]="student.nameWithInitials"
-        [programOfStudy]="student.programOfStudy" (studentUpdated)="updateStudentDetails($event)"></app-edit-student-profile-box-header>
+        [programOfStudy]="student.programOfStudy"
+        [registeredDate]="student.registeredDate"
+        [status]="student.status"
+        (studentUpdated)="updateStudentDetails($event)"></app-edit-student-profile-box-header>
     </div>
 
     <hr style="margin: 0px; margin-bottom: 8px; color: #c0c0c0; border-width: 1px; margin-top: 5px;">

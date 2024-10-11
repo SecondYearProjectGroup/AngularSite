@@ -15,6 +15,7 @@ export class StudentsToAdminComponent {
     regNumber: string,
     registrationNumber: string,
     nameWithInitials: string, 
+    registeredDate: Date,
     fullName: string, 
     contactNumber: string, 
     email:string, 
@@ -28,7 +29,8 @@ export class StudentsToAdminComponent {
     this.http.get<Array<{
     regNumber: string,
     registrationNumber: string,
-    nameWithInitials: string, 
+    nameWithInitials: string,  
+    registeredDate: Date,
     fullName: string, 
     contactNumber: string, 
     email:string, 
