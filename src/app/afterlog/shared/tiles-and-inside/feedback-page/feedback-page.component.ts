@@ -93,6 +93,10 @@ export class FeedbackPageComponent implements OnInit{
     }
   }
 
+  editExaminerFeedback(): void {
+    this.editFeedback = true;
+  }
+
   // Handle form submission for Supervisor
   submitSupervisorFeedback(): void {
     if (this.selectedFile && this.feedbackBody) {
@@ -121,6 +125,11 @@ export class FeedbackPageComponent implements OnInit{
     } else {
       alert('Please provide feedback and a file.');
     }
+  }
+
+  editFeedback: boolean = false;
+  editSupervisorFeedback(): void {
+    this.editFeedback = true;
   }
 
   feedbackList: Feedback[] = [];
