@@ -1,8 +1,8 @@
 <br>
 <div class="research-box">
     
-    <h4><b>{{ student.regNumber }}</b></h4>
-    <h4><b>{{ student.registrationNumber }}</b></h4>
+    <div *ngIf="student.registrationNumber"><h4><b>{{ student.registrationNumber }}</b></h4></div>
+    <div *ngIf="!student.registrationNumber"><h4><b>{{ student.regNumber }}</b></h4></div>
 
     <h6>{{ student.nameWithInitials }}</h6>
     <h6>{{ student.programOfStudy }}</h6>
