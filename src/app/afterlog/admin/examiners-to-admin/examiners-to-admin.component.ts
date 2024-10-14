@@ -43,10 +43,10 @@ export class ExaminersToAdminComponent implements OnInit {
 
   get filteredData() {
     return this.tableData.filter(row =>
-      row.id.toString().toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.fullName.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.department.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      row.email.toLowerCase().includes(this.searchText.toLowerCase()) 
+      (row.id.toString().toLowerCase().includes(this.searchText.toLowerCase()) || '' ) ||
+      (row.fullName.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.department.toLowerCase().includes(this.searchText.toLowerCase()) || '') ||
+      (row.email.toLowerCase().includes(this.searchText.toLowerCase()) || '')
     );
   }
 }

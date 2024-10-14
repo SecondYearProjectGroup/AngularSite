@@ -41,7 +41,7 @@
             <tbody>
 
                 <!-- <tr *ngFor="let row of filteredData"> -->
-                    <tr *ngFor="let student of students">
+                    <tr *ngFor="let student of filteredData">
 
                     <td id="status-cell-{{student.id}}">
                         <div *ngIf="!student.registrationStatus; else statusText" class="btn-group">

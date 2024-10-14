@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EmailServiceService } from '../../services/email-service.service';
 import { EmailTemplate } from '../../../models/email-template';
+import { UserRoleService } from '../../services/user-role.service';
+
 
 @Component({
   selector: 'app-emails-page',
@@ -13,10 +15,24 @@ export class EmailsPageComponent {
   selectedTemplate: EmailTemplate = { id: 0, name: '', subject: '', body: '' };
   editorContent: string = '';  // This will hold the editor content
 
-  constructor(private emailService: EmailServiceService) {}
+  constructor(private emailService: EmailServiceService,
+    private userRoleService: UserRoleService
+  ) {}
+
+  @Input() mode: 'editTemplate' | 'addNewTemplate' | 'sendEmail' | 'sendEmailToStudent' = 'sendEmail';
+  @Input() emailHeading: boolean = true;
+
+  userRole: string | null = null;
 
   ngOnInit(): void {
     this.loadTemplates();
+    scrollTo(0,0);
+
+    this.userRoleService.userRole$.subscribe(role => {
+      this.userRole = role;
+    });
+
+    this.varSendEmail = true;
   }
 
   loadTemplates(): void {
@@ -61,7 +77,27 @@ export class EmailsPageComponent {
             }
         );
     }
-}
+  }
+
+  varSendEmail: boolean = true;
+  varAddNewTemplate: boolean = false;
+  varEditTemplate: boolean = false;
+  sendEmail(){
+    this.varSendEmail = true;
+    this.varAddNewTemplate = false;
+    this.varEditTemplate = false;
+  }
+  addNewTemplate(){
+    this.varAddNewTemplate = true;
+    this.varEditTemplate = false;
+    this.varSendEmail = false;
+  }
+  editTemplate(){
+    this.varEditTemplate = true;
+    this.varAddNewTemplate = false;
+    this.varSendEmail = false;
+  }
+  
 
 }
 
