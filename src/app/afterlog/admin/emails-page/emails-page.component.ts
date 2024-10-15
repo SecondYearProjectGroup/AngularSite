@@ -97,7 +97,38 @@ export class EmailsPageComponent {
     this.varAddNewTemplate = false;
     this.varSendEmail = false;
   }
+
+  onNewTemplateSubmit(): void {
+      this.selectedTemplate.body = this.editorContent;
+        this.emailService.addNewTemplate(this.selectedTemplate).subscribe(
+            (response) => {
+                console.log('Template updated successfully:', response);
+                // Optionally, reload templates to reflect changes
+                this.loadTemplates(); 
+            },
+            (error) => {
+                console.error('Error updating email template:', error);
+            }
+        );
+  }
+
+
+  //To be completed
+  sendEmails(): void {
+    this.selectedTemplate.body = this.editorContent;
+      this.emailService.addNewTemplate(this.selectedTemplate).subscribe(
+          (response) => {
+              console.log('Template updated successfully:', response);
+              // Optionally, reload templates to reflect changes
+              this.loadTemplates(); 
+          },
+          (error) => {
+              console.error('Error updating email template:', error);
+          }
+      );
+}
   
+
 
 }
 

@@ -25,4 +25,18 @@ export class EmailServiceService {
     return this.http.get<EmailTemplate>(`${this.apiUrl}/${id}`);
   }
 
+  addNewTemplate(template: EmailTemplate): Observable<EmailTemplate> {
+    return this.http.post<EmailTemplate>(`${this.apiUrl}/new`, template);
+  }
+
+
+//To be completed 
+  sendEmailsFromStudentProfile(template: EmailTemplate, ): Observable<EmailTemplate> {
+    return this.http.post<EmailTemplate>(`${this.apiUrl}/send/stu/`, template);
+  }
+
+  sendEmails(template: EmailTemplate, ): Observable<EmailTemplate> {
+    return this.http.post<EmailTemplate>(`${this.apiUrl}/send/`, template);
+  }
+
 }
