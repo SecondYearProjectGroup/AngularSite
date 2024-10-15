@@ -9,16 +9,16 @@
                     <tr>
                         <td>Feedback:</td>
                         <td>
-                            <textarea *ngIf="!feedback.body" name="feedback" rows="4" style="width: 100%;" [(ngModel)]="feedbackBody"></textarea>
+                            <textarea *ngIf="!feedback.body || editFeedback" name="feedback" rows="4" style="width: 100%;" [(ngModel)]="feedbackBody"></textarea>
 
-                            <textarea *ngIf="feedback.body" name="feedback" rows="4" style="width: 100%;">{{ feedback.body }}</textarea>
+                            <textarea *ngIf="feedback.body && !editFeedback" name="feedback" rows="4" style="width: 100%;" disabled>{{ feedback.body }}</textarea>
                         </td>
                     </tr>
                     <br>
                     <tr>
                         <td>Feedback file:</td>
                         <td>
-                            <input *ngIf="!feedback.fileName && !feedback.body" type="file" (change)="onFileSelected($event)">
+                            <input *ngIf="!feedback.fileName && !feedback.body || editFeedback" type="file" (change)="onFileSelected($event)">
 
                             <span *ngIf="feedback.body && !feedback.body">No Feedback file.</span>
 
@@ -31,6 +31,10 @@
                 <div *ngIf="!feedback.body && !feedback.fileName">
                     <hr>
                     <input type="submit" value="Upload Feedback" (click)="submitExaminerFeedback()">
+                </div>
+                <div *ngIf="feedback.body && feedback.fileName">
+                    <hr>
+                    <input type="submit" value="Edit Feedback" (click)="editExaminerFeedback()">
                 </div>
             </div>
         </div>
@@ -90,7 +94,7 @@
         <tr>
             <td>Feedback file:</td>
             <td>
-                <input *ngIf="!feedback.fileName && !feedback.body" type="file" (change)="onFileSelected($event)">
+                <input *ngIf="!feedback.fileName && !feedback.body || editFeedback" type="file" (change)="onFileSelected($event)">
 
                 <span *ngIf="feedback.body && !feedback.body">No Feedback file.</span>
 
@@ -103,6 +107,10 @@
     <div *ngIf="!feedbackList[0].body && !feedbackList[0].fileName">
         <hr>
         <input type="submit" value="Upload Feedback" (click)="submitSupervisorFeedback()">
+    </div>
+    <div *ngIf="feedbackList[0].body && feedbackList[0].fileName">
+        <hr>
+        <input type="submit" value="Edit Feedback" (click)="editSupervisorFeedback()">
     </div>
     <br><br>
 </div>

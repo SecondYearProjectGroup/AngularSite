@@ -4,7 +4,22 @@
 
 <div class="research-box">
 
-    <div style="display: flex;" *ngIf="emailHeading">
+    <!-- Tabs for email options -->
+    <div class="tabs" style="cursor: pointer;">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'tab1'" (click)="selectTab('tab1')">Send Email</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'tab2'" (click)="selectTab('tab2')">Add New Template</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'tab3'" (click)="selectTab('tab3')">Edit Template</a>
+            </li>
+        </ul>
+    </div><br>
+
+    <!-- <div style="display: flex;" *ngIf="emailHeading">
         <div class="myButtonDesign">
             <a (click)="sendEmail()" class="my-button" style="margin-left: 40px;">Send Email</a>
         </div>
@@ -15,7 +30,7 @@
             <a (click)="editTemplate()" class="my-button" style="margin-left: 40px;">Edit Templates</a>
         </div>
         <br><br>
-    </div>
+    </div> -->
     
 
     <!-- Send Email by Admin -->
@@ -51,6 +66,22 @@
                     <tr>
                         <td>
                             <input type="email" [(ngModel)]="selectedTemplate.name" name="toEmail" placeholder="Sent to...">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <tr>
+                        <td>
+                            <input type="email"
+                                name="emails"
+                                [(ngModel)]="selectedTemplate.name"
+                                #emailsInput="ngModel"
+                                placeholder="Enter emails separated by commas"
+                                required
+                                multiple
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}(,[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,})*">
+                        </td>
+                    </tr>
                         </td>
                     </tr>
 

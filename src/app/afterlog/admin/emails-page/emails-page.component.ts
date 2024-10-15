@@ -23,6 +23,8 @@ export class EmailsPageComponent {
   @Input() emailHeading: boolean = true;
 
   userRole: string | null = null;
+  activeTab: string = 'tab1';
+  emails: string = '';
 
   ngOnInit(): void {
     this.loadTemplates();
@@ -33,6 +35,25 @@ export class EmailsPageComponent {
     });
 
     this.varSendEmail = true;
+  }
+
+  // if (this.emails) {
+  //   const emailList = this.emails.split(',').map(email => email.trim());
+  //   console.log('Submitted emails:', emailList);
+  // }
+
+  // Tabs
+  selectTab(tab: string) {
+    this.activeTab = tab;
+    if(tab === 'tab1'){
+      this.sendEmail();
+    }
+    else if (tab === 'tab2'){
+      this.addNewTemplate();
+    }
+    else{
+      this.editTemplate();
+    }
   }
 
   loadTemplates(): void {
