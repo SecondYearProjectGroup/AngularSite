@@ -121,7 +121,7 @@
     
     <!-- For Admin, Supervisor, Examiners -->
     <table style="width: 100%;">
-      <tr *ngIf="userRole === 'ADMIN' || userRole === 'SUPERVISOR'">
+      <tr *ngIf="userRole === 'ADMIN' || userRole === 'SUPERVISOR' || userRole === 'SUPERVISOR-EXAMINER'">
         <div class="file-list">
           <h6>Uploaded Files:</h6>
           <ul>

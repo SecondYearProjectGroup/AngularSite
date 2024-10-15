@@ -1,17 +1,4 @@
-.profile-box{
-    background-color: aqua;
-    width: fit-content;
-    padding: 10px;
-    margin-left: 40px;
-}
 
-.research-box {
-    background-color: aqua;
-    width: auto;
-    padding: 10px;
-    margin-left: 40px;
-    margin-right: 40px;
-}
 
 .course-container {
     display: flex;
