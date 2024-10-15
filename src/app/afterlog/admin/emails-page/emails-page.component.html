@@ -68,6 +68,22 @@
                             <input type="email" [(ngModel)]="selectedTemplate.name" name="toEmail" placeholder="Sent to...">
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <tr>
+                        <td>
+                            <input type="email"
+                                name="emails"
+                                [(ngModel)]="selectedTemplate.name"
+                                #emailsInput="ngModel"
+                                placeholder="Enter emails separated by commas"
+                                required
+                                multiple
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}(,[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,})*">
+                        </td>
+                    </tr>
+                        </td>
+                    </tr>
 
                     <tr>
                         <td>Subject</td>

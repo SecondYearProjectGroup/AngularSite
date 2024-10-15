@@ -24,6 +24,7 @@ export class EmailsPageComponent {
 
   userRole: string | null = null;
   activeTab: string = 'tab1';
+  emails: string = '';
 
   ngOnInit(): void {
     this.loadTemplates();
@@ -35,6 +36,11 @@ export class EmailsPageComponent {
 
     this.varSendEmail = true;
   }
+
+  // if (this.emails) {
+  //   const emailList = this.emails.split(',').map(email => email.trim());
+  //   console.log('Submitted emails:', emailList);
+  // }
 
   // Tabs
   selectTab(tab: string) {
