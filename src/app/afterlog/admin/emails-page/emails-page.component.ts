@@ -135,9 +135,9 @@ export class EmailsPageComponent {
 
 
   //To be completed
-  sendEmails(): void {
+  sendEmailtoStudent(): void {
     this.selectedTemplate.body = this.editorContent;
-      this.emailService.addNewTemplate(this.selectedTemplate).subscribe(
+      this.emailService.sendEmailsFromStudentProfile(this.selectedTemplate).subscribe(
           (response) => {
               console.log('Template updated successfully:', response);
               // Optionally, reload templates to reflect changes

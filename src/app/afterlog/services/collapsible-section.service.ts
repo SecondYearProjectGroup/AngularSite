@@ -30,8 +30,8 @@ export class CollapsibleSectionService {
   }
 
   // Find all collapsible sections for examiners
-  getSectionsForExaminers(regNumber: string , activeTab: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/examiners/${regNumber}/${activeTab}`);
+  getSectionsForExaminers(regNumber: string , activeTab: string, examinerId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/examiners/${regNumber}/${activeTab}/${examinerId}`);
   }
 
   // Update collapsible section by id
