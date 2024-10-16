@@ -5,7 +5,7 @@
 <div class="research-box">
 
     <!-- Tabs for email options -->
-    <div class="tabs" style="cursor: pointer;">
+    <div class="tabs" style="cursor: pointer;" *ngIf="emailHeading">
         <ul class="nav nav-tabs">
             <li class="nav-item">
             <a class="nav-link" [class.active]="activeTab === 'tab1'" (click)="selectTab('tab1')">Send Email</a>

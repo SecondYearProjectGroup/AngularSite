@@ -21,6 +21,7 @@ export class EmailsPageComponent {
 
   @Input() mode: 'editTemplate' | 'addNewTemplate' | 'sendEmail' | 'sendEmailToStudent' = 'sendEmail';
   @Input() emailHeading: boolean = true;
+  @Input() regNo: string | null = null;
 
   userRole: string | null = null;
   activeTab: string = 'tab1';
@@ -35,6 +36,7 @@ export class EmailsPageComponent {
     });
 
     this.varSendEmail = true;
+    console.log("Reg no in Emails page ", this.regNo);
   }
 
   // if (this.emails) {
