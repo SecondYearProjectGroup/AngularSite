@@ -25,7 +25,7 @@ export class EmailsPageComponent {
 
   userRole: string | null = null;
   activeTab: string = 'tab1';
-  emails: string = '';
+  emailAddresses: string[] | any;
 
   ngOnInit(): void {
     this.loadTemplates();
@@ -139,7 +139,8 @@ export class EmailsPageComponent {
   //To be completed
   sendEmailtoStudent(): void {
     this.selectedTemplate.body = this.editorContent;
-      this.emailService.sendEmailsFromStudentProfile(this.selectedTemplate).subscribe(
+    if(this.regNo != null)
+      this.emailService.sendEmailsFromStudentProfile(this.selectedTemplate, this.regNo).subscribe(
           (response) => {
               console.log('Template updated successfully:', response);
               // Optionally, reload templates to reflect changes
@@ -150,6 +151,28 @@ export class EmailsPageComponent {
           }
       );
 }
+
+
+sendEmails(): void {
+  this.selectedTemplate.body = this.editorContent;
+
+  // Split the comma-separated email string into an array and specify 'email' as a string
+  const emailArray = this.emailAddresses.split(',').map((email: string) => email.trim());
+  console.log(emailArray);
+
+  this.emailService.sendEmails(this.selectedTemplate, emailArray).subscribe(
+    (response) => {
+      console.log('Emails sent successfully:', response);
+      this.loadTemplates(); // Optionally, reload templates to reflect changes
+    },
+    (error) => {
+      console.error('Error sending emails:', error);
+    }
+  );
+
+}
+
+
   
 
 

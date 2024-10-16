@@ -29,14 +29,16 @@ export class EmailServiceService {
     return this.http.post<EmailTemplate>(`${this.apiUrl}/new`, template);
   }
 
+  //Send emails to students via the student profile
+  sendEmailsFromStudentProfile(template: EmailTemplate, regNumber: string ): Observable<EmailTemplate> {
+    return this.http.post<EmailTemplate>(`${this.apiUrl}/send/stu/${regNumber}`, template);
+  } 
 
-//To be completed 
-  sendEmailsFromStudentProfile(template: EmailTemplate, ): Observable<EmailTemplate> {
-    return this.http.post<EmailTemplate>(`${this.apiUrl}/send/stu/`, template);
+  //Send emails with the given set
+  sendEmails(template: EmailTemplate, emails: string[]): Observable<EmailTemplate> {
+    const payload = { template, emails };
+    return this.http.post<EmailTemplate>(`${this.apiUrl}/send`, payload);
   }
-
-  sendEmails(template: EmailTemplate, ): Observable<EmailTemplate> {
-    return this.http.post<EmailTemplate>(`${this.apiUrl}/send/`, template);
-  }
+  
 
 }
