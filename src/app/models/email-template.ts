@@ -3,4 +3,5 @@ export interface EmailTemplate {
     name: string;
     subject: string;
     body: string;
+    userId: number;
 }

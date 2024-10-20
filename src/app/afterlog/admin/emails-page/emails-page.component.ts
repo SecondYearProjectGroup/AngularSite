@@ -12,12 +12,20 @@ import { UserRoleService } from '../../services/user-role.service';
 export class EmailsPageComponent {
   templates: EmailTemplate[] = [];
   selectedTemplateId: number | null = null;
-  selectedTemplate: EmailTemplate = { id: 0, name: '', subject: '', body: '' };
+  selectedTemplate: EmailTemplate = { id: 0, name: '', subject: '', body: '', userId: 0 };
   editorContent: string = '';  // This will hold the editor content
 
   constructor(private emailService: EmailServiceService,
     private userRoleService: UserRoleService
-  ) {}
+  ) {
+    this.userRoleService.userRole$.subscribe(role => {
+      this.userRole = role;
+    });
+
+    this.userRoleService.userIdId$.subscribe(userIdId => {
+      this.userIdId = userIdId || 0;
+    })
+  }
 
   @Input() mode: 'editTemplate' | 'addNewTemplate' | 'sendEmail' | 'sendEmailToStudent' = 'sendEmail';
   @Input() emailHeading: boolean = true;
@@ -25,15 +33,12 @@ export class EmailsPageComponent {
 
   userRole: string | null = null;
   activeTab: string = 'tab1';
-  emails: string = '';
+  emailAddresses: string[] | any;
+  userIdId: number = 0;
 
   ngOnInit(): void {
     this.loadTemplates();
     scrollTo(0,0);
-
-    this.userRoleService.userRole$.subscribe(role => {
-      this.userRole = role;
-    });
 
     this.varSendEmail = true;
     console.log("Reg no in Emails page ", this.regNo);
@@ -80,7 +85,7 @@ export class EmailsPageComponent {
         console.log('Selected Template:', this.selectedTemplate); // Debugging line
     } else {
         // Clear the fields if no template is selected
-        this.selectedTemplate = { id: 0, name: '', subject: '', body: '' };
+        this.selectedTemplate = { id: 0, name: '', subject: '', body: '', userId:0 };
         this.editorContent = '';
     }
 }
@@ -120,7 +125,62 @@ export class EmailsPageComponent {
     this.varAddNewTemplate = false;
     this.varSendEmail = false;
   }
+
+  onNewTemplateSubmit(): void {
+      this.selectedTemplate.body = this.editorContent;
+      this.selectedTemplate.userId = this.userIdId;
+        this.emailService.addNewTemplate(this.selectedTemplate).subscribe(
+            (response) => {
+                console.log('Template updated successfully:', response);
+                // Optionally, reload templates to reflect changes
+                this.loadTemplates(); 
+            },
+            (error) => {
+                console.error('Error updating email template:', error);
+            }
+        );
+  }
+
+
+  //To be completed
+  sendEmailtoStudent(): void {
+    this.selectedTemplate.body = this.editorContent;
+    if(this.regNo != null)
+      this.emailService.sendEmailsFromStudentProfile(this.selectedTemplate, this.regNo).subscribe(
+          (response) => {
+              console.log('Template updated successfully:', response);
+              // Optionally, reload templates to reflect changes
+              this.loadTemplates(); 
+          },
+          (error) => {
+              console.error('Error updating email template:', error);
+          }
+      );
+}
+
+
+sendEmails(): void {
+  this.selectedTemplate.body = this.editorContent;
+
+  // Split the comma-separated email string into an array and specify 'email' as a string
+  const emailArray = this.emailAddresses.split(',').map((email: string) => email.trim());
+  console.log(emailArray);
+
+  this.emailService.sendEmails(this.selectedTemplate, emailArray).subscribe(
+    (response) => {
+      console.log('Emails sent successfully:', response);
+      this.loadTemplates(); // Optionally, reload templates to reflect changes
+    },
+    (error) => {
+      console.error('Error sending emails:', error);
+    }
+  );
+
+}
+
+
   
+
 
 }
 

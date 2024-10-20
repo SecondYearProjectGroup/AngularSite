@@ -52,6 +52,7 @@ export class StudentProfileToExaminerComponent {
   loadingSections: { id: number, buttonName: string, loadingTiles: { id: number, type: string, title: string }[] }[] = [];
 
   userRole: string | null = null; // Assuming you get the user role from some service
+  userIdId: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -93,7 +94,7 @@ export class StudentProfileToExaminerComponent {
   // Load Sections data of a student from the backend
   loadSections(regNumber: string , activeTab: string): void {
     console.log('Active Tab' + activeTab);
-    this.collapsibleSectionService.getSectionsForExaminers(regNumber, activeTab).subscribe({
+    this.collapsibleSectionService.getSectionsForExaminers(regNumber, activeTab,this.userIdId).subscribe({
       next: (data) => {
         this.loadingSections = data.map(section => ({
           id: section.id,
