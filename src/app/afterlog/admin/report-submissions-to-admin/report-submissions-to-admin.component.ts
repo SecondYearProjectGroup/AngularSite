@@ -15,6 +15,7 @@ tableData: Array<{
   regNumber: string,
   registrationNumber: string,
   nameWithInitials: string,
+  id: number,
   title: string,
   deadline: string, // Assuming deadline is returned as an ISO string
   submissionStatus: boolean, // Assuming submissionStatus is a boolean
@@ -34,6 +35,7 @@ tableData: Array<{
       regNumber: string,
       registrationNumber: string,
       nameWithInitials: string,
+      id: number,
       title: string,
       deadline: string, // Assuming deadline is an ISO string
       submissionStatus: boolean, // Assuming submissionStatus is a boolean

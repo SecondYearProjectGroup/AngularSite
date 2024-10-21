@@ -10,7 +10,8 @@ export class VivasToAdminComponent {
 
   constructor(private http: HttpClient){}
 
-  tableData: Array<{ 
+  tableData: Array<{
+    id: number, 
     title: string, 
     vivaDate: Date,
     //comments: string, 
@@ -27,7 +28,9 @@ export class VivasToAdminComponent {
   }
   
   loadVivas() {
-    this.http.get<Array<{     title: string, 
+    this.http.get<Array<{ 
+      id: number,    
+      title: string, 
       vivaDate: Date,
       //comments: string, 
       regNumber: string,

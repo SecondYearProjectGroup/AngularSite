@@ -5,6 +5,8 @@
       <p *ngFor="let notification of notifications.slice().reverse()" class="notification-item">
         <b>{{ notification.title }}</b> <br>
         {{ notification.message }} 
+        <!-- If this boolean is true , notification is in low transparency. -->
+        <!-- {{ notification.read }}  -->
         <!-- Larger space with margin -->
         <span style="margin-left: 20px;">{{ notification.timestamp | date:'short' }}</span>
       </p>

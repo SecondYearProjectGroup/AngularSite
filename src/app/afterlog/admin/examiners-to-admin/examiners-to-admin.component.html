@@ -14,7 +14,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Examiner Name</th>
-                    <th>No. of Students</th>
+                    <th>No. of Submissions</th>
                     <th>Email</th>
                 </tr>
             </thead>
@@ -22,7 +22,7 @@
                 <tr *ngFor="let row of filteredData">
                     <td>{{ row.id }}</td>
                     <td>{{ row.fullName }}</td>
-                    <td>{{ row.department }}</td>
+                    <td>{{ row.noOfSubmissions }}</td>
                     <td>{{ row.email }}</td>
                 </tr>
             </tbody>

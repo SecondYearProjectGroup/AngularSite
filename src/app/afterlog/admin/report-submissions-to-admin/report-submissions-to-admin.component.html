@@ -14,7 +14,7 @@
                 <tr>
                     <th>Student Reg. No</th>
                     <th>Student Name</th>
-                    <!-- <th>Submission Id</th> -->
+                    <th>Submission Id</th>
                     <th>Submission Title</th>
                     <!-- <th>Submission Type</th> Pre / Final -->
                     <th>Status</th>
@@ -25,7 +25,13 @@
                 <tr *ngFor="let row of filteredData">
                     <td>{{ row.registrationNumber }}</td>
                     <td>{{ row.nameWithInitials }}</td>
-                    <td>{{ row.title }}</td>
+                    <td>{{ row.id }}</td>
+                    <!-- <td>{{ row.title }}</td> -->
+                    <td>
+                        <a [routerLink]="['/afterlog/final-assignment-submission', row.id]">
+                            {{ row.title }}
+                        </a>
+                    </td>
                     <td>{{ row.submissionStatus ? 'Submitted' : 'Not Submitted' }}</td>
                     <td>{{ row.deadline }}</td>
                     
