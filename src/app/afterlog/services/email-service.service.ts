@@ -13,15 +13,15 @@ export class EmailServiceService {
   constructor(private http: HttpClient) { }
 
   //Load all the templates to edit (the existing and newly added templates) by admin
-  getAllTemplates(): Observable<EmailTemplate[]> {
-      return this.http.get<EmailTemplate[]>(this.apiUrl);
+  getAllTemplates(userId: number): Observable<EmailTemplate[]> {
+      return this.http.get<EmailTemplate[]>(`${this.apiUrl}/forAdmin/${userId}`);
   }
 
-  // Load the templates for the logged in user
-  getTemplatesForUser(userId: number): Observable<EmailTemplate[]> {
-    return this.http.get<EmailTemplate[]>(`${this.apiUrl}/user/${userId}`);
+
+  getAllTemplatesForAUser(userId: number): Observable<EmailTemplate[]> {
+    return this.http.get<EmailTemplate[]>(`${this.apiUrl}/forUser/${userId}`);
   }
-  
+
 
   //To update all the templates by admin
   //To update the newly added templates by other staff members

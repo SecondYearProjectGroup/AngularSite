@@ -32,7 +32,7 @@ export class StudentsToExaminerComponent {
 
     // Fetch assigned examiners from the backend
     getAssignedExaminers(userId: number): void {
-      this.http.get<Array<{ regNumber: string,registrationNumber: string, nameWithInitials: string, title: string, submissionStatus:string, deadlineToReview: Date }>>(`http://localhost:8080/getAllSubmissions-examiner/${userId}`)
+      this.http.get<Array<{ regNumber: string,registrationNumber: string, nameWithInitials: string,id: number, title: string, submissionStatus:string, deadlineToReview: Date }>>(`http://localhost:8080/getAllSubmissions-examiner/${userId}`)
         .subscribe(data => {
           this.tableData = data;
           console.log(this.tableData);
@@ -54,6 +54,7 @@ export class StudentsToExaminerComponent {
     regNumber: string,
     registrationNumber: string,
     nameWithInitials: string,
+    id:number,
     title: string,
     submissionStatus: string,
     deadlineToReview: Date

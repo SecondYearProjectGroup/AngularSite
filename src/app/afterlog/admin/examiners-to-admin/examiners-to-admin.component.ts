@@ -10,7 +10,7 @@ export class ExaminersToAdminComponent implements OnInit {
 
   constructor(private http: HttpClient){}
 
-  tableData: Array<{ id: number, fullName: string, department:string, email:string }> = [];
+  tableData: Array<{ id: number,noOfSubmissions: number, fullName: string, department:string, email:string }> = [];
 
 
   searchText: string = '';
@@ -22,7 +22,7 @@ export class ExaminersToAdminComponent implements OnInit {
   // ];
 
   loadExaminers() {
-    this.http.get<Array<{ id: number, fullName: string, department:string, email:string }>>('http://localhost:8080/examinersToAdmin')
+    this.http.get<Array<{ id: number,noOfSubmissions: number, fullName: string, department:string, email:string }>>('http://localhost:8080/examinersToAdmin')
       .subscribe({
         next: (data) => {
           this.tableData = data;

@@ -63,16 +63,41 @@ export class EmailsPageComponent {
     }
   }
 
+  //Make changes here to load templates for the admin and the other users
   loadTemplates(): void {
-    this.emailService.getAllTemplates().subscribe(
-      (data) => {
-        this.templates = data;
-      },
-      (error) => {
-        console.error('Error fetching email templates', error);
-      }
-    );
-  }
+    // if (this.userRole == 'admin'){
+    //   this.emailService.getAllTemplates(this.userIdId).subscribe(
+    //     (data) => {
+    //       this.templates = data;
+    //     },
+    //     (error) => {
+    //       console.error('Error fetching email templates', error);
+    //     }
+    //   );
+    // }
+    // else{
+    //     if (this.userIdId != null){
+    //       this.emailService.getAllTemplatesForAUser(this.userIdId).subscribe(
+    //         (data) => {
+    //           this.templates = data;
+    //         },
+    //         (error) => {
+    //           console.error('Error fetching email templates', error);
+    //         }
+    //       );
+    //     }
+    //   }
+
+       this.emailService.getAllTemplates(this.userIdId).subscribe(
+        (data) => {
+          this.templates = data;
+        },
+        (error) => {
+          console.error('Error fetching email templates', error);
+        }
+      );
+    }
+    
 
   onTemplateChange(event: any): void {
     const selectedId = event.target.value;
