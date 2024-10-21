@@ -17,9 +17,11 @@ export class EmailServiceService {
       return this.http.get<EmailTemplate[]>(`${this.apiUrl}/forAdmin/${userId}`);
   }
 
+
   getAllTemplatesForAUser(userId: number): Observable<EmailTemplate[]> {
     return this.http.get<EmailTemplate[]>(`${this.apiUrl}/forUser/${userId}`);
   }
+
 
   //To update all the templates by admin
   //To update the newly added templates by other staff members

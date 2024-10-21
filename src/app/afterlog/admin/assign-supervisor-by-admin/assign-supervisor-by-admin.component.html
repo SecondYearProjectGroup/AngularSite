@@ -37,8 +37,15 @@
 
                 <hr>
                 <!-- <button type="submit" style="width: 100px;">Assign</button> -->
-                <input type="submit" value="Assign" style="width: 40%; float: right; margin-right: 20px;">
+                <input type="submit" value="Assign" style="width: 40%; float: right; margin-right: 20px;" [disabled]="isLoading">
             </form>
         </div>
+    </div>
+</div>
+
+<!-- Loading overlay -->
+<div *ngIf="isLoading" class="loading-overlay">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
     </div>
 </div>

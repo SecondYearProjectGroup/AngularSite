@@ -57,6 +57,11 @@ ul.topnav li.sandwitch2{
   }
   
 }
+@media screen and (min-width: 800px) {
+  .offcanvas-start{
+    display: none;
+  }
+}
 @media screen and (max-width: 450px) {
   ul.topnav li.sandwitch2{
     display: none;
