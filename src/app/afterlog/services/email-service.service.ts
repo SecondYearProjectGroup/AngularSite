@@ -17,6 +17,10 @@ export class EmailServiceService {
       return this.http.get<EmailTemplate[]>(this.apiUrl);
   }
 
+  // Load the templates for the logged in user
+  getTemplatesForUser(userId: number): Observable<EmailTemplate[]> {
+    return this.http.get<EmailTemplate[]>(`${this.apiUrl}/user/${userId}`);
+  }
   
 
   //To update all the templates by admin

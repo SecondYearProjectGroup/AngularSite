@@ -46,6 +46,7 @@
               <li [class.active]="isDashboardActive()"><a (click)="navigateToDashboard()">Dashboard</a></li>
               <li [class.active]="isEditProfileActive()"><a (click)="navigateToEditProfile()">Profile</a></li>
               <li><a (click)="navigateToEditProfile()">Notification</a></li>
+              <li *ngIf="userRole === 'ADMIN' || userRole === 'SUPERVISOR' || userRole === 'EXAMINER' || userRole === 'SUPERVISOR-EXAMINER'" [class.active]="isEmailsActive()"><a (click)="navigateToEmails()">Emails</a></li>
         
             </ul>
         

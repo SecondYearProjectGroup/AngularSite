@@ -53,11 +53,15 @@ export class AssignSupervisorByAdminComponent implements OnInit{
   }
 
   selectedSupervisor: any;
+  isLoading: boolean = false;
 
 
   assignSupervisor(): void {
 
     if (this.selectedSupervisor) {
+
+      this.isLoading = true;
+
       const url = `http://localhost:8080/assignSupervisor/${this.regNumber}`;
       this.http.post(url, null, { 
         params: { supervisorId: this.selectedSupervisor.id }, 
@@ -65,6 +69,7 @@ export class AssignSupervisorByAdminComponent implements OnInit{
       }).subscribe({
         next: (response) => {
           console.log('Supervisor assigned successfully:', response);
+          this.isLoading = false;
           Swal.fire({
             // title: 'Enrollment successful!',
             // text: 'Supervisor assigned successfully.',
@@ -89,6 +94,7 @@ export class AssignSupervisorByAdminComponent implements OnInit{
         },
         error: (error) => {
           console.error('Error assigning supervisor:', error);
+          this.isLoading = false;
           Swal.fire({
             html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error assigning supervisor.</b>',
             timer: 2000,
