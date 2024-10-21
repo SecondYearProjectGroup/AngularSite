@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { FileService } from '../../../services/file.service';
 import { EnrolledStudentService } from '../../services/enrolled-student.service';
@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class EnrolledStudentsComponent implements OnInit{
 
-  constructor( private http:HttpClient, private fileService : FileService , private enrolledStudentService: EnrolledStudentService) {}
+  constructor( private http:HttpClient, private fileService : FileService , private enrolledStudentService: EnrolledStudentService, private cdr: ChangeDetectorRef) {}
 
   tableData: Array<{ 
     id: number,
@@ -102,7 +102,7 @@ export class EnrolledStudentsComponent implements OnInit{
   }
 
 
-
+  isLoading: boolean = false;
   updateStatus(studentId: number, status: string, alertText: string): void {
     Swal.fire({
       html: '<b>Edit Student details before continue.</b>',
@@ -121,12 +121,14 @@ export class EnrolledStudentsComponent implements OnInit{
     }).then((result) => {
       if (result.isConfirmed) {
         // Logic for confirm button (Save)
+        this.isLoading = true;
 
         const params = new HttpParams().set('action', status); // Set the 'action' parameter
     
         this.http.post(`http://localhost:8080/handleApproval/${studentId}`, {}, { params, responseType: 'text' })
           .subscribe({
             next: (response: string) => {
+              this.isLoading = false;
               Swal.fire({
                 html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Approval email sent successfully.</b>',
                 timer: 2000,
@@ -140,16 +142,11 @@ export class EnrolledStudentsComponent implements OnInit{
                 backdrop: 'rgba(0, 0, 0, 0.4)',
                 showConfirmButton: false
               });
-              const statusCell = document.getElementById(`status-cell-${studentId}`);
-              if (statusCell) {
-                statusCell.innerHTML = `<strong>${status}</strong>`;
-                statusCell.style.color = status === 'Enrolled' ? 'green' : 'red';
-              }
 
-              // Update the local state to reflect the status change
-              const student = this.tableData.find(s => s.id === studentId);
+              // Update student status in the table data
+              const student = this.students.find(s => s.id === studentId);
               if (student) {
-                student.status = status;
+                student.registrationStatus = status; // Update the status
               }
             },
             error: (error) => {
@@ -161,6 +158,7 @@ export class EnrolledStudentsComponent implements OnInit{
                 // Server-side error
                 errorMessage = `Error ${error.status}: ${error.message}`;
               }
+              this.isLoading = false;
               Swal.fire({
                 html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error approving student.</b>',
                 timer: 2000,
@@ -176,6 +174,8 @@ export class EnrolledStudentsComponent implements OnInit{
               });
             }
           });
+          console.log("Load again.");
+          this.loadStudents();
 
       } else if (result.isDismissed) {
         // Logic for cancel button

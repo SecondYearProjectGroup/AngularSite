@@ -71,8 +71,10 @@ export class EnrollComponent {
     this.birthCertificate = file ? file : null;
   }
 
+  isLoading: boolean = false;
   onEnrollSubmit(form: NgForm) {
     this.errorMessage = ''; // Reset error message
+    this.isLoading = true;
 
     if (!form.valid) {
       form.form.markAllAsTouched(); // Mark fields as touched
@@ -109,6 +111,7 @@ export class EnrollComponent {
     this.enrollService.enrollStudent(this.studentData, attachments, this.studentIdDocument,this.birthCertificate).subscribe({
       next: (response) => {
         console.log('Enrollment successful', response);
+        this.isLoading = false;
         Swal.fire({
           html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Enrollment successful.</b>',
           timer: 2000,
@@ -147,6 +150,20 @@ export class EnrollComponent {
       },
       error: (error) => {
         console.error('Enrollment failed', error);
+        this.isLoading = false;
+        Swal.fire({
+          html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error in Enrolling.</b>',
+          timer: 2000,
+          position: 'top',
+          customClass: {
+            popup: 'custom-popup-class',
+            title: 'custom-title-class',
+            htmlContainer: 'custom-text-class'
+          },
+          background: '#fff',
+          backdrop: 'rgba(0, 0, 0, 0.4)',
+          showConfirmButton: false
+        });
         this.errorMessage = error.message || 'Enrollment failed. Please try again.';
       }
     });
