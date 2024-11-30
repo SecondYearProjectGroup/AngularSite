@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { EmailServiceService } from '../../services/email-service.service';
 import { EmailTemplate } from '../../../models/email-template';
 import { UserRoleService } from '../../services/user-role.service';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-emails-page',
@@ -122,11 +122,36 @@ export class EmailsPageComponent {
         this.emailService.updateTemplate(this.selectedTemplateId, this.selectedTemplate).subscribe(
             (response) => {
                 console.log('Template updated successfully:', response);
-                // Optionally, reload templates to reflect changes
+                Swal.fire({
+                  html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Template updated successfully.</b>',
+                  timer: 2000,
+                  position: 'top',
+                  customClass: {
+                    popup: 'custom-popup-class',
+                    title: 'custom-title-class',
+                    htmlContainer: 'custom-text-class'
+                  },
+                  background: '#fff',
+                  backdrop: 'rgba(0, 0, 0, 0.4)',
+                  showConfirmButton: false
+                });
                 this.loadTemplates(); 
             },
             (error) => {
                 console.error('Error updating email template:', error);
+                Swal.fire({
+                  html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error updating Email template.</b>',
+                  timer: 2000,
+                  position: 'top',
+                  customClass: {
+                    popup: 'custom-popup-class',
+                    title: 'custom-title-class',
+                    htmlContainer: 'custom-text-class'
+                  },
+                  background: '#fff',
+                  backdrop: 'rgba(0, 0, 0, 0.4)',
+                  showConfirmButton: false
+                });
             }
         );
     }
@@ -156,31 +181,82 @@ export class EmailsPageComponent {
       this.selectedTemplate.userId = this.userIdId;
         this.emailService.addNewTemplate(this.selectedTemplate).subscribe(
             (response) => {
-                console.log('Template updated successfully:', response);
-                // Optionally, reload templates to reflect changes
+                console.log('Template added successfully:', response);
+                Swal.fire({
+                  html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Template added successfully.</b>',
+                  timer: 2000,
+                  position: 'top',
+                  customClass: {
+                    popup: 'custom-popup-class',
+                    title: 'custom-title-class',
+                    htmlContainer: 'custom-text-class'
+                  },
+                  background: '#fff',
+                  backdrop: 'rgba(0, 0, 0, 0.4)',
+                  showConfirmButton: false
+                });
                 this.loadTemplates(); 
             },
             (error) => {
-                console.error('Error updating email template:', error);
+                console.error('Error adding email template:', error);
+                Swal.fire({
+                  html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error adding Email template.</b>',
+                  timer: 2000,
+                  position: 'top',
+                  customClass: {
+                    popup: 'custom-popup-class',
+                    title: 'custom-title-class',
+                    htmlContainer: 'custom-text-class'
+                  },
+                  background: '#fff',
+                  backdrop: 'rgba(0, 0, 0, 0.4)',
+                  showConfirmButton: false
+                });
             }
         );
   }
 
 
-  //To be completed
-  sendEmailtoStudent(): void {
-    this.selectedTemplate.body = this.editorContent;
-    if(this.regNo != null)
-      this.emailService.sendEmailsFromStudentProfile(this.selectedTemplate, this.regNo).subscribe(
-          (response) => {
-              console.log('Template updated successfully:', response);
-              // Optionally, reload templates to reflect changes
-              this.loadTemplates(); 
-          },
-          (error) => {
-              console.error('Error updating email template:', error);
-          }
-      );
+//To be completed
+sendEmailtoStudent(): void {
+  this.selectedTemplate.body = this.editorContent;
+  if(this.regNo != null){
+    this.emailService.sendEmailsFromStudentProfile(this.selectedTemplate, this.regNo).subscribe(
+        (response) => {
+          console.log('Email sent successfully:', response);
+          Swal.fire({
+            html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Email sent successfully.</b>',
+            timer: 2000,
+            position: 'top',
+            customClass: {
+              popup: 'custom-popup-class',
+              title: 'custom-title-class',
+              htmlContainer: 'custom-text-class'
+            },
+            background: '#fff',
+            backdrop: 'rgba(0, 0, 0, 0.4)',
+            showConfirmButton: false
+          });
+          this.loadTemplates(); 
+        },
+        (error) => {
+          console.error('Error sending email:', error);
+          Swal.fire({
+            html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error sending email.</b>',
+            timer: 2000,
+            position: 'top',
+            customClass: {
+              popup: 'custom-popup-class',
+              title: 'custom-title-class',
+              htmlContainer: 'custom-text-class'
+            },
+            background: '#fff',
+            backdrop: 'rgba(0, 0, 0, 0.4)',
+            showConfirmButton: false
+          });
+        }
+    );
+  }
 }
 
 
@@ -194,10 +270,36 @@ sendEmails(): void {
   this.emailService.sendEmails(this.selectedTemplate, emailArray).subscribe(
     (response) => {
       console.log('Emails sent successfully:', response);
+      Swal.fire({
+        html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Emails sent successfully.</b>',
+        timer: 2000,
+        position: 'top',
+        customClass: {
+          popup: 'custom-popup-class',
+          title: 'custom-title-class',
+          htmlContainer: 'custom-text-class'
+        },
+        background: '#fff',
+        backdrop: 'rgba(0, 0, 0, 0.4)',
+        showConfirmButton: false
+      });
       this.loadTemplates(); // Optionally, reload templates to reflect changes
     },
     (error) => {
       console.error('Error sending emails:', error);
+      Swal.fire({
+        html: '<i class="fas fa-square-xmark" style="font-size: 30px; color: red;"></i><br> <b>Error sending emails.</b>',
+        timer: 2000,
+        position: 'top',
+        customClass: {
+          popup: 'custom-popup-class',
+          title: 'custom-title-class',
+          htmlContainer: 'custom-text-class'
+        },
+        background: '#fff',
+        backdrop: 'rgba(0, 0, 0, 0.4)',
+        showConfirmButton: false
+      });
     }
   );
 
