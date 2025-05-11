@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SubmissionService } from '../../../services/submission.service';
 import Swal from 'sweetalert2';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-set-deadlines-to-examiners',
@@ -69,7 +70,7 @@ export class SetDeadlinesToExaminersComponent implements OnInit {
   // Load previously assigned examiners
   loadAssignedExaminers() {
     if (this.id !== null) {
-      const url = `http://localhost:8080/getAssignedExaminers/${this.id}`;
+      const url = `${environment.apiUrl}/getAssignedExaminers/${this.id}`;
       this.http.get<Array<{ id: number, fullName: string }>>(url)
         .subscribe({
           next: (data) => {

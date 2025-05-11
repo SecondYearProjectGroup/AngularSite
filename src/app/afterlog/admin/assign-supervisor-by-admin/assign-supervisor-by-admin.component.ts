@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import Swal from 'sweetalert2';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-assign-supervisor-by-admin',
@@ -62,7 +63,7 @@ export class AssignSupervisorByAdminComponent implements OnInit{
 
       this.isLoading = true;
 
-      const url = `http://localhost:8080/assignSupervisor/${this.regNumber}`;
+      const url = `${environment.apiUrl}/assignSupervisor/${this.regNumber}`;
       this.http.post(url, null, { 
         params: { supervisorId: this.selectedSupervisor.id }, 
         responseType: 'text' // Expect a plain text response

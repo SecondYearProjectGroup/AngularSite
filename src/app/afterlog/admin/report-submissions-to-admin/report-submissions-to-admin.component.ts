@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-report-submissions-to-admin',
@@ -40,7 +41,7 @@ tableData: Array<{
       deadline: string, // Assuming deadline is an ISO string
       submissionStatus: boolean, // Assuming submissionStatus is a boolean
       examiners: string[]
-    }>>('http://localhost:8080/report-submissions-examiners')
+    }>>(`${environment.apiUrl}/report-submissions-examiners`)
       .subscribe(data => {
         this.tableData = data;
         console.log(this.tableData);

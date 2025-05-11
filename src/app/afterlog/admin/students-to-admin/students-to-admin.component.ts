@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-students-to-admin',
@@ -36,7 +37,7 @@ export class StudentsToAdminComponent {
     email:string, 
     address: string,
     programOfStudy: string,
-    status: string }>>('http://localhost:8080/students')
+    status: string }>>(`${environment.apiUrl}/students`)
     .subscribe({
       next: (data) => {
         this.tableData = data;

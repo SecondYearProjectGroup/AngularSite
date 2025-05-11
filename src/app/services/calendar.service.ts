@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { UserRoleService } from '../afterlog/services/user-role.service';
 import { switchMap, tap } from 'rxjs/operators';
 import { NewEvent } from '../models/new-event';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class CalendarService {
 
   constructor(private http: HttpClient, private userRoleService: UserRoleService) {}
 
-  private apiUrl = 'http://localhost:8080';
+  private apiUrl = `${environment.apiUrl}`;
 
   // Fetch events and update the BehaviorSubject
   getUserEvents(): Observable<NewEvent[]> {

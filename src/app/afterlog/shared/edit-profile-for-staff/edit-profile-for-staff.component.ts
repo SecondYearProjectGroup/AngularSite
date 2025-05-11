@@ -4,6 +4,7 @@ import { UserRoleService } from '../../services/user-role.service';
 import { User } from '../../../models/user.model';
 import { ProfilePictureService } from '../../services/profile-picture.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-edit-profile-for-staff',
@@ -51,7 +52,7 @@ export class EditProfileForStaffComponent implements OnInit {
       'Authorization': `Bearer ${token}`
     });
 
-    this.http.get<User>('http://localhost:8080/profile-user', { headers })
+    this.http.get<User>(`${environment.apiUrl}/profile-user`, { headers })
       .subscribe(
         (userData) => {
           this.user = userData;
@@ -80,7 +81,7 @@ export class EditProfileForStaffComponent implements OnInit {
   isThereProfilePicture: boolean = false;
 
   loadProfilePicture(userId: number) {
-    this.http.get(`http://localhost:8080/profile/picture/${userId}`, { responseType: 'blob' })
+    this.http.get(`${environment.apiUrl}/profile/picture/${userId}`, { responseType: 'blob' })
     .subscribe(
       (response) => {
           // Create a URL for the image blob
@@ -104,7 +105,7 @@ export class EditProfileForStaffComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', file, file.name);
 
-      this.http.post(`http://localhost:8080/profile/updatePicture/${this.userIdId}`, formData)
+      this.http.post(`${environment.apiUrl}/profile/updatePicture/${this.userIdId}`, formData)
         .subscribe(response => {
           console.log('Profile picture uploaded successfully', response);
           //this.loadUserData(); // Reload user data to reflect changes
@@ -119,7 +120,7 @@ export class EditProfileForStaffComponent implements OnInit {
 deleteProfilePicture(): void {
   if (this.deletePictureChecked) {
     if (this.userIdId !== null) {
-      this.http.delete<string>(`http://localhost:8080/profile/picture/delete/${this.userIdId}`).subscribe(
+      this.http.delete<string>(`h${environment.apiUrl}/profile/picture/delete/${this.userIdId}`).subscribe(
         (response) => {
           console.log(response);  // Success message
           this.isThereProfilePicture = false;

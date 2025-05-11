@@ -5,6 +5,7 @@ import { Student } from '../../../models/student';
 import { UserRoleService } from '../../services/user-role.service';
 import { ProfilePictureService } from '../../services/profile-picture.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 
 @Component({
@@ -61,7 +62,7 @@ export class EditProfileComponent implements OnInit{
       'Authorization': `Bearer ${token}`
     });
 
-    this.http.get<Student>('http://localhost:8080/profile-student', { headers })
+    this.http.get<Student>(`${environment.apiUrl}/profile-student`, { headers })
       .subscribe(
         (studentData) => {
           this.student = studentData;
@@ -85,7 +86,7 @@ export class EditProfileComponent implements OnInit{
         email: this.student.email,
       };
 
-      this.http.put(`http://localhost:8080/profile/student/update/${this.userId}`, updateData)
+      this.http.put(`${environment.apiUrl}/profile/student/update/${this.userId}`, updateData)
         .subscribe(
           response => {
             console.log('Profile updated successfully:', response);
@@ -116,7 +117,7 @@ export class EditProfileComponent implements OnInit{
       const formData = new FormData();
       formData.append('file', file, file.name);
       
-      this.http.post(`http://localhost:8080/profile/updatePicture/${this.userIdId}`, formData)
+      this.http.post(`${environment.apiUrl}/profile/updatePicture/${this.userIdId}`, formData)
         .subscribe(response => {
           console.log('Profile picture uploaded successfully', response);
           this.loadUserData(); // Reload user data to reflect changes
@@ -130,7 +131,7 @@ export class EditProfileComponent implements OnInit{
   isThereProfilePicture: boolean = false;
 
   loadProfilePicture(userId: number) {
-    this.http.get(`http://localhost:8080/profile/picture/${userId}`, { responseType: 'blob' })
+    this.http.get(`${environment.apiUrl}/profile/picture/${userId}`, { responseType: 'blob' })
       .subscribe(
         (response) => {
             // Create a URL for the image blob
@@ -153,7 +154,7 @@ deletePictureChecked: boolean = false;
 deleteProfilePicture(): void {
   if (this.deletePictureChecked) {
     if (this.userIdId !== null) {
-      this.http.delete<string>(`http://localhost:8080/profile/picture/delete/${this.userIdId}`).subscribe(
+      this.http.delete<string>(`${environment.apiUrl}/profile/picture/delete/${this.userIdId}`).subscribe(
         (response) => {
           console.log(response);  // Success message
           // this.profilePictureUrl = 'path-to-default-image.jpg';
