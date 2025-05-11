@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 export class VivaService {
 
   
-  private apiUrl = 'http://localhost:8080'; // Update with your actual backend API URL
+  private apiUrl = `${environment.apiUrl}`; // Update with your actual backend API URL
 
   constructor(private http: HttpClient) {}
 

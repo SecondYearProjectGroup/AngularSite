@@ -4,6 +4,7 @@ import { FileService } from '../../../services/file.service';
 import { EnrolledStudentService } from '../../services/enrolled-student.service';
 import { EnrolledStudent } from '../../../models/enrolled-studnet';
 import Swal from 'sweetalert2';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-enrolled-students',
@@ -125,7 +126,7 @@ export class EnrolledStudentsComponent implements OnInit{
 
         const params = new HttpParams().set('action', status); // Set the 'action' parameter
     
-        this.http.post(`http://localhost:8080/handleApproval/${studentId}`, {}, { params, responseType: 'text' })
+        this.http.post(`${environment.apiUrl}/handleApproval/${studentId}`, {}, { params, responseType: 'text' })
           .subscribe({
             next: (response: string) => {
               this.isLoading = false;

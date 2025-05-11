@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-assign-examiner-by-admin',
@@ -27,7 +28,7 @@ export class AssignExaminerByAdminComponent implements OnInit {
 
   // Load examiners from the backend
   loadExaminers(submissionId : number | null) {
-    this.http.get<Array<{ id: number, fullName: string, email: string }>>(`http://localhost:8080/examiners/${submissionId}`)
+    this.http.get<Array<{ id: number, fullName: string, email: string }>>(`${environment.apiUrl}/examiners/${submissionId}`)
       .subscribe({
         next: (data) => {
           this.tableData = data.map(examiner => ({
@@ -47,7 +48,7 @@ export class AssignExaminerByAdminComponent implements OnInit {
   // Load previously assigned examiners
   loadAssignedExaminers() {
     if (this.id !== null) {
-      const url = `http://localhost:8080/getAssignedExaminers/${this.id}`;
+      const url = `${environment.apiUrl}/getAssignedExaminers/${this.id}`;
       this.http.get<Array<{ id: number, fullName: string }>>(url)
         .subscribe({
           next: (data) => {
@@ -118,7 +119,7 @@ export class AssignExaminerByAdminComponent implements OnInit {
       return;
     }
 
-    const url = `http://localhost:8080/assignExaminers/${this.id}`;
+    const url = `${environment.apiUrl}/assignExaminers/${this.id}`;
     const params = new HttpParams().set('examinerIds', selectedExaminerIds.join(','));
 
     this.http.post(url, null, {

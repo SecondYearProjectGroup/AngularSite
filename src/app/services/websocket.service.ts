@@ -71,6 +71,7 @@ import SockJS from 'sockjs-client';
 import { AuthServiceService } from './auth-service.service';
 import { filter, Observable, map, of, Subject } from 'rxjs';
 import { first, switchMap, delay, catchError } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -92,7 +93,7 @@ export class WebsocketService {
     this.stompConfig = {
       url: () => {
         // Pass the JWT token as a query parameter
-        return new SockJS(`http://localhost:8080/ws?token=${token}`);
+        return new SockJS(`${environment.apiUrl}/ws?token=${token}`);
       },
       headers: {
         // Alternatively, pass the token as a custom header

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-vivas-to-admin',
@@ -35,7 +36,7 @@ export class VivasToAdminComponent {
       //comments: string, 
       regNumber: string,
       registrationNumber: string,
-      status: string,}>>('http://localhost:8080/viva/details')
+      status: string,}>>(`${environment.apiUrl}/viva/details`)
       .subscribe({
         next: (data) => {
           this.tableData = data;

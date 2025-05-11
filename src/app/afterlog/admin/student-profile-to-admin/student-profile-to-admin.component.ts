@@ -7,6 +7,7 @@ import { CollapsibleSectionService } from '../../services/collapsible-section.se
 import { LoadingTile, Section, Tile } from '../../../models/section.model';
 import { UserRoleService } from '../../services/user-role.service';
 import Swal from 'sweetalert2';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-student-profile-to-admin',
@@ -101,7 +102,7 @@ export class StudentProfileToAdminComponent implements OnInit {
     const token = this.authService.getToken(); // Assuming you have a method to get the token
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     
-    this.http.get<Student>(`http://localhost:8080/studentProfileForAdmin/${encodedRegNumber}`, { headers })
+    this.http.get<Student>(`${environment.apiUrl}/studentProfileForAdmin/${encodedRegNumber}`, { headers })
       .subscribe({
         next: (data) => {
           console.log('Student data successfully retrieved:', data);
@@ -164,7 +165,7 @@ export class StudentProfileToAdminComponent implements OnInit {
   }
 
   loadSupervisorName(regNumber: string) {
-    this.http.get<string>(`http://localhost:8080/supervisor/students/${regNumber}/supervisor`, { responseType: 'text' as 'json' })
+    this.http.get<string>(`${environment.apiUrl}/supervisor/students/${regNumber}/supervisor`, { responseType: 'text' as 'json' })
       .subscribe({
         next: (supervisorName) => {
           this.supervisorName = supervisorName;

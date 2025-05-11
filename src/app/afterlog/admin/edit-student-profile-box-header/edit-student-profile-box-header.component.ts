@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Student } from '../../../models/student';
 import Swal from 'sweetalert2';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-edit-student-profile-box-header',
@@ -51,7 +52,7 @@ export class EditStudentProfileBoxHeaderComponent {
     };
   
     // Define the URL for the API request
-    const url = `http://localhost:8080/editDetailsByAdmin/${this.regNumber}`;
+    const url = `${environment.apiUrl}/editDetailsByAdmin/${this.regNumber}`;
   
     // Send the updated fields to the backend using the HTTP POST method
     this.http.post(url, updatedFields, {

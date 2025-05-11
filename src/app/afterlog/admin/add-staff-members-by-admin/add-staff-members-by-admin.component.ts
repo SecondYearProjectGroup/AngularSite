@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { StaffmemberService } from '../../services/staffmember.service';
 import Swal from 'sweetalert2';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-add-staff-members-by-admin',
@@ -49,7 +50,7 @@ export class AddStaffMembersByAdminComponent {
       .set('email', this.staffMember.email)
       .set('role', this.staffMember.roles.join(','));
    
-      this.http.post('http://localhost:8080/addStaffMembers', params, { responseType: 'text' }).subscribe({
+      this.http.post(`${environment.apiUrl}/addStaffMembers`, params, { responseType: 'text' }).subscribe({
       next: (response) => {
         Swal.fire({
           html: '<i class="fas fa-check-circle" style="font-size: 30px; color: green;"></i><br> <b>Staff member added successfully!</b>',

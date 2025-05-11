@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 interface UploadedFile {
   fileName: string;
@@ -14,7 +15,7 @@ interface UploadedFile {
 })
 export class SubmissionService {
 
-  private apiUrl = 'http://localhost:8080'; // Update with your actual backend API URL
+  private apiUrl = `${environment.apiUrl}`; // Update with your actual backend API URL
 
   constructor(private http: HttpClient) {}
 
@@ -33,13 +34,13 @@ export class SubmissionService {
 
 
   uploadFiles(formData: FormData, tileId: number): Observable<any> {
-    return this.http.post(`http://localhost:8080/complete-assignment/${tileId}`, formData, {
+    return this.http.post(`${this.apiUrl}/complete-assignment/${tileId}`, formData, {
       responseType: 'text' // This forces Angular to treat the response as plain text
     });
   }
 
   uploadFilesbyAdmin(formData: FormData, tileId: number): Observable<any> {
-    return this.http.post(`http://localhost:8080/files/upload/${tileId}`, formData, {
+    return this.http.post(`${this.apiUrl}/files/upload/${tileId}`, formData, {
       responseType: 'text' // This forces Angular to treat the response as plain text
     });
   }
